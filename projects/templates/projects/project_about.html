@@ -1,0 +1,12 @@
+{% extends 'projects/base_projects.html' %}
+{% load staticfiles %}
+{% block localstaticlinks %}
+<link rel="stylesheet" type="text/css"
+href="{% static 'projects/project_about.css' %}">
+<script type="text/javascript" src="{% static 'projects/project_about.js' %}">
+</script>
+{% endblock %}
+{% block title %}<title>{{ curr_project.title }}</title>{% endblock %}
+{% block content %}
+<p>This is project: {{ curr_project.title }} !</p>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "zachsite/index.html" %}
+{% block experiment %}
+  <!-- A showcase of my projects -->
+  <div id="projects-div">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 id="projects-heading">Active Projects</h2>
+      </div> <!-- /.col-xs-12 -->
+    </div> <!-- /.row -->
+    <div class="row">
+      {% for project in projectList %}
+      {% if forloop.last and not projectLen|divisibleby:2 %}
+      <div class="project col-xs-12 col-sm-8 col-sm-offset-2">
+      {% elif forloop.counter0|divisibleby:2 %}
+      <div class="project project-left col-xs-12 col-sm-6">
+      {% else %}
+      <div class="project project-right col-xs-12 col-sm-6">
+      {% endif %}
+        <a href="#">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <img>
+            </div> <!-- /.panel-body -->
+            <div class="panel-footer">
+              <h3 class="project-title">{{ project.title }}</h3>
+            </div> <!-- /.panel-footer -->
+          </div> <!-- /.panel -->
+        </a>
+      </div> <!-- /.blurb -->
+      {% endfor %}
+    </div> <!-- /.row -->
+  </div> <!-- /#projects-div -->
+</section> <!-- /.info-section -->
+{% endblock %}

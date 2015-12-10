@@ -1,0 +1,110 @@
+{% extends "zachsite/base.html" %}
+{% load staticfiles %}
+{% block localstaticlinks %}
+<link rel="stylesheet" type="text/css"
+href="{% static 'zachsite/index.css' %}">
+<script type="text/javascript" src="{% static 'zachsite/index.js' %}">
+</script>
+{% endblock %}
+{% block content %}
+<section id="qa-section">
+  <!-- Hat image -->
+  <div id="zach-hat">
+    <img>
+  </div> <!-- /#zach-hat -->
+      
+  <!-- Question-Answer carousel -->
+  <div id="question-carousel" class="carousel slide" data-ride="carousel"
+data-interval="5000">
+    <!-- wrapper for slides -->
+    <div class="carousel-inner" id="carousel-inner" role="listbox">
+      {% for question in QAs %}
+      {% if forloop.first %}
+      <div class="item active" data-answer="{{ question.answer }}">
+      {% else %}
+      <div class="item" data-answer="{{ question.answer }}">
+      {% endif %}
+        <div class="jumbotron question">
+          <h2 class="question-text">{{ question.question }}</h2>
+        </div> <!-- /.jumbotron -->
+      </div> <!-- /.item -->
+      {% endfor %}
+    </div> <!-- /.carousel-inner -->
+    <!-- controls -->
+    <a class="left carousel-control" href="#question-carousel"
+role="button" data-slide="prev">
+      <span class="sr-only">Previous</span>
+    </a> <!-- /.left -->
+    <a class="right carousel-control" href="#question-carousel"
+role="button" data-slide="next">
+      <span class="sr-only">Next</span>
+    </a> <!-- /.right -->
+  </div> <!-- /.carousel -->
+  <!-- answer div -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="jumbotron answer col-xs-12">
+        <blockquote>
+          <p id="answer-text"></p>
+        </blockquote>
+      </div> <!-- /.answer -->
+    </div> <!-- /.row -->
+  </div> <!-- /.container-fluid -->
+      
+  <!-- Smile image -->
+  <div id="zach-smile">
+    <img>
+  </div> <!-- /#zach-smile -->
+</section> <!-- /.qa-section -->
+  
+<!-- Spiel info: about me -->
+<section id="info-section">
+  <!-- A blurb about me -->
+  <div id="blurbs-div" class="container-fluid">
+    <div class="row">
+      {% for blurb in blurbList %}
+      {% if forloop.last and not blurbLen|divisibleby:2 %}
+      <div class="blurb col-xs-12 col-sm-8 col-sm-offset-2">
+      {% elif forloop.counter0|divisibleby:2 %}
+      <div class="blurb blurb-left col-xs-12 col-sm-6">
+      {% else %}
+      <div class="blurb blurb-right col-xs-12 col-sm-6">
+      {% endif %}
+        <h3>{{ blurb.title }}</h3>
+        <p>{{ blurb.text }}</p>
+      </div> <!-- /.blurb -->
+      {% endfor %}
+    </div> <!-- /.row -->
+  </div> <!-- /#info-div -->
+  <!-- A showcase of my projects -->
+  <div id="projects-div">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 id="projects-heading">Active Projects</h2>
+      </div> <!-- /.col-xs-12 -->
+    </div> <!-- /.row -->
+    <div class="row">
+      {% for project in projectList %}
+      {% if forloop.last and not projectLen|divisibleby:2 %}
+      <div class="project col-xs-12 col-sm-8 col-sm-offset-2">
+      {% elif forloop.counter0|divisibleby:2 %}
+      <div class="project project-left col-xs-12 col-sm-6">
+      {% else %}
+      <div class="project project-right col-xs-12 col-sm-6">
+      {% endif %}
+        <div class="panel project-panel panel-default">
+          <a href="{% url 'project_about' project.id project.slug %}">
+            <div class="panel-body">
+              <img>
+            </div> <!-- /.panel-body -->
+            <div class="panel-footer">
+              <h3 class="project-title">{{ project.title }}</h3>
+            </div> <!-- /.panel-footer -->
+          </a>
+        </div> <!-- /.panel -->
+      </div> <!-- /.blurb -->
+      {% endfor %}
+    </div> <!-- /.row -->
+  </div> <!-- /#projects-div -->
+</section> <!-- /.info-section -->
+{% endblock %}

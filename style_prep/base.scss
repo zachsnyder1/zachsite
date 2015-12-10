@@ -1,0 +1,19 @@
+@import 'zachsite_variables';
+
+// -------------------------------------------------------------------------
+// -------------------------------  BASE  ----------------------------------
+// -------------------------------------------------------------------------
+#nav1 {
+	margin-bottom: 0px;
+	//padding-top: 20px;
+}
+
+#foot {
+	height: 60px;
+	background-color: $zach-blue-bg-dark;
+}
+
+.navbar-default .navbar-nav > .dropdown > .dropdown-menu > li > a:hover {
+	color: darken($zach-blue, 30%);
+	background-color: $zach-yellow;
+}

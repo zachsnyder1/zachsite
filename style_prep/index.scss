@@ -1,0 +1,106 @@
+@import 'base';
+
+// -------------------------------------------------------------------------
+// ----------------------------  QA Section  -------------------------------
+// -------------------------------------------------------------------------
+#zach-hat, #zach-smile {
+	height: 200px;
+	background-color: $zach-blue-bg-dark;
+}
+
+.question {
+	font-family: 'Merriweather';
+	background-color: $zach-purple;
+	margin-bottom: 0px;
+	padding-top: 25px;
+	padding-bottom: 25px;
+}
+
+.question-text {
+	text-align: center;
+}
+
+.answer {
+	font-family: "Montserrat";
+	background-color: $zach-blue-bg; //#f9f9fc;
+	margin-bottom: 0px !important;
+	padding-top: 40px;
+	padding-bottom: 20px;
+	-webkit-border-radius: 0px !important;
+	-moz-border-radius: 0px !important;
+	border-radius: 0px !important;
+}
+
+
+// -------------------------------------------------------------------------
+// ---------------------------  INFO SECTION  ------------------------------
+// -------------------------------------------------------------------------
+
+// <<<----- BLURBS DIV ----->>>
+#blurbs-div {
+	padding-top: 60px;
+	padding-bottom: 80px;
+	background-color: white;
+	text-align: center;
+	.blurb {
+		padding: 20px 20px 0px 20px;
+	}
+}
+
+.blurb > p {
+	text-align: left;
+	margin: 0px 40px 20px 40px;
+}
+
+@media (min-width: $screen-sm-min) {
+	.blurb-left > p {
+		margin: 0px 25px 20px 50px;
+	}
+	.blurb-right > p {
+		margin: 0px 50px 20px 25px;
+	}
+}
+
+// <<<----- PROJECTS DIV ----->>>
+#projects-div {
+	background-color: $zach-yellow;
+	padding-bottom: 50px;
+}
+
+#projects-heading {
+	padding: 60px 0px 50px 0px;
+	text-align: center;
+	font-family: "Merriweather";
+	color: $zach-red;
+}
+
+// Style for :hover state of project panels:
+.project-panel-hover {
+	background-color: lighten($zach-blue-bg, 20%);
+}
+
+.project-panel-footer-hover {
+	background-color: lighten($zach-blue-bg, 20%);
+}
+
+.project-title-hover {
+	color: lighten($zach-red, 20%) !important;
+}
+
+.project-title {
+	text-align: center;
+	color: $panel-default-text;
+}
+
+.project > .panel {
+	margin: 0px 40px 20px 40px;
+}
+
+@media (min-width: $screen-sm-min) {
+	.project-left > .panel {
+		margin: 0px 25px 20px 50px;
+	}
+	.project-right > .panel {
+		margin: 0px 50px 20px 25px;
+	}
+}
