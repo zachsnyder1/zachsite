@@ -3,7 +3,7 @@ from django.test import TestCase
 
 class ZachsiteTemplateContextTestCase(TestCase):
 	"""
-	Test methods for index page.
+	Test methods for index page. 
 	"""
 	fixtures = ["fixture3.json"]
 	
