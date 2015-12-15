@@ -1,5 +1,4 @@
 from django.test import TestCase
-from zachsite.models import QuestionAndAnswer, Blurb
 
 
 class ZachsiteTemplateContextTestCase(TestCase):
