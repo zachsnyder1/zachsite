@@ -3,6 +3,17 @@ from django.views.decorators.http import require_http_methods
 from .models import Project
 
 @require_http_methods(["GET"])
+def projects_home(request):
+	"""
+	Projects home page.
+	"""
+	projectList = Project.objects.all().filter(active=True).order_by("title")
+	context = {
+		'projectList': projectList
+	}
+	return render(request, 'projects/projects_home.html', context)
+
+@require_http_methods(["GET"])
 def project_about(request, project_id, project_slug):
 	"""
 	Project 'about' page.
