@@ -3,6 +3,9 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 		jshint: {
+			options: {
+				force: true,
+			},
 			src: [ 
 				'./{zachsite,projects,blog}/static/**/*.js',
 				'./{zachsite,projects,blog}/qunit_tests/*.js',

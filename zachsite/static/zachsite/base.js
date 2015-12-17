@@ -1,13 +1,35 @@
 var TestScript = (function() {
 	// Not run during QUnit test
 	function main() {
+		var projDropdown = '#projects-dropdown';
+		dropdownOnHover(projDropdown);
 		addActiveLink();
 	}
 	
 	// Set active link in navbar
 	function addActiveLink() {
 		"use strict";
-		$('a[href="' + window.location.pathname + '"]').parent().addClass('active');
+		$('a[href="' + window.location.pathname + '"]').
+			parent().
+			addClass('active');
+	}
+	
+	// Toggle bootstrap dropdown on hover, 
+	function dropdownOnHover(selector) {
+		// Toggle the dropdown on mouseenter / mouseleave
+		function toggleFunc() {
+			$(this).children().filter('.dropdown-toggle').dropdown('toggle'); 
+		}
+		// Follow the link on dropdown click
+		function followLink() {
+			var href = $(this).attr('href');
+			window.location.href = href;
+		}
+		$(selector).hover(toggleFunc, toggleFunc);
+		$(selector).
+			children().
+			filter('.dropdown-toggle').
+			on('click', followLink);
 	}
 	
 	//  If not QUnit test, run main().
@@ -17,6 +39,7 @@ var TestScript = (function() {
 			// Export functions for testing...
 			var Base = {};
 			Base.addActiveLink = addActiveLink;
+			Base.dropdownOnHover = dropdownOnHover;
 	
 			return Base;
 		}
