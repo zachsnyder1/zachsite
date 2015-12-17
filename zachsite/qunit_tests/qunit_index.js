@@ -36,10 +36,13 @@ QUnit.test("test qaCarUpdate", function(assert) {
 				 "initial text loaded");
 	// On 'slid' event, assert text has been successfully updated:
 	$('#' + questionCarousel).on('slid.bs.carousel', function() {
-		assert.equal($('#' + answerParagraph).text(), 
-					 "test2", 
-					 "text after slide");
-		done();
+		// requeue assertion to assure it follows text update
+		setTimeout(function() {
+			assert.equal($('#' + answerParagraph).text(), 
+						 "test2", 
+						 "text after slide");
+			done();
+		}, 0);
 	});
 	// Trigger the event
 	$('#' + questionCarousel).carousel('next');
