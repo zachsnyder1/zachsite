@@ -11,7 +11,7 @@ QUnit.test('test addActiveLink', function(assert) {
 		appendTo($("#" + linkParent));
 	
 	// Add .active class to linkParent
-	TestHook.addActiveLink();
+	TestScript.addActiveLink();
 	// Assert that the .active class was correctly applied
 	assert.equal($(".active").attr('id'), 
 				 linkParent, 

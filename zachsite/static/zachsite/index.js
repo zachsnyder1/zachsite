@@ -1,4 +1,4 @@
-var TestHook = (function() {
+var TestScript = (function() {
 	// Not run during QUnit test
 	function main() {
 		"use strict";

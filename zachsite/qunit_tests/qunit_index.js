@@ -28,7 +28,7 @@ QUnit.test("test qaCarUpdate", function(assert) {
 	
 	// Call qaCarUpdate to set event listener and set answerParagraph
 	// to the data-attribute of child1
-	TestHook.qaCarUpdate('#' + questionCarousel, 
+	TestScript.qaCarUpdate('#' + questionCarousel, 
 						 '#' + qCarouselInner, 
 						 '#' + answerParagraph);
 	assert.equal($('#' + answerParagraph).text(), 
@@ -57,7 +57,7 @@ QUnit.test("test onProjPanelHover", function(assert) {
 	var projPanelFootHover = 'project-panel-footer-hover';
 	var projTitleHover = 'project-title-hover';
 	// Set the 'hover' listeners
-	TestHook.onProjPanelHover(projPanel, projPanelFoot, projTitle);
+	TestScript.onProjPanelHover(projPanel, projPanelFoot, projTitle);
 	
 	// Make the project panel
 	$("<div class=\"" + projPanel + "\"></div>").appendTo($(fixture));
