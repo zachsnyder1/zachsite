@@ -20,12 +20,16 @@ var TestScript = (function() {
 		function toggleFunc() {
 			$(this).children().filter('.dropdown-toggle').dropdown('toggle'); 
 		}
+		function unToggleFunc() {
+			$(this).children().filter('.dropdown-toggle').dropdown('toggle');
+			$(this).children().filter('.dropdown-toggle').blur();
+		}
 		// Follow the link on dropdown click
 		function followLink() {
 			var href = $(this).attr('href');
 			window.location.href = href;
 		}
-		$(selector).hover(toggleFunc, toggleFunc);
+		$(selector).hover(toggleFunc, unToggleFunc);
 		$(selector).
 			children().
 			filter('.dropdown-toggle').

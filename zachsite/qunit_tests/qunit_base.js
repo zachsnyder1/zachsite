@@ -17,6 +17,8 @@ QUnit.test('test addActiveLink', function(assert) {
 				 linkParent, 
 				 "active class applied to link parent");
 });
+
+// ! Lack of coverage on .dropdown-toggle click event redirect to href !
 QUnit.test('test dropdownOnHover', function(assert) {
 	var fixture = $("#qunit-fixture");
 	var dropDownID = 'projects-dropdown';
