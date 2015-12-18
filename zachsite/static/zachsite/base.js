@@ -16,10 +16,11 @@ var TestScript = (function() {
 	
 	// Toggle bootstrap dropdown on hover, 
 	function dropdownOnHover(selector) {
-		// Toggle the dropdown on mouseenter / mouseleave
+		// Toggle the dropdown on mouseenter
 		function toggleFunc() {
 			$(this).children().filter('.dropdown-toggle').dropdown('toggle'); 
 		}
+		// On mouseleave toggle, and then blur
 		function unToggleFunc() {
 			$(this).children().filter('.dropdown-toggle').dropdown('toggle');
 			$(this).children().filter('.dropdown-toggle').blur();
