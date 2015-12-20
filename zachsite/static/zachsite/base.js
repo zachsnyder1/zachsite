@@ -1,8 +1,12 @@
 var TestScript = (function() {
 	// Not run during QUnit test
 	function main() {
-		var projDropdown = '#projects-dropdown';
-		dropdownOnHover(projDropdown);
+		var projDropdownID = '#projects-dropdown';
+		var navCollapseID = '#bs-nav-collapse1';
+		var navCollapseButtonID = '#nav-coll-button';
+		dropdownHoverToggleListener(projDropdownID,
+									navCollapseID,
+									navCollapseButtonID);
 		addActiveLink();
 	}
 	
@@ -14,8 +18,40 @@ var TestScript = (function() {
 			addClass('active');
 	}
 	
-	// Toggle bootstrap dropdown on hover, 
-	function dropdownOnHover(selector) {
+	
+	// Toggle dropdown hover behavior based on collapse events
+	function dropdownHoverToggleListener(selector, 
+										 navCollapseID, 
+										 navCollapseButtonID) {
+		// Turn on hover-toggle behavior
+		dropdownHoverOn(selector);
+		// When nav-collapse hides, turn hover-toggle behavior on
+		$(navCollapseID).on('hide.bs.collapse', function() {
+			dropdownHoverOn(selector);
+		});
+		// When nav-collapse is shown, turn hover-toggle behavior off
+		$(navCollapseID).on('shown.bs.collapse', function() {
+			dropdownHoverOff(selector);
+		});
+		// If window resizes when nav-collapse is shown, trigger hide event
+		// to ensure that the nav-collapse is hidden at larger screen sizes
+		var navCollapseButton = $(navCollapseButtonID);
+		$(window).resize(function() {
+			if(navCollapseButton.attr('aria-expanded') == 'true') {
+				$(navCollapseID).collapse('hide');
+				// If any dropdown menus are open, close and blur them
+				$('.dropdown-toggle').each(function() {
+					if($(this).parent().hasClass('open')) {
+						$(this).dropdown('toggle');
+						$(this).blur();
+					}
+				});
+			}
+		});
+	}
+	
+	// Listeners for toggling bootstrap dropdown on hover
+	function dropdownHoverOn(selector) {
 		// Toggle the dropdown on mouseenter
 		function toggleFunc() {
 			$(this).children().filter('.dropdown-toggle').dropdown('toggle'); 
@@ -37,6 +73,12 @@ var TestScript = (function() {
 			on('click', followLink);
 	}
 	
+	// Remove dropdownOnHover listeners
+	function dropdownHoverOff(selector) {
+		$(selector).off('mouseenter mouseleave');
+		$(selector).children().filter('.dropdown-toggle').off('click');
+	}
+	
 	//  If not QUnit test, run main().
 	//  If QUnit test, export the testable functions.
 	try {
@@ -44,11 +86,15 @@ var TestScript = (function() {
 			// Export functions for testing...
 			var Base = {};
 			Base.addActiveLink = addActiveLink;
-			Base.dropdownOnHover = dropdownOnHover;
+			Base.dropdownHoverOn = dropdownHoverOn;
+			Base.dropdownHoverOff = dropdownHoverOff;
+			Base.dropdownHoverToggleListener = dropdownHoverToggleListener;
 	
 			return Base;
 		}
 	} catch (e) {
+		console.log("caught an error:");
+		console.log(e);
 		if (e instanceof ReferenceError) {
 			$(document).ready(function() {
 				main();
