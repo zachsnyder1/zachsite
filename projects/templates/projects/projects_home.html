@@ -7,39 +7,25 @@ href="{% static 'projects/projects_home.css' %}">
 </script>
 {% endblock %}
 {% block content %}
-<section id="projects-about-section">
-  <div id="header-carousel" class="carousel slide" data-ride="carousel"
-data-pause="false">
-    <div class="carousel-inner" role="listbox">
-      <div class="item active">
-        <p>Thing one!</p>
-      </div> <!-- item -->
-      <div class="item">
-        <p>Thing two!</p>
-      </div> <!-- item -->
-    </div> <!-- /.carousel-inner -->
-    
-    <div id="header-panel" class="container-fluid">
-      <div class="row">
-        <div class="col-xs-2 col-sm-3 col-md-4">
-        </div> <!-- /.col-xs-2 -->
-        <div class="panel panel-default col-xs-8 col-sm-6 col-md-4">
-          <div class="panel-body">
-            <h2 id="header-title">
-              <strong>&lt</strong> Projects <strong>/&gt</strong>
-            </h2>
-          <div> <!-- /.panel-body -->
-        </div> <!-- /.panel -->
-        <div class="col-xs-2 col-sm-3 col-md-4">
-        </div> <!-- /.col-xs-2 -->
-      </div> <!-- ./row -->
-    </div> <!-- /.container-fluid -->
-  </div> <!-- /.carousel -->
-</section> <!-- /.projects-about-section -->
-
 <section id="projects-list-section">
 {% for project in projectList %}
-  <p>{{ project.title }}</p>
+{% if forloop.counter0|divisibleby:2 %}
+  <div class="container-fluid proj-about-div proj-about-div-even">
+{% else %}
+  <div class="container-fluid proj-about-div proj-about-div-odd">
+{% endif %}
+    <div class="row">
+      <div class="col-xs-2">
+      </div> <!-- /.col-xs-2 -->
+      <a class="col-xs-8" 
+href="{% url 'project_about' project.id project.slug %}">
+        <h3 class="proj-div-header">{{ project.title }}</h3>
+        <p class="proj-div-blurb">Here's some great info...</p>
+      </a> <!-- /a -->
+      <div class="col-xs-2">
+      </div> <!-- /.col-xs-2 -->
+    </div> <!-- /.row -->
+  </div> <!-- /.container-fluid -->
 {% endfor %}
 </section> <!-- /.projects-list-section -->
 {% endblock %}

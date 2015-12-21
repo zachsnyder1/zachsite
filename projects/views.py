@@ -9,7 +9,8 @@ def projects_home(request):
 	"""
 	projectList = Project.objects.all().filter(active=True).order_by("title")
 	context = {
-		'projectList': projectList
+		'projectList': projectList,
+		'projectLen': str(len(projectList))
 	}
 	return render(request, 'projects/projects_home.html', context)
 
@@ -22,6 +23,7 @@ def project_about(request, project_id, project_slug):
 	curr_project = projectList.get(id=project_id)
 	context = {
 		'projectList': projectList,
+		'projectLen': str(len(projectList)),
 		'curr_project': curr_project,
 	}
 	return render(request, 'projects/project_about.html', context)

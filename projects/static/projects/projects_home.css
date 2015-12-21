@@ -5840,4 +5840,17 @@ button.close {
     color: #8a0e29;
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
+.proj-about-div {
+  padding-top: 50px;
+  padding-bottom: 50px; }
+
+.proj-about-div-even {
+  background-color: #fafbfc; }
+
+.proj-about-div-odd {
+  background-color: #f3f3e7; }
+
+.proj-div-header, .proj-div-blurb {
+  text-align: center; }
+
 /*# sourceMappingURL=projects_home.css.map */

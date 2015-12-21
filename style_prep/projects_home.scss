@@ -24,3 +24,20 @@
 		font-family: $font-family-base;
 	}
 }
+
+.proj-about-div {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+.proj-about-div-even {
+	background-color: $zach-blue-bg;
+}
+
+.proj-about-div-odd {
+	background-color: $zach-yellow;
+}
+
+.proj-div-header, .proj-div-blurb {
+	text-align: center;
+}

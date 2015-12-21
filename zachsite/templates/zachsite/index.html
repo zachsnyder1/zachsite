@@ -6,7 +6,7 @@ href="{% static 'zachsite/index.css' %}">
 <script type="text/javascript" src="{% static 'zachsite/index.js' %}">
 </script>
 {% endblock %}
-{% block content %}
+{% block precontent %}
 <section id="qa-section">
   <!-- Hat image -->
   <div id="zach-hat">
@@ -56,7 +56,8 @@ role="button" data-slide="next">
     <img>
   </div> <!-- /#zach-smile -->
 </section> <!-- /.qa-section -->
-  
+{% endblock %}
+{% block content %}
 <!-- Spiel info: about me -->
 <section id="info-section">
   <!-- A blurb about me -->
