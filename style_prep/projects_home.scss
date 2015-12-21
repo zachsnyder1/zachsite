@@ -46,6 +46,12 @@
 	text-align: left;
 }
 
+@media (min-width: $screen-sm-min) {
+	#proj-about-div-title-row {
+		margin-bottom: 40px;
+	}
+}
+
 #proj-div-link {
 	margin-top: 20px;
 	margin-bottom: 20px;
