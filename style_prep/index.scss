@@ -9,7 +9,7 @@
 }
 
 .question {
-	font-family: 'Merriweather';
+	font-family: $font-family-merriweather;
 	background-color: $zach-purple;
 	margin-bottom: 0px;
 	padding-top: 25px;
@@ -21,7 +21,7 @@
 }
 
 .answer {
-	font-family: "Montserrat";
+	font-family: $font-family-base;
 	background-color: $zach-blue-bg; //#f9f9fc;
 	margin-bottom: 0px !important;
 	padding-top: 40px;
@@ -70,7 +70,7 @@
 #projects-heading {
 	padding: 60px 0px 50px 0px;
 	text-align: center;
-	font-family: "Merriweather";
+	font-family: $font-family-merriweather;
 	color: $zach-red;
 }
 

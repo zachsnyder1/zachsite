@@ -5825,7 +5825,7 @@ button.close {
   background-color: #586f85; }
 
 .question {
-  font-family: 'Merriweather';
+  font-family: "Merriweather", "Montserrat", Helevecita, sans-serif;
   background-color: #f5f5fa;
   margin-bottom: 0px;
   padding-top: 25px;
@@ -5835,7 +5835,7 @@ button.close {
   text-align: center; }
 
 .answer {
-  font-family: "Montserrat";
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #fafbfc;
   margin-bottom: 0px !important;
   padding-top: 40px;
@@ -5869,7 +5869,7 @@ button.close {
 #projects-heading {
   padding: 60px 0px 50px 0px;
   text-align: center;
-  font-family: "Merriweather";
+  font-family: "Merriweather", "Montserrat", Helevecita, sans-serif;
   color: #aa1133; }
 
 .project-panel-hover {
