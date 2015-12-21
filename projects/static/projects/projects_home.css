@@ -5850,7 +5850,14 @@ button.close {
 .proj-about-div-odd {
   background-color: #f3f3e7; }
 
-.proj-div-header, .proj-div-blurb {
+.proj-div-header {
   text-align: center; }
+
+.proj-div-blurb {
+  text-align: left; }
+
+#proj-div-link {
+  margin-top: 20px;
+  margin-bottom: 20px; }
 
 /*# sourceMappingURL=projects_home.css.map */

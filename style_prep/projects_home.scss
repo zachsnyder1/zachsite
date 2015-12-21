@@ -38,6 +38,15 @@
 	background-color: $zach-yellow;
 }
 
-.proj-div-header, .proj-div-blurb {
+.proj-div-header {
 	text-align: center;
+}
+
+.proj-div-blurb {
+	text-align: left;
+}
+
+#proj-div-link {
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
