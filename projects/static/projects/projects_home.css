@@ -5820,4 +5820,24 @@ button.close {
   color: #07090a;
   background-color: #f3f3e7; }
 
+#header-carousel {
+  height: 200px;
+  background-color: #586f85; }
+
+#header-panel {
+  position: absolute;
+  top: 50px;
+  left: 0px;
+  right: 0px;
+  text-align: center;
+  opacity: 0.75; }
+
+#header-title {
+  opacity: 1;
+  color: #aa1133;
+  font-family: "Merriweather", "Montserrat", Helevecita, sans-serif; }
+  #header-title strong {
+    color: #8a0e29;
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
 /*# sourceMappingURL=projects_home.css.map */

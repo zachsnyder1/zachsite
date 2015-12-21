@@ -8,10 +8,38 @@ href="{% static 'projects/projects_home.css' %}">
 {% endblock %}
 {% block content %}
 <section id="projects-about-section">
-  <p>This is the projects home header section.</p>
+  <div id="header-carousel" class="carousel slide" data-ride="carousel"
+data-pause="false">
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <p>Thing one!</p>
+      </div> <!-- item -->
+      <div class="item">
+        <p>Thing two!</p>
+      </div> <!-- item -->
+    </div> <!-- /.carousel-inner -->
+    
+    <div id="header-panel" class="container-fluid">
+      <div class="row">
+        <div class="col-xs-2 col-sm-3 col-md-4">
+        </div> <!-- /.col-xs-2 -->
+        <div class="panel panel-default col-xs-8 col-sm-6 col-md-4">
+          <div class="panel-body">
+            <h2 id="header-title">
+              <strong>&lt</strong> Projects <strong>/&gt</strong>
+            </h2>
+          <div> <!-- /.panel-body -->
+        </div> <!-- /.panel -->
+        <div class="col-xs-2 col-sm-3 col-md-4">
+        </div> <!-- /.col-xs-2 -->
+      </div> <!-- ./row -->
+    </div> <!-- /.container-fluid -->
+  </div> <!-- /.carousel -->
 </section> <!-- /.projects-about-section -->
 
 <section id="projects-list-section">
-  <p>This is where my projects will appear</p>
+{% for project in projectList %}
+  <p>{{ project.title }}</p>
+{% endfor %}
 </section> <!-- /.projects-list-section -->
 {% endblock %}
