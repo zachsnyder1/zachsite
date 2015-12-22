@@ -5840,17 +5840,21 @@ button.close {
     color: #8a0e29;
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
-#project_subnav {
+#project-subnav {
+  display: none;
   background-color: #333333;
   text-align: center;
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 30px;
   padding-right: 30px; }
-  #project_subnav .row div a {
+  #project-subnav .row div a {
     color: #a6a6a6; }
-  #project_subnav .row .active a {
+  #project-subnav .row .active a {
     color: #d9d9d9; }
+
+.subnav-link-active-icon {
+  display: none; }
 
 .proj-about-div {
   padding-top: 50px;

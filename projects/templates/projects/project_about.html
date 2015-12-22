@@ -1,6 +1,7 @@
 {% extends 'projects/base_projects.html' %}
 {% load staticfiles %}
 {% block localhead %}
+{{ block.super }}
 <link rel="stylesheet" type="text/css"
 href="{% static 'projects/project_about.css' %}">
 <script type="text/javascript" src="{% static 'projects/project_about.js' %}">

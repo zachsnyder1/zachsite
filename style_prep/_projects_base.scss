@@ -23,7 +23,8 @@
 	}
 }
 
-#project_subnav {
+#project-subnav {
+	display: none;
 	background-color: lighten(black, 20%);
 	text-align: center;
 	padding-top: 5px;
@@ -38,4 +39,8 @@
 	.row .active a {
 		color: lighten(gray, 35%);
 	}
+}
+
+.subnav-link-active-icon {
+	display: none;
 }
