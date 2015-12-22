@@ -1,1 +1,9 @@
 {% extends 'projects/base_projects.html' %}
+{% load staticfiles %}
+{% block localhead %}
+<link rel="stylesheet" type="text/css"
+href="{% static 'projects/project_docs.css' %}">
+<script type="text/javascript" src="{% static 'projects/project_docs.js' %}">
+</script>
+{% endblock %}
+{% block title %}<title>{{ curr_project }} | Docs</title>{% endblock %}

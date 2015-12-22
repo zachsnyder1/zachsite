@@ -20,8 +20,9 @@ module.exports = function(grunt) {
 			},
 			projects: {
 				files: {
+					'./projects/static/projects/projects_home.css': './style_prep/projects_home.scss',
 					'./projects/static/projects/project_about.css': './style_prep/project_about.scss',
-					'./projects/static/projects/projects_home.css': './style_prep/projects_home.scss'
+					'./projects/static/projects/project_docs.css': './style_prep/project_docs.scss'
 				}
 			},
 			blog: {

@@ -1,0 +1,41 @@
+#header-carousel {
+	height: 200px;
+	background-color: $zach-blue-bg-dark;
+}
+
+#header-panel {
+	position: absolute;
+	top: 50px;
+	left: 0px;
+	right: 0px;
+	text-align: center;
+	opacity: 0.75;
+}
+
+#header-title {
+	opacity: 1;
+	color: $zach-red;
+	font-family: $font-family-merriweather;
+	
+	strong {
+		color: darken($zach-red, 7%);
+		font-family: $font-family-base;
+	}
+}
+
+#project_subnav {
+	background-color: lighten(black, 20%);
+	text-align: center;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 30px;
+	padding-right: 30px;
+	
+	.row div a {
+		color: lighten(gray, 15%);
+	}
+	
+	.row .active a {
+		color: lighten(gray, 35%);
+	}
+}
