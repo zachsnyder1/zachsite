@@ -8,3 +8,6 @@ href="{% static 'projects/project_docs.css' %}">
 </script>
 {% endblock %}
 {% block title %}<title>{{ curr_project }} | Docs</title>{% endblock %}
+{% block content %}
+{% include docs_location %}
+{% endblock %}
