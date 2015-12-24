@@ -21,10 +21,12 @@ def project_about(request, project_id, project_slug):
 	"""
 	projectList = Project.objects.all().filter(active=True).order_by("title")
 	curr_project = projectList.get(id=project_id)
+	codeExampleList = curr_project.codeexample_set.all()
 	context = {
 		'projectList': projectList,
 		'projectLen': str(len(projectList)),
 		'curr_project': curr_project,
+		'codeExampleList': codeExampleList,
 		'readme_location': 'projects/' + curr_project.slug + '/readme.html'
 	}
 	return render(request, 'projects/project_about.html', context)

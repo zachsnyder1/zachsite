@@ -11,10 +11,5 @@ href="{% static 'projects/project_about.css' %}">
 <title>{{ curr_project.title }} | README</title>
 {% endblock %}
 {% block content %}
-<section>
-  <div id="project-summary">
-    <p>{{ curr_project.summary }}</p>
-  </div>
-</section>
 {% include readme_location %}
 {% endblock %}

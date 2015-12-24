@@ -1,1 +1,108 @@
-<p>This is readme.html</p>
+{% load projects_extras %}
+<section id="readme-section">
+  <div class="container-fluid first">
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <h3>What?</h3>
+        <p>{{ curr_project.summary }}</p>
+      </div> <!-- /.col-xs-12 -->
+  	  <div class="col-xs-12 col-md-6">
+        <h3>Why?</h3>
+        <p>
+          Maybe you want to get your feet wet writing digital audio effects, but 
+          you find the overhead of learning the VST3 API unnecessary while you 
+          are still just in the tinkering stage. Why not keep it simple for now?
+        </p>
+      </div> <!-- /.col-xs-12 -->
+    </div> <!-- /.row -->
+  </div> <!-- /.container-fluid -->
+  <div class="container-fluid alt">
+    <div class="row">
+      <div class="col-xs-12">
+        <h3>How?</h3>
+        <div class="codebox">
+          {{ codeExampleList.0.codetext|formatpython }}
+        </div> <!-- ./codebox -->
+        <p>Your effect callback accepts:</p>
+        <ul>
+          <li>
+            <p><strong>pluginObj</strong> ==> Pointer to the Plugin object. 
+            Allows you access to meta info from the header of the read file, 
+            as well as to a convenient and simple helper API.</p>
+          </li>
+          <li>
+            <p>
+              <strong>sampleNestedList</strong> ==> A nested list of sample 
+              values read from each buffer. Each item is itself a list, which 
+              contains the sample value of each channel at that point in time. 
+              The actual value of each sample can be either an integer or a 
+              float, depending on how you set the format of the Plugin object 
+              upon init. For example:
+            </p>
+            <pre><div><strong>
+[[channel1, channel2], [channel1, channel2], etc...]
+                       i.e.
+        [[-0.8, -0.7], [-0.2, -0.15], etc...]
+            </strong></div></pre>
+          </li>
+        </ul>
+        <p>Your effect callback returns:</p>
+        <ul>
+          <li>
+            <p>
+              <strong>processedSampleNestedList</strong> ==> The nested list 
+              of processed samples.
+            </p>
+          </li>
+        </ul>
+        <p>
+          Your effect callback is called once each time a new buffer is read 
+          from file.
+        </p>
+      </div> <!-- /.col-xs-12 -->
+    </div> <!-- /.row -->
+  </div> <!-- /.container-fluid -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12">
+        <h3>Testing?</h3>
+        <p>
+          If you adjusted the source and you want to see if everything is 
+          still working as before, just run
+        </p>
+        <pre><div>$ python3 runtests.py</div></pre>
+        <p>
+          from the testAudioIO/ directory.
+        </p>
+      </div> <!-- /.col-xs-12 -->
+    </div> <!-- /.row -->
+  </div> <!-- /.container-fluid -->
+  <div class="container-fluid alt">
+    <div class="row">
+      <div class="col-xs-12">
+        <h3>License</h3>
+        <pre><div>
+The MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+        </div></pre>
+      </div> <!-- /.col-xs-12 -->
+    </div> <!-- /.row -->
+  </div> <!-- /.container-fluid -->
+</section>

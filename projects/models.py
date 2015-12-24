@@ -13,6 +13,13 @@ class Project(models.Model):
 	def __str__(self):
 		return self.title
 
+class CodeExample(models.Model):
+	"""
+	A code string that is meant as an example.
+	"""
+	project = models.ForeignKey(Project)
+	codetext = models.TextField()
+
 
 """
 class ProjectClass(models.Model):

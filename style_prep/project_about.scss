@@ -1,6 +1,42 @@
 @import 'base';
 @import 'projects_base';
 
-#project-summary {
-	background-color: $zach-blue-bg;
+// formatting for code text within .codebox elements
+.codebox {
+	span.keyw {
+		color: $zach-red;
+	}
+}
+
+// formatting override of <pre> elements used to display
+// code with proper whitespace
+pre {
+	background-color: lighten($zach-blue-bg, 3%);
+	border-width: 0px;
+	div {
+		min-width: 700px;
+	}
+}
+
+// formatting for divs within readme and docs pages
+#readme-section, #docs-section {
+	div.container-fluid {
+		h3 {
+			text-align: center;
+			padding-top: 20px;
+			padding-bottom: 20px;
+		}
+		padding-top: 30px;
+		padding-bottom: 50px;
+		padding-left: 30px;
+		padding-right: 80px;
+	}
+	div.first {
+	}
+	div.alt {
+		background-color: $zach-yellow;
+		pre {
+			background-color: lighten($zach-yellow, 2%);
+		}
+	}
 }

@@ -5856,7 +5856,27 @@ button.close {
 .subnav-link-active-icon {
   display: none; }
 
-#project-summary {
-  background-color: #fafbfc; }
+.codebox span.keyw {
+  color: #aa1133; }
+
+pre {
+  background-color: white;
+  border-width: 0px; }
+  pre div {
+    min-width: 700px; }
+
+#readme-section div.container-fluid, #docs-section div.container-fluid {
+  padding-top: 30px;
+  padding-bottom: 50px;
+  padding-left: 30px;
+  padding-right: 80px; }
+  #readme-section div.container-fluid h3, #docs-section div.container-fluid h3 {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px; }
+#readme-section div.alt, #docs-section div.alt {
+  background-color: #f3f3e7; }
+  #readme-section div.alt pre, #docs-section div.alt pre {
+    background-color: #f7f7ee; }
 
 /*# sourceMappingURL=project_about.css.map */
