@@ -5905,6 +5905,9 @@ pre {
 .docs-class-div, .docs-method-div, .docs-sub-method-div, .docs-var-div, .docs-params-div {
   padding-left: 20px; }
 
+.docs-params-div h5, .docs-params-div h6 {
+  text-align: center; }
+
 .description {
   padding-left: 20px;
   padding-right: 20px; }
