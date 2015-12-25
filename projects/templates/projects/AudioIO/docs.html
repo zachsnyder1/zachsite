@@ -32,34 +32,34 @@
         <h3>THE <em class="red">{{ module.symbol }}</em> CLASSES:</h3>
         <h4>
           <em class="red">{{ module.symbol }}</em>.{{ class.symbol }}(
-          {% for constructorArg in class.constructorarg_set.all %}
+          {% for constructorParam in class.constructorparam_set.all %}
           {% if forloop.last %}
-          {% if constructorArg.default %}
-          <em class="light-blue">{{ constructorArg.symbol }}={{ constructorArg.default }}</em>
+          {% if constructorParam.default %}
+          <em class="light-blue">{{ constructorParam.symbol }}={{ constructorParam.default }}</em>
           {% else %}
-          <em class="light-blue">{{ constructorArg.symbol }}</em>
+          <em class="light-blue">{{ constructorParam.symbol }}</em>
           {% endif %}
           {% else %}
-          {% if constructorArg.default %}
-          <em class="light-blue">{{ constructorArg.symbol }}={{ constructorArg.default }}</em>,
+          {% if constructorParam.default %}
+          <em class="light-blue">{{ constructorParam.symbol }}={{ constructorParam.default }}</em>,
           {% else %}
-          <em class="light-blue">{{ constructorArg.symbol }}</em>,
+          <em class="light-blue">{{ constructorParam.symbol }}</em>,
           {% endif %}
           {% endif %}
           {% endfor %}
           )
         </h4>
         <div class="docs-class-div">
-          {% if class.constructorarg_set.all %}
-          <h4>Constructor Arguments:</h4>
+          {% if class.constructorparam_set.all %}
+          <h4>Constructor Parameters:</h4>
           <div class="docs-params-div">
-          {% for constructorArg in class.constructorarg_set.all %}
+          {% for constructorParam in class.constructorparam_set.all %}
             <p>
-              <span class="light-blue bold">{{ constructorArg.symbol }}</span>:
+              <span class="light-blue bold">{{ constructorParam.symbol }}</span>:
             </p>
-            <p class="description">{{ constructorArg.description }}</p>
+            <p class="description">{{ constructorParam.description }}</p>
           {% endfor %}
-          </div> <!-- /.docs-args-div -->
+          </div> <!-- /.docs-params-div -->
           {% endif %}
           <p>{{ class.description }}</p>
           {% if class.classmethod_set.all %}
@@ -68,34 +68,34 @@
           {% for method in class.classmethod_set.all %}
           <h5>
             .{{ method.symbol }}(
-            {% for methodArg in method.methodarg_set.all %}
+            {% for methodParam in method.methodparam_set.all %}
             {% if forloop.last %}
-            {% if methodArg.default %}
-            <em class="light-blue">{{ methodArg.symbol }}={{ methodArg.default }}</em>
+            {% if methodParam.default %}
+            <em class="light-blue">{{ methodParam.symbol }}={{ methodParam.default }}</em>
             {% else %}
-            <em class="light-blue">{{ methodArg.symbol }}</em>
+            <em class="light-blue">{{ methodParam.symbol }}</em>
             {% endif %}
             {% else %}
-            {% if methodArg.default %}
-            <em class="light-blue">{{ methodArg.symbol }}={{ methodArg.default }}</em>,
+            {% if methodParam.default %}
+            <em class="light-blue">{{ methodParam.symbol }}={{ methodParam.default }}</em>,
             {% else %}
-            <em class="light-blue">{{ methodArg.symbol }}</em>,
+            <em class="light-blue">{{ methodParam.symbol }}</em>,
             {% endif %}
             {% endif %}
             {% endfor %}
             )
           </h5>
           <div class="docs-sub-method-div">
-          {% if method.methodarg_set.all %}
-          <h5>Method Arguments:</h5>
+          {% if method.methodparam_set.all %}
+          <h5>Method Parameters:</h5>
           <div class="docs-params-div">
-          {% for methodArg in method.methodarg_set.all %}
+          {% for methodParam in method.methodparam_set.all %}
             <p>
-              <span class="light-blue bold">{{ methodArg.symbol }}</span>:
+              <span class="light-blue bold">{{ methodParam.symbol }}</span>:
             </p>
-            <p class="description">{{ methodArg.description }}</p>
+            <p class="description">{{ methodParam.description }}</p>
           {% endfor %}
-          </div> <!-- /.docs-args-div -->
+          </div> <!-- /.docs-params-div -->
           {% endif %}
           <p>{{ method.description }}</p>
           </div> <!-- /.docs-sub-method-div -->

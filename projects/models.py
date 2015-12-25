@@ -47,7 +47,7 @@ class ProjClass(SymbolEntity):
 	"""
 	module = models.ForeignKey(ProjModule)
 	
-class ConstructorArg(SymbolEntity):
+class ConstructorParam(SymbolEntity):
 	"""
 	Entity representing a constructor argument for a class.
 	"""
@@ -72,7 +72,7 @@ class ClassMethod(SymbolEntity):
 	"""
 	pclass = models.ForeignKey(ProjClass)
 	
-class MethodArg(SymbolEntity):
+class MethodParam(SymbolEntity):
 	"""
 	Entity representing an argument of a 
 	"""
