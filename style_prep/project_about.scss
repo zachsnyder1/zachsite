@@ -18,17 +18,29 @@ pre {
 	}
 }
 
+.docs-params-div {
+	background-color: lighten($zach-blue-bg, 3%);
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-bottom: 20px;
+}
+
 // formatting for divs within readme and docs pages
 #readme-section, #docs-section {
 	div.container-fluid {
-		h3 {
+		h2 {
 			text-align: center;
 			padding-top: 20px;
 			padding-bottom: 20px;
 		}
-		h4 {
+		h3 {
+			font-weight: bold;
 			padding-top: 30px;
 			padding-bottom: 20px;
+		}
+		h4, h5 {
+			padding-top: 15px;
+			padding-bottom:10px;
 		}
 		span.red, em.red {
 			color: $zach-red;
@@ -38,6 +50,9 @@ pre {
 			color: lighten($zach-blue, 5%);
 			opacity: 0.8;
 		}
+		span.bold em.bold {
+			font-weight: bold;
+		}
 		padding-top: 30px;
 		padding-bottom: 50px;
 		padding-left: 50px;
@@ -46,6 +61,9 @@ pre {
 	div.alt {
 		background-color: $zach-yellow;
 		pre {
+			background-color: lighten($zach-yellow, 2%);
+		}
+		.docs-params-div {
 			background-color: lighten($zach-yellow, 2%);
 		}
 	}

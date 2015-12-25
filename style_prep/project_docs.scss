@@ -1,5 +1,10 @@
 @import 'project_about';
 
-#proj-class-div {
+.docs-class-div, .docs-method-div, .docs-sub-method-div, .docs-var-div, .docs-params-div {
 	padding-left: 20px;
+}
+
+.description {
+	padding-left: 20px;
+	padding-right: 20px;
 }
