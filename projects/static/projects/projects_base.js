@@ -4,7 +4,7 @@ var TestScript = (function() {
 		var subNavID = "project-subnav";
 		var subnavDelay = 300;
 		var subnavDuration = 700;
-		var activeIconFadeDuration = 1000;
+		var activeIconFadeDuration = 800;
 		subNavActiveLink(activeIconFadeDuration);
 		slideSubNavDown(subNavID, subnavDelay, subnavDuration);
 	}

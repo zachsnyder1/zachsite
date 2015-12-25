@@ -1,1 +1,60 @@
-<p>   This is {{ curr_project.title }} docs</p>
+{% load projects_extras %}
+<section id="docs-section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12">
+        <h3>The API</h3>
+        <p>
+          This is the {{ curr_project.title }} API.  I will ramble for a bit 
+          about the significance, and then I'll let you read the docs below. 
+          Maybe I have some great insights into how you should interpret 
+          information, or some outlandish suggestion about how you should 
+          change your general workflow habits...
+        </p>
+      </div> <!-- /.col-xs-12 -->
+    </div> <!-- /.row -->
+  </div> <!-- /.container-fluid -->
+  {% for module in curr_project.projmodule_set.all %}
+  {% if forloop.counter0|divisibleby:2 %}
+  <div class="container-fluid alt">
+  {% else %}
+  <div class="container-fluid">
+  {% endif %}
+    <div class="row">
+      <div class="col-xs-12">
+        <h3>MODULE <br><br><span class="red">{{ module.path }}</span></h3>
+        <p>{{ module.description }}</p>
+      </div> <!-- /.col-xs-12 -->
+    </div> <!--/.row -->
+    {% for class in module.projclass_set.all %}
+    <div class="row">
+      <div class="col-xs-12">
+        <h4>THE <em class="red">{{ module.symbol }}</em> CLASSES:</h4>
+        <h5>
+          <em class="red">{{ module.symbol }}</em>.{{ class.symbol }}(
+          {% for constructorArg in class.constructorarg_set.all %}
+          {% if forloop.last %}
+          {% if constructorArg.default %}
+          <em class="light-blue">{{ constructorArg.symbol }}={{ constructorArg.default }}</em>
+          {% else %}
+          <em class="light-blue">{{ constructorArg.symbol }}</em>
+          {% endif %}
+          {% else %}
+          {% if constructorArg.default %}
+          <em class="light-blue">{{ constructorArg.symbol }}={{ constructorArg.default }}</em>,
+          {% else %}
+          <em class="light-blue">{{ constructorArg.symbol }}</em>,
+          {% endif %}
+          {% endif %}
+          {% endfor %}
+          )
+        </h5>
+        <div id="proj-class-div">
+          <p>{{ class.description }}</p>
+        </div> <!-- /#proj-class-div -->
+      </div> <!-- /.col-xs-12 -->
+    </div> <!-- /.row -->
+    {% endfor %}
+  </div> <!-- /.container-fluid -->
+  {% endfor %}
+</section>

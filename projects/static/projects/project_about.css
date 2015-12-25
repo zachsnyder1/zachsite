@@ -5851,7 +5851,7 @@ button.close {
   #project-subnav .row div a {
     color: #a6a6a6; }
   #project-subnav .row .active a {
-    color: #d9d9d9; }
+    color: #f3f3f3; }
 
 .subnav-link-active-icon {
   display: none; }
@@ -5868,12 +5868,21 @@ pre {
 #readme-section div.container-fluid, #docs-section div.container-fluid {
   padding-top: 30px;
   padding-bottom: 50px;
-  padding-left: 30px;
-  padding-right: 80px; }
+  padding-left: 50px;
+  padding-right: 50px; }
   #readme-section div.container-fluid h3, #docs-section div.container-fluid h3 {
     text-align: center;
     padding-top: 20px;
     padding-bottom: 20px; }
+  #readme-section div.container-fluid h4, #docs-section div.container-fluid h4 {
+    padding-top: 30px;
+    padding-bottom: 20px; }
+  #readme-section div.container-fluid span.red, #readme-section div.container-fluid em.red, #docs-section div.container-fluid span.red, #docs-section div.container-fluid em.red {
+    color: #aa1133;
+    opacity: 0.8; }
+  #readme-section div.container-fluid span.light-blue, #readme-section div.container-fluid em.light-blue, #docs-section div.container-fluid span.light-blue, #docs-section div.container-fluid em.light-blue {
+    color: #4e6275;
+    opacity: 0.8; }
 #readme-section div.alt, #docs-section div.alt {
   background-color: #f3f3e7; }
   #readme-section div.alt pre, #docs-section div.alt pre {
