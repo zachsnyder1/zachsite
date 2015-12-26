@@ -5881,7 +5881,7 @@ pre {
     font-weight: bold;
     padding-top: 30px;
     padding-bottom: 20px; }
-  #readme-section div.container-fluid h4, #readme-section div.container-fluid h5, #docs-section div.container-fluid h4, #docs-section div.container-fluid h5, #pre-docs-section div.container-fluid h4, #pre-docs-section div.container-fluid h5 {
+  #readme-section div.container-fluid h4, #readme-section div.container-fluid h5, #readme-section div.container-fluid h6, #docs-section div.container-fluid h4, #docs-section div.container-fluid h5, #docs-section div.container-fluid h6, #pre-docs-section div.container-fluid h4, #pre-docs-section div.container-fluid h5, #pre-docs-section div.container-fluid h6 {
     padding-top: 15px;
     padding-bottom: 10px; }
   #readme-section div.container-fluid span.red, #readme-section div.container-fluid em.red, #docs-section div.container-fluid span.red, #docs-section div.container-fluid em.red, #pre-docs-section div.container-fluid span.red, #pre-docs-section div.container-fluid em.red {
