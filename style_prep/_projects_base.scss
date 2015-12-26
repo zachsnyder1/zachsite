@@ -1,3 +1,7 @@
+//----------------------------------------------------------------------------
+//------------------------ Project Header Formatting -------------------------
+//----------------------------------------------------------------------------
+
 #header-carousel {
 	height: 200px;
 	background-color: $zach-blue-bg-dark;
@@ -23,6 +27,10 @@
 	}
 }
 
+//----------------------------------------------------------------------------
+//------------------------ Project Subnav Formatting -------------------------
+//----------------------------------------------------------------------------
+
 #project-subnav {
 	display: none;
 	background-color: lighten(black, 20%);
@@ -43,4 +51,70 @@
 
 .subnav-link-active-icon {
 	display: none;
+}
+
+//----------------------------------------------------------------------------
+//---------------------- Project Subsection Formatting -----------------------
+//----------------------------------------------------------------------------
+
+// divs with class 'alt'
+div.alt {
+	background-color: $zach-yellow !important;
+}
+
+// formatting for code text within .codebox elements
+.codebox {
+	span.keyw {
+		color: $zach-red;
+	}
+}
+
+// formatting override of <pre> elements used to display
+// code with proper whitespace
+pre {
+	background-color: lighten($zach-blue-bg, 3%);
+	border-width: 0px;
+	div {
+		min-width: 700px;
+	}
+}
+
+// formatting for divs within readme and docs pages
+#readme-section, #docs-section, #pre-docs-section {
+	div.container-fluid {
+		h2 {
+			text-align: center;
+			padding-top: 20px;
+			padding-bottom: 20px;
+		}
+		h3 {
+			font-weight: bold;
+			padding-top: 30px;
+			padding-bottom: 20px;
+		}
+		h4, h5 {
+			padding-top: 15px;
+			padding-bottom:10px;
+		}
+		span.red, em.red {
+			color: $zach-red;
+			opacity: 0.8;
+		}
+		span.light-blue, em.light-blue {
+			color: lighten($zach-blue, 5%);
+			opacity: 0.8;
+		}
+		span.bold em.bold {
+			font-weight: bold;
+		}
+		padding-top: 30px;
+		padding-bottom: 50px;
+		padding-left: 50px;
+		padding-right: 50px;
+	}
+	div.alt {
+		pre {
+			background-color: lighten($zach-yellow, 2%);
+		}
+	}
 }

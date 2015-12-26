@@ -5856,29 +5856,64 @@ button.close {
 .subnav-link-active-icon {
   display: none; }
 
+div.alt {
+  background-color: #f3f3e7 !important; }
+
+.codebox span.keyw {
+  color: #aa1133; }
+
+pre {
+  background-color: white;
+  border-width: 0px; }
+  pre div {
+    min-width: 700px; }
+
+#readme-section div.container-fluid, #docs-section div.container-fluid, #pre-docs-section div.container-fluid {
+  padding-top: 30px;
+  padding-bottom: 50px;
+  padding-left: 50px;
+  padding-right: 50px; }
+  #readme-section div.container-fluid h2, #docs-section div.container-fluid h2, #pre-docs-section div.container-fluid h2 {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px; }
+  #readme-section div.container-fluid h3, #docs-section div.container-fluid h3, #pre-docs-section div.container-fluid h3 {
+    font-weight: bold;
+    padding-top: 30px;
+    padding-bottom: 20px; }
+  #readme-section div.container-fluid h4, #readme-section div.container-fluid h5, #docs-section div.container-fluid h4, #docs-section div.container-fluid h5, #pre-docs-section div.container-fluid h4, #pre-docs-section div.container-fluid h5 {
+    padding-top: 15px;
+    padding-bottom: 10px; }
+  #readme-section div.container-fluid span.red, #readme-section div.container-fluid em.red, #docs-section div.container-fluid span.red, #docs-section div.container-fluid em.red, #pre-docs-section div.container-fluid span.red, #pre-docs-section div.container-fluid em.red {
+    color: #aa1133;
+    opacity: 0.8; }
+  #readme-section div.container-fluid span.light-blue, #readme-section div.container-fluid em.light-blue, #docs-section div.container-fluid span.light-blue, #docs-section div.container-fluid em.light-blue, #pre-docs-section div.container-fluid span.light-blue, #pre-docs-section div.container-fluid em.light-blue {
+    color: #4e6275;
+    opacity: 0.8; }
+  #readme-section div.container-fluid span.bold em.bold, #docs-section div.container-fluid span.bold em.bold, #pre-docs-section div.container-fluid span.bold em.bold {
+    font-weight: bold; }
+#readme-section div.alt pre, #docs-section div.alt pre, #pre-docs-section div.alt pre {
+  background-color: #f7f7ee; }
+
 .proj-about-div {
   padding-top: 50px;
   padding-bottom: 50px;
   padding-left: 30px;
-  padding-right: 30px; }
-
-.proj-about-div-even {
+  padding-right: 30px;
   background-color: #fafbfc; }
 
-.proj-about-div-odd {
-  background-color: #f3f3e7; }
-
-.proj-div-header {
+.proj-div-title {
   text-align: center; }
 
 .proj-div-blurb {
   text-align: left; }
 
+.proj-div-link {
+  margin-top: 20px;
+  margin-bottom: 20px; }
+
 @media (min-width: 768px) {
   #proj-about-div-title-row {
     margin-bottom: 40px; } }
-#proj-div-link {
-  margin-top: 20px;
-  margin-bottom: 20px; }
 
 /*# sourceMappingURL=projects_home.css.map */

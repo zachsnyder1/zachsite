@@ -11,17 +11,17 @@ href="{% static 'projects/projects_home.css' %}">
 <section id="projects-list-section">
 {% for project in projectList %}
 {% if forloop.counter0|divisibleby:2 %}
-  <div class="container-fluid proj-about-div proj-about-div-even">
+  <div class="container-fluid proj-about-div">
 {% else %}
-  <div class="container-fluid proj-about-div proj-about-div-odd">
+  <div class="container-fluid proj-about-div alt">
 {% endif %}
     <div class="row" id="proj-about-div-title-row">
       <div class="col-xs-12">
-        <h3 class="proj-div-header">{{ project.title }}</h3>
+        <h3 class="proj-div-title">{{ project.title }}</h3>
       </div> <!-- /.col-xs-12 -->
     </div> <!-- /.row -->
     <div class="row">
-      <a class="col-xs-12 col-sm-5 col-md-4 col-lg-3" id="proj-div-link"
+      <a class="proj-div-link col-xs-12 col-sm-5 col-md-4 col-lg-3"
 href="{% url 'project_about' project.id project.slug %}">
         (link)
       </a> <!-- /.col-xs-12 -->

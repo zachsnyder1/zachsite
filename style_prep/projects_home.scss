@@ -1,36 +1,38 @@
 @import 'base';
 @import 'projects_base';
 
+//----------------------------------------------------------------------------
+//--------------------------- Project Div Formatting -------------------------
+//----------------------------------------------------------------------------
+
+// general style
 .proj-about-div {
 	padding-top: 50px;
 	padding-bottom: 50px;
 	padding-left: 30px;
 	padding-right: 30px;
-}
-
-.proj-about-div-even {
 	background-color: $zach-blue-bg;
 }
 
-.proj-about-div-odd {
-	background-color: $zach-yellow;
-}
-
-.proj-div-header {
+// heading style
+.proj-div-title {
 	text-align: center;
 }
 
+// the brief description of the project
 .proj-div-blurb {
 	text-align: left;
 }
 
+// the (image) link style
+.proj-div-link {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+// if > xs screen size, increased header margin
 @media (min-width: $screen-sm-min) {
 	#proj-about-div-title-row {
 		margin-bottom: 40px;
 	}
-}
-
-#proj-div-link {
-	margin-top: 20px;
-	margin-bottom: 20px;
 }

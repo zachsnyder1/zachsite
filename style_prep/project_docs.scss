@@ -1,16 +1,34 @@
-@import 'project_about';
+@import 'base';
+@import 'projects_base';
 
+//----------------------------------------------------------------------------
+//--------------------- Project Docs Subsection Formatting -------------------
+//----------------------------------------------------------------------------
+
+// Indent logical subdivisions
 .docs-class-div, .docs-method-div, .docs-sub-method-div, .docs-var-div, .docs-params-div {
 	padding-left: 20px;
 }
 
+// Indent L and R side of div.description
+.description {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+// Lightened, formatted box for describing constructor or method parameters
+// and/or return value(s)
 .docs-params-div {
+	background-color: lighten($zach-blue-bg, 3%);
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-bottom: 20px;
 	h5, h6 {
 		text-align: center;
 	}
 }
 
-.description {
-	padding-left: 20px;
-	padding-right: 20px;
+// Different styling if in an .alt div
+div.alt .docs-params-div {
+	background-color: lighten($zach-yellow, 2%);
 }
