@@ -62,6 +62,10 @@ div.alt {
 	background-color: $zach-yellow !important;
 }
 
+// -------------------------
+//  Pre Element Formatting:
+// -------------------------
+
 // formatting for code text within .codebox elements
 .codebox {
 	span.keyw {
@@ -69,13 +73,34 @@ div.alt {
 	}
 }
 
-// formatting override of <pre> elements used to display
-// code with proper whitespace
-pre {
-	background-color: lighten($zach-blue-bg, 3%);
-	border-width: 0px;
-	div {
-		min-width: 700px;
+// .pre-container wraps the <pre> elements to allow them to
+// be justified if necessary
+.pre-container {
+	background-color: white;
+	pre {
+		background-color: lighten($zach-blue-bg, 3%);
+		border-width: 0px;
+		
+		// Box display allows center justifying
+		display: box;
+		display: -moz-box;
+		display: -webkit-box;
+	}
+}
+
+// .pre-center added to .pre-container to center the content within
+// its <pre> elements
+.pre-center {
+	pre {
+		// center justify pre within div.pre-center
+		
+		box-pack: center;
+    	box-align: center;
+    	-moz-box-pack: center;
+    	-moz-box-align: center;
+    	-webkit-box-pack: center;
+    	-webkit-box-align: center;
+    	
 	}
 }
 

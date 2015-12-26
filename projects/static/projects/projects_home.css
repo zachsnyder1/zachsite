@@ -5862,11 +5862,22 @@ div.alt {
 .codebox span.keyw {
   color: #aa1133; }
 
-pre {
-  background-color: white;
-  border-width: 0px; }
-  pre div {
-    min-width: 700px; }
+.pre-container {
+  background-color: white; }
+  .pre-container pre {
+    background-color: white;
+    border-width: 0px;
+    display: box;
+    display: -moz-box;
+    display: -webkit-box; }
+
+.pre-center pre {
+  box-pack: center;
+  box-align: center;
+  -moz-box-pack: center;
+  -moz-box-align: center;
+  -webkit-box-pack: center;
+  -webkit-box-align: center; }
 
 #readme-section div.container-fluid, #docs-section div.container-fluid, #pre-docs-section div.container-fluid {
   padding-top: 30px;

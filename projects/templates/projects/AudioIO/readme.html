@@ -20,9 +20,9 @@
     <div class="row">
       <div class="col-xs-12">
         <h2>How?</h2>
-        <div class="codebox">
-          {{ codeExampleList.0.codetext|formatpython }}
-        </div> <!-- ./codebox -->
+        <div class="pre-container codebox">
+          <pre>{{ codeExampleList.0.codetext|formatpython }}</pre>
+        </div> <!-- /.pre-container -->
         <p>Your effect callback accepts:</p>
         <ul>
           <li>
@@ -39,11 +39,13 @@
               float, depending on how you set the format of the Plugin object 
               upon init. For example:
             </p>
-            <pre><div><strong>
+            <div class="pre-container pre-center">
+              <pre><strong>
 [[channel1, channel2], [channel1, channel2], etc...]
                        i.e.
         [[-0.8, -0.7], [-0.2, -0.15], etc...]
-            </strong></div></pre>
+              </strong></pre>
+            </div> <!-- /.pre-container -->
           </li>
         </ul>
         <p>Your effect callback returns:</p>
@@ -70,7 +72,9 @@
           If you adjusted the source and you want to see if everything is 
           still working as before, just run
         </p>
-        <pre><div>$ python3 runtests.py</div></pre>
+        <div class="pre-container">
+          <pre>$ python3 runtests.py</pre>
+        </div> <!-- /.pre-container -->
         <p>
           from the testAudioIO/ directory.
         </p>
@@ -81,7 +85,8 @@
     <div class="row">
       <div class="col-xs-12">
         <h2>License</h2>
-        <pre><div>
+        <div class="pre-container pre-center">
+          <pre>
 The MIT License
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -101,7 +106,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-        </div></pre>
+          </pre>
+        </div> <!-- /.pre-container -->
       </div> <!-- /.col-xs-12 -->
     </div> <!-- /.row -->
   </div> <!-- /.container-fluid -->
