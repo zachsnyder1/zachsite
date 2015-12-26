@@ -55,13 +55,14 @@ href="{% static 'projects/project_docs.css' %}">
         <div class="docs-class-div">
           {% if class.constructorparam_set.all %}
           <div class="docs-params-div">
-          <h5>-- Constructor Parameters --</h5>
-          {% for constructorParam in class.constructorparam_set.all %}
-            <p>
-              <span class="light-blue bold">{{ constructorParam.symbol }}</span>:
-            </p>
-            <p class="description">{{ constructorParam.description }}</p>
-          {% endfor %}
+            <h5>-- Constructor Parameters --</h5>
+            {% for constructorParam in class.constructorparam_set.all %}
+              <p>
+                <span class="light-blue bold">{{ constructorParam.symbol }}</span>:
+              </p>
+              <p class="description">{{ constructorParam.description }}</p>
+            {% endfor %}
+            <h6>--->><<---</h6>
           </div> <!-- /.docs-params-div -->
           {% endif %}
           <p>{{ class.description }}</p>
@@ -109,26 +110,27 @@ href="{% static 'projects/project_docs.css' %}">
           <div class="docs-sub-method-div">
           {% if method.methodparam_set.all %}
             <div class="docs-params-div">
-            <h6>-- Method Parameters --</h6>
-            {% for methodParam in method.methodparam_set.all %}
-            <p>
-              <span class="light-blue bold">{{ methodParam.symbol }}</span>:
-            </p>
-            <p class="description">{{ methodParam.description }}</p>
-            {% endfor %}
-            {% if method.methodreturn_set.all %}
-            {% if method.methodreturn_set.all > 1 %}
-            <h6>-- Return Values --</h6>
-        	{% else %}
-        	<h6>-- Return Value --</h6>
-        	{% endif %}
-        	{% for returnValue in method.methodreturn_set.all %}
-        	<p>
-              <span class="light-blue bold">{{ returnValue.symbol }}</span>:
-            </p>
-            <p class="description">{{ returnValue.description }}</p>
-        	{% endfor %}
-            {% endif %}
+              <h6>-- Method Parameters --</h6>
+              {% for methodParam in method.methodparam_set.all %}
+              <p>
+                <span class="light-blue bold">{{ methodParam.symbol }}</span>:
+              </p>
+              <p class="description">{{ methodParam.description }}</p>
+              {% endfor %}
+              {% if method.methodreturn_set.all %}
+              {% if method.methodreturn_set.all.1 %}
+              <h6>[ Return Values ]</h6>
+        	  {% else %}
+        	  <h6>[ Return Value ]</h6>
+        	  {% endif %}
+        	  {% for returnValue in method.methodreturn_set.all %}
+        	  <p>
+                <span class="light-blue bold">{{ returnValue.symbol }}</span>:
+              </p>
+              <p class="description">{{ returnValue.description }}</p>
+        	  {% endfor %}
+              {% endif %}
+              <h6>--->><<---</h6>
             </div> <!-- /.docs-params-div -->
           {% endif %}
           <p>{{ method.description }}</p>
