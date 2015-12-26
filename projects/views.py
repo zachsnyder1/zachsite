@@ -27,7 +27,8 @@ def project_about(request, project_id, project_slug):
 		'projectLen': str(len(projectList)),
 		'curr_project': curr_project,
 		'codeExampleList': codeExampleList,
-		'readme_location': 'projects/' + curr_project.slug + '/readme.html'
+		'readme_location': 'projects/' + curr_project.slug + '/readme.html',
+		'subnav_location': 'projects/' + curr_project.slug + '/subnav.html'
 	}
 	return render(request, 'projects/project_about.html', context)
 	
@@ -42,6 +43,7 @@ def project_docs(request, project_id, project_slug):
 		'projectList': projectList,
 		'projectLen': str(len(projectList)),
 		'curr_project': curr_project,
-		'docs_location': 'projects/' + curr_project.slug + '/docs.html'
+		'docs_location': 'projects/' + curr_project.slug + '/docs.html',
+		'subnav_location': 'projects/' + curr_project.slug + '/subnav.html'
 	}
 	return render(request, 'projects/project_docs.html', context)

@@ -5862,14 +5862,12 @@ div.alt {
 .codebox span.keyw {
   color: #aa1133; }
 
-.pre-container {
-  background-color: white; }
-  .pre-container pre {
-    background-color: white;
-    border-width: 0px;
-    display: box;
-    display: -moz-box;
-    display: -webkit-box; }
+.pre-container pre {
+  background-color: white;
+  border-width: 0px;
+  display: box;
+  display: -moz-box;
+  display: -webkit-box; }
 
 .pre-center pre {
   box-pack: center;
