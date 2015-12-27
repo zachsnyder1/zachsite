@@ -10,31 +10,36 @@ href="{% static 'projects/project_docs.css' %}">
 {% block title %}<title>{{ curr_project }} | Docs</title>{% endblock %}
 {% block content %}
 {% include docs_location %}
-<section id ="docs-section">
-  {% for module in curr_project.projmodule_set.all %}
-  {% if forloop.counter0|divisibleby:2 %}
-  <div class="container-fluid alt">
-  {% else %}
+<section id="docs-section">
   <div class="container-fluid">
-  {% endif %}
+    <!-- **************************** -->
+  	<!--  FOR EACH MODULE IN PROJECT: -->
+  	<!-- **************************** -->
+    {% for module in curr_project.projmodule_set.all %}
+    {% if forloop.counter0|divisibleby:2 %}
+    <div class="row alt">
+    {% else %}
     <div class="row">
+      {% endif %}
       <div class="col-xs-12">
         <h2>MODULE <br><br><span class="red">{{ module.path }}</span></h2>
         <p class="description">{{ module.description }}</p>
       </div> <!-- /.col-xs-12 -->
-    </div> <!--/.row -->
-    <div class="row">
       <div class="col-xs-12">
         <h3>THE <em class="red">{{ module.symbol }}</em> CLASSES:</h3>
       </div> <!-- /.col-xs-12 -->
-    </div> <!--/.row -->
-    {% for class in module.projclass_set.all %}
-    <div class="row">
+      <!-- ************************** -->
+  	  <!--  FOR EACH CLASS IN MODULE: -->
+  	  <!-- ************************** -->
+      {% for class in module.projclass_set.all %}
       <div class="col-xs-12">
         <h4>
           <strong>
             <em class="red">{{ module.symbol }}</em>.{{ class.symbol }}(
           </strong>
+          <!-- ***************************************** -->
+  	      <!--  FOR EACH CONSTRUCTOR PARAMETER IN CLASS: -->
+  	      <!-- ***************************************** -->
           {% for constructorParam in class.constructorparam_set.all %}
           {% if forloop.last %}
           {% if constructorParam.default %}
@@ -49,19 +54,28 @@ href="{% static 'projects/project_docs.css' %}">
           <em class="light-blue">{{ constructorParam.symbol }}</em>,
           {% endif %}
           {% endif %}
-          {% endfor %}
+          {% endfor %} <!-- END for constructorParam ... -->
+          <!-- ************************************ -->
+  	      <!--  END FOR EACH CONSTRUCTOR PARAMETER: -->
+  	      <!-- ************************************ -->
           <strong>)</strong>
         </h4>
         <div class="docs-class-div">
           {% if class.constructorparam_set.all %}
           <div class="docs-params-div">
             <h5>-- Constructor Parameters --</h5>
-            {% for constructorParam in class.constructorparam_set.all %}
+              <!-- ***************************************** -->
+  	          <!--  FOR EACH CONSTRUCTOR PARAMETER IN CLASS: -->
+  	          <!-- ***************************************** -->
+              {% for constructorParam in class.constructorparam_set.all %}
               <p>
                 <span class="light-blue bold">{{ constructorParam.symbol }}</span>:
               </p>
               <p class="description">{{ constructorParam.description }}</p>
-            {% endfor %}
+              {% endfor %} <!-- END for constructorParam ... -->
+              <!-- ************************************ -->
+  	          <!--  END FOR EACH CONSTRUCTOR PARAMETER: -->
+  	          <!-- ************************************ -->
             <h6>--->><<---</h6>
           </div> <!-- /.docs-params-div -->
           {% endif %}
@@ -69,27 +83,45 @@ href="{% static 'projects/project_docs.css' %}">
           {% if class.classvariable_set.all %}
           <h4>Class Variables:</h4>
           <div class="docs-var-div">
-          {% for classvar in class.classvariable_set.all %}
+            <!-- ********************************** -->
+  	        <!--  FOR EACH CLASS VARIABLE IN CLASS: -->
+  	        <!-- ********************************** -->
+            {% for classvar in class.classvariable_set.all %}
             <h5><strong>{{ classvar.symbol }}</strong></h5>
             <p class="description">{{ classvar.description }}</p>
-          {% endfor %}
+            {% endfor %}  <!-- END for classvar ... -->
+            <!-- ***************************** -->
+  	        <!--  END FOR EACH CLASS VARIABLE: -->
+  	        <!-- ***************************** -->
           </div> <!-- /.docs-var-div -->
           {% endif %}
           {% if class.instancevariable_set.all %}
           <h4>Instance Variables:</h4>
           <div class="docs-var-div">
-          {% for instancevar in class.instancevariable_set.all %}
+            <!-- ************************************* -->
+  	        <!--  FOR EACH INSTANCE VARIABLE IN CLASS: -->
+  	        <!-- ************************************* -->
+            {% for instancevar in class.instancevariable_set.all %}
             <h5><strong>{{ instancevar.symbol }}</strong></h5>
             <p class="description">{{ instancevar.description }}</p>
-          {% endfor %}
+            {% endfor %} <!-- END for instanceVar ... -->
+            <!-- ******************************** -->
+  	        <!--  END FOR EACH INSTANCE VARIABLE: -->
+  	        <!-- ******************************** -->
           </div> <!-- /.docs-var-div -->
           {% endif %}
           {% if class.classmethod_set.all %}
           <h4>Class Methods:</h4>
           <div class="docs-method-div">
-          {% for method in class.classmethod_set.all %}
+            <!-- ************************** -->
+  	        <!--  FOR EACH METHOD IN CLASS: -->
+  	        <!-- ************************** -->
+            {% for method in class.classmethod_set.all %}
             <h5>
               <strong>.{{ method.symbol }}(</strong>
+              <!-- ****************************** -->
+  	          <!--  FOR EACH PARAMETER IN METHOD: -->
+  	          <!-- ****************************** -->
               {% for methodParam in method.methodparam_set.all %}
               {% if forloop.last %}
               {% if methodParam.default %}
@@ -104,45 +136,63 @@ href="{% static 'projects/project_docs.css' %}">
               <em class="light-blue">{{ methodParam.symbol }}</em>,
               {% endif %}
               {% endif %}
-              {% endfor %}
+              {% endfor %} <!-- END for methodParam ... -->
+              <!-- ********************************** -->
+  	          <!--  END FOR EACH PARAMETER IN METHOD: -->
+  	          <!-- ********************************** -->
               <strong>)</strong>
             </h5>
-          <div class="docs-sub-method-div">
-          {% if method.methodparam_set.all %}
-            <div class="docs-params-div">
-              <h6>-- Method Parameters --</h6>
-              {% for methodParam in method.methodparam_set.all %}
-              <p>
-                <span class="light-blue bold">{{ methodParam.symbol }}</span>:
-              </p>
-              <p class="description">{{ methodParam.description }}</p>
-              {% endfor %}
-              {% if method.methodreturn_set.all %}
-              {% if method.methodreturn_set.all.1 %}
-              <h6>[ Return Values ]</h6>
-        	  {% else %}
-        	  <h6>[ Return Value ]</h6>
-        	  {% endif %}
-        	  {% for returnValue in method.methodreturn_set.all %}
-        	  <p>
-                <span class="light-blue bold">{{ returnValue.symbol }}</span>:
-              </p>
-              <p class="description">{{ returnValue.description }}</p>
-        	  {% endfor %}
+            <div class="docs-sub-method-div">
+              {% if method.methodparam_set.all %}
+              <div class="docs-params-div">
+                <h6>-- Method Parameters --</h6>
+                <!-- ****************************** -->
+  	            <!--  FOR EACH PARAMETER IN METHOD: -->
+  	            <!-- ****************************** -->
+                {% for methodParam in method.methodparam_set.all %}
+                <p>
+                  <span class="light-blue bold">{{ methodParam.symbol }}</span>:
+                </p>
+                <p class="description">{{ methodParam.description }}</p>
+                {% endfor %} <!-- END for methodParam ... -->
+                <!-- ********************************** -->
+  	            <!--  END FOR EACH PARAMETER IN METHOD: -->
+  	            <!-- ********************************** -->
+                {% if method.methodreturn_set.all %}
+                {% if method.methodreturn_set.all.1 %}
+                <h6>[ Return Values ]</h6>
+        	    {% else %}
+        	    <h6>[ Return Value ]</h6>
+        	    {% endif %}
+        	    <!-- ********************************* -->
+  	            <!--  FOR EACH RETURN VALUE IN METHOD: -->
+  	            <!-- ********************************* -->
+        	    {% for returnValue in method.methodreturn_set.all %}
+        	    <p>
+                  <span class="light-blue bold">{{ returnValue.symbol }}</span>:
+                </p>
+                <p class="description">{{ returnValue.description }}</p>
+        	    {% endfor %} <!-- END for returnValue ... -->
+        	    <!-- ************************************* -->
+  	            <!--  END FOR EACH RETURN VALUE IN METHOD: -->
+  	            <!-- ************************************* -->
+                {% endif %}
+                <h6>--->><<---</h6>
+              </div> <!-- /.docs-params-div -->
               {% endif %}
-              <h6>--->><<---</h6>
-            </div> <!-- /.docs-params-div -->
-          {% endif %}
-          <p>{{ method.description }}</p>
-          </div> <!-- /.docs-sub-method-div -->
-          {% endfor %}
+              <p>{{ method.description }}</p>
+            </div> <!-- /.docs-sub-method-div -->
+            {% endfor %} <!-- END for method ... -->
+            <!-- ****************************** -->
+  	        <!--  END FOR EACH METHOD IN CLASS: -->
+  	        <!-- ****************************** -->
           </div> <!-- /.docs-method-div -->
           {% endif %}
         </div> <!-- /#proj-class-div -->
       </div> <!-- /.col-xs-12 -->
+      {% endfor %} <!-- END for class ... -->
     </div> <!-- /.row -->
-    {% endfor %}
+    {% endfor %} <!-- END for module ... -->
   </div> <!-- /.container-fluid -->
-  {% endfor %}
 </section>
 {% endblock %}

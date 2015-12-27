@@ -131,10 +131,12 @@ div.alt {
 		span.bold em.bold {
 			font-weight: bold;
 		}
-		padding-top: 30px;
-		padding-bottom: 50px;
-		padding-left: 50px;
-		padding-right: 50px;
+		div.row {
+			padding-top: 30px;
+			padding-bottom: 50px;
+			padding-left: 50px;
+			padding-right: 50px;
+		}
 	}
 	div.alt {
 		pre {
