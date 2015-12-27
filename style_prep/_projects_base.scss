@@ -144,3 +144,34 @@ div.alt {
 		}
 	}
 }
+
+//----------------------------------------------------------------------------
+//------------------------ Project Sidebar Formatting ------------------------
+//----------------------------------------------------------------------------
+
+#readme-section {
+	padding-right: 250px;
+}
+
+.sidebar-wrapper {
+	margin-right: -250px;
+	right: 250px;
+	width: 250px;
+	position: absolute;
+	height: 100%;
+	overflow-y: auto;
+	z-index: 1000;
+	background-color: $zach-red;
+}
+
+@media (max-width: $screen-sm-min) {
+	#readme-section {
+		padding-right: 0px;
+	}
+	.sidebar-wrapper {
+		position: relative;
+		margin-right: 0px;
+		right: 0px;
+		width: 100%;
+	}
+}

@@ -5904,4 +5904,27 @@ div.alt {
 #readme-section div.alt pre, #docs-section div.alt pre, #pre-docs-section div.alt pre {
   background-color: #fcfcf8; }
 
+#readme-section {
+  padding-right: 250px; }
+
+.sidebar-wrapper {
+  margin-right: -250px;
+  right: 250px;
+  width: 250px;
+  position: absolute;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 1000;
+  background-color: #aa1133; }
+
+@media (max-width: 768px) {
+  #readme-section {
+    padding-right: 0px; }
+
+  .sidebar-wrapper {
+    position: relative;
+    margin-right: 0px;
+    right: 0px;
+    width: 100%; } }
+
 /*# sourceMappingURL=project_about.css.map */
