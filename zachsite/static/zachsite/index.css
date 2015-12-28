@@ -5879,7 +5879,7 @@ button.close {
   background-color: white; }
 
 .project-title-hover {
-  color: #eb365e !important; }
+  color: #eb365e; }
 
 .project-title {
   text-align: center;

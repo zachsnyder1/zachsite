@@ -5,11 +5,13 @@
 // Zach site colors
 $zach-blue: #445566;
 $zach-blue-bg: lighten($zach-blue, 65%);
+$zach-blue-bg-light: lighten($zach-blue-bg, 5%);
 $zach-blue-bg-dark: lighten($zach-blue, 10%);
 $zach-blue-nav: darken($zach-blue-bg, 3%);
 $zach-blue-nav-active: darken($zach-blue-nav, 3%);
 $zach-purple: #f5f5fa;
 $zach-yellow: darken(#fafaf5, 4%);
+$zach-yellow-light: lighten($zach-yellow, 5%);
 $zach-red: #aa1133;
 $zach-red-light: lighten($zach-red, 20%);
 $zach-gray-bg: lighten(gray, 40%);
