@@ -2,17 +2,22 @@
 <section id="readme-section">
   <div class="sidebar-wrapper">
     <div class="sidebar">
-      <p>SIDEBAR</p>
+      <h4>Contents:</h4>
+      <a class="sidebar-link" role="button" href="#what"><div>What?</div></a>
+      <a class="sidebar-link" role="button" href="#why"><div>Why?</div></a>
+      <a class="sidebar-link" role="button" href="#how"><div>How?</div></a>
+      <a class="sidebar-link" role="button" href="#testing"><div>Testing?</div></a>
+      <a class="sidebar-link" role="button" href="#license"><div>License</div></a>
     </div> <!-- /.sidebar -->
   </div> <!-- /.sidebar-wrapper -->
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-12 col-md-6">
-        <h2>What?</h2>
+        <h2 id="what">What?</h2>
         <p>{{ curr_project.summary }}</p>
       </div> <!-- /.col-xs-12 -->
   	  <div class="col-xs-12 col-md-6">
-        <h2>Why?</h2>
+        <h2 id="why">Why?</h2>
         <p>
           Maybe you want to get your feet wet writing digital audio effects, but 
           you find the overhead of learning the VST3 API unnecessary while you 
@@ -22,7 +27,7 @@
     </div> <!-- /.row -->
     <div class="row alt">
       <div class="col-xs-12">
-        <h2>How?</h2>
+        <h2 id="how">How?</h2>
         <div class="pre-container codebox">
           <pre>{{ codeExampleList.0.codetext|formatpython }}</pre>
         </div> <!-- /.pre-container -->
@@ -68,7 +73,7 @@
     </div> <!-- /.row .alt -->
     <div class="row">
       <div class="col-xs-12">
-        <h2>Testing?</h2>
+        <h2 id="testing">Testing?</h2>
         <p>
           If you adjusted the source and you want to see if everything is 
           still working as before, just run
@@ -83,7 +88,7 @@
     </div> <!-- /.row -->
     <div class="row alt">
       <div class="col-xs-12">
-        <h2>License</h2>
+        <h2 id="license">License</h2>
         <div class="pre-container pre-center">
           <pre>
 The MIT License

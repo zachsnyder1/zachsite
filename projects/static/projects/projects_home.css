@@ -5877,6 +5877,10 @@ div.alt {
   -webkit-box-pack: center;
   -webkit-box-align: center; }
 
+#readme-section div.container-fluid div.row, #docs-section div.container-fluid div.row, #pre-docs-section div.container-fluid div.row {
+  background-color: #fafbfc; }
+#readme-section div.container-fluid div.alt, #docs-section div.container-fluid div.alt, #pre-docs-section div.container-fluid div.alt {
+  background-color: #f3f3e7; }
 #readme-section div.container-fluid h2, #docs-section div.container-fluid h2, #pre-docs-section div.container-fluid h2 {
   text-align: center;
   padding-top: 20px;
@@ -5904,28 +5908,47 @@ div.alt {
 #readme-section div.alt pre, #docs-section div.alt pre, #pre-docs-section div.alt pre {
   background-color: #fcfcf8; }
 
-#readme-section {
-  padding-right: 250px; }
+#readme-section, #docs-section, #pre-docs-section {
+  background-color: #e6e6e6; }
+  #readme-section .container-fluid, #docs-section .container-fluid, #pre-docs-section .container-fluid {
+    margin-right: 280px; }
 
 .sidebar-wrapper {
-  margin-right: -250px;
-  right: 250px;
-  width: 250px;
-  position: absolute;
-  height: 100%;
-  overflow-y: auto;
-  z-index: 1000;
-  background-color: #aa1133; }
+  position: static;
+  float: right;
+  width: 280px; }
+
+.sidebar {
+  padding: 15px 30px; }
+  .sidebar h4 {
+    text-align: left; }
+  .sidebar a.sidebar-link {
+    color: #aa1133; }
+    .sidebar a.sidebar-link div {
+      margin: 5px auto;
+      padding: 10px 10px;
+      text-align: left;
+      border-radius: 5px;
+      background-color: #eeeeee; }
+  .sidebar a.sidebar-link:hover {
+    color: #eb365e; }
+    .sidebar a.sidebar-link:hover div {
+      background-color: #f8f8f8; }
 
 @media (max-width: 768px) {
-  #readme-section {
-    padding-right: 0px; }
+  #readme-section .container-fluid, #docs-section .container-fluid, #pre-docs-section .container-fluid {
+    margin-right: 0px; }
 
   .sidebar-wrapper {
-    position: relative;
-    margin-right: 0px;
-    right: 0px;
-    width: 100%; } }
+    float: none;
+    width: 100%; }
+
+  .sidebar h4 {
+    text-align: center; }
+  .sidebar a.sidebar-link {
+    text-align: center; }
+    .sidebar a.sidebar-link div {
+      text-align: center; } }
 .proj-about-div {
   padding-top: 50px;
   padding-bottom: 50px;

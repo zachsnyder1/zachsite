@@ -11,6 +11,10 @@ $zach-blue-nav-active: darken($zach-blue-nav, 3%);
 $zach-purple: #f5f5fa;
 $zach-yellow: darken(#fafaf5, 4%);
 $zach-red: #aa1133;
+$zach-red-light: lighten($zach-red, 20%);
+$zach-gray-bg: lighten(gray, 40%);
+$zach-gray: lighten($zach-gray-bg, 3%);
+$zach-gray-light: lighten($zach-gray, 4%);
 
 // -------------------------------------------------------------------------
 // --------------------  BOOTSTRAP VARIABLE OVERRIDES  ---------------------

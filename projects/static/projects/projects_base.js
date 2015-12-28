@@ -20,7 +20,6 @@ var TestScript = (function() {
 		setTimeout(function() {
 			$('.subnav-link').each(function() {
 				if ($(this).parent().hasClass('active')) {
-					console.log(this);
 					$(this).
 						children('.subnav-link-active-icon').
 						fadeIn(duration, infiniteFade);

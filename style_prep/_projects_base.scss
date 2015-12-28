@@ -106,6 +106,12 @@ div.alt {
 // formatting for divs within readme and docs pages
 #readme-section, #docs-section, #pre-docs-section {
 	div.container-fluid {
+		div.row {
+			background-color: $zach-blue-bg;
+		}
+		div.alt {
+			background-color: $zach-yellow;
+		}
 		h2 {
 			text-align: center;
 			padding-top: 20px;
@@ -149,29 +155,76 @@ div.alt {
 //------------------------ Project Sidebar Formatting ------------------------
 //----------------------------------------------------------------------------
 
-#readme-section {
-	padding-right: 250px;
-}
-
-.sidebar-wrapper {
-	margin-right: -250px;
-	right: 250px;
-	width: 250px;
-	position: absolute;
-	height: 100%;
-	overflow-y: auto;
-	z-index: 1000;
-	background-color: $zach-red;
-}
-
-@media (max-width: $screen-sm-min) {
-	#readme-section {
-		padding-right: 0px;
+// Project subsection background is gray
+// bootstrap containers have right margin to show sidebar
+#readme-section, #docs-section, #pre-docs-section {
+	background-color: $zach-gray-bg;
+	.container-fluid {
+		margin-right: 280px;
 	}
+}
+
+// Floating sidebar on right, same width as subsections' R margin
+.sidebar-wrapper {
+	position: static;
+	float: right;
+	width: 280px;
+}
+
+// Sidebar div style
+.sidebar {
+	// Some pleasant padding
+	padding: 15px 30px;
+	// Headings aligned left
+	h4 {
+		text-align: left;
+	}
+	// Links appear as light grey buttons
+	a.sidebar-link {
+		// Links: red text
+		color: $zach-red;
+		
+		div {
+			margin: 5px auto;
+			padding: 10px 10px;
+			text-align: left;
+			border-radius: 5px;
+			background-color: $zach-gray;
+		}
+	}
+	// Links lighten on hover
+	a.sidebar-link:hover {
+		color: $zach-red-light;
+		
+		div {
+			background-color: $zach-gray-light;
+		}
+	}
+}
+
+// Sidebar goes above subsections at smaller screen sizes
+@media (max-width: $screen-sm-min) {
+	// Get rid of margin
+	#readme-section, #docs-section, #pre-docs-section {
+		.container-fluid {
+			margin-right: 0px;
+		}
+	}
+	// Kill float, make width responsive
 	.sidebar-wrapper {
-		position: relative;
-		margin-right: 0px;
-		right: 0px;
+		float: none;
 		width: 100%;
+	}
+	// Center align text
+	.sidebar {
+		h4 {
+			text-align: center;
+		}
+		a.sidebar-link {
+			text-align: center;
+			div {
+				text-align: center;
+			}
+		}
 	}
 }
