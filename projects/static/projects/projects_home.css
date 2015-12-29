@@ -5877,51 +5877,56 @@ div.alt {
   -webkit-box-pack: center;
   -webkit-box-align: center; }
 
-#readme-section div.container-fluid div.row, #docs-section div.container-fluid div.row, #pre-docs-section div.container-fluid div.row {
+#readme-section div.container-fluid div.row, #docs-section div.container-fluid div.row {
   background-color: #fafbfc; }
-#readme-section div.container-fluid div.alt, #docs-section div.container-fluid div.alt, #pre-docs-section div.container-fluid div.alt {
+#readme-section div.container-fluid div.alt, #docs-section div.container-fluid div.alt {
   background-color: #f3f3e7; }
-#readme-section div.container-fluid h2, #docs-section div.container-fluid h2, #pre-docs-section div.container-fluid h2 {
+#readme-section div.container-fluid h2, #docs-section div.container-fluid h2 {
   text-align: center;
   padding-top: 20px;
   padding-bottom: 20px; }
-#readme-section div.container-fluid h3, #docs-section div.container-fluid h3, #pre-docs-section div.container-fluid h3 {
+#readme-section div.container-fluid h3, #docs-section div.container-fluid h3 {
   font-weight: bold;
   padding-top: 30px;
   padding-bottom: 20px; }
-#readme-section div.container-fluid h4, #readme-section div.container-fluid h5, #readme-section div.container-fluid h6, #docs-section div.container-fluid h4, #docs-section div.container-fluid h5, #docs-section div.container-fluid h6, #pre-docs-section div.container-fluid h4, #pre-docs-section div.container-fluid h5, #pre-docs-section div.container-fluid h6 {
+#readme-section div.container-fluid h4, #readme-section div.container-fluid h5, #readme-section div.container-fluid h6, #docs-section div.container-fluid h4, #docs-section div.container-fluid h5, #docs-section div.container-fluid h6 {
   padding-top: 15px;
   padding-bottom: 10px; }
-#readme-section div.container-fluid span.red, #readme-section div.container-fluid em.red, #docs-section div.container-fluid span.red, #docs-section div.container-fluid em.red, #pre-docs-section div.container-fluid span.red, #pre-docs-section div.container-fluid em.red {
+#readme-section div.container-fluid span.red, #readme-section div.container-fluid em.red, #docs-section div.container-fluid span.red, #docs-section div.container-fluid em.red {
   color: #aa1133;
   opacity: 0.8; }
-#readme-section div.container-fluid span.light-blue, #readme-section div.container-fluid em.light-blue, #docs-section div.container-fluid span.light-blue, #docs-section div.container-fluid em.light-blue, #pre-docs-section div.container-fluid span.light-blue, #pre-docs-section div.container-fluid em.light-blue {
+#readme-section div.container-fluid span.light-blue, #readme-section div.container-fluid em.light-blue, #docs-section div.container-fluid span.light-blue, #docs-section div.container-fluid em.light-blue {
   color: #4e6275;
   opacity: 0.8; }
-#readme-section div.container-fluid span.bold em.bold, #docs-section div.container-fluid span.bold em.bold, #pre-docs-section div.container-fluid span.bold em.bold {
+#readme-section div.container-fluid span.bold em.bold, #docs-section div.container-fluid span.bold em.bold {
   font-weight: bold; }
-#readme-section div.container-fluid div.row, #docs-section div.container-fluid div.row, #pre-docs-section div.container-fluid div.row {
+#readme-section div.container-fluid div.row, #docs-section div.container-fluid div.row {
   padding-top: 30px;
   padding-bottom: 50px;
   padding-left: 50px;
   padding-right: 50px; }
-#readme-section div.alt pre, #docs-section div.alt pre, #pre-docs-section div.alt pre {
+#readme-section div.alt pre, #docs-section div.alt pre {
   background-color: #fcfcf8; }
 
-#readme-section, #docs-section, #pre-docs-section {
+#readme-section, #docs-section {
   background-color: #e6e6e6; }
-  #readme-section .container-fluid, #docs-section .container-fluid, #pre-docs-section .container-fluid {
-    margin-right: 280px; }
+  #readme-section .container-fluid, #docs-section .container-fluid {
+    margin-right: 320px; }
 
 .sidebar-wrapper {
-  position: static;
-  float: right;
-  width: 280px; }
+  background-color: #e6e6e6;
+  position: absolute;
+  right: 0px;
+  width: 320px; }
 
 .sidebar {
-  padding: 15px 30px; }
+  padding: 40px 30px; }
   .sidebar h4 {
-    text-align: left; }
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 15px; }
+  .sidebar h5 {
+    text-align: center; }
   .sidebar a.sidebar-link {
     color: #aa1133; }
     .sidebar a.sidebar-link div {
@@ -5929,26 +5934,48 @@ div.alt {
       padding: 10px 10px;
       text-align: left;
       border-radius: 5px;
-      background-color: #eeeeee; }
+      background-color: #dbe1e7; }
   .sidebar a.sidebar-link:hover {
     color: #eb365e; }
     .sidebar a.sidebar-link:hover div {
-      background-color: #f8f8f8; }
+      background-color: #fafbfc; }
+  .sidebar a.subtopic1 div {
+    background-color: #f3f3e7;
+    margin-left: 20px;
+    margin-right: 5px; }
+  .sidebar a.subtopic1:hover div {
+    background-color: #fcfcf8; }
+  .sidebar a.subtopic2 div {
+    background-color: #eeeeee;
+    margin-left: 40px;
+    margin-right: 10px;
+    font-size: 0.85em; }
+  .sidebar a.subtopic2:hover div {
+    background-color: #f8f8f8; }
 
-@media (max-width: 768px) {
-  #readme-section .container-fluid, #docs-section .container-fluid, #pre-docs-section .container-fluid {
+@media (max-width: 992px) {
+  #readme-section .container-fluid, #docs-section .container-fluid {
     margin-right: 0px; }
 
   .sidebar-wrapper {
-    float: none;
+    position: static;
     width: 100%; }
 
-  .sidebar h4 {
+  .sidebar h4, .sidebar h5 {
     text-align: center; }
   .sidebar a.sidebar-link {
     text-align: center; }
     .sidebar a.sidebar-link div {
-      text-align: center; } }
+      text-align: center; }
+  .sidebar a.topic div {
+    margin: 5px auto;
+    width: 80%; }
+  .sidebar a.subtopic1 div {
+    margin: 5px auto;
+    width: 70%; }
+  .sidebar a.subtopic2 div {
+    margin: 5px auto;
+    width: 60%; } }
 .proj-about-div {
   padding-top: 50px;
   padding-bottom: 50px;

@@ -104,7 +104,7 @@ div.alt {
 }
 
 // formatting for divs within readme and docs pages
-#readme-section, #docs-section, #pre-docs-section {
+#readme-section, #docs-section {
 	div.container-fluid {
 		div.row {
 			background-color: $zach-blue-bg;
@@ -155,41 +155,49 @@ div.alt {
 //------------------------ Project Sidebar Formatting ------------------------
 //----------------------------------------------------------------------------
 
+$sidebar-width: 320px;
+
 // Project subsection background is gray
 // bootstrap containers have right margin to show sidebar
-#readme-section, #docs-section, #pre-docs-section {
+#readme-section, #docs-section {
 	background-color: $zach-gray-bg;
 	.container-fluid {
-		margin-right: 280px;
+		margin-right: $sidebar-width;
 	}
 }
 
 // Floating sidebar on right, same width as subsections' R margin
 .sidebar-wrapper {
-	position: static;
-	float: right;
-	width: 280px;
+	background-color: $zach-gray-bg;
+	position: absolute;
+	right: 0px;
+	width: $sidebar-width;
 }
 
 // Sidebar div style
 .sidebar {
 	// Some pleasant padding
-	padding: 15px 30px;
+	padding: 40px 30px;
 	// Headings aligned left
 	h4 {
 		text-align: left;
+		margin-top: 20px;
+		margin-bottom: 15px;
+	}
+	h5 {
+		text-align: center;
 	}
 	// Links appear as light grey buttons
 	a.sidebar-link {
 		// Links: red text
 		color: $zach-red;
-		
+		// div formatting:
 		div {
 			margin: 5px auto;
 			padding: 10px 10px;
 			text-align: left;
 			border-radius: 5px;
-			background-color: $zach-gray;
+			background-color: darken($zach-blue-bg, 10%);
 		}
 	}
 	// Links lighten on hover
@@ -197,27 +205,52 @@ div.alt {
 		color: $zach-red-light;
 		
 		div {
+			background-color: $zach-blue-bg;
+		}
+	}
+	//subtopic1 gets some L margin
+	a.subtopic1 div {
+		background-color: $zach-yellow;
+		margin-left: 20px;
+		margin-right: 5px;
+	}
+	//subtopic1 lightens on hover
+	a.subtopic1:hover {
+		div {
+			background-color: $zach-yellow-light;
+		}
+	}
+	//subtopic2 gets some L margin
+	a.subtopic2 div {
+		background-color: $zach-gray;
+		margin-left: 40px;
+		margin-right: 10px;
+		font-size: 0.85em;
+	}
+	//subtopic2 lightens on hover
+	a.subtopic2:hover {
+		div {
 			background-color: $zach-gray-light;
 		}
 	}
 }
 
 // Sidebar goes above subsections at smaller screen sizes
-@media (max-width: $screen-sm-min) {
+@media (max-width: $screen-md-min) {
 	// Get rid of margin
-	#readme-section, #docs-section, #pre-docs-section {
+	#readme-section, #docs-section {
 		.container-fluid {
 			margin-right: 0px;
 		}
 	}
 	// Kill float, make width responsive
 	.sidebar-wrapper {
-		float: none;
+		position: static;
 		width: 100%;
 	}
 	// Center align text
 	.sidebar {
-		h4 {
+		h4, h5 {
 			text-align: center;
 		}
 		a.sidebar-link {
@@ -225,6 +258,21 @@ div.alt {
 			div {
 				text-align: center;
 			}
+		}
+		// topic 80% width
+		a.topic div {
+			margin: 5px auto;
+			width: 80%;
+		}
+		// subtopic1 70% width
+		a.subtopic1 div {
+			margin: 5px auto;
+			width: 70%;
+		}
+		// subtopic2 60% width
+		a.subtopic2 div {
+			margin: 5px auto;
+			width: 60%;
 		}
 	}
 }

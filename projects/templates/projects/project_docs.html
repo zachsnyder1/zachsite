@@ -9,9 +9,42 @@ href="{% static 'projects/project_docs.css' %}">
 {% endblock %}
 {% block title %}<title>{{ curr_project }} | Docs</title>{% endblock %}
 {% block content %}
-{% include docs_location %}
 <section id="docs-section">
+  <div class="sidebar-wrapper">
+    <div class="sidebar">
+      <h4>Contents:</h4>
+      <a class="sidebar-link topic" role="button" href="#the-api">
+        <div>The API</div>
+      </a>
+      {% for module in curr_project.projmodule_set.all %}
+      <a class="sidebar-link topic" role="button" href="#{{ module.symbol }}">
+        <div>{{ module.symbol }}</div>
+      </a>
+      {% for class in module.projclass_set.all %}
+      <a class="sidebar-link subtopic1" role="button" href="#{{ class.symbol }}">
+        <div><strong>{{ class.symbol }}</strong></div>
+      </a>
+      {% for classVar in class.classvariable_set.all %}
+      <a class="sidebar-link subtopic2" role="button" href="#{{ classVar.symbol }}">
+        <div>{{ classVar.symbol }}</div>
+      </a>
+      {% endfor %}
+      {% for instanceVar in class.instancevariable_set.all %}
+      <a class="sidebar-link subtopic2" role="button" href="#{{ instanceVar.symbol }}">
+        <div>{{ instanceVar.symbol }}</div>
+      </a>
+      {% endfor %}
+      {% for method in class.classmethod_set.all %}
+      <a class="sidebar-link subtopic2" role="button" href="#{{ method.symbol }}">
+        <div>.{{ method.symbol }}()</div>
+      </a>
+      {% endfor %}
+      {% endfor %}
+      {% endfor %}
+    </div> <!-- /.sidebar -->
+  </div> <!-- /.sidebar-wrapper -->
   <div class="container-fluid">
+    {% include docs_location %}
     <!-- **************************** -->
   	<!--  FOR EACH MODULE IN PROJECT: -->
   	<!-- **************************** -->
@@ -22,7 +55,9 @@ href="{% static 'projects/project_docs.css' %}">
     <div class="row">
       {% endif %}
       <div class="col-xs-12">
-        <h2>MODULE <br><br><span class="red">{{ module.path }}</span></h2>
+        <h2 id="{{ module.symbol }}">
+          MODULE <br><br><span class="red">{{ module.path }}</span>
+        </h2>
         <p class="description">{{ module.description }}</p>
       </div> <!-- /.col-xs-12 -->
       <div class="col-xs-12">
@@ -33,7 +68,7 @@ href="{% static 'projects/project_docs.css' %}">
   	  <!-- ************************** -->
       {% for class in module.projclass_set.all %}
       <div class="col-xs-12">
-        <h4>
+        <h4 id="{{ class.symbol }}">
           <strong>
             <em class="red">{{ module.symbol }}</em>.{{ class.symbol }}(
           </strong>
@@ -87,7 +122,9 @@ href="{% static 'projects/project_docs.css' %}">
   	        <!--  FOR EACH CLASS VARIABLE IN CLASS: -->
   	        <!-- ********************************** -->
             {% for classvar in class.classvariable_set.all %}
-            <h5><strong>{{ classvar.symbol }}</strong></h5>
+            <h5 id="{{ classvar.symbol }}">
+              <strong>{{ classvar.symbol }}</strong>
+            </h5>
             <p class="description">{{ classvar.description }}</p>
             {% endfor %}  <!-- END for classvar ... -->
             <!-- ***************************** -->
@@ -102,7 +139,9 @@ href="{% static 'projects/project_docs.css' %}">
   	        <!--  FOR EACH INSTANCE VARIABLE IN CLASS: -->
   	        <!-- ************************************* -->
             {% for instancevar in class.instancevariable_set.all %}
-            <h5><strong>{{ instancevar.symbol }}</strong></h5>
+            <h5 id="{{ instancevar.symbol }}">
+              <strong>{{ instancevar.symbol }}</strong>
+            </h5>
             <p class="description">{{ instancevar.description }}</p>
             {% endfor %} <!-- END for instanceVar ... -->
             <!-- ******************************** -->
@@ -117,7 +156,7 @@ href="{% static 'projects/project_docs.css' %}">
   	        <!--  FOR EACH METHOD IN CLASS: -->
   	        <!-- ************************** -->
             {% for method in class.classmethod_set.all %}
-            <h5>
+            <h5 id="{{ method.symbol }}">
               <strong>.{{ method.symbol }}(</strong>
               <!-- ****************************** -->
   	          <!--  FOR EACH PARAMETER IN METHOD: -->
