@@ -5841,7 +5841,6 @@ button.close {
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
 #project-subnav {
-  display: none;
   background-color: #333333;
   text-align: center;
   padding-top: 5px;
@@ -5850,6 +5849,10 @@ button.close {
   padding-right: 30px; }
   #project-subnav .row div a {
     color: #a6a6a6; }
+    #project-subnav .row div a div {
+      padding: 10px 0px; }
+  #project-subnav .row div a:hover {
+    color: #f3f3f3; }
   #project-subnav .row .active a {
     color: #f3f3f3; }
 

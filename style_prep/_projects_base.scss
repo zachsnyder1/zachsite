@@ -32,7 +32,7 @@
 //----------------------------------------------------------------------------
 
 #project-subnav {
-	display: none;
+	//display: none;
 	background-color: lighten(black, 20%);
 	text-align: center;
 	padding-top: 5px;
@@ -42,6 +42,13 @@
 	
 	.row div a {
 		color: lighten(gray, 15%);
+		div {
+			padding: 10px 0px;
+		}
+	}
+	
+	.row div a:hover {
+		color: lighten(gray, 45%);
 	}
 	
 	.row .active a {

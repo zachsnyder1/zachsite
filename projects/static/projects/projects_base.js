@@ -5,8 +5,15 @@ var TestScript = (function() {
 		var subnavDelay = 300;
 		var subnavDuration = 700;
 		var activeIconFadeDuration = 800;
+		hideElem($("#" + subNavID));
 		subNavActiveLink(activeIconFadeDuration);
 		slideSubNavDown(subNavID, subnavDelay, subnavDuration);
+	}
+	
+	// Hide an element, set attribute display to 'none'
+	// (a wrapper is used for unit testing)
+	function hideElem(elem) {
+		elem.hide(0);
 	}
 	
 	// Causes the .subnav-link-active-icon to fade in and out
@@ -21,6 +28,7 @@ var TestScript = (function() {
 			$('.subnav-link').each(function() {
 				if ($(this).parent().hasClass('active')) {
 					$(this).
+						children("div").
 						children('.subnav-link-active-icon').
 						fadeIn(duration, infiniteFade);
 				}
@@ -43,6 +51,7 @@ var TestScript = (function() {
 			var ProjectsBase = {};
 			ProjectsBase.slideSubNavDown = slideSubNavDown;
 			ProjectsBase.subNavActiveLink = subNavActiveLink;
+			ProjectsBase.hideElem = hideElem;
 	
 			return ProjectsBase;
 		}

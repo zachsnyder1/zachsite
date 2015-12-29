@@ -1,4 +1,20 @@
 QUnit.module('Test projects_base.js functions');
+QUnit.test('test hideElem', function(assert) {
+	var fixture = $("#qunit-fixture");
+	var subNavID = 'project-subnav';
+	
+	// Make the subnav element
+	$("<div></div>").
+		attr('id', subNavID).
+		attr('display', 'block').
+		appendTo(fixture);
+	
+	// Hide the #subnav div
+	TestScript.hideElem($("#" + subNavID));
+	
+	// Assertion:
+	assert.equal($("#" + subNavID).attr('style'), 'display: none; ');
+});
 QUnit.test('test subNavActiveLink', function (assert) {
 	var fixture = $("#qunit-fixture");
 	var duration = 1500;
@@ -12,10 +28,11 @@ QUnit.test('test subNavActiveLink', function (assert) {
 		appendTo(parent);
 	var otherSubNavLink = $('<a></a>').
 		addClass('subnav-link');
+	var linkDiv = $('<div></div>').appendTo(subNavLink);
 	$('<span></span>').
 		addClass('subnav-link-active-icon').
 		attr('id', '#span').
-		appendTo(subNavLink);
+		appendTo(linkDiv);
 	
 	// Method to test: start fade loop on span
 	TestScript.subNavActiveLink(duration);
