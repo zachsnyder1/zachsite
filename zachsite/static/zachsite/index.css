@@ -5847,16 +5847,29 @@ button.close {
   padding-top: 25px;
   padding-bottom: 25px; }
 
-.question-text {
-  text-align: center; }
+#question-text {
+  text-align: center;
+  font-size: 20pt;
+  margin-bottom: 0px;
+  padding: 5px 0px 0px 0px; }
 
-.answer {
+#answer {
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #fafbfc;
-  padding-top: 40px;
-  padding-bottom: 20px;
+  padding-top: 25px;
+  padding-bottom: 5px;
   margin: 0px 3%; }
 
+@media (max-width: 768px) {
+  #question-text {
+    font-size: 14pt; }
+
+  #answer-text {
+    font-size: 11pt; }
+
+  #answer {
+    padding-top: 20px;
+    padding-bottom: 0px; } }
 #blurbs-div {
   padding-top: 60px;
   padding-bottom: 80px;

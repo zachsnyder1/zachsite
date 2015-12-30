@@ -11,8 +11,7 @@ href="{% static 'zachsite/index.css' %}">
   <!-- Hat image -->
   <div id="zach-hat">
     <img>
-  </div> <!-- /#zach-hat -->
-      
+  </div> <!-- /#zach-hat -->   
   <!-- Question-Answer carousel -->
   <div id="question-carousel" class="carousel slide" data-ride="carousel"
 data-interval="5000" data-pause="false">
@@ -25,7 +24,7 @@ data-interval="5000" data-pause="false">
       <div class="item" data-answer="{{ question.answer }}">
       {% endif %}
         <div class="jumbotron question">
-          <h2 class="question-text">{{ question.question }}</h2>
+          <p id="question-text">{{ question.question }}</p>
         </div> <!-- /.jumbotron -->
       </div> <!-- /.item -->
       {% endfor %}
@@ -43,18 +42,19 @@ role="button" data-slide="next">
   <!-- answer div -->
   <div class="container-fluid">
     <div class="row">
-      <div class="jumbotron answer col-xs-12">
-        <blockquote>
-          <p id="answer-text">{{ QAs.0.answer }}</p>
-        </blockquote>
-      </div> <!-- /.answer -->
+      <div class="col-xs-12">
+        <div class="jumbotron" id="answer">
+          <blockquote>
+            <p id="answer-text">{{ QAs.0.answer }}</p>
+          </blockquote>
+        </div> <!-- /.jumbotron -->
+      </div> <!-- /.col-xs-12 -->
     </div> <!-- /.row -->
   </div> <!-- /.container-fluid -->
-      
   <!-- Smile image -->
   <div id="zach-smile">
     <img>
-  </div> <!-- /#zach-smile -->
+  </div> <!-- /#zach-smile --> 
 </section> <!-- /.qa-section -->
 {% endblock %}
 {% block content %}
@@ -76,9 +76,9 @@ role="button" data-slide="next">
       </div> <!-- /.blurb -->
       {% endfor %}
     </div> <!-- /.row -->
-  </div> <!-- /#info-div -->
+  </div> <!-- /.container-fluid -->
   <!-- A showcase of my projects -->
-  <div id="projects-div">
+  <div id="projects-div" class="container-fluid">
     <div class="row">
       <div class="col-xs-12">
         <h2 id="projects-heading">Active Projects</h2>
@@ -106,6 +106,6 @@ role="button" data-slide="next">
       </div> <!-- /.blurb -->
       {% endfor %}
     </div> <!-- /.row -->
-  </div> <!-- /#projects-div -->
+  </div> <!-- /.container-fluid -->
 </section> <!-- /.info-section -->
 {% endblock %}
