@@ -90,6 +90,11 @@
 	color: $zach-red;
 }
 
+.project-title {
+	text-align: center;
+	color: $panel-default-text;
+}
+
 // Style for :hover state of project panels:
 .project-panel-hover {
 	background-color: lighten($zach-blue-bg, 20%);
@@ -101,11 +106,6 @@
 
 .project-title-hover {
 	color: $zach-red-light;
-}
-
-.project-title {
-	text-align: center;
-	color: $panel-default-text;
 }
 
 .project > .panel {

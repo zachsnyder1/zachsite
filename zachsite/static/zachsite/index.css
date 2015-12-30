@@ -5900,6 +5900,10 @@ button.close {
   font-family: "Merriweather", "Montserrat", Helevecita, sans-serif;
   color: #aa1133; }
 
+.project-title {
+  text-align: center;
+  color: #aa1133; }
+
 .project-panel-hover {
   background-color: white; }
 
@@ -5908,10 +5912,6 @@ button.close {
 
 .project-title-hover {
   color: #eb365e; }
-
-.project-title {
-  text-align: center;
-  color: #aa1133; }
 
 .project > .panel {
   margin: 0px 5% 20px 5%; }
