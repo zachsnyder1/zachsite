@@ -5864,6 +5864,8 @@ button.close {
   text-align: center; }
   #blurbs-div .blurb {
     padding: 20px 3% 0px 3%; }
+    #blurbs-div .blurb h3 {
+      padding-bottom: 10px; }
 
 .blurb > p {
   text-align: left;
