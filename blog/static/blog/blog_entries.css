@@ -5820,4 +5820,21 @@ button.close {
   color: #07090a;
   background-color: #f3f3e7; }
 
+@media (max-width: 768px) {
+  h1 {
+    font-size: 20pt;
+    overflow-x: scroll; }
+
+  h2 {
+    font-size: 18pt;
+    overflow-x: scroll; }
+
+  h3 {
+    font-size: 16pt;
+    overflow-x: scroll; }
+
+  h4 {
+    font-size: 15pt;
+    overflow-x: scroll; } }
+
 /*# sourceMappingURL=blog_entries.css.map */

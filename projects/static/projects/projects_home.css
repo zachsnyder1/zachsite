@@ -5820,6 +5820,22 @@ button.close {
   color: #07090a;
   background-color: #f3f3e7; }
 
+@media (max-width: 768px) {
+  h1 {
+    font-size: 20pt;
+    overflow-x: scroll; }
+
+  h2 {
+    font-size: 18pt;
+    overflow-x: scroll; }
+
+  h3 {
+    font-size: 16pt;
+    overflow-x: scroll; }
+
+  h4 {
+    font-size: 15pt;
+    overflow-x: scroll; } }
 #header-carousel {
   height: 200px;
   background-color: #586f85; }
@@ -5845,8 +5861,8 @@ button.close {
   text-align: center;
   padding-top: 5px;
   padding-bottom: 5px;
-  padding-left: 30px;
-  padding-right: 30px; }
+  padding-left: 7%;
+  padding-right: 7%; }
   #project-subnav .row div a {
     color: #a6a6a6; }
     #project-subnav .row div a div {
@@ -5906,8 +5922,8 @@ div.alt {
 #readme-section div.container-fluid div.row, #docs-section div.container-fluid div.row {
   padding-top: 30px;
   padding-bottom: 50px;
-  padding-left: 50px;
-  padding-right: 50px; }
+  padding-left: 3%;
+  padding-right: 3%; }
 #readme-section div.alt pre, #docs-section div.alt pre {
   background-color: #fcfcf8; }
 
@@ -5923,7 +5939,7 @@ div.alt {
   width: 320px; }
 
 .sidebar {
-  padding: 40px 30px; }
+  padding: 40px 7%; }
   .sidebar h4 {
     text-align: left;
     margin-top: 20px;
@@ -5934,7 +5950,7 @@ div.alt {
     color: #aa1133; }
     .sidebar a.sidebar-link div {
       margin: 5px auto;
-      padding: 10px 10px;
+      padding: 10px 5%;
       text-align: left;
       border-radius: 5px;
       background-color: #dbe1e7; }
@@ -5944,14 +5960,14 @@ div.alt {
       background-color: #fafbfc; }
   .sidebar a.subtopic1 div {
     background-color: #f3f3e7;
-    margin-left: 20px;
-    margin-right: 5px; }
+    margin-left: 9%;
+    margin-right: 3%; }
   .sidebar a.subtopic1:hover div {
     background-color: #fcfcf8; }
   .sidebar a.subtopic2 div {
     background-color: #eeeeee;
-    margin-left: 40px;
-    margin-right: 10px;
+    margin-left: 18%;
+    margin-right: 6%;
     font-size: 0.85em; }
   .sidebar a.subtopic2:hover div {
     background-color: #f8f8f8; }

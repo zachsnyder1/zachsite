@@ -3,6 +3,10 @@
 // -------------------------------------------------------------------------
 // -------------------------------  BASE  ----------------------------------
 // -------------------------------------------------------------------------
+html {
+	//max-width: 1020px;
+}
+
 #nav1 {
 	margin-bottom: 0px;
 	//padding-top: 20px;
@@ -16,4 +20,24 @@
 .navbar-default .navbar-nav > .dropdown > .dropdown-menu > li > a:hover {
 	color: darken($zach-blue, 30%);
 	background-color: $zach-yellow;
+}
+
+// Header media queries
+@media(max-width: $screen-sm-min) {
+	h1 {
+		font-size: 20pt;
+		overflow-x: scroll;
+	}
+	h2 {
+		font-size: 18pt;
+		overflow-x: scroll;
+	}
+	h3 {
+		font-size: 16pt;
+		overflow-x: scroll;
+	}
+	h4 {
+		font-size: 15pt;
+		overflow-x: scroll;
+	}
 }

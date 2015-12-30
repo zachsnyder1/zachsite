@@ -23,12 +23,9 @@
 .answer {
 	font-family: $font-family-base;
 	background-color: $zach-blue-bg; //#f9f9fc;
-	margin-bottom: 0px !important;
 	padding-top: 40px;
 	padding-bottom: 20px;
-	-webkit-border-radius: 0px !important;
-	-moz-border-radius: 0px !important;
-	border-radius: 0px !important;
+	margin: 0px 3%;
 }
 
 
@@ -43,21 +40,21 @@
 	background-color: white;
 	text-align: center;
 	.blurb {
-		padding: 20px 20px 0px 20px;
+		padding: 20px 3% 0px 3%;
 	}
 }
 
 .blurb > p {
 	text-align: left;
-	margin: 0px 40px 20px 40px;
+	margin: 0px 5% 20px 5%;
 }
 
 @media (min-width: $screen-sm-min) {
 	.blurb-left > p {
-		margin: 0px 25px 20px 50px;
+		margin: 0px 3% 20px 6%;
 	}
 	.blurb-right > p {
-		margin: 0px 50px 20px 25px;
+		margin: 0px 6% 20px 3%;
 	}
 }
 
@@ -93,14 +90,14 @@
 }
 
 .project > .panel {
-	margin: 0px 40px 20px 40px;
+	margin: 0px 5% 20px 5%;
 }
 
 @media (min-width: $screen-sm-min) {
 	.project-left > .panel {
-		margin: 0px 25px 20px 50px;
+		margin: 0px 3% 20px 6%;
 	}
 	.project-right > .panel {
-		margin: 0px 50px 20px 25px;
+		margin: 0px 6% 20px 3%;
 	}
 }

@@ -37,8 +37,8 @@
 	text-align: center;
 	padding-top: 5px;
 	padding-bottom: 5px;
-	padding-left: 30px;
-	padding-right: 30px;
+	padding-left: 7%;
+	padding-right: 7%;
 	
 	.row div a {
 		color: lighten(gray, 15%);
@@ -147,8 +147,8 @@ div.alt {
 		div.row {
 			padding-top: 30px;
 			padding-bottom: 50px;
-			padding-left: 50px;
-			padding-right: 50px;
+			padding-left: 3%;
+			padding-right: 3%;
 		}
 	}
 	div.alt {
@@ -184,8 +184,8 @@ $sidebar-width: 320px;
 // Sidebar div style
 .sidebar {
 	// Some pleasant padding
-	padding: 40px 30px;
-	// Headings aligned left
+	padding: 40px 7%;
+	// Headings
 	h4 {
 		text-align: left;
 		margin-top: 20px;
@@ -201,7 +201,7 @@ $sidebar-width: 320px;
 		// div formatting:
 		div {
 			margin: 5px auto;
-			padding: 10px 10px;
+			padding: 10px 5%;
 			text-align: left;
 			border-radius: 5px;
 			background-color: darken($zach-blue-bg, 10%);
@@ -218,8 +218,8 @@ $sidebar-width: 320px;
 	//subtopic1 gets some L margin
 	a.subtopic1 div {
 		background-color: $zach-yellow;
-		margin-left: 20px;
-		margin-right: 5px;
+		margin-left: 9%;
+		margin-right: 3%;
 	}
 	//subtopic1 lightens on hover
 	a.subtopic1:hover {
@@ -230,8 +230,8 @@ $sidebar-width: 320px;
 	//subtopic2 gets some L margin
 	a.subtopic2 div {
 		background-color: $zach-gray;
-		margin-left: 40px;
-		margin-right: 10px;
+		margin-left: 18%;
+		margin-right: 6%;
 		font-size: 0.85em;
 	}
 	//subtopic2 lightens on hover
