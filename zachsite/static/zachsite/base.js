@@ -4,10 +4,23 @@ var TestScript = (function() {
 		var projDropdownID = '#projects-dropdown';
 		var navCollapseID = '#bs-nav-collapse1';
 		var navCollapseButtonID = '#nav-coll-button';
+		collapseNavbar({ 
+			navCollapseID: navCollapseID, 
+			button: navCollapseButtonID 
+		});
 		dropdownHoverToggleListener(projDropdownID,
 									navCollapseID,
 									navCollapseButtonID);
 		addActiveLink();
+	}
+	
+	// Collapse navbar and close dropdowns
+	function collapseNavbar(elemObj) {
+		$(elemObj.navCollapseID).
+			removeClass('in').
+			attr('aria-expanded', 'false');
+		$(elemObj.button).addClass('collapsed');
+		$(elemObj.button).attr('aria-expanded', 'false');
 	}
 	
 	// Set active link in navbar
@@ -89,6 +102,7 @@ var TestScript = (function() {
 			Base.dropdownHoverOn = dropdownHoverOn;
 			Base.dropdownHoverOff = dropdownHoverOff;
 			Base.dropdownHoverToggleListener = dropdownHoverToggleListener;
+			Base.collapseNavbar = collapseNavbar;
 	
 			return Base;
 		}
