@@ -22,7 +22,7 @@ href="{% static 'projects/project_docs.css' %}">
       </a>
       {% for class in module.projclass_set.all %}
       <a class="sidebar-link subtopic1" role="button" href="#{{ class.symbol }}">
-        <div><strong>{{ class.symbol }}</strong></div>
+        <div><strong>class {{ class.symbol }}</strong></div>
       </a>
       {% for classVar in class.classvariable_set.all %}
       <a class="sidebar-link subtopic2" role="button" href="#{{ classVar.symbol }}">
