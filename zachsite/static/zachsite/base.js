@@ -4,6 +4,11 @@ var TestScript = (function() {
 		var projDropdownID = '#projects-dropdown';
 		var navCollapseID = '#bs-nav-collapse1';
 		var navCollapseButtonID = '#nav-coll-button';
+		var noJsMessageID = '#no-js-message';
+		// Hide the no-js-message
+		$(noJsMessageID).hide();
+		// Get rid of margin on header
+		$('header').attr('style', 'margin-top: 0px; ');
 		// Collapse the navbar (from no-js state)
 		collapseNavbar({ 
 			navCollapseID: navCollapseID, 

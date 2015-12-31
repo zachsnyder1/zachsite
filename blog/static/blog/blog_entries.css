@@ -5820,6 +5820,30 @@ button.close {
   color: #07090a;
   background-color: #f3f3e7; }
 
+#no-js-message {
+  position: fixed;
+  width: 100%;
+  right: 0px;
+  left: 0px;
+  z-index: 1001;
+  margin-top: -48px;
+  background-color: #aa1133;
+  padding: 5px 5%; }
+  #no-js-message p {
+    padding-top: 10px;
+    font-size: 10pt;
+    color: #f8f8f8;
+    text-align: center; }
+
+header {
+  margin-top: 48px; }
+
+.navbar-text {
+  white-space: nowrap; }
+
+@media (max-width: 768px) {
+  #no-js-message p {
+    font-size: 8pt; } }
 #proj-home-drop-link {
   display: none; }
 
