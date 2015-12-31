@@ -1,31 +1,4 @@
-//----------------------------------------------------------------------------
-//------------------------ Project Header Formatting -------------------------
-//----------------------------------------------------------------------------
-
-#header-carousel {
-	height: 200px;
-	background-color: $zach-blue-bg-dark;
-}
-
-#header-panel {
-	position: absolute;
-	top: 50px;
-	left: 0px;
-	right: 0px;
-	text-align: center;
-	opacity: 0.75;
-}
-
-#header-title {
-	opacity: 1;
-	color: $zach-red;
-	font-family: $font-family-merriweather;
-	
-	strong {
-		color: darken($zach-red, 7%);
-		font-family: $font-family-base;
-	}
-}
+@import 'precontent';
 
 //----------------------------------------------------------------------------
 //------------------------ Project Subnav Formatting -------------------------

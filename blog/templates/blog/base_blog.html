@@ -1,2 +1,55 @@
 {% extends 'zachsite/base.html' %}
+{% load staticfiles %}
+{% block localhead %}
+<script type="text/javascript" src="{% static 'blog/blog_base.js' %}">
+</script>
+{% endblock %}
 {% block title %}<title>Blog | Zach Snyder</title>{% endblock %}
+{% block precontent %}
+<section id="blog-header-carousel-section">
+  <div id="header-carousel" class="carousel slide" data-ride="carousel"
+data-pause="false">
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <!-- item contents... -->
+      </div> <!-- item -->
+      <div class="item">
+        <!-- item contents... -->
+      </div> <!-- item -->
+    </div> <!-- /.carousel-inner -->
+    
+    <div id="header-panel" class="container-fluid">
+      <div class="row">
+        <div class="col-xs-2 col-sm-3 col-md-4">
+        </div> <!-- /.col-xs-2 -->
+        <div class="panel panel-default col-xs-8 col-sm-6 col-md-4">
+          <div class="panel-body">
+            <h2 id="header-title">
+              Blog
+            </h2>
+          <div> <!-- /.panel-body -->
+        </div> <!-- /.panel -->
+        <div class="col-xs-2 col-sm-3 col-md-4">
+        </div> <!-- /.col-xs-2 -->
+      </div> <!-- ./row -->
+    </div> <!-- /.container-fluid -->
+  </div> <!-- /.carousel -->
+</section> <!-- /#blog-header-carousel-section -->
+<section id="blog-about-section">
+  <div id="blog-about-div" class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12">
+        <img>
+        <h3>Zachary Snyder</h3>
+        <p>
+          This is a summary paragraph about me.  It will be detailed, but
+          short enough that people will actually read it.  It should also
+          not be so long as to make people scroll a ridiculous amount just
+          to get to the blog text.  That would be rude and would potentially
+          anger people who I am trying to entertain...
+        </p>
+      </div> <!-- /.col-xs-12 -->
+    </div> <!-- /.row -->
+  </div> <!-- /#blog-about-div -->
+</section> <!-- /#blog-about-section -->
+{% endblock %}
