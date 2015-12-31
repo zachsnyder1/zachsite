@@ -5863,13 +5863,13 @@ button.close {
   padding-bottom: 5px;
   padding-left: 7%;
   padding-right: 7%; }
-  #project-subnav .row div a {
+  #project-subnav .subnav-link {
     color: #a6a6a6; }
-    #project-subnav .row div a div {
+    #project-subnav .subnav-link div {
       padding: 10px 0px; }
-  #project-subnav .row div a:hover {
+  #project-subnav .subnav-link:hover {
     color: #f3f3f3; }
-  #project-subnav .row .active a {
+  #project-subnav .active a.subnav-link {
     color: #f3f3f3; }
 
 .subnav-link-active-icon {

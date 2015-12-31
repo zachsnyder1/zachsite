@@ -40,18 +40,18 @@
 	padding-left: 7%;
 	padding-right: 7%;
 	
-	.row div a {
+	.subnav-link {
 		color: lighten(gray, 15%);
 		div {
 			padding: 10px 0px;
 		}
 	}
 	
-	.row div a:hover {
+	.subnav-link:hover {
 		color: lighten(gray, 45%);
 	}
 	
-	.row .active a {
+	.active a.subnav-link {
 		color: lighten(gray, 45%);
 	}
 }
