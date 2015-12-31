@@ -4,13 +4,16 @@ var TestScript = (function() {
 		var projDropdownID = '#projects-dropdown';
 		var navCollapseID = '#bs-nav-collapse1';
 		var navCollapseButtonID = '#nav-coll-button';
+		// Collapse the navbar (from no-js state)
 		collapseNavbar({ 
 			navCollapseID: navCollapseID, 
 			button: navCollapseButtonID 
 		});
+		// Make the dropdown menu open on hover
 		dropdownHoverToggleListener(projDropdownID,
 									navCollapseID,
 									navCollapseButtonID);
+		// Highlight the active link
 		addActiveLink();
 	}
 	
