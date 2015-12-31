@@ -17,6 +17,16 @@
 	background-color: $zach-yellow;
 }
 
+#proj-home-drop-link {
+	display: none;
+}
+
+@media(max-width: $screen-sm-min) {
+	#proj-home-drop-link {
+		display: block;
+	}
+}
+
 // Header media queries
 @media(max-width: $screen-sm-min) {
 	h1 {

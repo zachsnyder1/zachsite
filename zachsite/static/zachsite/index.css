@@ -5820,6 +5820,12 @@ button.close {
   color: #07090a;
   background-color: #f3f3e7; }
 
+#proj-home-drop-link {
+  display: none; }
+
+@media (max-width: 768px) {
+  #proj-home-drop-link {
+    display: block; } }
 @media (max-width: 768px) {
   h1 {
     font-size: 20pt;

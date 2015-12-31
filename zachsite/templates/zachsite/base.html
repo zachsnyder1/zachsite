@@ -52,6 +52,9 @@ id="bs-nav-collapse1" aria-expanded="true">
 data-toggle="dropdown" role="button" aria-haspopup="true"
 aria-expanded="false">Projects <span class="caret"></span></a>
                   <ul class="dropdown-menu">
+                    <li id="proj-home-drop-link">
+                      <a href="{% url 'projects_home' %}">Projects Home</a>
+                    </li>
                     {% for project in projectList %}
                     <li>
                       <a href="{% url 'project_about' project.id project.slug %}">{{ project.title }}</a>
