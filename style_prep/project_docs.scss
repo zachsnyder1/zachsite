@@ -32,3 +32,25 @@
 div.alt .docs-params-div {
 	background-color: $zach-yellow-light;
 }
+
+// Emphasized text gets cut off without padding
+em {
+	padding-right: 0.5%;
+}
+
+// All parameters on one line
+.param-br {
+	display: none;
+}
+
+// One parameter per line for small screens
+@media(max-width: $screen-sm-min) {
+	// Parameters are indented because...
+	.param-format {
+		padding-left: 4%;
+	}
+	// ...there is only one parameter per line
+	.param-br {
+		display: block;
+	}
+}

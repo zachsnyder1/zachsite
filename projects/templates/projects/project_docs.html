@@ -76,6 +76,7 @@ href="{% static 'projects/project_docs.css' %}">
   	      <!--  FOR EACH CONSTRUCTOR PARAMETER IN CLASS: -->
   	      <!-- ***************************************** -->
           {% for constructorParam in class.constructorparam_set.all %}
+          <span class="param-format"><br class="param-br">
           {% if forloop.last %}
           {% if constructorParam.default %}
           <em class="light-blue">{{ constructorParam.symbol }}={{ constructorParam.default }}</em>
@@ -89,10 +90,14 @@ href="{% static 'projects/project_docs.css' %}">
           <em class="light-blue">{{ constructorParam.symbol }}</em>,
           {% endif %}
           {% endif %}
+          </span> <!-- /.param-format -->
           {% endfor %} <!-- END for constructorParam ... -->
           <!-- ************************************ -->
   	      <!--  END FOR EACH CONSTRUCTOR PARAMETER: -->
   	      <!-- ************************************ -->
+  	      {% if class.constructorparam_set.all %}
+          <br class="param-br">
+          {% endif %}
           <strong>)</strong>
         </h4>
         <div class="docs-class-div">
@@ -162,6 +167,7 @@ href="{% static 'projects/project_docs.css' %}">
   	          <!--  FOR EACH PARAMETER IN METHOD: -->
   	          <!-- ****************************** -->
               {% for methodParam in method.methodparam_set.all %}
+              <span class="param-format"><br class="param-br">
               {% if forloop.last %}
               {% if methodParam.default %}
               <em class="light-blue">{{ methodParam.symbol }}={{ methodParam.default }}</em>
@@ -175,10 +181,14 @@ href="{% static 'projects/project_docs.css' %}">
               <em class="light-blue">{{ methodParam.symbol }}</em>,
               {% endif %}
               {% endif %}
+              </span> <!-- /.param-format -->
               {% endfor %} <!-- END for methodParam ... -->
               <!-- ********************************** -->
   	          <!--  END FOR EACH PARAMETER IN METHOD: -->
   	          <!-- ********************************** -->
+  	          {% if method.methodparam_set.all %}
+              <br class="param-br">
+              {% endif %}
               <strong>)</strong>
             </h5>
             <div class="docs-sub-method-div">
