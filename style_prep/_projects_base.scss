@@ -56,7 +56,9 @@ div.alt {
 // .pre-container wraps the <pre> elements to allow them to
 // be justified if necessary
 .pre-container {
+	overflow-x: scroll;
 	pre {
+		float: left;
 		background-color: $zach-blue-bg-light;
 		border-width: 0px;
 		
@@ -64,22 +66,6 @@ div.alt {
 		display: box;
 		display: -moz-box;
 		display: -webkit-box;
-	}
-}
-
-// .pre-center added to .pre-container to center the content within
-// its <pre> elements
-.pre-center {
-	pre {
-		// center justify pre within div.pre-center
-		
-		box-pack: center;
-    	box-align: center;
-    	-moz-box-pack: center;
-    	-moz-box-align: center;
-    	-webkit-box-pack: center;
-    	-webkit-box-align: center;
-    	
 	}
 }
 

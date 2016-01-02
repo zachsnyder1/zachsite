@@ -5844,12 +5844,6 @@ header {
 @media (max-width: 768px) {
   #no-js-message p {
     font-size: 8pt; } }
-#proj-home-drop-link {
-  display: none; }
-
-@media (max-width: 768px) {
-  #proj-home-drop-link {
-    display: block; } }
 @media (max-width: 768px) {
   h1 {
     font-size: 20pt;
