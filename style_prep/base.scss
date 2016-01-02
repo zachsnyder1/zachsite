@@ -51,19 +51,6 @@ header {
 	}
 }
 
-// <<------ Projects-Home Dropdown Link ------>>
-#proj-home-drop-link {
-	display: none;
-}
-
-// On xs screens (when nav-collapse is expanded)
-// show the projects-home link in dropdown
-@media(max-width: $screen-sm-min) {
-	#proj-home-drop-link {
-		display: block;
-	}
-}
-
 // Header media queries
 @media(max-width: $screen-sm-min) {
 	h1 {
