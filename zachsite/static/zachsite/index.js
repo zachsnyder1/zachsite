@@ -7,11 +7,6 @@ var TestScript = (function() {
 		var qCarouselInner = "#carousel-inner";
 		var answerParagraph = "#answer-text";
 		qaCarUpdate(questionCarousel, qCarouselInner, answerParagraph);
-		// Add hover functionality on project-panels
-		var projPanel = 'project-panel';
-		var projPanelFoot = 'panel-footer';
-		var projTitle = 'project-title';
-		onProjPanelHover(projPanel, projPanelFoot, projTitle);
 	}
 	
 	// Make #question-carousel update #answer-text div on 'slide'
@@ -29,22 +24,7 @@ var TestScript = (function() {
 			$(selector).fadeIn(duration);
 		});
 	}
-	
-	// Add hover functionality on project-panels
-	function onProjPanelHover(projPanel, projPanelFoot, projTitle) {
-		$('.' + projPanel).hover(
-			function() { 
-				$(this).addClass(projPanel + '-hover');
-				$(this).find('.' + projPanelFoot).addClass('project-' + projPanelFoot + '-hover');
-				$(this).find('.' + projTitle).addClass(projTitle + '-hover'); 
-			}, function() { 
-				$(this).removeClass(projPanel + '-hover');
-				$(this).find('.' + projPanelFoot).removeClass('project-' + projPanelFoot + '-hover');
-				$(this).find('.' + projTitle).removeClass(projTitle + '-hover');
-			}
-		);
-	}
-	
+
 	//  If not QUnit test, run main().
 	//  If QUnit test, export the testable functions.
 	try {
@@ -52,7 +32,6 @@ var TestScript = (function() {
 			// Export functions for testing...
 			var Index = {};
 			Index.qaCarUpdate = qaCarUpdate;
-			Index.onProjPanelHover = onProjPanelHover;
 	
 			return Index;
 		}

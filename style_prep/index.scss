@@ -96,16 +96,14 @@
 }
 
 // Style for :hover state of project panels:
-.project-panel-hover {
+.project-panel:hover {
 	background-color: lighten($zach-blue-bg, 20%);
-}
-
-.project-panel-footer-hover {
-	background-color: lighten($zach-blue-bg, 20%);
-}
-
-.project-title-hover {
-	color: $zach-red-light;
+	.panel-footer {
+		background-color: lighten($zach-blue-bg, 20%);
+		.project-title {
+			color: $zach-red-light;
+		}
+	}
 }
 
 .project > .panel {

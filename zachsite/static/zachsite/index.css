@@ -5936,14 +5936,12 @@ header {
   text-align: center;
   color: #aa1133; }
 
-.project-panel-hover {
+.project-panel:hover {
   background-color: white; }
-
-.project-panel-footer-hover {
-  background-color: white; }
-
-.project-title-hover {
-  color: #eb365e; }
+  .project-panel:hover .panel-footer {
+    background-color: white; }
+    .project-panel:hover .panel-footer .project-title {
+      color: #eb365e; }
 
 .project > .panel {
   margin: 0px 5% 20px 5%; }
