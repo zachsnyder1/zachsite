@@ -5908,7 +5908,7 @@ header {
   display: none; }
 
 div.alt {
-  background-color: #f3f3e7 !important; }
+  background-color: #f3f3e7; }
 
 .codebox span.keyw {
   color: #aa1133; }
@@ -6034,12 +6034,15 @@ div.alt {
 .proj-div-blurb {
   text-align: left; }
 
-.proj-div-link {
+.proj-link-div {
   margin-top: 20px;
   margin-bottom: 20px; }
+  .proj-link-div a {
+    height: 100%;
+    width: 100%; }
 
 @media (min-width: 768px) {
-  #proj-about-div-title-row {
+  .proj-about-div-title-row {
     margin-bottom: 40px; } }
 
 /*# sourceMappingURL=projects_home.css.map */

@@ -1,2 +1,39 @@
 @import 'base';
+@import 'blog_base';
 @import 'precontent';
+
+// divs with class 'alt'
+div.alt {
+	background-color: $zach-yellow;
+}
+
+#recent-entries-section {
+	.entry-about-div {
+		padding: 20px 5%;
+		a {
+			height: 100%;
+			width: 100%;
+			h3 {
+				text-align: center;
+				color: $zach-blue;
+				padding: 5px 0%;
+			}
+			p {
+				text-align: left;
+				color: $zach-blue;
+				padding: 5px 0%;
+			}
+		}
+		a:hover {
+			h3, p {
+				color: lighten($zach-blue, 20%);
+			}
+		}
+	}
+	.entry-title {
+		text-align: center;
+	}
+	.entry-text {
+		text-align: left;
+	}
+}

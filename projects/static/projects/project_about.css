@@ -5908,7 +5908,7 @@ header {
   display: none; }
 
 div.alt {
-  background-color: #f3f3e7 !important; }
+  background-color: #f3f3e7; }
 
 .codebox span.keyw {
   color: #aa1133; }

@@ -22,14 +22,18 @@
 }
 
 // the (image) link style
-.proj-div-link {
+.proj-link-div {
 	margin-top: 20px;
 	margin-bottom: 20px;
+	a {
+		height: 100%;
+		width: 100%;
+	}
 }
 
 // if > xs screen size, increased header margin
 @media (min-width: $screen-sm-min) {
-	#proj-about-div-title-row {
+	.proj-about-div-title-row {
 		margin-bottom: 40px;
 	}
 }

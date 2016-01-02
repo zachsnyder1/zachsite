@@ -5868,6 +5868,20 @@ header {
   h6 {
     font-size: 11pt;
     overflow-x: scroll; } }
+#blog-about-section #blog-about-div {
+  padding: 30px 10%; }
+#blog-about-section h3 {
+  text-align: center;
+  padding: 10px 0%; }
+#blog-about-section p {
+  text-align: left; }
+
+hr {
+  margin: 10px 10%;
+  height: 2px;
+  border-color: #f1f3f5;
+  background-color: #f1f3f5; }
+
 #header-carousel {
   height: 200px;
   background-color: #586f85; }
@@ -5887,5 +5901,28 @@ header {
   #header-title strong {
     color: #8a0e29;
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+div.alt {
+  background-color: #f3f3e7; }
+
+#recent-entries-section .entry-about-div {
+  padding: 20px 5%; }
+  #recent-entries-section .entry-about-div a {
+    height: 100%;
+    width: 100%; }
+    #recent-entries-section .entry-about-div a h3 {
+      text-align: center;
+      color: #445566;
+      padding: 5px 0%; }
+    #recent-entries-section .entry-about-div a p {
+      text-align: left;
+      color: #445566;
+      padding: 5px 0%; }
+  #recent-entries-section .entry-about-div a:hover h3, #recent-entries-section .entry-about-div a:hover p {
+    color: #7088a0; }
+#recent-entries-section .entry-title {
+  text-align: center; }
+#recent-entries-section .entry-text {
+  text-align: left; }
 
 /*# sourceMappingURL=blog_entries.css.map */

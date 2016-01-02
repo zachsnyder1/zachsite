@@ -65,7 +65,7 @@ $navbar-default-bg:                $zach-blue-nav;
 $navbar-default-brand-hover-color: $navbar-default-link-hover-color;
 // Custom handling of dropdown active link color in collapsed nav:
 // altered in _navbar.scss line 486
- $navbar-default-link-active-bg-collapse: $zach-blue-nav;
+$navbar-default-link-active-bg-collapse: $zach-blue-nav;
 
 // IMPORT BOOTSTRAP
 @import 'bootstrap-custom';

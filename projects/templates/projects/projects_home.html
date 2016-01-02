@@ -15,16 +15,17 @@ href="{% static 'projects/projects_home.css' %}">
 {% else %}
   <div class="container-fluid proj-about-div alt">
 {% endif %}
-    <div class="row" id="proj-about-div-title-row">
+    <div class="row proj-about-div-title-row">
       <div class="col-xs-12">
         <h3 class="proj-div-title">{{ project.title }}</h3>
       </div> <!-- /.col-xs-12 -->
     </div> <!-- /.row -->
     <div class="row">
-      <a class="proj-div-link col-xs-12 col-sm-5 col-md-4 col-lg-3"
-href="{% url 'project_about' project.id project.slug %}">
-        (link)
-      </a> <!-- /.col-xs-12 -->
+      <div class="proj-link-div col-xs-12 col-sm-5 col-md-4 col-lg-3">
+        <a href="{% url 'project_about' project.id project.slug %}">
+          (link)
+        </a>
+      </div> <!-- /.col-xs-12 -->
       <div class="col-xs-12 col-sm-7 col-md-8 col-lg-9">
         <p class="proj-div-blurb">{{ project.summary }}</p>
       </div> <!-- /.col-xs-12 -->

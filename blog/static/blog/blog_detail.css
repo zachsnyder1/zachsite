@@ -5868,6 +5868,20 @@ header {
   h6 {
     font-size: 11pt;
     overflow-x: scroll; } }
+#blog-about-section #blog-about-div {
+  padding: 30px 10%; }
+#blog-about-section h3 {
+  text-align: center;
+  padding: 10px 0%; }
+#blog-about-section p {
+  text-align: left; }
+
+hr {
+  margin: 10px 10%;
+  height: 2px;
+  border-color: #f1f3f5;
+  background-color: #f1f3f5; }
+
 #header-carousel {
   height: 200px;
   background-color: #586f85; }
@@ -5887,5 +5901,19 @@ header {
   #header-title strong {
     color: #8a0e29;
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+#entry-section .entry-div {
+  margin: 0px;
+  padding: 0px 5% 80px 5%; }
+  #entry-section .entry-div h2 {
+    text-align: center;
+    color: #aa1133;
+    font-family: "Merriweather", "Montserrat", Helevecita, sans-serif;
+    padding: 25px 0%; }
+  #entry-section .entry-div h3 {
+    text-align: center;
+    padding-bottom: 15px; }
+  #entry-section .entry-div p {
+    text-align: left; }
 
 /*# sourceMappingURL=blog_detail.css.map */

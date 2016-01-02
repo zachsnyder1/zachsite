@@ -9,7 +9,7 @@ def blog_entries(request):
 	Blog main page.
 	"""
 	projectList = Project.objects.all().filter(active=True).order_by("title")
-	entriesList = Entry.objects.all().order_by('-pub_date')[:5]
+	entriesList = Entry.objects.all().order_by('-pub_time')[:5]
 	context = {
 		'projectList': projectList,
 		'entriesList': entriesList,

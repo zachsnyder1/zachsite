@@ -1,2 +1,23 @@
 @import 'base';
+@import 'blog_base';
 @import 'precontent';
+
+#entry-section {
+	.entry-div {
+		margin: 0px;
+		padding: 0px 5% 80px 5%;
+		h2 {
+			text-align: center;
+			color: $zach-red;
+			font-family: $font-family-merriweather;
+			padding: 25px 0%;
+		}
+		h3 {
+			text-align: center;
+			padding-bottom: 15px;
+		}
+		p {
+			text-align: left;
+		}
+	}
+}
