@@ -13,29 +13,33 @@ href="{% static 'projects/project_docs.css' %}">
   <div class="sidebar-wrapper">
     <div class="sidebar">
       <h4>Contents:</h4>
-      <a class="sidebar-link topic" role="button" href="#the-api">
+      <a class="sidebar-link topic" role="button" href="#header-the-api">
         <div>The API</div>
       </a>
       {% for module in curr_project.projmodule_set.all %}
-      <a class="sidebar-link topic" role="button" href="#{{ module.symbol }}">
+      <a class="sidebar-link topic" role="button" href="#header-{{ module.symbol }}">
         <div>{{ module.symbol }}</div>
       </a>
       {% for class in module.projclass_set.all %}
-      <a class="sidebar-link subtopic1" role="button" href="#{{ class.symbol }}">
+      <a class="sidebar-link subtopic1" role="button"
+href="#header-{{ class.symbol }}">
         <div><strong>class {{ class.symbol }}</strong></div>
       </a>
       {% for classVar in class.classvariable_set.all %}
-      <a class="sidebar-link subtopic2" role="button" href="#{{ classVar.symbol }}">
+      <a class="sidebar-link subtopic2" role="button"
+href="#header-{{ classVar.symbol }}">
         <div>{{ classVar.symbol }}</div>
       </a>
       {% endfor %}
       {% for instanceVar in class.instancevariable_set.all %}
-      <a class="sidebar-link subtopic2" role="button" href="#{{ instanceVar.symbol }}">
+      <a class="sidebar-link subtopic2" role="button"
+href="#header-{{ instanceVar.symbol }}">
         <div>{{ instanceVar.symbol }}</div>
       </a>
       {% endfor %}
       {% for method in class.classmethod_set.all %}
-      <a class="sidebar-link subtopic2" role="button" href="#{{ method.symbol }}">
+      <a class="sidebar-link subtopic2" role="button"
+href="#header-{{ method.symbol }}">
         <div>.{{ method.symbol }}()</div>
       </a>
       {% endfor %}
@@ -55,7 +59,7 @@ href="{% static 'projects/project_docs.css' %}">
     <div class="row">
       {% endif %}
       <div class="col-xs-12">
-        <h2 id="{{ module.symbol }}">
+        <h2 id="header-{{ module.symbol }}">
           MODULE <br><br><span class="red">{{ module.path }}</span>
         </h2>
         <p class="description">{{ module.description }}</p>
@@ -68,7 +72,7 @@ href="{% static 'projects/project_docs.css' %}">
   	  <!-- ************************** -->
       {% for class in module.projclass_set.all %}
       <div class="col-xs-12">
-        <h4 id="{{ class.symbol }}">
+        <h4 id="header-{{ class.symbol }}">
           <strong>
             <em class="red">{{ module.symbol }}</em>.{{ class.symbol }}(
           </strong>
@@ -100,9 +104,9 @@ href="{% static 'projects/project_docs.css' %}">
           {% endif %}
           <strong>)</strong>
         </h4>
-        <div class="docs-class-div">
+        <div class="docs-class">
           {% if class.constructorparam_set.all %}
-          <div class="docs-params-div">
+          <div class="docs-params">
             <h5>-- Constructor Parameters --</h5>
               <!-- ***************************************** -->
   	          <!--  FOR EACH CONSTRUCTOR PARAMETER IN CLASS: -->
@@ -117,17 +121,17 @@ href="{% static 'projects/project_docs.css' %}">
   	          <!--  END FOR EACH CONSTRUCTOR PARAMETER: -->
   	          <!-- ************************************ -->
             <h6>--->><<---</h6>
-          </div> <!-- /.docs-params-div -->
+          </div> <!-- /.docs-params -->
           {% endif %}
           <p>{{ class.description }}</p>
           {% if class.classvariable_set.all %}
           <h4>Class Variables:</h4>
-          <div class="docs-var-div">
+          <div class="docs-var">
             <!-- ********************************** -->
   	        <!--  FOR EACH CLASS VARIABLE IN CLASS: -->
   	        <!-- ********************************** -->
             {% for classvar in class.classvariable_set.all %}
-            <h5 id="{{ classvar.symbol }}">
+            <h5 id="header-{{ classvar.symbol }}">
               <strong>{{ classvar.symbol }}</strong>
             </h5>
             <p class="description">{{ classvar.description }}</p>
@@ -135,16 +139,16 @@ href="{% static 'projects/project_docs.css' %}">
             <!-- ***************************** -->
   	        <!--  END FOR EACH CLASS VARIABLE: -->
   	        <!-- ***************************** -->
-          </div> <!-- /.docs-var-div -->
+          </div> <!-- /.docs-var -->
           {% endif %}
           {% if class.instancevariable_set.all %}
           <h4>Instance Variables:</h4>
-          <div class="docs-var-div">
+          <div class="docs-var">
             <!-- ************************************* -->
   	        <!--  FOR EACH INSTANCE VARIABLE IN CLASS: -->
   	        <!-- ************************************* -->
             {% for instancevar in class.instancevariable_set.all %}
-            <h5 id="{{ instancevar.symbol }}">
+            <h5 id="header-{{ instancevar.symbol }}">
               <strong>{{ instancevar.symbol }}</strong>
             </h5>
             <p class="description">{{ instancevar.description }}</p>
@@ -152,16 +156,16 @@ href="{% static 'projects/project_docs.css' %}">
             <!-- ******************************** -->
   	        <!--  END FOR EACH INSTANCE VARIABLE: -->
   	        <!-- ******************************** -->
-          </div> <!-- /.docs-var-div -->
+          </div> <!-- /.docs-var -->
           {% endif %}
           {% if class.classmethod_set.all %}
           <h4>Class Methods:</h4>
-          <div class="docs-method-div">
+          <div class="docs-method">
             <!-- ************************** -->
   	        <!--  FOR EACH METHOD IN CLASS: -->
   	        <!-- ************************** -->
             {% for method in class.classmethod_set.all %}
-            <h5 id="{{ method.symbol }}">
+            <h5 id="header-{{ method.symbol }}">
               <strong>.{{ method.symbol }}(</strong>
               <!-- ****************************** -->
   	          <!--  FOR EACH PARAMETER IN METHOD: -->
@@ -191,9 +195,9 @@ href="{% static 'projects/project_docs.css' %}">
               {% endif %}
               <strong>)</strong>
             </h5>
-            <div class="docs-sub-method-div">
+            <div class="docs-sub-method">
               {% if method.methodparam_set.all %}
-              <div class="docs-params-div">
+              <div class="docs-params">
                 <h6>-- Method Parameters --</h6>
                 <!-- ****************************** -->
   	            <!--  FOR EACH PARAMETER IN METHOD: -->
@@ -227,15 +231,15 @@ href="{% static 'projects/project_docs.css' %}">
   	            <!-- ************************************* -->
                 {% endif %}
                 <h6>--->><<---</h6>
-              </div> <!-- /.docs-params-div -->
+              </div> <!-- /.docs-params -->
               {% endif %}
               <p>{{ method.description }}</p>
-            </div> <!-- /.docs-sub-method-div -->
+            </div> <!-- /.docs-sub-method -->
             {% endfor %} <!-- END for method ... -->
             <!-- ****************************** -->
   	        <!--  END FOR EACH METHOD IN CLASS: -->
   	        <!-- ****************************** -->
-          </div> <!-- /.docs-method-div -->
+          </div> <!-- /.docs-method -->
           {% endif %}
         </div> <!-- /#proj-class-div -->
       </div> <!-- /.col-xs-12 -->

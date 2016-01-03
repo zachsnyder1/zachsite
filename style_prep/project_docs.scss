@@ -6,7 +6,7 @@
 //----------------------------------------------------------------------------
 
 // Indent logical subdivisions
-.docs-class-div, .docs-method-div, .docs-sub-method-div, .docs-var-div, .docs-params-div {
+.docs-class, .docs-method, .docs-sub-method, .docs-var, .docs-params {
 	padding-left: 3%;
 }
 
@@ -18,10 +18,9 @@
 
 // Lightened, formatted box for describing constructor or method parameters
 // and/or return value(s)
-.docs-params-div {
+.docs-params {
 	background-color: $zach-blue-bg-light;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-top: 10px 0%;
 	margin-bottom: 20px;
 	h5, h6 {
 		text-align: center;
@@ -29,7 +28,7 @@
 }
 
 // Different styling if in an .alt div
-div.alt .docs-params-div {
+div.alt .docs-params {
 	background-color: $zach-yellow-light;
 }
 

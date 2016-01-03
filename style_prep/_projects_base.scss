@@ -16,7 +16,7 @@
 	.subnav-link {
 		color: $zach-gray-dark;
 		div {
-			padding: 10px 0px;
+			padding: 10px 0%;
 		}
 	}
 	
@@ -77,18 +77,19 @@ div.alt {
 		}
 		div.alt {
 			background-color: $zach-yellow;
+			pre {
+				background-color: $zach-yellow-light;
+			}
 		}
 		h2 {
 			text-align: center;
-			padding-top: 20px;
-			padding-bottom: 20px;
+			padding: 20px 0%;
 		}
 		h3 {
 			font-weight: bold;
 			padding-top: 30px;
 			padding-bottom: 20px;
-			margin-top: 0px;
-			margin-bottom: 0px;
+			margin: 0px 0%;
 		}
 		h4, h5, h6 {
 			padding-top: 15px;
@@ -110,11 +111,6 @@ div.alt {
 			padding-bottom: 50px;
 			padding-left: 3%;
 			padding-right: 3%;
-		}
-	}
-	div.alt {
-		pre {
-			background-color: $zach-yellow-light;
 		}
 	}
 }

@@ -5898,7 +5898,7 @@ header {
   #project-subnav .subnav-link {
     color: #aeaeae; }
     #project-subnav .subnav-link div {
-      padding: 10px 0px; }
+      padding: 10px 0%; }
   #project-subnav .subnav-link:hover {
     color: white; }
   #project-subnav .active a.subnav-link {
@@ -5927,16 +5927,16 @@ div.alt {
   background-color: #fafbfc; }
 #readme-section div.container-fluid div.alt, #docs-section div.container-fluid div.alt {
   background-color: #f3f3e7; }
+  #readme-section div.container-fluid div.alt pre, #docs-section div.container-fluid div.alt pre {
+    background-color: #fcfcf8; }
 #readme-section div.container-fluid h2, #docs-section div.container-fluid h2 {
   text-align: center;
-  padding-top: 20px;
-  padding-bottom: 20px; }
+  padding: 20px 0%; }
 #readme-section div.container-fluid h3, #docs-section div.container-fluid h3 {
   font-weight: bold;
   padding-top: 30px;
   padding-bottom: 20px;
-  margin-top: 0px;
-  margin-bottom: 0px; }
+  margin: 0px 0%; }
 #readme-section div.container-fluid h4, #readme-section div.container-fluid h5, #readme-section div.container-fluid h6, #docs-section div.container-fluid h4, #docs-section div.container-fluid h5, #docs-section div.container-fluid h6 {
   padding-top: 15px;
   padding-bottom: 10px; }
@@ -5953,8 +5953,6 @@ div.alt {
   padding-bottom: 50px;
   padding-left: 3%;
   padding-right: 3%; }
-#readme-section div.alt pre, #docs-section div.alt pre {
-  background-color: #fcfcf8; }
 
 #readme-section, #docs-section {
   background-color: #e6e6e6; }

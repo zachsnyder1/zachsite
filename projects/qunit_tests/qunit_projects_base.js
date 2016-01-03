@@ -1,20 +1,4 @@
 QUnit.module('Test projects_base.js functions');
-QUnit.test('test hideElem', function(assert) {
-	var fixture = $("#qunit-fixture");
-	var subNavID = 'project-subnav';
-	
-	// Make the subnav element
-	$("<div></div>").
-		attr('id', subNavID).
-		attr('display', 'block').
-		appendTo(fixture);
-	
-	// Hide the #subnav div
-	TestScript.hideElem($("#" + subNavID));
-	
-	// Assertion:
-	assert.equal($("#" + subNavID).attr('style'), 'display: none; ');
-});
 QUnit.test('test subNavActiveLink', function (assert) {
 	var fixture = $("#qunit-fixture");
 	var duration = 1500;

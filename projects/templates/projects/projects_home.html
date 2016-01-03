@@ -9,12 +9,12 @@ href="{% static 'projects/projects_home.css' %}">
 {% block subnav %}{% endblock %}
 {% block content %}
 <section id="projects-list-section">
-{% for project in projectList %}
-{% if forloop.counter0|divisibleby:2 %}
+  {% for project in projectList %}
+  {% if forloop.counter0|divisibleby:2 %}
   <div class="container-fluid proj-about-div">
-{% else %}
+  {% else %}
   <div class="container-fluid proj-about-div alt">
-{% endif %}
+  {% endif %}
     <div class="row proj-about-div-title-row">
       <div class="col-xs-12">
         <h3 class="proj-div-title">{{ project.title }}</h3>
@@ -31,6 +31,6 @@ href="{% static 'projects/projects_home.css' %}">
       </div> <!-- /.col-xs-12 -->
     </div> <!-- /.row -->
   </div> <!-- /.container-fluid -->
-{% endfor %}
+  {% endfor %}
 </section> <!-- /.projects-list-section -->
 {% endblock %}

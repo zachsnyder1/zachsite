@@ -3,19 +3,19 @@
   <div class="sidebar-wrapper">
     <div class="sidebar">
       <h4>Contents:</h4>
-      <a class="sidebar-link topic" role="button" href="#what">
+      <a class="sidebar-link topic" role="button" href="#header-what">
         <div>What?</div>
       </a>
-      <a class="sidebar-link topic" role="button" href="#why">
+      <a class="sidebar-link topic" role="button" href="#header-why">
         <div>Why?</div>
       </a>
-      <a class="sidebar-link topic" role="button" href="#how">
+      <a class="sidebar-link topic" role="button" href="#header-how">
         <div>How?</div>
       </a>
-      <a class="sidebar-link topic" role="button" href="#testing">
+      <a class="sidebar-link topic" role="button" href="#header-testing">
         <div>Testing?</div>
       </a>
-      <a class="sidebar-link topic" role="button" href="#license">
+      <a class="sidebar-link topic" role="button" href="#header-license">
         <div>License</div>
       </a>
     </div> <!-- /.sidebar -->
@@ -23,11 +23,11 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-12 col-md-6">
-        <h2 id="what">What?</h2>
+        <h2 id="header-what">What?</h2>
         <p>{{ curr_project.summary }}</p>
       </div> <!-- /.col-xs-12 -->
   	  <div class="col-xs-12 col-md-6">
-        <h2 id="why">Why?</h2>
+        <h2 id="header-why">Why?</h2>
         <p>
           Maybe you want to get your feet wet writing digital audio effects, but 
           you find the overhead of learning the VST3 API unnecessary while you 
@@ -37,7 +37,7 @@
     </div> <!-- /.row -->
     <div class="row alt">
       <div class="col-xs-12">
-        <h2 id="how">How?</h2>
+        <h2 id="header-how">How?</h2>
         <div class="pre-container codebox">
           {{ codeExampleList.0.codetext|formatpython }}
         </div> <!-- /.pre-container -->
@@ -83,7 +83,7 @@
     </div> <!-- /.row .alt -->
     <div class="row">
       <div class="col-xs-12">
-        <h2 id="testing">Testing?</h2>
+        <h2 id="header-testing">Testing?</h2>
         <p>
           If you adjusted the source and you want to see if everything is 
           still working as before, just run
@@ -98,7 +98,7 @@
     </div> <!-- /.row -->
     <div class="row alt">
       <div class="col-xs-12">
-        <h2 id="license">License</h2>
+        <h2 id="header-license">License</h2>
         <div class="pre-container">
           <pre>
 The MIT License
