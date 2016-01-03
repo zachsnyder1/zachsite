@@ -47,8 +47,6 @@ var TestScript = (function() {
 			return Base;
 		}
 	} catch (e) {
-		console.log("caught an error:");
-		console.log(e);
 		if (e instanceof ReferenceError) {
 			$(document).ready(function() {
 				main();

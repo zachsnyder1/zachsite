@@ -14,9 +14,12 @@ $zach-yellow: darken(#fafaf5, 4%);
 $zach-yellow-light: lighten($zach-yellow, 5%);
 $zach-red: #aa1133;
 $zach-red-light: lighten($zach-red, 20%);
+$zach-gray-dark: lighten(gray, 18%);
+$zach-gray-terminal-active: lighten(gray, 55%);
 $zach-gray-bg: lighten(gray, 40%);
-$zach-gray: lighten($zach-gray-bg, 3%);
-$zach-gray-light: lighten($zach-gray, 4%);
+$zach-gray-light: lighten($zach-gray-bg, 3%);
+$zach-gray-light-active: lighten($zach-gray-light, 4%);
+$zach-black: lighten(black, 20%);
 
 // -------------------------------------------------------------------------
 // --------------------  BOOTSTRAP VARIABLE OVERRIDES  ---------------------

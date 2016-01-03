@@ -6,7 +6,7 @@
 
 #project-subnav {
 	//display: none;
-	background-color: lighten(black, 20%);
+	background-color: $zach-black;
 	text-align: center;
 	padding-top: 5px;
 	padding-bottom: 5px;
@@ -14,18 +14,18 @@
 	padding-right: 7%;
 	
 	.subnav-link {
-		color: lighten(gray, 15%);
+		color: $zach-gray-dark;
 		div {
 			padding: 10px 0px;
 		}
 	}
 	
 	.subnav-link:hover {
-		color: lighten(gray, 45%);
+		color: $zach-gray-terminal-active;
 	}
 	
 	.active a.subnav-link {
-		color: lighten(gray, 45%);
+		color: $zach-gray-terminal-active;
 	}
 }
 
@@ -190,7 +190,7 @@ $sidebar-width: 320px;
 	}
 	//subtopic2 gets some L margin
 	a.subtopic2 div {
-		background-color: $zach-gray;
+		background-color: $zach-gray-light;
 		margin-left: 18%;
 		margin-right: 6%;
 		font-size: 0.85em;
@@ -198,7 +198,7 @@ $sidebar-width: 320px;
 	//subtopic2 lightens on hover
 	a.subtopic2:hover {
 		div {
-			background-color: $zach-gray-light;
+			background-color: $zach-gray-light-active;
 		}
 	}
 }

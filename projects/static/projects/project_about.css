@@ -5821,7 +5821,7 @@ button.close {
   #no-js-message p {
     padding-top: 10px;
     font-size: 10pt;
-    color: #f8f8f8;
+    color: #eeeeee;
     text-align: center; }
 
 header {
@@ -5896,13 +5896,13 @@ header {
   padding-left: 7%;
   padding-right: 7%; }
   #project-subnav .subnav-link {
-    color: #a6a6a6; }
+    color: #aeaeae; }
     #project-subnav .subnav-link div {
       padding: 10px 0px; }
   #project-subnav .subnav-link:hover {
-    color: #f3f3f3; }
+    color: white; }
   #project-subnav .active a.subnav-link {
-    color: #f3f3f3; }
+    color: white; }
 
 .subnav-link-active-icon {
   display: none; }
