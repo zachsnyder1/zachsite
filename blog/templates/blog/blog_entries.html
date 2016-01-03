@@ -19,8 +19,9 @@ href="{% static 'blog/blog_entries.css' %}">
       </div> <!-- /. col-sm-1 -->
       <div class="col-xs-12 col-sm-10 col-md-8 entry-about-div">
         <a href="{% url 'blog_detail' entry.uuid entry.slug %}">
-          <h3 class="entry-tagline">{{ entry.tagline }}</h3>
+          <h3 class="entry-tagline"><strong>{{ entry.tagline }}</strong></h3>
           <p class="entry-text">{{ entry.text|truncatechars:300 }} (read more)</p>
+          <p><em>{{ entry.pub_time }}</em></p>
         </a>
       </div> <!-- /.col-xs-12 -->
       <div class="col-sm-1 col-md-2">
