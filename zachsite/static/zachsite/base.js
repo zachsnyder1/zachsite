@@ -2,7 +2,7 @@ var TestScript = (function() {
 	// Not run during QUnit test
 	function main() {
 		var projDropdownID = '#projects-dropdown';
-		var navCollapseID = '#bs-nav-collapse1';
+		var navCollapseID = '#nav-collapse';
 		var navCollapseButtonID = '#nav-coll-button';
 		var noJsMessageID = '#no-js-message';
 		// Hide the no-js-message

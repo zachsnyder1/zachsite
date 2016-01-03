@@ -1,7 +1,7 @@
 QUnit.module('Test base.js functions');
 QUnit.test('test collapseNavbar', function(assert) {
 	var fixture = $("#qunit-fixture");
-	var navCollapseID = 'bs-nav-collapse1';
+	var navCollapseID = 'nav-collapse';
 	var navCollapseButtonID = 'nav-coll-button';
 	var done = assert.async();
 	

@@ -3,28 +3,16 @@
 // -------------------------------------------------------------------------
 // -------------------------------  BASE  ----------------------------------
 // -------------------------------------------------------------------------
-#nav1 {
-	margin-bottom: 0px;
-}
-
-#foot {
-	height: 80px;
-	background-color: $zach-blue-bg-dark;
-}
-
-.navbar-default .navbar-nav > .dropdown > .dropdown-menu > li > a:hover {
-	color: darken($zach-blue, 30%);
-	background-color: $zach-yellow;
-}
 
 // <<------ NO JS MESSAGE ------>>
+$no_js_message_height: 48px;
 #no-js-message {
 	position: fixed;
 	width: 100%;
 	right: 0px;
 	left: 0px;
 	z-index: 1001;
-	margin-top: -48px;
+	margin-top: -$no_js_message_height;
 	background-color: $zach-red;
 	padding: 5px 5%;
 	p {
@@ -37,7 +25,21 @@
 
 // To accomodate the no-js-message, add top margin to header
 header {
-	margin-top: 48px;
+	margin-top: $no_js_message_height;
+}
+
+.navbar {
+	margin-bottom: 0px;
+}
+
+.footer {
+	height: 80px;
+	background-color: $zach-blue-bg-dark;
+}
+
+.navbar-default .dropdown-menu > li > a:hover {
+	color: darken($zach-blue, 30%);
+	background-color: $zach-yellow;
 }
 
 // DON'T WRAP THE NAVBAR TEXT:
@@ -45,6 +47,7 @@ header {
 	white-space: nowrap;
 }
 
+// no-js-message smaller font at xs screen sizes
 @media(max-width: $screen-sm-min) {
 	#no-js-message p {
 		font-size: 8pt;
