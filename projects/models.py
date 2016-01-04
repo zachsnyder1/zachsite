@@ -30,9 +30,13 @@ class SymbolEntity(models.Model):
 	"""
 	symbol = models.CharField(max_length=120)
 	description = models.TextField()
+	orderingIndex = models.IntegerField()
 	
 	def __str__(self):
 		return self.symbol
+	
+	class Meta:
+		ordering = ['orderingIndex']
 
 class ProjModule(SymbolEntity):
 	"""
@@ -40,6 +44,7 @@ class ProjModule(SymbolEntity):
 	"""
 	project = models.ForeignKey(Project)
 	path = models.CharField(max_length=300)
+	
 
 class ProjClass(SymbolEntity):
 	"""
