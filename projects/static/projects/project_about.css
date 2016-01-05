@@ -5991,13 +5991,17 @@ div.alt {
     margin-right: 3%; }
   .sidebar a.subtopic1:hover div {
     background-color: #fcfcf8; }
-  .sidebar a.subtopic2 div {
+  .sidebar a.subtopic2 div, .sidebar a.subtopic2-header div {
     background-color: #eeeeee;
     margin-left: 18%;
     margin-right: 6%;
     font-size: 0.85em; }
   .sidebar a.subtopic2:hover div {
     background-color: #f8f8f8; }
+  .sidebar a.subtopic2-header div {
+    background-color: #dee5e5; }
+  .sidebar a.subtopic2-header:hover div {
+    background-color: #fafbfb; }
 
 @media (max-width: 992px) {
   #readme-section .container-fluid, #docs-section .container-fluid {
@@ -6019,7 +6023,7 @@ div.alt {
   .sidebar a.subtopic1 div {
     margin: 5px auto;
     width: 70%; }
-  .sidebar a.subtopic2 div {
+  .sidebar a.subtopic2 div, .sidebar a.subtopic2-header div {
     margin: 5px auto;
     width: 60%; } }
 

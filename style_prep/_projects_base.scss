@@ -185,16 +185,28 @@ $sidebar-width: 320px;
 		}
 	}
 	//subtopic2 gets some L margin
-	a.subtopic2 div {
-		background-color: $zach-gray-light;
-		margin-left: 18%;
-		margin-right: 6%;
-		font-size: 0.85em;
+	a.subtopic2, a.subtopic2-header {
+		div {
+			background-color: $zach-gray-light;
+			margin-left: 18%;
+			margin-right: 6%;
+			font-size: 0.85em;
+		}
 	}
 	//subtopic2 lightens on hover
 	a.subtopic2:hover {
 		div {
 			background-color: $zach-gray-light-active;
+		}
+	}
+	//subtopic2-header green
+	a.subtopic2-header div {
+		background-color: $zach-green;
+	}
+	//subtopic2-header lightens on hover
+	a.subtopic2-header:hover {
+		div {
+			background-color: $zach-green-light;
 		}
 	}
 }
@@ -234,9 +246,11 @@ $sidebar-width: 320px;
 			width: 70%;
 		}
 		// subtopic2 60% width
-		a.subtopic2 div {
-			margin: 5px auto;
-			width: 60%;
+		a.subtopic2, a.subtopic2-header {
+			div {
+				margin: 5px auto;
+				width: 60%;
+			}
 		}
 	}
 }
