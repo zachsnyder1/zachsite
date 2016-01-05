@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Project, CodeExample, ProjModule, ProjClass, \
-	ConstructorParam, ClassVariable, InstanceVariable, ClassMethod, \
-	MethodParam, MethodReturn
+	ConstructorParam, ClassConstant, ClassVariable, InstanceVariable, \
+	ClassMethod, MethodParam, MethodReturn
 
 # INLINES:
 class CodeExampleInline(admin.TabularInline):
@@ -19,6 +19,11 @@ class ProjClassInline(admin.TabularInline):
 
 class ConstructorParamInline(admin.TabularInline):
 	model = ConstructorParam
+	fk_name = 'pclass'
+	extra = 0
+
+class ClassConstantInline(admin.TabularInline):
+	model = ClassConstant
 	fk_name = 'pclass'
 	extra = 0
 
@@ -59,7 +64,8 @@ class ProjModuleAdmin(admin.ModelAdmin):
 
 class ProjClassAdmin(admin.ModelAdmin):
 	inlines = [
-		ConstructorParamInline, 
+		ConstructorParamInline,
+		ClassConstantInline,
 		ClassVariableInline,
 		InstanceVariableInline,
 		ClassMethodInline
@@ -77,6 +83,7 @@ admin.site.register(CodeExample)
 admin.site.register(ProjModule, ProjModuleAdmin)
 admin.site.register(ProjClass, ProjClassAdmin)
 admin.site.register(ConstructorParam)
+admin.site.register(ClassConstant)
 admin.site.register(ClassVariable)
 admin.site.register(InstanceVariable)
 admin.site.register(ClassMethod, ClassMethodAdmin)

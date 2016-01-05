@@ -59,6 +59,12 @@ class ConstructorParam(SymbolEntity):
 	pclass = models.ForeignKey(ProjClass)
 	default = models.CharField(max_length=120, blank=True)
 
+class ClassConstant(SymbolEntity):
+	"""
+	Entity representing a class variable.
+	"""
+	pclass = models.ForeignKey(ProjClass)
+
 class ClassVariable(SymbolEntity):
 	"""
 	Entity representing a class variable.

@@ -25,6 +25,12 @@ href="{% static 'projects/project_docs.css' %}">
 href="#header-{{ class.symbol }}">
         <div><strong>class {{ class.symbol }}</strong></div>
       </a>
+      {% for constant in class.classconstant_set.all %}
+      <a class="sidebar-link subtopic2" role="button"
+href="#header-{{ constant.symbol }}">
+        <div>{{ constant.symbol }}</div>
+      </a>
+      {% endfor %}
       {% for classVar in class.classvariable_set.all %}
       <a class="sidebar-link subtopic2" role="button"
 href="#header-{{ classVar.symbol }}">
@@ -123,7 +129,24 @@ href="#header-{{ method.symbol }}">
             <h6>--->><<---</h6>
           </div> <!-- /.docs-params -->
           {% endif %}
-          <p>{{ class.description }}</p>
+          <p>{{ class.description }}</p>         
+          {% if class.classconstant_set.all %}
+          <h4>Class Constants:</h4>
+          <div class="docs-var">
+            <!-- ********************************** -->
+  	        <!--  FOR EACH CLASS CONSTANT IN CLASS: -->
+  	        <!-- ********************************** -->
+            {% for constant in class.classconstant_set.all %}
+            <h5 id="header-{{ constant.symbol }}">
+              <strong>{{ constant.symbol }}</strong>
+            </h5>
+            <p class="description">{{ constant.description }}</p>
+            {% endfor %}  <!-- END for constant ... -->
+            <!-- ***************************** -->
+  	        <!--  END FOR EACH CLASS CONSTANT: -->
+  	        <!-- ***************************** -->
+          </div> <!-- /.docs-var -->
+          {% endif %}
           {% if class.classvariable_set.all %}
           <h4>Class Variables:</h4>
           <div class="docs-var">
