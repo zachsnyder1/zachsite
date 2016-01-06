@@ -69,7 +69,7 @@ href="#header-{{ class.symbol }}-class-methods">
       {% endif %}
       {% for method in class.classmethod_set.all %}
       <a class="sidebar-link subtopic2" role="button"
-href="#header-{{ method.symbol }}">
+href="#header-{{ class.symbol }}-{{ method.symbol }}">
         <div>.{{ method.symbol }}()</div>
       </a>
       {% endfor %}
@@ -212,7 +212,7 @@ href="#header-{{ method.symbol }}">
   	        <!--  FOR EACH METHOD IN CLASS: -->
   	        <!-- ************************** -->
             {% for method in class.classmethod_set.all %}
-            <h5 id="header-{{ method.symbol }}">
+            <h5 id="header-{{ class.symbol }}-{{ method.symbol }}">
               <strong>.{{ method.symbol }}(</strong>
               <!-- ****************************** -->
   	          <!--  FOR EACH PARAMETER IN METHOD: -->
@@ -243,9 +243,11 @@ href="#header-{{ method.symbol }}">
               <strong>)</strong>
             </h5>
             <div class="docs-sub-method">
-              {% if method.methodparam_set.all %}
+              {% if method.methodparam_set.all or method.methodreturn_set.all %}
               <div class="docs-params">
+                {% if method.methodparam_set.all %}
                 <h6>-- Method Parameters --</h6>
+                {% endif %}
                 <!-- ****************************** -->
   	            <!--  FOR EACH PARAMETER IN METHOD: -->
   	            <!-- ****************************** -->
@@ -259,11 +261,7 @@ href="#header-{{ method.symbol }}">
   	            <!--  END FOR EACH PARAMETER IN METHOD: -->
   	            <!-- ********************************** -->
                 {% if method.methodreturn_set.all %}
-                {% if method.methodreturn_set.all.1 %}
-                <h6>[ Return Values ]</h6>
-        	    {% else %}
-        	    <h6>[ Return Value ]</h6>
-        	    {% endif %}
+                <h6>RETURNS</h6>
         	    <!-- ********************************* -->
   	            <!--  FOR EACH RETURN VALUE IN METHOD: -->
   	            <!-- ********************************* -->
