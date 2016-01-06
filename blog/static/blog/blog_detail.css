@@ -5874,7 +5874,9 @@ header {
   text-align: center;
   padding: 10px 0%; }
 #blog-about-section p {
-  text-align: left; }
+  text-align: left;
+  max-width: 418px;
+  margin: 0 auto; }
 
 hr {
   margin: 10px 10%;
