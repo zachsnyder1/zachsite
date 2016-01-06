@@ -5999,9 +5999,10 @@ div.alt {
   .sidebar a.subtopic2:hover div {
     background-color: #f8f8f8; }
   .sidebar a.subtopic2-header div {
-    background-color: #dee5e5; }
+    background-color: #e6ecec;
+    text-align: center; }
   .sidebar a.subtopic2-header:hover div {
-    background-color: #fafbfb; }
+    background-color: white; }
 
 @media (max-width: 992px) {
   #readme-section .container-fluid, #docs-section .container-fluid {

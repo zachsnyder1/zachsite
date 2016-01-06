@@ -4,6 +4,12 @@ from django.utils.safestring import mark_safe
 # The register object
 register = template.Library()
 
+def addbreaks(value):
+	"""
+	Replaces 'paragraph-break' in value with '<br>'.
+	"""
+	return mark_safe(value.replace(' <PARAGRAPH-BREAK> ', '<br><br>'))
+
 def formatpython(value):
 	"""
 	Formats a code string for proper styling.
@@ -52,4 +58,5 @@ def formatpython(value):
 	return mark_safe(value)
 
 
+register.filter('addbreaks', addbreaks)
 register.filter('formatpython', formatpython)
