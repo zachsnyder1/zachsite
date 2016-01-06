@@ -13,8 +13,8 @@ href="{% static 'projects/project_docs.css' %}">
   <div class="sidebar-wrapper">
     <div class="sidebar">
       <h4>Contents:</h4>
-      <a class="sidebar-link topic" role="button" href="#header-the-api">
-        <div>The API</div>
+      <a class="sidebar-link topic" role="button" href="#header-introduction">
+        <div>Introduction</div>
       </a>
       {% for module in curr_project.projmodule_set.all %}
       <a class="sidebar-link topic" role="button" href="#header-{{ module.symbol }}">
