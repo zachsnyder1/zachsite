@@ -1,5 +1,6 @@
 {% extends 'projects/base_projects.html' %}
 {% load staticfiles %}
+{% load zachsite_extras %}
 {% block localhead %}
 {{ block.super }}
 <link rel="stylesheet" type="text/css"
@@ -92,7 +93,7 @@ href="#header-{{ class.symbol }}-{{ method.symbol }}">
         <h2 id="header-{{ module.symbol }}">
           MODULE <br><br><span class="red">{{ module.path }}</span>
         </h2>
-        <p class="description">{{ module.description }}</p>
+        <p class="description">{{ module.description|breaks_and_links }}</p>
       </div> <!-- /.col-xs-12 -->
       <div class="col-xs-12">
         <h3>THE <em class="red">{{ module.symbol }}</em> CLASSES:</h3>
@@ -153,7 +154,7 @@ href="#header-{{ class.symbol }}-{{ method.symbol }}">
             <h6>--->><<---</h6>
           </div> <!-- /.docs-params -->
           {% endif %}
-          <p>{{ class.description }}</p>         
+          <p>{{ class.description|breaks_and_links }}</p>         
           {% if class.classconstant_set.all %}
           <h4 id="header-{{ class }}-class-constants">Class Constants:</h4>
           <div class="docs-var">
@@ -278,7 +279,7 @@ href="#header-{{ class.symbol }}-{{ method.symbol }}">
                 <h6>--->><<---</h6>
               </div> <!-- /.docs-params -->
               {% endif %}
-              <p>{{ method.description }}</p>
+              <p>{{ method.description|breaks_and_links }}</p>
             </div> <!-- /.docs-sub-method -->
             {% endfor %} <!-- END for method ... -->
             <!-- ****************************** -->

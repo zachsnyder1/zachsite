@@ -73,7 +73,7 @@ role="button" data-slide="next">
       <div class="blurb blurb-right col-xs-12 col-sm-6">
       {% endif %}
         <h3>{{ blurb.title }}</h3>
-        <p>{{ blurb.text|addlinks }}</p>
+        <p>{{ blurb.text|breaks_and_links }}</p>
       </div> <!-- /.blurb -->
       {% endfor %}
     </div> <!-- /.row -->
