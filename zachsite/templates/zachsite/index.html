@@ -1,5 +1,6 @@
 {% extends "zachsite/base.html" %}
 {% load staticfiles %}
+{% load zachsite_extras %}
 {% block localhead %}
 <link rel="stylesheet" type="text/css"
 href="{% static 'zachsite/index.css' %}">
@@ -72,7 +73,7 @@ role="button" data-slide="next">
       <div class="blurb blurb-right col-xs-12 col-sm-6">
       {% endif %}
         <h3>{{ blurb.title }}</h3>
-        <p>{{ blurb.text }}</p>
+        <p>{{ blurb.text|addlinks }}</p>
       </div> <!-- /.blurb -->
       {% endfor %}
     </div> <!-- /.row -->

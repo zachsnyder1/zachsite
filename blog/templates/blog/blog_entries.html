@@ -1,5 +1,6 @@
 {% extends 'blog/base_blog.html' %}
 {% load staticfiles %}
+{% load zachsite_extras %}
 {% block localhead %}
 <link rel="stylesheet" type="text/css"
 href="{% static 'blog/blog_entries.css' %}">
@@ -20,7 +21,9 @@ href="{% static 'blog/blog_entries.css' %}">
       <div class="col-xs-12 col-sm-10 col-md-8 entry-about-div">
         <a href="{% url 'blog_detail' entry.uuid entry.slug %}">
           <h3 class="entry-tagline"><strong>{{ entry.tagline }}</strong></h3>
-          <p class="entry-text">{{ entry.text|truncatechars:300 }} (read more)</p>
+          <p class="entry-text">
+            {{ entry.text|nobreaks|truncatechars:300 }} (read more)
+          </p>
           <p><em>{{ entry.pub_time }}</em></p>
         </a>
       </div> <!-- /.col-xs-12 -->
