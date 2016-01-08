@@ -6,42 +6,26 @@ from django.utils.html import escape
 # The register object
 register = template.Library()
 
-def addlinks(input):
-	"""
-	Replaces '|LINK=href%@%link_text|' in value with 
-	'<a href="href">link_text</a>'.
-	"""
-	split_text = input.split("|")
-	for i in range(len(split_text)):
-		if split_text[i].find("LINK=") == -1:
-			continue
-		else:
-			split_text[i] = split_text[i].replace("LINK=", '')
-			href_linktext = split_text[i].split("%@%")
-			split_text[i] = "<a href=\"{}\">{}</a>".\
-				format(href_linktext[0], href_linktext[1])
-	return ''.join(split_text)
 
-def nolinks(input):
-	"""
-	Replaces '|LINK=href%@%link_text|' in value with 
-	'<a href="href">link_text</a>'.
-	"""
-	link_regex = r'\|LINK=[^\|]*[%][@][%](?P<link_text>[^\|]*)\|'
-	return re.sub(link_regex, r'\1', input)
-
-# <<<-------- FILTERS -------->>>
 def no_breaks_or_links(value):
 	"""
-	Just adds links...
+	Replaces ' |PARAGRAPH-BREAK| ' in value with ' '.
+	
+	       Then:
+	    
+	Replaces '|LINK=href%@%link_text|' in value with 
+	'<a href="href">link_text</a>'.
 	"""
 	safe_input = escape(value)
 	breaks_removed = safe_input.replace(' |PARAGRAPH-BREAK| ', ' ')
-	return mark_safe(nolinks(breaks_removed))
+	# Regex search string:
+	link_regex = r'\|LINK=[^\|]*[%][@][%](?P<link_text>[^\|]*)\|'
+	# Simply strips the preprocessing syntax:
+	return mark_safe(re.sub(link_regex, r'\1', breaks_removed))
 
 def breaks_and_links(value):
 	"""
-	Replaces ' |PARAGRAPH-BREAK| ' in value with ' '.
+	Replaces ' |PARAGRAPH-BREAK| ' in value with '<br><br>'.
 	
 	        Then:
 	
@@ -49,7 +33,11 @@ def breaks_and_links(value):
 	'<a href="href">link_text</a>'.
 	"""
 	breaks_added = escape(value).replace(' |PARAGRAPH-BREAK| ', '<br><br>')
-	return mark_safe(addlinks(breaks_added))
+	# Regex search string:
+	link_regex = r'\|LINK=(?P<href>[^\|]*)[%][@][%](?P<link_text>[^\|]*)\|'
+	# Strip preprocessing sytax, add HTML syntax:
+	replacement_regex = r'<a href="\1">\2</a>'
+	return mark_safe(re.sub(link_regex, replacement_regex, breaks_added))
 
 def formatpython(value):
 	"""
