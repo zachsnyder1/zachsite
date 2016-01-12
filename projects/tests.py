@@ -5,7 +5,7 @@ class ProjectsHomeTemplateContextTestCase(TestCase):
 	"""
 	Test methods for projects_home page.
 	"""
-	fixtures = ["projects_fixture1.json"]
+	fixtures = ["tester.json"]
 	
 	def setUp(self):
 		"""
@@ -25,9 +25,8 @@ class ProjectsHomeTemplateContextTestCase(TestCase):
 		Test that projects_home page has all projects from fixture.
 		"""
 		expectedProjectTitles = [
-			'AudioIO',
-			'KayaIO',
-			'Putin App'
+			'AudioIO', 
+			'ZachSite'
 		]
 		
 		contextProjectTitles = []
@@ -41,7 +40,7 @@ class ProjectsAboutTemplateContextTestCase(TestCase):
 	"""
 	Test methods for projects_about template.
 	"""
-	fixtures = ["projects_fixture2.json"]
+	fixtures = ["tester.json"]
 	
 	def setUp(self):
 		"""
@@ -63,9 +62,8 @@ class ProjectsAboutTemplateContextTestCase(TestCase):
 		# CONTEXT ITEM: projectList
 		# expected:
 		expectedProjectTitles = [
-			'AudioIO',
-			'KayaIO',
-			'Putin App'
+			'AudioIO', 
+			'ZachSite'
 		]
 		# actual:
 		contextProjectTitles = []
@@ -76,7 +74,7 @@ class ProjectsAboutTemplateContextTestCase(TestCase):
 		
 		# CONTEXT ITEM: projectLen
 		# expected:
-		expectedProjectLen = '3'
+		expectedProjectLen = '2'
 		# actual:
 		contextProjectLen = self.response.context['projectLen']
 		# assertion:

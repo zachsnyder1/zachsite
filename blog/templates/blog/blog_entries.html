@@ -22,7 +22,7 @@ href="{% static 'blog/blog_entries.css' %}">
         <a href="{% url 'blog_detail' entry.uuid entry.slug %}">
           <h3 class="entry-tagline"><strong>{{ entry.tagline }}</strong></h3>
           <p class="entry-text">
-            {{ entry.text|no_breaks_or_links|truncatechars:300 }} (read more)
+            {{ entry.text|no_breaks|truncatechars:300 }} (read more)
           </p>
           <p><em>{{ entry.pub_time }}</em></p>
         </a>

@@ -93,7 +93,7 @@ href="#header-{{ class.symbol }}-{{ method.symbol }}">
         <h2 id="header-{{ module.symbol }}">
           MODULE <br><br><span class="red">{{ module.path }}</span>
         </h2>
-        <p class="description">{{ module.description|breaks_and_links }}</p>
+        <p class="description">{{ module.description|add_breaks }}</p>
       </div> <!-- /.col-xs-12 -->
       <div class="col-xs-12">
         <h3>THE <em class="red">{{ module.symbol }}</em> CLASSES:</h3>
@@ -154,7 +154,7 @@ href="#header-{{ class.symbol }}-{{ method.symbol }}">
             <h6>--->><<---</h6>
           </div> <!-- /.docs-params -->
           {% endif %}
-          <p>{{ class.description|breaks_and_links }}</p>         
+          <p>{{ class.description|add_breaks }}</p>         
           {% if class.classconstant_set.all %}
           <h4 id="header-{{ class }}-class-constants">Class Constants:</h4>
           <div class="docs-var">
@@ -279,7 +279,7 @@ href="#header-{{ class.symbol }}-{{ method.symbol }}">
                 <h6>--->><<---</h6>
               </div> <!-- /.docs-params -->
               {% endif %}
-              <p>{{ method.description|breaks_and_links }}</p>
+              <p>{{ method.description|add_breaks }}</p>
             </div> <!-- /.docs-sub-method -->
             {% endfor %} <!-- END for method ... -->
             <!-- ****************************** -->

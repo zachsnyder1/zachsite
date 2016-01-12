@@ -64,18 +64,34 @@ role="button" data-slide="next">
   <!-- A blurb about me -->
   <div id="blurbs-div" class="container-fluid">
     <div class="row">
-      {% for blurb in blurbList %}
-      {% if forloop.last and not blurbLen|divisibleby:2 %}
-      <div class="blurb col-xs-12 col-sm-8 col-sm-offset-2">
-      {% elif forloop.counter0|divisibleby:2 %}
       <div class="blurb blurb-left col-xs-12 col-sm-6">
-      {% else %}
-      <div class="blurb blurb-right col-xs-12 col-sm-6">
-      {% endif %}
-        <h3>{{ blurb.title }}</h3>
-        <p>{{ blurb.text|breaks_and_links }}</p>
+        <h3>I'm Zach</h3>
+        <p>
+          I'm a pretty friendly guy. I like playing music, recreating 
+          outdoors, and meeting other friendly people. I know a good deal 
+          about rocks, and I enjoy thinking about them when I am hiking. 
+          However, I don't want to think about them for a living. That's 
+          too much rocks. It is a personal aspiration of mine to one day 
+          put together a recording studio. I think food, people, mountains,
+          and music are probably all I need to be happy.
+        </p>
       </div> <!-- /.blurb -->
-      {% endfor %}
+      <div class="blurb blurb-right col-xs-12 col-sm-6">
+        <h3>I Like Code</h3>
+        <p>
+          After college I discovered that I'd really like to be a software 
+          engineer. It feels very nice to build things and have them work. 
+          Keeps me off the streets. I never have to think about the same 
+          <a
+href="http://gsabulletin.gsapubs.org/content/127/9-10/1174.abstract">
+          stratigraphic column 
+          </a>
+          for six months at a time.... My three main areas of interest are 
+          discrete-time signal processing, web development, and GIS (there, 
+          I still get to look at rocks). You can check out some of my active 
+          projects below.
+        </p>
+      </div> <!-- /.blurb -->
     </div> <!-- /.row -->
   </div> <!-- /.container-fluid -->
   <!-- A showcase of my projects -->

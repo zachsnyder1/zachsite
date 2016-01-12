@@ -7,37 +7,19 @@ from django.utils.html import escape
 register = template.Library()
 
 
-def no_breaks_or_links(value):
+def no_breaks(value):
 	"""
 	Replaces ' |PARAGRAPH-BREAK| ' in value with ' '.
-	
-	       Then:
-	    
-	Replaces '|LINK=href%@%link_text|' in value with 
-	'<a href="href">link_text</a>'.
 	"""
 	safe_input = escape(value)
-	breaks_removed = safe_input.replace(' |PARAGRAPH-BREAK| ', ' ')
-	# Regex search string:
-	link_regex = r'\|LINK=[^\|]*[%][@][%](?P<link_text>[^\|]*)\|'
-	# Simply strips the preprocessing syntax:
-	return mark_safe(re.sub(link_regex, r'\1', breaks_removed))
+	return mark_safe(safe_input.replace(' |PARAGRAPH-BREAK| ', ' '))
 
-def breaks_and_links(value):
+def add_breaks(value):
 	"""
 	Replaces ' |PARAGRAPH-BREAK| ' in value with '<br><br>'.
-	
-	        Then:
-	
-	Replaces '|LINK=href%@%link_text|' in value with 
-	'<a href="href">link_text</a>'.
 	"""
-	breaks_added = escape(value).replace(' |PARAGRAPH-BREAK| ', '<br><br>')
-	# Regex search string:
-	link_regex = r'\|LINK=(?P<href>[^\|]*)[%][@][%](?P<link_text>[^\|]*)\|'
-	# Strip preprocessing sytax, add HTML syntax:
-	replacement_regex = r'<a href="\1">\2</a>'
-	return mark_safe(re.sub(link_regex, replacement_regex, breaks_added))
+	safe_input = escape(value)
+	return mark_safe(safe_input.replace(' |PARAGRAPH-BREAK| ', '<br><br>'))
 
 def formatpython(value):
 	"""
@@ -88,6 +70,6 @@ def formatpython(value):
 	return mark_safe(value)
 
 
-register.filter('no_breaks_or_links', no_breaks_or_links)
-register.filter('breaks_and_links', breaks_and_links)
+register.filter('no_breaks', no_breaks)
+register.filter('add_breaks', add_breaks)
 register.filter('formatpython', formatpython)

@@ -11,14 +11,3 @@ class QuestionAndAnswer(models.Model):
 	
 	def __str__(self):
 		return self.question
-
-
-class Blurb(models.Model):
-	"""
-	Blurbs for the info section of the Spiel page.
-	"""
-	title = models.CharField(max_length=80)
-	text = models.TextField()
-	
-	def __str__(self):
-		return self.title
