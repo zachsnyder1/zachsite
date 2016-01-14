@@ -5841,6 +5841,10 @@ header {
 .navbar-text {
   white-space: nowrap; }
 
+code {
+  color: black;
+  background-color: transparent; }
+
 @media (max-width: 768px) {
   #no-js-message p {
     font-size: 8pt; } }
@@ -5912,6 +5916,12 @@ div.alt {
 
 .codebox span.keyw {
   color: #aa1133; }
+.codebox span.imp {
+  color: #009a00; }
+.codebox span.func {
+  color: #4d4dff; }
+.codebox span.var {
+  color: #9999ff; }
 
 .pre-container {
   overflow-x: scroll; }

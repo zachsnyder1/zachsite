@@ -5841,6 +5841,10 @@ header {
 .navbar-text {
   white-space: nowrap; }
 
+code {
+  color: black;
+  background-color: transparent; }
+
 @media (max-width: 768px) {
   #no-js-message p {
     font-size: 8pt; } }

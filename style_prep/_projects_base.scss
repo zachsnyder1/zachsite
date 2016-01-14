@@ -51,6 +51,15 @@ div.alt {
 	span.keyw {
 		color: $zach-red;
 	}
+	span.imp {
+		color: lighten(green, 5%);
+	}
+	span.func {
+		color: lighten(blue, 15%);
+	}
+	span.var {
+		color: lighten(blue, 30%);
+	}
 }
 
 // .pre-container wraps the <pre> elements to allow them to

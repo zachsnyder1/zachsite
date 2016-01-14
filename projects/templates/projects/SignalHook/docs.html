@@ -1,0 +1,71 @@
+{% load zachsite_extras %}
+<div class="row">
+  <div class="col-xs-12">
+    <h2 id="header-introduction">A Short Introduction</h2>
+    <p>
+      Welcome to the signalhook docs page!  The documentation below is not
+      comprehensive, but it completely covers the user API, as well as certain
+      other elements of the software that may help to illuminate the 
+      underlying design patterns upon which it is built.  If you are looking 
+      for a thorough treatment of all internal elements, inline documentation
+      is provided in the form of 
+      <a href="https://en.wikipedia.org/wiki/Docstring#Python">docstrings</a>.
+    </p>
+    <h3>File Structure</h3>
+    <p>
+      Here's a fuzzy picture of what the project file hierarchy looks like:
+    </p>
+    <div class="pre-container">
+      <pre>
+[ROOT]/                                 -->  Project root
+  |
+  |- README.md                          -->  The README file for GitHub
+  |- setup.py                           -->  The setuptools setup script
+  |--> src/                             -->  Where the source files live
+  |     |
+  |     |--> signalhook/                -->  Package root, when built & installed
+  |               |
+  |               |- base_io.py         -->  Abstract I/O base classes
+  |               |- wav_io.py          -->  Concrete I/O classes for .WAV files 
+  |               |- engine.py          -->  Engine classes.  This is what you would
+  |               |                          generally import and use. 
+  |               |--> plugins/         -->  Will hold pre-built plugins for learning
+  |                       |                  purposes and/or use in actual signal
+  |                       V                  processing applications
+  |             [eventually, plugins]
+  |               
+  |
+  |--> test/                            -->  Where the test automation lives
+         |
+         V
+  [lots of stuff]
+      </pre>
+    </div>
+    <p>Some things to notice:</p>
+    <ul>
+      <li>
+        <p>
+          The base_io.py module under the package root holds abstract base
+          classes that define a common interface for file I/O.  This
+          interface is then implemented separately (in child classes) for
+          each discrete-time signal file format that is supported by the
+          framework. For example, the wav_io.py module holds concrete classes
+          that implement the interface for .WAV files.  See the 
+          <a href="#design-overview">design overview</a> for more information
+          on the class hierarchies and design patterns used in the project.
+        </p>
+      </li>
+      <li>
+        <p>
+          The engine.py module under the package root defines the Engine
+          classes, which are what tie together and coordinate the
+          functionality of the I/O classes with the plugin callback function.
+        </p>
+      </li>
+    </ul>
+    <h3 id="design-overview">Overview of Design</h3>
+    <p>
+    	THIS IS SOME INFO.
+    </p>
+  </div> <!-- /.col-xs-12 -->
+</div> <!-- /.row -->

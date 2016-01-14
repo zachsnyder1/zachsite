@@ -47,6 +47,12 @@ header {
 	white-space: nowrap;
 }
 
+// all code elements:
+code {
+	color: black;
+	background-color: transparent;
+}
+
 // no-js-message smaller font at xs screen sizes
 @media(max-width: $screen-sm-min) {
 	#no-js-message p {

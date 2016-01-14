@@ -1,0 +1,231 @@
+{% load zachsite_extras %}
+<section id="readme-section">
+  <div class="sidebar-wrapper">
+    <div class="sidebar">
+      <h4>Contents:</h4>
+      <a class="sidebar-link topic" role="button" href="#header-what">
+        <div>What</div>
+      </a>
+      <a class="sidebar-link topic" role="button" href="#header-why">
+        <div>Why</div>
+      </a>
+      <a class="sidebar-link topic" role="button" href="#header-how">
+        <div>How</div>
+      </a>
+      <a class="sidebar-link topic" role="button" href="#header-installation">
+        <div>Installation</div>
+      </a>
+      <a class="sidebar-link topic" role="button" href="#header-testing">
+        <div>Testing</div>
+      </a>
+      <a class="sidebar-link topic" role="button" href="#header-license">
+        <div>License</div>
+      </a>
+    </div> <!-- /.sidebar -->
+  </div> <!-- /.sidebar-wrapper -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <h2 id="header-what">What</h2>
+        <p>{{ curr_project.summary }}</p>
+      </div> <!-- /.col-xs-12 -->
+  	  <div class="col-xs-12 col-md-6">
+        <h2 id="header-why">Why</h2>
+        <p>
+          Maybe you want to get your feet wet writing digital audio effects,
+          but you find the overhead of learning the VST3 API unnecessary while
+          you are still just in the tinkering stage. Maybe you want to sew a
+          bunch of LEDs and a microphone into a hat and have them flash pretty
+          colors based on the rhythmic envelope of your voice.  Maybe you want
+          to make your own cheap seismometer array and use it to track
+          reindeer migrations through Nunavut.  Sounds like you need a way to
+          process a discrete-time signal.
+        </p>
+      </div> <!-- /.col-xs-12 -->
+    </div> <!-- /.row-->
+    <div class="row alt">
+      <div class="col-xs-12">
+        <h2 id="header-how">How</h2>
+        <p>
+          You must do two things:
+        </p>
+        <ul>
+          <li>write a plugin callback function</li>
+          <li>plug it into an instance of a signalhook engine object</li>
+        </ul>
+        <p>
+          The callback function is called repeatedly (once per buffer-full
+          of sample data) and can basically do anything you want it to, as
+          long as it accepts certain parameters and returns a certain
+          output.  Note that the performance of the framework is, of 
+          course, partially dependent on the efficiency of its own
+          internal plumbing, but also partially on that of the 
+          plugin callback.  So, keeping things as simple as possible
+          may help you avoid frustrations with processing time.  Also
+          note that the .reach_back() method of the helper API is 
+          currently horrendously slow, so if you use that method some of 
+          your frustration may not be your fault.  A fix coming soon.
+        </p>
+        <p>
+          Everything the framework does is coordinated by an object of a
+          BaseEngine subclass (see the
+          <a href="{% url 'project_docs' curr_project.id curr_project.slug %}">
+            docs
+          </a>
+          for an overview of the design patterns and class hierarchies).
+          Currently there is only one implemented Engine class: the
+          FileToFileEngine, whose input and output are data files--e.g.
+          audio files.  Besides the input file, output file, and plugin
+          function, options can (optionally) also be given to the Engine
+          object during initialization.  For an overview of available options,
+          see the
+          <a 
+href="{% url 'project_docs' curr_project.id curr_project.slug %}">docs</a>.
+        </p>
+        </p>
+          Let's take a look at an example of what your script
+          may look like:
+        </p>
+        <div class="pre-container codebox">
+          {{ codeExampleList.0.codetext|formatpython }}
+        </div> <!-- /.pre-container -->
+        <p>Your plugin callback accepts:</p>
+        <ul>
+          <li>
+            <p>
+              <strong>engObj</strong> ==> Pointer to the Engine object. 
+              Allows you access to a convenient helper API.
+            </p>
+          </li>
+          <li>
+            <p>
+              <strong>sampleNestedList</strong> ==> A nested list of sample 
+              values representing one buffer-full of signal data. Each item
+              in the nested list is itself a list (hence the nested part) that
+              represents a 'block' or 'frame' of sample data: the value
+              of each channel at a single point in time. The actual value of 
+              each sample can be either an integer or a float, depending on
+              how you set the engine.PLUGIN_FMT option.  If no value is set,
+              the samples are presented in the same numeric format as they
+              exist in the input signal/file.
+            </p>
+            <p>
+              Here's a diagram of what the nested list may look like:
+            </p>
+            <div class="pre-container">
+              <pre><strong>
+[[channel1, channel2], [channel1, channel2], etc...]
+                       i.e.
+        [[-0.8, -0.7], [-0.2, -0.15], etc...]
+              </strong></pre>
+            </div> <!-- /.pre-container -->
+          </li>
+        </ul>
+        <p>Your effect callback returns:</p>
+        <ul>
+          <li>
+            <p>
+              <strong>sampleNestedList</strong> ==> The same nested list 
+              of samples, after they have been processed or used for analysis.
+            </p>
+          </li>
+        </ul>
+      </div> <!-- /.col-xs-12 -->
+    </div> <!-- /.row alt -->
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 id="header-installation">Installation</h2>
+        <p>
+          The project is still pretty fluid, but once the API stabilizes
+          a little more I will create a PyPI repo for it so that it can
+          be downloaded and installed with pip.  Until then, you can use
+        </p>
+        <div class="pre-container">
+          <pre>python3 setup.py install</pre>
+        </div> <!-- /.pre-container -->
+        <p>
+          to install with 
+          <a href="https://setuptools.pypa.io/en/latest/index.html">
+          setuptools</a>.  If you do not have setuptools
+          installed, the script will install it for you.  The main drawback
+          of the <code>install</code> command with setuptools is that there
+          is no corresponding <code>uninstall</code> command.  An
+          alternative is to run
+        </p>
+        <div class="pre-container">
+          <pre>python3 setup.py develop</pre>
+        </div> <!-- /.pre-container -->
+        <p>
+          This pseudo-installs an editable version, which means that any 
+          changes you make to the source will be immediately reflected in 
+          the package when you next import it.  This may or may not be a
+          good thing, depending on how you want to use the package, so take 
+          that into consideration when choosing your installation method.  
+          However, if you can tolerate these hacky side-effects, it is 
+          extremely easy to uninstall later on with the <code>develop</code>
+          command:
+        </p>
+        <div class="pre-container">
+          <pre>python3 setup.py develop --uninstall</pre>
+        </div> <!-- /.pre-container -->
+        <p>
+          Just a temporary work-around until the project is mature enough 
+          to go up on PyPI.
+        </p>
+      </div> <!-- /.col-xs-12 -->
+    </div> <!-- /.row -->
+    <div class="row alt">
+      <div class="col-xs-12">
+        <h2 id="header-testing">Testing</h2>
+        <p>
+          All tests and testing related things live in the test/ directory.
+          If you adjusted the source and you want to see if everything is 
+          still working as before, you can run
+        </p>
+        <div class="pre-container">
+          <pre>$ python3 test/runtests.py</pre>
+        </div> <!-- /.pre-container -->
+        <p>
+          from the project root.  This just creates test data in the
+          test/testData/ directory, discovers and runs all
+          <a href="https://docs.python.org/3/library/unittest.html">
+            unittest
+          </a>
+          unit tests that live in the test/testScripts/ directory, and
+          then outputs a log file to the test/testLogs/ directory.
+        </p>
+        <p>
+          Ta da.
+        </p>
+      </div> <!-- /.col-xs-12 -->
+    </div> <!-- /.row alt -->
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 id="header-license">License</h2>
+        <div class="pre-container">
+          <pre>
+The MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+          </pre>
+        </div> <!-- /.pre-container -->
+      </div> <!-- /.col-xs-12 -->
+    </div> <!-- /.row -->
+  </div> <!-- /.container-fluid -->
+</section>
