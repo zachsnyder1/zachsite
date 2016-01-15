@@ -24,55 +24,55 @@ href="{% static 'projects/project_docs.css' %}">
       <a class="sidebar-link topic" role="button" href="#header-{{ module.symbol }}">
         <div><em>module</em> <strong>{{ module.symbol }}</strong></div>
       </a>
+      {% if module.moduleconstant_set.all %}
+      <a class="sidebar-link subtopic2A-header" role="button"
+href="#header-{{ module.symbol }}-module-constants">
+        <div>CONSTANTS</div>
+      </a>
+      {% endif %}
+      {% for constant in module.moduleconstant_set.all %}
+      <a class="sidebar-link subtopic2A" role="button"
+href="#header-{{ module.symbol }}-{{ constant.symbol }}">
+        <div>{{ constant.symbol }}</div>
+      </a>
+      {% endfor %}
       {% for class in module.projclass_set.all %}
       <a class="sidebar-link subtopic1" role="button"
 href="#header-{{ class.symbol }}">
         <div><em>class</em> <strong>{{ class.symbol }}</strong></div>
       </a>
-      {% if class.classconstant_set.all %}
-      <a class="sidebar-link subtopic2-header" role="button"
-href="#header-{{ class.symbol }}-class-constants">
-        <div>CONSTANTS</div>
-      </a>
-      {% endif %}
-      {% for constant in class.classconstant_set.all %}
-      <a class="sidebar-link subtopic2" role="button"
-href="#header-{{ constant.symbol }}">
-        <div>{{ constant.symbol }}</div>
-      </a>
-      {% endfor %}
       {% if class.classvariable_set.all %}
-      <a class="sidebar-link subtopic2-header" role="button"
+      <a class="sidebar-link subtopic2B-header" role="button"
 href="#header-{{ class.symbol }}-class-variables">
         <div>CLASS VARIABLES</div>
       </a>
       {% endif %}
       {% for classVar in class.classvariable_set.all %}
-      <a class="sidebar-link subtopic2" role="button"
+      <a class="sidebar-link subtopic2B" role="button"
 href="#header-{{ classVar.symbol }}">
         <div>{{ classVar.symbol }}</div>
       </a>
       {% endfor %}
       {% if class.instancevariable_set.all %}
-      <a class="sidebar-link subtopic2-header" role="button"
+      <a class="sidebar-link subtopic2B-header" role="button"
 href="#header-{{ class.symbol }}-instance-variables">
         <div>INSTANCE VARIABLES</div>
       </a>
       {% endif %}
       {% for instanceVar in class.instancevariable_set.all %}
-      <a class="sidebar-link subtopic2" role="button"
+      <a class="sidebar-link subtopic2B" role="button"
 href="#header-{{ instanceVar.symbol }}">
         <div>{{ instanceVar.symbol }}</div>
       </a>
       {% endfor %}
       {% if class.classmethod_set.all %}
-      <a class="sidebar-link subtopic2-header" role="button"
+      <a class="sidebar-link subtopic2B-header" role="button"
 href="#header-{{ class.symbol }}-class-methods">
         <div>CLASS METHODS</div>
       </a>
       {% endif %}
       {% for method in class.classmethod_set.all %}
-      <a class="sidebar-link subtopic2" role="button"
+      <a class="sidebar-link subtopic2B" role="button"
 href="#header-{{ class.symbol }}-{{ method.symbol }}">
         <div>.{{ method.symbol }}()</div>
       </a>
@@ -108,6 +108,27 @@ href="#header-{{ class.symbol }}-{{ method.symbol }}">
         </h2>
         <p class="description">{{ module.description|add_breaks }}</p>
       </div> <!-- /.col-xs-12 -->
+      {% if module.moduleconstant_set.all %}
+      <div class="col-xs-12">
+        <h3 id="header-{{ module.symbol }}-module-constants">
+          IMPORTANT <em class="red">{{ module.symbol }}</em> CONSTANTS:
+        </h3>
+        <div class="docs-var">
+            <!-- ********************************** -->
+  	        <!--  FOR EACH GLOBAL CONSTANT IN MODULE: -->
+  	        <!-- ********************************** -->
+            {% for constant in module.moduleconstant_set.all %}
+            <h5 id="header-{{ module.symbol }}-{{ constant.symbol }}">
+              <strong>{{ constant.symbol }}</strong>
+            </h5>
+            <p class="description">{{ constant.description }}</p>
+            {% endfor %}  <!-- END for constant ... -->
+            <!-- ***************************** -->
+  	        <!--  END FOR EACH MODULE CONSTANT: -->
+  	        <!-- ***************************** -->
+          </div> <!-- /.docs-var -->
+      </div> <!-- /.col-xs-12 -->
+      {% endif %}
       <div class="col-xs-12">
         <h3>THE <em class="red">{{ module.symbol }}</em> CLASSES:</h3>
       </div> <!-- /.col-xs-12 -->
@@ -167,24 +188,7 @@ href="#header-{{ class.symbol }}-{{ method.symbol }}">
             <h6>--->><<---</h6>
           </div> <!-- /.docs-params -->
           {% endif %}
-          <p>{{ class.description|add_breaks }}</p>         
-          {% if class.classconstant_set.all %}
-          <h4 id="header-{{ class }}-class-constants">Class Constants:</h4>
-          <div class="docs-var">
-            <!-- ********************************** -->
-  	        <!--  FOR EACH CLASS CONSTANT IN CLASS: -->
-  	        <!-- ********************************** -->
-            {% for constant in class.classconstant_set.all %}
-            <h5 id="header-{{ constant.symbol }}">
-              <strong>{{ constant.symbol }}</strong>
-            </h5>
-            <p class="description">{{ constant.description }}</p>
-            {% endfor %}  <!-- END for constant ... -->
-            <!-- ***************************** -->
-  	        <!--  END FOR EACH CLASS CONSTANT: -->
-  	        <!-- ***************************** -->
-          </div> <!-- /.docs-var -->
-          {% endif %}
+          <p>{{ class.description|add_breaks }}</p>
           {% if class.classvariable_set.all %}
           <h4 id="header-{{ class }}-class-variables">Class Variables:</h4>
           <div class="docs-var">

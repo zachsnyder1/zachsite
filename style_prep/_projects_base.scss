@@ -193,8 +193,17 @@ $sidebar-width: 320px;
 			background-color: $zach-yellow-light;
 		}
 	}
-	//subtopic2 gets some L margin
-	a.subtopic2, a.subtopic2-header {
+	//subtopic2A no extra margin
+	a.subtopic2A, a.subtopic2A-header {
+		div {
+			background-color: $zach-gray-light;
+			margin-left: 9%;
+			margin-right: 3%;
+			font-size: 0.85em;
+		}
+	}
+	//subtopic2B gets some L margin
+	a.subtopic2B, a.subtopic2B-header {
 		div {
 			background-color: $zach-gray-light;
 			margin-left: 18%;
@@ -202,19 +211,19 @@ $sidebar-width: 320px;
 			font-size: 0.85em;
 		}
 	}
-	//subtopic2 lightens on hover
-	a.subtopic2:hover {
+	//subtopic2A/B lightens on hover
+	a.subtopic2B:hover, a.subtopic2A:hover {
 		div {
 			background-color: $zach-gray-light-active;
 		}
 	}
-	//subtopic2-header green
-	a.subtopic2-header div {
+	//subtopic2A/B-header green
+	a.subtopic2B-header div, a.subtopic2A-header div {
 		background-color: $zach-green;
 		text-align: center;
 	}
-	//subtopic2-header lightens on hover
-	a.subtopic2-header:hover {
+	//subtopic2A/B-header lightens on hover
+	a.subtopic2B-header:hover, a.subtopic2A-header:hover {
 		div {
 			background-color: $zach-green-light;
 		}
@@ -250,17 +259,14 @@ $sidebar-width: 320px;
 			margin: 5px auto;
 			width: 80%;
 		}
-		// subtopic1 70% width
-		a.subtopic1 div {
+		// subtopic1 and subtopic2A-header 70% width
+		a.subtopic1 div, a.subtopic2A-header div {
 			margin: 5px auto;
 			width: 70%;
 		}
-		// subtopic2 60% width
-		a.subtopic2, a.subtopic2-header {
-			div {
-				margin: 5px auto;
-				width: 60%;
-			}
+		// subtopic2A/B and B-header don't display
+		a.subtopic2B, a.subtopic2A, a.subtopic2B-header {
+			display: none;
 		}
 	}
 }
