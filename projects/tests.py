@@ -46,7 +46,7 @@ class ProjectsAboutTemplateContextTestCase(TestCase):
 		"""
 		Get AudioIO readme page.
 		"""
-		self.response = self.client.get('/projects/1/AudioIO/')
+		self.response = self.client.get('/projects/1/SignalHook/')
 		
 	def test_project_about_status_code_correct_template(self):
 		"""
