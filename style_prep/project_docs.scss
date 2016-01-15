@@ -42,6 +42,12 @@ em {
 	display: none;
 }
 
+// api ref heading get special treatment
+h2#api-ref {
+	margin-top: 35px;
+	font-family: $font-family-merriweather;
+}
+
 // One parameter per line for small screens
 @media(max-width: $screen-sm-min) {
 	// Parameters are indented because...

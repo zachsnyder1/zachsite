@@ -17,6 +17,9 @@ href="{% static 'projects/project_docs.css' %}">
       <a class="sidebar-link topic" role="button" href="#header-introduction">
         <div>Introduction</div>
       </a>
+      <a class="sidebar-link topic" role="button" href="#api-ref">
+        <div>The API</div>
+      </a>
       {% for module in curr_project.projmodule_set.all %}
       <a class="sidebar-link topic" role="button" href="#header-{{ module.symbol }}">
         <div><em>module</em> <strong>{{ module.symbol }}</strong></div>
@@ -80,14 +83,24 @@ href="#header-{{ class.symbol }}-{{ method.symbol }}">
   </div> <!-- /.sidebar-wrapper -->
   <div class="container-fluid">
     {% include docs_location %}
+    <div class="row alt">
+      <div class="col-xs-12">
+        <h2 id="api-ref">
+          <span class="">---&gt&gt-&lt&gt-&lt&lt---<br><br></span>
+          &gt&gt- <span class="red"><strong>API Reference</strong></span> -&lt&lt
+          <span class=""><br><br>---&gt&gt&lt&lt---</span>
+          
+        </h2>
+      </div> <!-- /.col-xs-12 -->
+    </div> <!-- /.row alt -->
     <!-- **************************** -->
   	<!--  FOR EACH MODULE IN PROJECT: -->
   	<!-- **************************** -->
     {% for module in curr_project.projmodule_set.all %}
     {% if forloop.counter0|divisibleby:2 %}
-    <div class="row alt">
-    {% else %}
     <div class="row">
+    {% else %}
+    <div class="row alt">
       {% endif %}
       <div class="col-xs-12">
         <h2 id="header-{{ module.symbol }}">

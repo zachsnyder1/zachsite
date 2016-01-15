@@ -65,7 +65,53 @@
     </ul>
     <h3 id="design-overview">Overview of Design</h3>
     <p>
-    	THIS IS SOME INFO.
+    	Here's a diagram of how the class hierarchies are organized:
+    </p>
+    <p>
+      (DIAGRAM PLACEHOLDER)
+    </p>
+    <p>Some things to notice:</p>
+    <ul>
+      <li>
+        <p>
+          Conceptually, the class hierarchies are split into two categories:
+          I/O and Engines.
+        </p>
+      </li>
+      <li>
+        <p>
+          There are two broad categories of I/O--files and streams--for each
+          of which there is an input base class and an output base class.
+          These base classes define common interfaces for the concrete
+          input/output subclasses of each I/O category.
+        </p>
+      </li>
+      <li>
+        <p>
+          There are four concrete Engine classes, one for each possible
+          combination of file-type/stream-type input/output.
+        </p>
+      </li>
+      <li>
+        <p>
+          When an Engine object is initialized it 'composes itself' with an
+          object of each a concrete input class and a concrete output class.
+          For example, a FileToFileEngine object may compose itself with
+          a concrete input object for reading WAV files and a concrete output
+          object for writing AIFF files.
+        </p>
+      </li>
+    </ul>
+    <p>
+      Structuring the class hierarchies in this way couples the Engine class
+      hierarchy to the <em>general</em> categories of I/O, but it decouples
+      it from the <em>specific</em> file formats or stream formats of the I/O.
+      This gives the advantage that implementing support for a new file format
+      or data-stream format only involves adding a concrete input class and a 
+      concrete output class for it.  The drawback is that if someone wanted to
+      add a new file I/O category to the project, it would greatly increase
+      the number of concrete Engine classes that need to be written.  I think
+      that is less likely, however.
     </p>
   </div> <!-- /.col-xs-12 -->
 </div> <!-- /.row -->

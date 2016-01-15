@@ -6060,6 +6060,10 @@ em {
 .param-br {
   display: none; }
 
+h2#api-ref {
+  margin-top: 35px;
+  font-family: "Merriweather", "Montserrat", Helevecita, sans-serif; }
+
 @media (max-width: 768px) {
   .param-format {
     padding-left: 4%; }
