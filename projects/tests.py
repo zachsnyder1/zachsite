@@ -5,7 +5,7 @@ class ProjectsHomeTemplateContextTestCase(TestCase):
 	"""
 	Test methods for projects_home page.
 	"""
-	fixtures = ["tester.json"]
+	fixtures = ["tester2.json"]
 	
 	def setUp(self):
 		"""
@@ -25,7 +25,7 @@ class ProjectsHomeTemplateContextTestCase(TestCase):
 		Test that projects_home page has all projects from fixture.
 		"""
 		expectedProjectTitles = [
-			'AudioIO', 
+			'SignalHook', 
 			'ZachSite'
 		]
 		
@@ -40,7 +40,7 @@ class ProjectsAboutTemplateContextTestCase(TestCase):
 	"""
 	Test methods for projects_about template.
 	"""
-	fixtures = ["tester.json"]
+	fixtures = ["tester2.json"]
 	
 	def setUp(self):
 		"""
@@ -62,7 +62,7 @@ class ProjectsAboutTemplateContextTestCase(TestCase):
 		# CONTEXT ITEM: projectList
 		# expected:
 		expectedProjectTitles = [
-			'AudioIO', 
+			'SignalHook', 
 			'ZachSite'
 		]
 		# actual:
@@ -82,7 +82,7 @@ class ProjectsAboutTemplateContextTestCase(TestCase):
 		
 		# CONTEXT ITEM: curr_project
 		# expected:
-		expectedCurrProjTitle = "AudioIO"
+		expectedCurrProjTitle = "SignalHook"
 		# actual:
 		contextCurrProjTitle = self.response.context['curr_project'].title
 		# assertion:
@@ -90,7 +90,7 @@ class ProjectsAboutTemplateContextTestCase(TestCase):
 		
 		# CONTEXT ITEM: codeExampleList
 		# expected:
-		expectedCodeExampleFirstLine = "from audioIO.plugins import plugin"
+		expectedCodeExampleFirstLine = "# Everything you will need here is located in the engine module.  Don't forget"
 		# actual:
 		contextCodeExamples = self.response.context['codeExampleList'][0].codetext
 		# assertion:
@@ -98,8 +98,9 @@ class ProjectsAboutTemplateContextTestCase(TestCase):
 		
 		# CONTEXT ITEM: readme_location
 		# expected:
-		expectedReadmeLocation = "projects/AudioIO/readme.html"
+		expectedReadmeLocation = "projects/SignalHook/readme.html"
 		# actual:
 		contextReadmeLocation = self.response.context['readme_location']
 		# assertion:
 		self.assertEqual(expectedReadmeLocation, contextReadmeLocation)
+		

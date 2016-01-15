@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Project, CodeExample, ProjModule, ProjClass, \
-	ConstructorParam, ClassConstant, ClassVariable, InstanceVariable, \
+	ConstructorParam, ModuleConstant, ClassVariable, InstanceVariable, \
 	ClassMethod, MethodParam, MethodReturn
 
 # INLINES:
@@ -11,6 +11,11 @@ class CodeExampleInline(admin.TabularInline):
 class ProjModuleInline(admin.TabularInline):
 	model = ProjModule
 	extra = 0
+
+class ModuleConstantInline(admin.TabularInline):
+	model = ModuleConstant
+	fk_name = 'module'
+	extra = 0
 	
 class ProjClassInline(admin.TabularInline):
 	model = ProjClass
@@ -19,11 +24,6 @@ class ProjClassInline(admin.TabularInline):
 
 class ConstructorParamInline(admin.TabularInline):
 	model = ConstructorParam
-	fk_name = 'pclass'
-	extra = 0
-
-class ClassConstantInline(admin.TabularInline):
-	model = ClassConstant
 	fk_name = 'pclass'
 	extra = 0
 
@@ -59,13 +59,13 @@ class ProjectAdmin(admin.ModelAdmin):
 
 class ProjModuleAdmin(admin.ModelAdmin):
 	inlines = [
+		ModuleConstantInline,
 		ProjClassInline
 	]
 
 class ProjClassAdmin(admin.ModelAdmin):
 	inlines = [
 		ConstructorParamInline,
-		ClassConstantInline,
 		ClassVariableInline,
 		InstanceVariableInline,
 		ClassMethodInline
@@ -83,7 +83,7 @@ admin.site.register(CodeExample)
 admin.site.register(ProjModule, ProjModuleAdmin)
 admin.site.register(ProjClass, ProjClassAdmin)
 admin.site.register(ConstructorParam)
-admin.site.register(ClassConstant)
+admin.site.register(ModuleConstant)
 admin.site.register(ClassVariable)
 admin.site.register(InstanceVariable)
 admin.site.register(ClassMethod, ClassMethodAdmin)

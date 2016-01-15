@@ -5,7 +5,7 @@ class ZachsiteTemplateContextTestCase(TestCase):
 	"""
 	Test methods for index page. 
 	"""
-	fixtures = ["tester.json"]
+	fixtures = ["tester2.json"]
 	
 	def setUp(self):
 		"""
@@ -31,7 +31,7 @@ class ZachsiteTemplateContextTestCase(TestCase):
 			'What does he want?'
 		]
 		expectedAnswers = [
-			'Zach is a pretty standup, friendly dude.',
+			'Zach is a pretty standup, friendly person.',
 			'A sleepy little town next to some hills in Colorado.',
 			'Sure.  In fact, he has several skills.',
 			'A job.  Pure and simple.'
@@ -50,7 +50,8 @@ class ZachsiteTemplateContextTestCase(TestCase):
 		Test that index page has all projects from fixture.
 		"""
 		expectedTitles = [
-			'AudioIO', 'ZachSite'
+			'SignalHook', 
+			'ZachSite'
 		]
 		
 		contextTitles = []

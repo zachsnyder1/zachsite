@@ -44,7 +44,12 @@ class ProjModule(SymbolEntity):
 	"""
 	project = models.ForeignKey(Project)
 	path = models.CharField(max_length=300)
-	
+
+class ModuleConstant(SymbolEntity):
+	"""
+	Entity representing a global constant in a module.
+	"""
+	module = models.ForeignKey(ProjModule)
 
 class ProjClass(SymbolEntity):
 	"""
@@ -58,12 +63,6 @@ class ConstructorParam(SymbolEntity):
 	"""
 	pclass = models.ForeignKey(ProjClass)
 	default = models.CharField(max_length=120, blank=True)
-
-class ClassConstant(SymbolEntity):
-	"""
-	Entity representing a class variable.
-	"""
-	pclass = models.ForeignKey(ProjClass)
 
 class ClassVariable(SymbolEntity):
 	"""
