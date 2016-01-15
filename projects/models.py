@@ -8,6 +8,7 @@ class Project(models.Model):
 	title = models.CharField(max_length=30)
 	slug = models.SlugField(max_length=30)
 	active = models.BooleanField(default=True)
+	has_docs = models.BooleanField(default=True)
 	summary = models.TextField()
 	
 	def __str__(self):
