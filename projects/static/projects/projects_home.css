@@ -5830,9 +5830,19 @@ header {
 .navbar {
   margin-bottom: 0px; }
 
+.navbar-brand {
+  padding: 0px; }
+
+.navbar-text {
+  font-family: "Merriweather", "Montserrat", Helevecita, sans-serif;
+  font-size: 16pt;
+  margin: 18px 0px 0px 0px;
+  opacity: 0.9; }
+
 #nav-brand-thumb {
   height: 50px;
-  margin: 5px 10px; }
+  margin: 5px 10px;
+  border-radius: 6px; }
 
 .footer {
   height: 80px;

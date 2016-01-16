@@ -5830,9 +5830,19 @@ header {
 .navbar {
   margin-bottom: 0px; }
 
+.navbar-brand {
+  padding: 0px; }
+
+.navbar-text {
+  font-family: "Merriweather", "Montserrat", Helevecita, sans-serif;
+  font-size: 16pt;
+  margin: 18px 0px 0px 0px;
+  opacity: 0.9; }
+
 #nav-brand-thumb {
   height: 50px;
-  margin: 5px 10px; }
+  margin: 5px 10px;
+  border-radius: 6px; }
 
 .footer {
   height: 80px;
@@ -5877,26 +5887,27 @@ code {
     font-size: 11pt;
     overflow-x: scroll; } }
 #qa-section {
+  position: relative;
   height: 600px; }
 
 #qa-background-div {
   display: block;
-  position: absolute;
+  position: relative;
   left: 0px;
   right: 0px;
-  top: 60px;
   height: 600px;
   width: 100%;
   overflow: hidden;
   background-color: #445566; }
   #qa-background-div img {
+    position: relative;
     height: 790px; }
 
 #qa-div {
   position: absolute;
   left: 0px;
   right: 0px;
-  top: 264px;
+  top: 204px;
   opacity: 0.95;
   max-width: 1290px; }
 
@@ -5923,7 +5934,7 @@ code {
 
 @media (max-width: 768px) {
   #qa-div {
-    top: 274px; }
+    top: 214px; }
 
   #question-text {
     font-size: 14pt; }
