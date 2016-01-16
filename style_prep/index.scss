@@ -3,9 +3,33 @@
 // -------------------------------------------------------------------------
 // ----------------------------  QA Section  -------------------------------
 // -------------------------------------------------------------------------
-#zach-hat, #zach-smile {
-	height: 200px;
-	background-color: $zach-blue-bg-dark;
+
+#qa-section {
+	height: 600px;
+}
+
+#qa-background-div {
+	display: block;
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	top: 60px;
+	height: 600px;
+	width: 100%;
+	overflow: hidden;
+	background-color: $zach-blue;
+	img {
+		height: 790px;
+	}
+}
+
+#qa-div {
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	top: 264px;
+	opacity: 0.95;
+	max-width: 1290px;
 }
 
 .question {
@@ -25,21 +49,23 @@
 #answer {
 	font-family: $font-family-base;
 	background-color: $zach-blue-bg; //#f9f9fc;
-	padding-top: 25px;
-	padding-bottom: 5px;
-	margin: 0px 3%;
+	width: 100%;
+	padding: 25px 0px;
+	margin: 0px;
+	blockquote {
+		margin: 0px 5%;
+	}
 }
 
 @media(max-width: $screen-sm-min) {
+	#qa-div {
+		top: 274px;
+	}
 	#question-text {
 		font-size: 14pt;
 	}
 	#answer-text {
 		font-size: 11pt;
-	}
-	#answer {
-		padding-top: 20px;
-		padding-bottom: 0px;
 	}
 }
 

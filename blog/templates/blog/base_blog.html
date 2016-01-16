@@ -11,10 +11,7 @@
 data-pause="false">
     <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <!-- item contents... -->
-      </div> <!-- item -->
-      <div class="item">
-        <!-- item contents... -->
+        <img src="{% static 'projects/sky.jpg' %}" alt="a snowy sky">
       </div> <!-- item -->
     </div> <!-- /.carousel-inner -->
     
@@ -38,8 +35,11 @@ data-pause="false">
 <section id="blog-about-section">
   <div id="blog-about-div" class="container-fluid">
     <div class="row">
-      <div class="col-xs-12" id="blog-about-div">
-        <img>
+      <div class="col-xs-12">
+        <img src="{% static 'blog/snowface.jpg' %}" alt="My Face"
+id="blog-image">
+      </div> <!-- /.col-xs-12 -->
+      <div class="col-xs-12">
         <h3>About the Blog</h3>
         <p>
           This is a place where I occasionally post things.  Sometimes

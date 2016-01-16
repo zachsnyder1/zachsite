@@ -5830,6 +5830,10 @@ header {
 .navbar {
   margin-bottom: 0px; }
 
+#nav-brand-thumb {
+  height: 50px;
+  margin: 5px 10px; }
+
 .footer {
   height: 80px;
   background-color: #586f85; }
@@ -5874,7 +5878,11 @@ code {
     overflow-x: scroll; } }
 #header-carousel {
   height: 200px;
+  overflow: hidden;
   background-color: #586f85; }
+  #header-carousel .carousel-inner .item img {
+    min-height: 200px;
+    min-width: 700px; }
 
 #header-panel {
   position: absolute;
@@ -5882,7 +5890,7 @@ code {
   left: 0px;
   right: 0px;
   text-align: center;
-  opacity: 0.75; }
+  opacity: 0.85; }
 
 #header-title {
   opacity: 1;

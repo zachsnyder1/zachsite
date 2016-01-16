@@ -5830,6 +5830,10 @@ header {
 .navbar {
   margin-bottom: 0px; }
 
+#nav-brand-thumb {
+  height: 50px;
+  margin: 5px 10px; }
+
 .footer {
   height: 80px;
   background-color: #586f85; }
@@ -5882,6 +5886,13 @@ code {
   max-width: 418px;
   margin: 0 auto; }
 
+#blog-image {
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+  max-width: 400px;
+  border-radius: 60px; }
+
 hr {
   margin: 10px 10%;
   height: 2px;
@@ -5890,7 +5901,11 @@ hr {
 
 #header-carousel {
   height: 200px;
+  overflow: hidden;
   background-color: #586f85; }
+  #header-carousel .carousel-inner .item img {
+    min-height: 200px;
+    min-width: 700px; }
 
 #header-panel {
   position: absolute;
@@ -5898,7 +5913,7 @@ hr {
   left: 0px;
   right: 0px;
   text-align: center;
-  opacity: 0.75; }
+  opacity: 0.85; }
 
 #header-title {
   opacity: 1;

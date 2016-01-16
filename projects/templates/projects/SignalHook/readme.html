@@ -72,7 +72,7 @@
           <a href="{% url 'project_docs' curr_project.id curr_project.slug %}">
             docs
           </a>
-          for an overview of the design patterns and class hierarchies).
+          for an overview of the project design and class hierarchies).
           Currently there is only one implemented Engine class: the
           FileToFileEngine, whose input and output are data files--e.g.
           audio files.  Besides the input file, output file, and plugin
@@ -102,7 +102,7 @@ href="{% url 'project_docs' curr_project.id curr_project.slug %}">docs</a>.
               <strong>sampleNestedList</strong> ==> A nested list of sample 
               values representing one buffer-full of signal data. Each item
               in the nested list is itself a list (hence the nested part) that
-              represents a 'block' or 'frame' of sample data: the value
+              represents a 'block' or 'frame' of signal data: the value
               of each channel at a single point in time. The actual value of 
               each sample can be either an integer or a float, depending on
               how you set the engine.PLUGIN_FMT option.  If no value is set,
@@ -186,7 +186,7 @@ href="{% url 'project_docs' curr_project.id curr_project.slug %}">docs</a>.
           <pre>$ python3 test/runtests.py</pre>
         </div> <!-- /.pre-container -->
         <p>
-          from the project root.  This just creates test data in the
+          from the project root.  This creates test data in the
           test/testData/ directory, discovers and runs all
           <a href="https://docs.python.org/3/library/unittest.html">
             unittest

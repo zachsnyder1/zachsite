@@ -9,53 +9,48 @@ href="{% static 'zachsite/index.css' %}">
 {% endblock %}
 {% block precontent %}
 <section id="qa-section">
-  <!-- Hat image -->
-  <div id="zach-hat">
-    <img>
-  </div> <!-- /#zach-hat -->   
-  <!-- Question-Answer carousel -->
-  <div id="question-carousel" class="carousel slide" data-ride="carousel"
+  <!-- Q and A background image -->
+  <div id="qa-background-div">
+    <img src="{% static 'zachsite/catskills.jpg' %}" 
+alt="image of catskill mountains">
+  </div> <!-- /#qa-background-div -->
+  <!-- Question-Answer device -->
+  <div id="qa-float">
+  </div>
+  <div id="qa-div">
+    <div id="question-carousel" class="carousel slide" data-ride="carousel"
 data-interval="6000" data-pause="false">
-    <!-- wrapper for slides -->
-    <div class="carousel-inner" id="carousel-inner" role="listbox">
-      {% for question in QAs %}
-      {% if forloop.first %}
-      <div class="item active" data-answer="{{ question.answer }}">
-      {% else %}
-      <div class="item" data-answer="{{ question.answer }}">
-      {% endif %}
-        <div class="jumbotron question">
-          <p id="question-text">{{ question.question }}</p>
-        </div> <!-- /.jumbotron -->
-      </div> <!-- /.item -->
-      {% endfor %}
-    </div> <!-- /.carousel-inner -->
-    <!-- controls -->
-    <a class="left carousel-control" href="#question-carousel"
+      <!-- wrapper for slides -->
+      <div class="carousel-inner" id="carousel-inner" role="listbox">
+        {% for question in QAs %}
+        {% if forloop.first %}
+        <div class="item active" data-answer="{{ question.answer }}">
+        {% else %}
+        <div class="item" data-answer="{{ question.answer }}">
+        {% endif %}
+          <div class="jumbotron question">
+            <p id="question-text">{{ question.question }}</p>
+          </div> <!-- /.jumbotron -->
+        </div> <!-- /.item -->
+        {% endfor %}
+      </div> <!-- /.carousel-inner -->
+      <!-- controls -->
+      <a class="left carousel-control" href="#question-carousel"
 role="button" data-slide="prev">
-      <span class="sr-only">Previous</span>
-    </a> <!-- /.left -->
-    <a class="right carousel-control" href="#question-carousel"
+        <span class="sr-only">Previous</span>
+      </a> <!-- /.left -->
+      <a class="right carousel-control" href="#question-carousel"
 role="button" data-slide="next">
-      <span class="sr-only">Next</span>
-    </a> <!-- /.right -->
-  </div> <!-- /.carousel -->
-  <!-- answer div -->
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="jumbotron" id="answer">
-          <blockquote>
-            <p id="answer-text">{{ QAs.0.answer }}</p>
-          </blockquote>
-        </div> <!-- /.jumbotron -->
-      </div> <!-- /.col-xs-12 -->
-    </div> <!-- /.row -->
-  </div> <!-- /.container-fluid -->
-  <!-- Smile image -->
-  <div id="zach-smile">
-    <img>
-  </div> <!-- /#zach-smile --> 
+        <span class="sr-only">Next</span>
+      </a> <!-- /.right -->
+    </div> <!-- /.carousel -->
+    <!-- answer div -->
+    <div class="jumbotron" id="answer">
+      <blockquote>
+        <p id="answer-text">{{ QAs.0.answer }}</p>
+      </blockquote>
+    </div> <!-- /.jumbotron -->
+  </div> <!-- /#qa-div -->
 </section> <!-- /.qa-section -->
 {% endblock %}
 {% block content %}

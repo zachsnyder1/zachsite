@@ -5830,6 +5830,10 @@ header {
 .navbar {
   margin-bottom: 0px; }
 
+#nav-brand-thumb {
+  height: 50px;
+  margin: 5px 10px; }
+
 .footer {
   height: 80px;
   background-color: #586f85; }
@@ -5872,9 +5876,29 @@ code {
   h6 {
     font-size: 11pt;
     overflow-x: scroll; } }
-#zach-hat, #zach-smile {
-  height: 200px;
-  background-color: #586f85; }
+#qa-section {
+  height: 600px; }
+
+#qa-background-div {
+  display: block;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 60px;
+  height: 600px;
+  width: 100%;
+  overflow: hidden;
+  background-color: #445566; }
+  #qa-background-div img {
+    height: 790px; }
+
+#qa-div {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 264px;
+  opacity: 0.95;
+  max-width: 1290px; }
 
 .question {
   font-family: "Merriweather", "Montserrat", Helevecita, sans-serif;
@@ -5891,20 +5915,21 @@ code {
 #answer {
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #fafbfc;
-  padding-top: 25px;
-  padding-bottom: 5px;
-  margin: 0px 3%; }
+  width: 100%;
+  padding: 25px 0px;
+  margin: 0px; }
+  #answer blockquote {
+    margin: 0px 5%; }
 
 @media (max-width: 768px) {
+  #qa-div {
+    top: 274px; }
+
   #question-text {
     font-size: 14pt; }
 
   #answer-text {
-    font-size: 11pt; }
-
-  #answer {
-    padding-top: 20px;
-    padding-bottom: 0px; } }
+    font-size: 11pt; } }
 #blurbs-div {
   padding-top: 60px;
   padding-bottom: 80px;
