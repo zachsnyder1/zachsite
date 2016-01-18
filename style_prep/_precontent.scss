@@ -2,13 +2,20 @@
 //--------------------------- Precontent Formatting --------------------------
 //----------------------------------------------------------------------------
 
-#header-carousel {
+.header-section {
+	position: relative;
 	height: 200px;
+}
+
+.header-background {
+	position: relative;
+	height: 200px;
+	width: 100%;
 	overflow: hidden;
 	background-color: $zach-blue-bg-dark;
-	.carousel-inner .item img {
-		min-height: 200px;
-		min-width: 700px;
+	img {
+		position: relative;
+		width: 1290px;
 	}
 }
 

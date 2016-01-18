@@ -1,4 +1,5 @@
 {% load zachsite_extras %}
+{% load staticfiles %}
 <div class="row">
   <div class="col-xs-12">
     <h2 id="header-introduction">A Short Introduction</h2>
@@ -67,9 +68,10 @@
     <p>
     	Here's a diagram of how the class hierarchies are organized:
     </p>
-    <p>
-      (DIAGRAM PLACEHOLDER)
-    </p>
+    <div class="diagram-container">
+      <img alt="image of class hierarchies" class="diagram"
+src="{% static 'projects/signalhook_design.jpg' %}">
+    </div> <!-- /.image-container -->
     <p>Some things to notice:</p>
     <ul>
       <li>

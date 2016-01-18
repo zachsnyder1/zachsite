@@ -5859,6 +5859,14 @@ code {
   color: black;
   background-color: transparent; }
 
+.diagram-container {
+  width: 100%;
+  overflow: scroll;
+  margin-bottom: 10px; }
+
+.diagram {
+  height: 450px; }
+
 @media (max-width: 768px) {
   #no-js-message p {
     font-size: 8pt; } }
@@ -5886,13 +5894,19 @@ code {
   h6 {
     font-size: 11pt;
     overflow-x: scroll; } }
-#header-carousel {
+.header-section {
+  position: relative;
+  height: 200px; }
+
+.header-background {
+  position: relative;
   height: 200px;
+  width: 100%;
   overflow: hidden;
   background-color: #586f85; }
-  #header-carousel .carousel-inner .item img {
-    min-height: 200px;
-    min-width: 700px; }
+  .header-background img {
+    position: relative;
+    width: 1290px; }
 
 #header-panel {
   position: absolute;
@@ -6062,6 +6076,10 @@ div.alt {
 .proj-about-div {
   padding: 50px 3%;
   background-color: #fafbfc; }
+  .proj-about-div img {
+    width: 100%;
+    border-radius: 15px;
+    margin: 0px; }
 
 .proj-div-title {
   text-align: center; }
@@ -6072,10 +6090,19 @@ div.alt {
 .proj-link-div {
   margin: 20px 0%; }
   .proj-link-div a {
-    height: 100%;
+    position: relative;
+    top: 0px;
     width: 100%; }
 
+.proj-link-div:hover img {
+  opacity: 0.7; }
+
 @media (min-width: 768px) {
+  .proj-link-div {
+    margin: 0px; }
+    .proj-link-div a {
+      top: -10px; }
+
   .proj-about-div-title-row {
     margin-bottom: 40px; } }
 

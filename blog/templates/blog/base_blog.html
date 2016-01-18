@@ -6,32 +6,28 @@
 {% endblock %}
 {% block title %}<title>Blog | Zach Snyder</title>{% endblock %}
 {% block precontent %}
-<section id="blog-header-carousel-section">
-  <div id="header-carousel" class="carousel slide" data-ride="carousel"
-data-pause="false">
-    <div class="carousel-inner" role="listbox">
-      <div class="item active">
-        <img src="{% static 'projects/sky.jpg' %}" alt="a snowy sky">
-      </div> <!-- item -->
-    </div> <!-- /.carousel-inner -->
-    
-    <div id="header-panel" class="container-fluid">
-      <div class="row">
-        <div class="col-xs-2 col-sm-3 col-md-4">
-        </div> <!-- /.col-xs-2 -->
-        <div class="panel panel-default col-xs-8 col-sm-6 col-md-4">
-          <div class="panel-body">
-            <h2 id="header-title">
-              Blog
-            </h2>
-          <div> <!-- /.panel-body -->
-        </div> <!-- /.panel -->
-        <div class="col-xs-2 col-sm-3 col-md-4">
-        </div> <!-- /.col-xs-2 -->
-      </div> <!-- ./row -->
-    </div> <!-- /.container-fluid -->
-  </div> <!-- /.carousel -->
-</section> <!-- /#blog-header-carousel-section -->
+<section class="header-section">
+  <!-- Header Background Image -->
+  <div class="header-background">
+    <img src="{% static 'projects/sky.jpg' %}" alt="a snowy sky">
+  </div> <!-- /.header-background -->
+  <!-- Header Panel -->
+  <div id="header-panel" class="container-fluid">
+    <div class="row">
+      <div class="col-xs-2 col-sm-3 col-md-4">
+      </div> <!-- /.col-xs-2 -->
+      <div class="panel panel-default col-xs-8 col-sm-6 col-md-4">
+        <div class="panel-body">
+          <h2 id="header-title">
+            Blog
+          </h2>
+        <div> <!-- /.panel-body -->
+      </div> <!-- /.panel -->
+      <div class="col-xs-2 col-sm-3 col-md-4">
+      </div> <!-- /.col-xs-2 -->
+    </div> <!-- ./row -->
+  </div> <!-- /.container-fluid -->
+</section> <!-- /.header-section -->
 <section id="blog-about-section">
   <div id="blog-about-div" class="container-fluid">
     <div class="row">

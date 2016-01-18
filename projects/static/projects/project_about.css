@@ -5859,6 +5859,14 @@ code {
   color: black;
   background-color: transparent; }
 
+.diagram-container {
+  width: 100%;
+  overflow: scroll;
+  margin-bottom: 10px; }
+
+.diagram {
+  height: 450px; }
+
 @media (max-width: 768px) {
   #no-js-message p {
     font-size: 8pt; } }
@@ -5886,13 +5894,19 @@ code {
   h6 {
     font-size: 11pt;
     overflow-x: scroll; } }
-#header-carousel {
+.header-section {
+  position: relative;
+  height: 200px; }
+
+.header-background {
+  position: relative;
   height: 200px;
+  width: 100%;
   overflow: hidden;
   background-color: #586f85; }
-  #header-carousel .carousel-inner .item img {
-    min-height: 200px;
-    min-width: 700px; }
+  .header-background img {
+    position: relative;
+    width: 1290px; }
 
 #header-panel {
   position: absolute;

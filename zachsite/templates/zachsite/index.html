@@ -15,8 +15,6 @@ href="{% static 'zachsite/index.css' %}">
 alt="image of catskill mountains">
   </div> <!-- /#qa-background-div -->
   <!-- Question-Answer device -->
-  <div id="qa-float">
-  </div>
   <div id="qa-div">
     <div id="question-carousel" class="carousel slide" data-ride="carousel"
 data-interval="6000" data-pause="false">
@@ -108,7 +106,7 @@ href="http://gsabulletin.gsapubs.org/content/127/9-10/1174.abstract">
         <div class="panel project-panel panel-default">
           <a href="{% url 'project_about' project.id project.slug %}">
             <div class="panel-body">
-              <img>
+              <img alt="project logo" src="{% static 'projects/tester.jpg' %}">
             </div> <!-- /.panel-body -->
             <div class="panel-footer">
               <h3 class="project-title">{{ project.title }}</h3>

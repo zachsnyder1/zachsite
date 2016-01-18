@@ -5859,6 +5859,14 @@ code {
   color: black;
   background-color: transparent; }
 
+.diagram-container {
+  width: 100%;
+  overflow: scroll;
+  margin-bottom: 10px; }
+
+.diagram {
+  height: 450px; }
+
 @media (max-width: 768px) {
   #no-js-message p {
     font-size: 8pt; } }
@@ -5977,6 +5985,8 @@ code {
 
 .project-panel:hover {
   background-color: white; }
+  .project-panel:hover .panel-body img {
+    opacity: 0.7; }
   .project-panel:hover .panel-footer {
     background-color: white; }
     .project-panel:hover .panel-footer .project-title {
@@ -5984,6 +5994,9 @@ code {
 
 .project > .panel {
   margin: 0px 5% 20px 5%; }
+  .project > .panel .panel-body img {
+    width: 100%;
+    border-radius: 10px; }
 
 @media (min-width: 768px) {
   .project-left > .panel {

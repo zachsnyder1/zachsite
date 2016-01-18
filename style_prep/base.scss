@@ -70,6 +70,17 @@ code {
 	background-color: transparent;
 }
 
+// diagrams:
+.diagram-container {
+	width: 100%;
+	overflow: scroll;
+	margin-bottom: 10px;
+}
+
+.diagram {
+	height: 450px;
+}
+
 // no-js-message smaller font at xs screen sizes
 @media(max-width: $screen-sm-min) {
 	#no-js-message p {
