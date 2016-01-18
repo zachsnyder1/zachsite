@@ -106,7 +106,8 @@ href="http://gsabulletin.gsapubs.org/content/127/9-10/1174.abstract">
         <div class="panel project-panel panel-default">
           <a href="{% url 'project_about' project.id project.slug %}">
             <div class="panel-body">
-              <img alt="project logo" src="{% static 'projects/tester.jpg' %}">
+              <img alt="project logo"
+src="{% static 'projects/'|add:project.logo %}">
             </div> <!-- /.panel-body -->
             <div class="panel-footer">
               <h3 class="project-title">{{ project.title }}</h3>

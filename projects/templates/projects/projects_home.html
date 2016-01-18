@@ -23,7 +23,8 @@ href="{% static 'projects/projects_home.css' %}">
     <div class="row">
       <div class="proj-link-div col-xs-12 col-sm-5">
         <a href="{% url 'project_about' project.id project.slug %}">
-          <img alt="project logo" src="{% static 'projects/tester.jpg' %}">
+          <img alt="project logo"
+src="{% static 'projects/'|add:project.logo %}">
         </a>
       </div> <!-- /.col-xs-12 -->
       <div class="col-xs-12 col-sm-7">

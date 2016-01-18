@@ -68,8 +68,18 @@ aria-expanded="false">Projects <span class="caret"></span></a>
                   </ul>
                 </li>
                 <li><a href="{% url 'blog_entries' %}">Blog</a></li>
-                <li><a href="https://www.linkedin.com/in/zachsnyder3">LIn</a></li>
-                <li><a href="https://github.com/zachsnyder1">GH</a></li>
+                <li class="icon-link">
+                  <a href="https://www.linkedin.com/in/zachsnyder3">
+                    <img alt="LinkedIn" id="nav-linkedin-logo"
+src="{% static 'zachsite/linkedin.jpg' %}">
+                  </a>
+                </li>
+                <li class="icon-link">
+                  <a href="https://github.com/zachsnyder1">
+                    <img alt="GitHub" id="nav-github-logo"
+src="{% static 'zachsite/github.jpg' %}">
+                  </a>
+                </li>
               </ul>
             </div> <!-- /.navbar-collapse -->
           </div> <!-- /.row -->
