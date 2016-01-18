@@ -121,18 +121,7 @@
 	color: $panel-default-text;
 }
 
-// Style for :hover state of project panels:
-.project-panel:hover {
-	.panel-body img {
-		opacity: 1.0;
-	}
-	.panel-footer {
-		.project-title {
-			color: $zach-red-light;
-		}
-	}
-}
-
+// project panel styling
 .project-panel {
 	margin: 0px 5% 20px 5%;
 	box-shadow: -0px 2px 6px gray;
@@ -140,6 +129,18 @@
 		opacity: 0.85;
 		width: 100%;
 		border-radius: 10px;
+	}
+}
+
+// Style for :hover state of project panels:
+.project-panel:hover, .project-panel:focus {
+	.panel-body img {
+		opacity: 1.0;
+	}
+	.panel-footer {
+		.project-title {
+			color: $zach-red-light;
+		}
 	}
 }
 

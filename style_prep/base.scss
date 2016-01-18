@@ -86,10 +86,12 @@ li.icon-link a {
 // when hover/focus on soc-media logo, make opaque
 li.icon-link:hover a, li.icon-link:focus a {
 	#nav-github-logo {
-		opacity: 1.0
+		opacity: 1.0;
+		box-shadow: -0px 2px 6px black;
 	}
 	#nav-linkedin-logo{
-		opacity: 1.0
+		opacity: 1.0;
+		box-shadow: -0px 2px 6px black;
 	}
 }
 
@@ -102,6 +104,15 @@ li.icon-link:hover a, li.icon-link:focus a {
 .footer {
 	height: 80px;
 	background-color: $zach-blue-bg-dark;
+}
+
+#foot-text {
+	font-size: 6pt;
+	margin: 0 auto;
+	text-align: center;
+	padding-top: 35px;
+	color: $zach-blue-nav;
+	font-family: $font-family-merriweather;
 }
 
 // <<<----- MISC. ----->>>

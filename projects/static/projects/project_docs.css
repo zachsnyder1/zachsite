@@ -5867,9 +5867,11 @@ li.icon-link a {
   padding: 0px; }
 
 li.icon-link:hover a #nav-github-logo, li.icon-link:focus a #nav-github-logo {
-  opacity: 1; }
+  opacity: 1.0;
+  box-shadow: -0px 2px 6px black; }
 li.icon-link:hover a #nav-linkedin-logo, li.icon-link:focus a #nav-linkedin-logo {
-  opacity: 1; }
+  opacity: 1.0;
+  box-shadow: -0px 2px 6px black; }
 
 .navbar-default .navbar-nav > li.icon-link > a:hover, .navbar-default .navbar-nav > li.icon-link > a:focus {
   background-color: #f1f3f5; }
@@ -5877,6 +5879,14 @@ li.icon-link:hover a #nav-linkedin-logo, li.icon-link:focus a #nav-linkedin-logo
 .footer {
   height: 80px;
   background-color: #586f85; }
+
+#foot-text {
+  font-size: 6pt;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 35px;
+  color: #f1f3f5;
+  font-family: "Merriweather", "Montserrat", Helevecita, sans-serif; }
 
 code {
   color: black;
