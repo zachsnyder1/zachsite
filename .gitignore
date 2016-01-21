@@ -3,3 +3,4 @@
 **__pycache__/
 **/*.map
 node_modules/
+**/settings.py
