@@ -15,7 +15,8 @@ module.exports = function(grunt) {
 		sass: {
 			zachsite: {
 				files: {
-					'./zachsite/static/zachsite/index.css': './style_prep/index.scss'
+					'./zachsite/static/zachsite/index.css': './style_prep/index.scss',
+					'./zachsite/static/zachsite/404.css': './style_prep/404.scss'
 				}
 			},
 			projects: {

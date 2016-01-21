@@ -1,0 +1,21 @@
+@import 'base';
+
+#message-section {
+	background-color: $zach-blue;
+	margin: 0px;
+	padding: 70px 15px 50px 15px;
+}
+
+#message-image {
+	width: 100%;
+	margin: 0px;
+	border-radius: 15px;
+	box-shadow: -0px 2px 6px gray;
+}
+
+#message-text {
+	color: $zach-blue-bg;
+	text-align: center;
+	font-size: 30pt;
+	margin: 50px 0px;
+}
