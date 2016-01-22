@@ -35,7 +35,7 @@
     <div class="row alt">
       <div class="col-xs-12 col-md-6">
         <h2 id="header-server-side">The Server Side</h2>
-        <h4>Built With:</h4>
+        <h4>The Stack:</h4>
         <ul>
           <li>
             <p>
@@ -49,15 +49,32 @@
               database
             </p>
           </li>
+          <li>
+            <p>
+              <a href="http://httpd.apache.org">Apache Httpd</a>
+              web server
+            </p>
+          </li>
+          <li>
+            <p>
+              <a href="http://www.ubuntu.com">Ubuntu</a> Linux
+            </p>
+          </li>
+          <li>
+            <p>
+              <a href="https://cloud.google.com/compute/">
+                Google Cloud Platform
+              </a>
+              IAAS
+            </p>
+          </li>
         </ul>
         <p>
           Django is really the key framework of the project, and learning
           how to use it effectively and properly has been my main focus
-          through the whole development process. Also, I think databases 
-          are neat, so I have tried to make the site as database driven as 
-          possible.  For example, the documentation pages for my non-web 
-          project(s) 
-          (e.g. <a
+          through the whole development process. Also, I have tried to make
+          the site as database driven as possible.  For example, the
+          documentation pages for my non-web project(s) (e.g. <a
 href="{% url 'project_docs' '1' 'SignalHook' %}">signalhook</a>)
           are composed almost entirely dynamically from the database so
           that I can easily edit a class description or method signature
@@ -100,8 +117,10 @@ href="https://docs.djangoproject.com/en/1.9/topics/testing/tools/">
           CSS and Javascript.  I've used Bootstrap as the real workhorse,
           but I've tried to customize the look and feel in ways that I
           think create value.  I don't know, you tell me....  UI level
-          testing so far has been manual, with thorough testing on latest 
-          OSX and iOS Safari, and smoke testing on OSX FireFox.
+          testing so far has been manual, with thorough testing on OSX 
+          Safari version 9.0.3, latest iOS Safari, and smoke testing on
+          OSX FireFox version 43.0.4, and Chrome version 48.0.2564.82
+          (64-bit).
         </p>
       </div> <!-- /.col-xs-12 -->
     </div> <!-- /.row -->
