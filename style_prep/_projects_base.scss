@@ -66,10 +66,13 @@ div.alt {
 // be justified if necessary
 .pre-container {
 	overflow-x: scroll;
+	background-color: $zach-blue-bg-light;
+	margin-bottom: 15px;
 	pre {
 		float: left;
 		background-color: $zach-blue-bg-light;
 		border-width: 0px;
+		margin: 0px;
 		
 		// Box display allows center justifying
 		display: box;
@@ -86,8 +89,11 @@ div.alt {
 		}
 		div.alt {
 			background-color: $zach-yellow;
-			pre {
+			.pre-container {
 				background-color: $zach-yellow-light;
+				pre {
+					background-color: $zach-yellow-light;
+				}
 			}
 		}
 		h2 {

@@ -1,3 +1,4 @@
+// index.js
 var TestScript = (function() {
 	// Not run during QUnit test
 	function main() {

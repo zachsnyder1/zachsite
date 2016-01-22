@@ -58,3 +58,5 @@ var TestScript = (function() {
 		
 	}
 })();
+// blog_base.js
+// blog_detail.js

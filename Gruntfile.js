@@ -33,6 +33,26 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+		concat: {
+			zachsite: {
+				files: {
+					'./zachsite/static/zachsite/index_concat.js': ['./zachsite/static/zachsite/base.js', './zachsite/static/zachsite/index.js'],
+				},
+			},
+			projects: {
+				files: {
+					'./projects/static/projects/projects_home_concat.js': ['./zachsite/static/zachsite/base.js', './projects/static/projects/projects_base.js', './projects/static/projects/projects_home.js'],
+					'./projects/static/projects/project_about_concat.js': ['./zachsite/static/zachsite/base.js', './projects/static/projects/projects_base.js', './projects/static/projects/project_about.js'],
+					'./projects/static/projects/project_docs_concat.js': ['./zachsite/static/zachsite/base.js', './projects/static/projects/projects_base.js', './projects/static/projects/project_docs.js'],
+				},
+			},
+			blog: {
+				files: {
+					'./blog/static/blog/blog_entries_concat.js': ['./zachsite/static/zachsite/base.js', './blog/static/blog/blog_base.js', './blog/static/blog/blog_entries.js'],
+					'./blog/static/blog/blog_detail_concat.js': ['./zachsite/static/zachsite/base.js', './blog/static/blog/blog_base.js', './blog/static/blog/blog_detail.js'],
+				},
+			}
+		},
 		clean: {
 			sass_map: ["./{zachsite,projects,blog}/static/**/*.map"],
 			pycache: ["./**/__pycache__/**"]
@@ -46,7 +66,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-qunit');
 	// register tasks
-	grunt.registerTask('default', ['jshint', 'sass', 'clean:sass_map', 'qunit']);
+	grunt.registerTask('default', ['jshint', 'sass', 'concat','clean:sass_map', 'qunit']);
 };

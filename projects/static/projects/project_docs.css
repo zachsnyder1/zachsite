@@ -4411,28 +4411,22 @@ code {
     font-size: 8pt; } }
 @media (max-width: 768px) {
   h1 {
-    font-size: 20pt;
-    overflow-x: scroll; }
+    font-size: 20pt; }
 
   h2 {
-    font-size: 17pt;
-    overflow-x: scroll; }
+    font-size: 17pt; }
 
   h3 {
-    font-size: 15pt;
-    overflow-x: scroll; }
+    font-size: 15pt; }
 
   h4 {
-    font-size: 13pt;
-    overflow-x: scroll; }
+    font-size: 13pt; }
 
   h5 {
-    font-size: 12pt;
-    overflow-x: scroll; }
+    font-size: 12pt; }
 
   h6 {
-    font-size: 11pt;
-    overflow-x: scroll; } }
+    font-size: 11pt; } }
 .header-section {
   position: relative;
   height: 200px; }
@@ -4495,11 +4489,14 @@ div.alt {
   color: #9999ff; }
 
 .pre-container {
-  overflow-x: scroll; }
+  overflow-x: scroll;
+  background-color: white;
+  margin-bottom: 15px; }
   .pre-container pre {
     float: left;
     background-color: white;
     border-width: 0px;
+    margin: 0px;
     display: box;
     display: -moz-box;
     display: -webkit-box; }
@@ -4508,8 +4505,10 @@ div.alt {
   background-color: #fafbfc; }
 #readme-section div.container-fluid div.alt, #docs-section div.container-fluid div.alt {
   background-color: #f3f3e7; }
-  #readme-section div.container-fluid div.alt pre, #docs-section div.container-fluid div.alt pre {
+  #readme-section div.container-fluid div.alt .pre-container, #docs-section div.container-fluid div.alt .pre-container {
     background-color: #fcfcf8; }
+    #readme-section div.container-fluid div.alt .pre-container pre, #docs-section div.container-fluid div.alt .pre-container pre {
+      background-color: #fcfcf8; }
 #readme-section div.container-fluid h2, #docs-section div.container-fluid h2 {
   text-align: center;
   padding: 20px 0%; }
