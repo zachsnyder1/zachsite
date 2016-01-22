@@ -53,6 +53,35 @@ module.exports = function(grunt) {
 				},
 			}
 		},
+		cssmin: {
+			zachsite: {
+				files: [{
+      				expand: true,
+      				cwd: './zachsite/static/zachsite/',
+      				src: ['*.css', '!*.min.css'],
+      				dest: './zachsite/static/zachsite/',
+      				ext: '.min.css'
+    			}]
+			},
+			projects: {
+				files: [{
+      				expand: true,
+      				cwd: './projects/static/projects/',
+      				src: ['*.css', '!*.min.css'],
+      				dest: './projects/static/projects/',
+      				ext: '.min.css'
+    			}]
+			},
+			blog: {
+				files: [{
+      				expand: true,
+      				cwd: './blog/static/blog/',
+      				src: ['*.css', '!*.min.css'],
+      				dest: './blog/static/blog/',
+      				ext: '.min.css'
+    			}]
+			}
+		},
 		clean: {
 			sass_map: ["./{zachsite,projects,blog}/static/**/*.map"],
 			pycache: ["./**/__pycache__/**"]
@@ -67,7 +96,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-qunit');
 	// register tasks
-	grunt.registerTask('default', ['jshint', 'sass', 'concat','clean:sass_map', 'qunit']);
+	grunt.registerTask('default', ['jshint', 'sass', 'concat', 'cssmin', 'clean:sass_map', 'qunit']);
 };
