@@ -25,4 +25,4 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 ]
 
-handler404 = error404
+handler404 = 'zachsite.views.error404'
