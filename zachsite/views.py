@@ -16,13 +16,3 @@ def index(request):
 		'projectLen': str(len(projectList))
 	}
 	return render(request, 'zachsite/index.html', context)
-
-def error404(request):
-	"""
-	Serve custom 404.html template.
-	"""
-	projectList = Project.objects.all().filter(active=True).order_by("title")
-	context = {
-		'projectList': projectList,
-	}
-	return render(request, 'zachsite/404.html', context)
