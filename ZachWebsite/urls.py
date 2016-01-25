@@ -22,3 +22,5 @@ urlpatterns = [
 	url(r'^projects/', include('projects.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ]
+
+handler404 = 'zachsite.views.error404'
