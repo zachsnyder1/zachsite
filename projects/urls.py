@@ -1,5 +1,6 @@
 from django.conf.urls import url
 from . import views
+from django.conf.urls.defaults import handler404
 
 urlpatterns = [
 	url(r'^$', views.projects_home, name='projects_home'),
@@ -10,3 +11,5 @@ urlpatterns = [
 		views.project_docs,
 		name='project_docs')
 ]
+
+handler404 = 'zachsite.views.error404'

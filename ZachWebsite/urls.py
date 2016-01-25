@@ -16,7 +16,6 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf.urls.defaults import handler404
-from zachsite.views import error404
 
 urlpatterns = [
 	url(r'^', include('zachsite.urls')),
