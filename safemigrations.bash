@@ -25,9 +25,9 @@ shift $((OPTIND-1))
 timestamp="$(date +"%Y-%m-%d_%H-%M-%S")"
 
 # Make the fixture
-echo "Making fixture:  ./recovery_fixtures/${timestamp}_${outfile}.json"
+echo "Making fixture:  ../recovery_fixtures/${timestamp}_${outfile}.json"
 python3 manage.py dumpdata --output \
-	./recovery_fixtures/${timestamp}_${outfile}.json \
+	../recovery_fixtures/${timestamp}_${outfile}.json \
 	--natural-foreign --natural-primary -e contenttypes -e auth.Permission
 	
 # Conditionally run makemigrations
