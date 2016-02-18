@@ -25,6 +25,12 @@ class CreateOrEdit(View):
 	"""
 	def get(self, request):
 		"""
-		Return form...
+		Get the form...
+		"""
+		pass
+	
+	def put(self, request):
+		"""
+		Put a new form...
 		"""
 		pass
