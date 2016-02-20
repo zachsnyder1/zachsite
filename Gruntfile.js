@@ -31,6 +31,14 @@ module.exports = function(grunt) {
 					'./blog/static/blog/blog_entries.css': './style_prep/blog_entries.scss',
 					'./blog/static/blog/blog_detail.css': './style_prep/blog_detail.scss'
 				}
+			},
+			geopost: {
+				files: {
+					'./geopost/static/geopost/create.css': './style_prep/geopost_create.scss',
+					'./geopost/static/geopost/edit.css': './style_prep/geopost_edit.scss',
+					'./geopost/static/geopost/home_anonymous.css': './style_prep/geopost_home_anonymous.scss',
+					'./geopost/static/geopost/home_authenticated.css': './style_prep/geopost_home_authenticated.scss'
+				}
 			}
 		},
 		concat: {
@@ -51,6 +59,14 @@ module.exports = function(grunt) {
 					'./blog/static/blog/blog_entries_concat.js': ['./zachsite/static/zachsite/base.js', './blog/static/blog/blog_base.js', './blog/static/blog/blog_entries.js'],
 					'./blog/static/blog/blog_detail_concat.js': ['./zachsite/static/zachsite/base.js', './blog/static/blog/blog_base.js', './blog/static/blog/blog_detail.js'],
 				},
+			},
+			geopost: {
+				files: {
+					'./geopost/static/geopost/home_anonymous_concat.js': ['./zachsite/static/zachsite/base.js', './projects/static/projects/projects_base.js', './geopost/static/geopost/home_anonymous.js'],
+					'./geopost/static/geopost/home_authenticated_concat.js': ['./zachsite/static/zachsite/base.js', './projects/static/projects/projects_base.js', './geopost/static/geopost/home_authenticated.js'],
+					'./geopost/static/geopost/create_concat.js': ['./zachsite/static/zachsite/base.js', './projects/static/projects/projects_base.js', './geopost/static/geopost/create.js'],
+					'./geopost/static/geopost/edit_concat.js': ['./zachsite/static/zachsite/base.js', './projects/static/projects/projects_base.js', './geopost/static/geopost/edit.js']
+				}
 			}
 		},
 		cssmin: {

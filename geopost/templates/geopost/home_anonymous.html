@@ -1,1 +1,8 @@
-<h1>HOME AS ANONYMOUS USER</h1>
+{% extends 'projects/base_projects.html' %}
+{% load staticfiles %}
+{% block localhead %}
+<link rel="stylesheet" type="text/css"
+href="{% static 'geopost/home_anonymous.css' %}">
+<script type="text/javascript" src="{% static 'geopost/home_anonymous_concat.js' %}"></script>
+{% endblock %}
+{% block content %}<h1>HOME AS ANONYMOUS USER</h1>{% endblock %}

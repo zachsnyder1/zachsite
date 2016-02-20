@@ -6,7 +6,7 @@ class Project(models.Model):
 	My Projects.
 	"""
 	title = models.CharField(max_length=30)
-	slug = models.SlugField(max_length=30)
+	slug = models.SlugField(max_length=30, unique=True)
 	active = models.BooleanField(default=True)
 	has_docs = models.BooleanField(default=True)
 	logo = models.CharField(max_length=30)

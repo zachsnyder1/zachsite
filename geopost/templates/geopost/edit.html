@@ -1,0 +1,8 @@
+{% extends 'projects/base_projects.html' %}
+{% load staticfiles %}
+{% block localhead %}
+<link rel="stylesheet" type="text/css"
+href="{% static 'geopost/edit.css' %}">
+<script type="text/javascript" src="{% static 'geopost/edit_concat.js' %}"></script>
+{% endblock %}
+{% block content %}<h1>EDIT PAGE</h1>{% endblock %}

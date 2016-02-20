@@ -1,0 +1,8 @@
+{% extends 'projects/base_projects.html' %}
+{% load staticfiles %}
+{% block localhead %}
+<link rel="stylesheet" type="text/css"
+href="{% static 'geopost/create.css' %}">
+<script type="text/javascript" src="{% static 'geopost/create_concat.js' %}"></script>
+{% endblock %}
+{% block content %}<h1>CREATE PAGE</h1>{% endblock %}
