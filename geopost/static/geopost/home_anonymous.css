@@ -4611,5 +4611,8 @@ div.alt {
     width: 70%; }
   .sidebar a.subtopic2B, .sidebar a.subtopic2A, .sidebar a.subtopic2B-header {
     display: none; } }
+#map {
+  width: 100%;
+  height: 500px; }
 
 /*# sourceMappingURL=home_anonymous.css.map */
