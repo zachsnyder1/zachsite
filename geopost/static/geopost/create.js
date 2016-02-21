@@ -55,7 +55,7 @@ $(document).ready(function () {
 	var drawbtn = $('#drawbtn');
 	var drawActive = false;
 	function toggleDraw() {
-		if (drawActive == false) {
+		if (drawActive === false) {
 			OL_OBJ.map.removeInteraction(dragpan);
 			OL_OBJ.map.addInteraction(drawinteraction);
 			drawActive = true;

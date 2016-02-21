@@ -10,7 +10,8 @@ module.exports = function(grunt) {
 				'./{zachsite,projects,blog,geopost}/static/**/*.js',
 				'./{zachsite,projects,blog,geopost}/qunit_tests/*.js',
 				'!./zachsite/static/zachsite/bootstrap.js',
-				'!./geopost/static/geopost/ol.js'
+				'!./geopost/static/geopost/ol.js',
+				'!./geopost/static/geopost/uuid.js'
 			]
 		},
 		sass: {
