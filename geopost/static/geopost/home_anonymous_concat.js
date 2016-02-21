@@ -123,22 +123,51 @@ var TestScript = (function() {
 		
 	}
 })();
+OL_OBJ = {
+	// TILE LAYER
+	tile: new ol.layer.Tile({
+		source: new ol.source.MapQuest({layer: 'sat'})
+	}),
+	// THE VIEW
+	view: new ol.View({
+		center: [0, 0],
+		zoom: 3,
+		maxZoom: 16
+	}),
+	// Scale View to Extent of A Layer
+	rescaleView: function (lyrSrcObj) {
+		lyrSrcObj.on('change', function (e) {
+			if (lyrSrcObj.getState() == 'ready') {
+				extent = lyrSrcObj.getExtent();
+				OL_OBJ.view.fit(extent, OL_OBJ.map.getSize());
+			}
+		});
+	},
+
+	// Reset View to Clear Distortion
+	resetView: function () {
+		setTimeout(function(){OL_OBJ.map.updateSize();}, 200);
+	}
+};
+
+$(document).ready(function () {
+	// THE MAP
+	OL_OBJ.map = new ol.Map({
+		target: 'map',
+		layers: [OL_OBJ.tile],
+		view: OL_OBJ.view,
+		interactions: []
+	});
+});
 $(document).ready(function () {
 	/*
-	/ LAYERS:
+	/  -- LAYERS --
 	*/
-	
-	// Tile Layer:
-	var tile = new ol.layer.Tile({
-		source: new ol.source.MapQuest({layer: 'sat'})
-	});
-	
 	// Entries source
 	var entriessource = new ol.source.Vector({
 		url: 'http://localhost:8080/geoserver/mypoints/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mypoints:real_points&srsname=EPSG:4326&outputFormat=application/json',
 		format: new ol.format.GeoJSON()
 	});
-	
 	// Entries point layer
 	var entries = new ol.layer.Vector({
 		source: entriessource,
@@ -151,65 +180,38 @@ $(document).ready(function () {
 	});
 	
 	/*
-	/ VIEWS:
+	/  -- INTERACTIONS --
 	*/
-	
-	// The View
-	var initview = new ol.View({
-		center: [0, 0],
-		zoom: 3,
-		maxZoom: 16
-	});
-	
-	/*
-	/ INTERACTIONS:
-	*/
-	
-	// Selection Interaction
+	var dragpan = new ol.interaction.DragPan();
 	var select = new ol.interaction.Select({
 		condition: ol.events.condition.click,
 		layers: [entries]
 	});
-	
-	// Dragpan Interaction
-	var dragpan = new ol.interaction.DragPan();
-	
-	/*
-	/ THE MAP:
-	*/
-	
-	// Map Declaration
-	var map = new ol.Map({
-		target: 'map',
-		layers: [tile, entries],
-		view: initview,
-		interactions: [select, dragpan]
-	});
-	
-	/*
-	/ EVENT HANDLERS:
-	*/
-	
-	// View Scales to Extent of Entries
-	entriessource.on('change', function (e) {
-		if (entriessource.getState() == 'ready') {
-			extent = entriessource.getExtent();
-			initview.fit(extent, map.getSize());
-		}
-	});
-	
 	// On Select, Display Info
 	select.on('select', function (evt) {
-		$('#title').text(evt.target.getFeatures().item(0).get('title'));
-		$('#body').text(evt.target.getFeatures().item(0).get('body'));
-		
+		targetEntry = evt.target.getFeatures().item(0);
+		$('#title').text(targetEntry.get('title'));
+		$('#body').text(targetEntry.get('body'));
+		$.ajax({
+			url: 'http://127.0.0.1:8000/projects/geopost/photo/' + targetEntry.get('uuid'),
+			success: function(data, status, xhr) {
+				srcStr = 'data:' + xhr.getResponseHeader('Content-Type') + ';base64,' + data;
+				$('#photo').attr('src', srcStr);
+			},
+			error: function(xhr) {
+				console.log("ERROR");
+			}
+		});
 	});
 	
 	/*
-	/ POST-SCRIPT:
+	/  -- UPDATE MAP WITH NEW ELEMENTS --
 	*/
-	
-	// Reset the View to Clear Distortion
-	setTimeout(function(){map.updateSize();}, 200);
-
+	// Adding elements to map
+	OL_OBJ.map.addInteraction(select);
+	OL_OBJ.map.addInteraction(dragpan);
+	OL_OBJ.map.addLayer(entries);
+	// Readjusting the view
+	OL_OBJ.rescaleView(entriessource);
+	OL_OBJ.resetView();
 });

@@ -3,6 +3,12 @@
 {% block localhead %}
 <link rel="stylesheet" type="text/css"
 href="{% static 'geopost/edit.css' %}">
+<link rel="stylesheet" type="text/css"
+href="{% static 'geopost/ol.css' %}">
+<script type="text/javascript" src="{% static 'geopost/ol.js' %}"></script>
 <script type="text/javascript" src="{% static 'geopost/edit_concat.js' %}"></script>
 {% endblock %}
-{% block content %}<h1>EDIT PAGE</h1>{% endblock %}
+{% block content %}
+<h1>EDIT PAGE</h1>
+<div id="map"></div>
+{% endblock %}

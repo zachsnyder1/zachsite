@@ -3,6 +3,32 @@
 {% block localhead %}
 <link rel="stylesheet" type="text/css"
 href="{% static 'geopost/create.css' %}">
+<link rel="stylesheet" type="text/css"
+href="{% static 'geopost/ol.css' %}">
+<script type="text/javascript" src="{% static 'geopost/ol.js' %}"></script>
+<script type="text/javascript" src="{% static 'geopost/uuid.js' %}"></script>
 <script type="text/javascript" src="{% static 'geopost/create_concat.js' %}"></script>
 {% endblock %}
-{% block content %}<h1>CREATE PAGE</h1>{% endblock %}
+{% block content %}
+<h1>CREATE PAGE</h1>
+<div id="map"></div>
+<button id="drawbtn">Draw!</button>
+<form id="the-form" method="post" action="{% url 'geopost_create' %}"
+enctype="multipart/form-data">
+      {% csrf_token %}
+      <input id="wfsxml" type="hidden" name="wfsxml">
+      <input id="uuid" type="hidden" name="uuid">
+      {{ form.title.errors }}
+      <label id="title-label" for="title"">Title: </label>
+      <input id="title" type="text" name="title" 
+value="{{ form.title.value|default_if_none:'' }}"><br>
+      {{ form.body.errors }}
+      <label id="body-label" for="body">Body: </label>
+      <textarea id="body" type="textbox" name="body">
+{{ form.body.value|default_if_none:'' }}</textarea><br>
+      <label id="photo-label" for="photo">Your Photo: </label>
+      <input id="photo" type="file" name="photo"><br>
+      <input type="submit" id="submit-btn">
+    </form>
+    <button id="dummy-submit">Submit!</button>
+{% endblock %}

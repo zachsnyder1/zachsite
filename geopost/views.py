@@ -74,4 +74,15 @@ class EditPost(GeoPostBase):
 		"""
 		Put a new form...
 		"""
-		pass		
+		pass
+
+def photo(request, entry_uuid):
+	"""
+	The GeoPost view method for retrieving photos
+	"""	
+	if request.method == "GET":
+		resp = HttpResponse()
+		metadata, photo = download_from_bucket(entry_uuid, 'zachtestbucket')
+		resp.write(base64.b64encode(photo))
+		resp['Content-Type'] = metadata['contentType']
+		return resp
