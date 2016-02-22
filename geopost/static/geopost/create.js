@@ -4,7 +4,7 @@ $(document).ready(function () {
 	*/
 	// Entries source
 	var entriessource = new ol.source.Vector({
-		url: 'http://localhost:8080/geoserver/mypoints/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mypoints:real_points&srsname=EPSG:4326&outputFormat=application/json',
+		url: 'http://localhost:8080/geoserver/mypoints/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mypoints:test_points&srsname=EPSG:4326&outputFormat=application/json',
 		format: new ol.format.GeoJSON()
 	});
 	// Entries point layer
@@ -73,7 +73,7 @@ $(document).ready(function () {
 	// WFS transaction format object
 	var wfst = new ol.format.WFS({
 		featureNS: 'mypoints',
-		featureType: 'real_points'
+		featureType: 'test_points'
 	});
 	var newentry; // Holds new entry point
 	// when done modifying, update newpoint to new coordinates
@@ -92,15 +92,13 @@ $(document).ready(function () {
 		dummySubmitBtn.on('click', function(evt) {
 			select.getFeatures().clear();
 			entryUUID = uuid.v4();
-			newpoint.set('the_geom', newpoint.getGeometry());
-			newpoint.set('geometry', null);
 			newpoint.set('uuid', entryUUID);
 			newpoint.set('title', $('#title').val());
 			newpoint.set('body', $('#body').val());
 			var node = wfst.writeTransaction([newpoint], null, null, {
 				gmlOptions: {srsName: "EPSG:3857"},
 				featureNS: "mypoints",
-				featureType: "real_points"
+				featureType: "test_points"
 			});
 			$('#wfsxml').attr('value', new XMLSerializer().serializeToString(node));
 			$('#uuid').attr('value', entryUUID);
@@ -117,6 +115,6 @@ $(document).ready(function () {
 	OL_OBJ.map.addLayer(entries);
 	OL_OBJ.map.addLayer(drawentry);
 	// Readjusting the view
-	OL_OBJ.rescaleView(entriessource);
+	//OL_OBJ.rescaleView(entriessource);
 	OL_OBJ.resetView();
 });

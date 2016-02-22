@@ -4,10 +4,9 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import View
 from .forms import GeoPostForm
-from .models import GeoPost
 from projects.models import Project
-from .view_helper import upload_to_bucket, rollback_upload, post_geometry, \
-	download_from_bucket
+from .view_helper import upload_to_bucket, rollback_upload, \
+	post_to_geoserver, get_from_geoserver, download_from_bucket
 
 class GeoPostBase(View):
 	"""
@@ -57,18 +56,18 @@ class CreatePost(GeoPostBase):
 		"""
 		Process newly submitted GeoPost entry...
 		"""
-		uuid = request.POST['uuid']
-		title = request.POST['title']
-		body = request.POST['body']
-		photo = request.FILES['photo'] # FOR STORAGE
-		wfsxml = request.POST['wfsxml'] # FOR GEOSERVER
+		uuid = request.POST.get('uuid', False)
+		title = request.POST.get('title', False)
+		body = request.POST.get('body', False)
+		photo = request.FILES.get('photo', False) # FOR STORAGE
+		wfsxml = request.POST.get('wfsxml', False) # FOR GEOSERVER
 		data = {
 			'uuid': uuid,
 			'title': title,
 			'body': body,
 			'wfsxml': wfsxml
 		}
-		form = GeoPostForm(data)
+		form = GeoPostForm(data, request.FILES)
 		# Validate form --> upload photo to bucket --> post XML to geoserver
 		# NO VALIDATION ERROR
 		if form.is_valid():
@@ -80,7 +79,7 @@ class CreatePost(GeoPostBase):
 			photo.close()
 			# NO UPLOAD ERROR
 			if not error:
-				error = post_geometry(wfsxml, "http://127.0.0.1:8080/geoserver/wfs")
+				error = post_to_geoserver(wfsxml, "http://127.0.0.1:8080/geoserver/wfs")
 				# ALL GOOD
 				if not error:
 					return HttpResponseRedirect(reverse('geopost_home'))
@@ -115,7 +114,7 @@ class EditPost(GeoPostBase):
 	def get(self, request, entry_uuid):
 		"""
 		Get the form...
-		"""
+		
 		form = GeoPostForm()
 		projectList = Project.objects.all().filter(active=True).order_by("title")
 		context = {
@@ -125,6 +124,10 @@ class EditPost(GeoPostBase):
 			'curr_project': self.curr_project
 		}
 		return render(request, 'geopost/edit.html', context)
+		"""
+		resp = HttpResponse(status=502)
+		resp.write(get_from_geoserver('http://127.0.0.1:8080/geoserver/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=mypoints:real_points&srsname=EPSG:4326&featureID={}&maxFeatures=1'.format(entry_uuid)))
+		return resp
 	
 	def Post(self, request, entry_uuid):
 		"""
@@ -132,6 +135,7 @@ class EditPost(GeoPostBase):
 		"""
 		pass
 
+		
 def photo(request, entry_uuid):
 	"""
 	The GeoPost view method for retrieving photos

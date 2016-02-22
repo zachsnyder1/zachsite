@@ -26,6 +26,7 @@ value="{{ form.title.value|default_if_none:'' }}"><br>
       <label id="body-label" for="body">Body: </label>
       <textarea id="body" type="textbox" name="body">
 {{ form.body.value|default_if_none:'' }}</textarea><br>
+      {{ form.photo.errors }}
       <label id="photo-label" for="photo">Your Photo: </label>
       <input id="photo" type="file" name="photo"><br>
       <input type="submit" id="submit-btn">

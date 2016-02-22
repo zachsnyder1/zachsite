@@ -8,3 +8,4 @@ class GeoPostForm(forms.Form):
 	title = forms.CharField(max_length=30)
 	body = forms.CharField()
 	wfsxml = forms.CharField()
+	photo = forms.ImageField()

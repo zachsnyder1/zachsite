@@ -71,7 +71,7 @@ def rollback_upload(uuid, bucket):
 	except apiclient.errors.HttpError as e:
 		return e.resp.status
 
-def post_geometry(xml, url):
+def post_to_geoserver(xml, url):
 	"""
 	SUCCESS: return None
 	WFS ERROR: return str error code
@@ -81,9 +81,21 @@ def post_geometry(xml, url):
 	headers = {'Content-Type': 'application/xml'}
 	try:
 		resp, content = h.request(url, method="POST", body=xml)
-		if 'ows:ExceptionReport' in content.decode('utf-8'):
-			return content.decode('utf-8')
+		decodedContent = content.decode('utf-8')
+		if 'ows:ExceptionReport' in decodedContent:
+			return decodedContent
 		else:
 			return None
+	except ConnectionRefusedError as e:
+		return e
+
+def get_from_geoserver(url):
+	"""
+	"""
+	h = httplib2.Http()
+	h.follow_all_redirects = True
+	try:
+		resp, content = h.request(url, method="GET")
+		return content.decode('utf-8')
 	except ConnectionRefusedError as e:
 		return e

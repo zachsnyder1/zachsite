@@ -4,7 +4,7 @@ $(document).ready(function () {
 	*/
 	// Entries source
 	var entriessource = new ol.source.Vector({
-		url: 'http://localhost:8080/geoserver/mypoints/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mypoints:real_points&srsname=EPSG:4326&outputFormat=application/json',
+		url: 'http://localhost:8080/geoserver/mypoints/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mypoints:test_points&srsname=EPSG:4326&outputFormat=application/json',
 		format: new ol.format.GeoJSON()
 	});
 	// Entries point layer
