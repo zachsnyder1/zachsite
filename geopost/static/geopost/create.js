@@ -1,10 +1,37 @@
+var writeTrans = function (pntArray, operation) {
+	options = {
+		gmlOptions: {srsName: "EPSG:3857"},
+		featureNS: "mypoints",
+		featureType: "test_points"
+	};
+	if (operation == 'CREATE') {
+		return wfst.writeTransaction(pntArray, null, null, options);
+	} else if (operation == 'UPDATE') {
+		return wfst.writeTransaction(null, pntArray, null, options);
+	} else if (operation == 'DELETE') {
+		return wfst.writeTransaction(null, null, pntArray, options);
+	}
+};
+var wfsOperation = 'CREATE'; // Default is create new entry
+
+// collect fid from url query string, if present
+var qstrArray = window.location.search.split('?');
+var entryFID;
+for (i = 1; i < qstrArray.length; i++) {
+	var arg = qstrArray[i].split('=');
+	if (arg[0] == 'fid') {
+		entryFID = arg[1];
+		break;
+	}
+}
+
 $(document).ready(function () {
 	/*
 	/  -- LAYERS --
 	*/
 	// Entries source
 	var entriessource = new ol.source.Vector({
-		url: 'http://localhost:8080/geoserver/mypoints/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mypoints:test_points&srsname=EPSG:4326&outputFormat=application/json',
+		url: 'http://localhost:8080/geoserver/mypoints/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=mypoints:test_points&srsname=EPSG:4326&outputFormat=application/json',
 		format: new ol.format.GeoJSON()
 	});
 	// Entries point layer
@@ -95,16 +122,21 @@ $(document).ready(function () {
 			newpoint.set('uuid', entryUUID);
 			newpoint.set('title', $('#title').val());
 			newpoint.set('body', $('#body').val());
-			var node = wfst.writeTransaction([newpoint], null, null, {
-				gmlOptions: {srsName: "EPSG:3857"},
-				featureNS: "mypoints",
-				featureType: "test_points"
-			});
+			var node = writeTrans([newpoint], wfsOperation);
 			$('#wfsxml').attr('value', new XMLSerializer().serializeToString(node));
 			$('#uuid').attr('value', entryUUID);
 			$('#submit-btn').click();
 		});
 	});
+	
+	/*
+	/  -- IF EDITING EXISTING FEATURE --
+	*/
+	if (entryFID) {
+		// SELECT FEATURE BY FID
+		// POPULATE THE FORM WITH ATTRIBUTES
+		wfsOperation = 'UPDATE';
+	}
 	
 	/*
 	/  -- UPDATE MAP WITH NEW ELEMENTS --
@@ -115,6 +147,6 @@ $(document).ready(function () {
 	OL_OBJ.map.addLayer(entries);
 	OL_OBJ.map.addLayer(drawentry);
 	// Readjusting the view
-	//OL_OBJ.rescaleView(entriessource);
+	OL_OBJ.rescaleView(entriessource);
 	OL_OBJ.resetView();
 });

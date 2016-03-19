@@ -42,9 +42,11 @@ class CreatePost(GeoPostBase):
 		"""
 		Render with blank form...
 		"""
+		entry_fid = request.GET.get('fid', '')
 		form = GeoPostForm()
 		projectList = Project.objects.all().filter(active=True).order_by("title")
 		context = {
+			'entry_fid': entry_fid,
 			'form': form,
 			'projectList': projectList,
 			'subnav_location': self.subnav_location,
@@ -106,34 +108,6 @@ class CreatePost(GeoPostBase):
 				'curr_project': self.curr_project
 			}
 			return render(request, 'geopost/create.html', context)
-		
-class EditPost(GeoPostBase):
-	"""
-	The GeoPost view class for editing an existing post.
-	"""
-	def get(self, request, entry_uuid):
-		"""
-		Get the form...
-		
-		form = GeoPostForm()
-		projectList = Project.objects.all().filter(active=True).order_by("title")
-		context = {
-			'form': form,
-			'projectList': projectList,
-			'subnav_location': self.subnav_location,
-			'curr_project': self.curr_project
-		}
-		return render(request, 'geopost/edit.html', context)
-		"""
-		resp = HttpResponse(status=502)
-		resp.write(get_from_geoserver('http://127.0.0.1:8080/geoserver/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=mypoints:real_points&srsname=EPSG:4326&featureID={}&maxFeatures=1'.format(entry_uuid)))
-		return resp
-	
-	def Post(self, request, entry_uuid):
-		"""
-		Process the edited entry fields...
-		"""
-		pass
 
 		
 def photo(request, entry_uuid):

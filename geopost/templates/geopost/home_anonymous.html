@@ -12,6 +12,9 @@ href="{% static 'geopost/ol.css' %}">
 <h1>HOME AS ANONYMOUS USER</h1>
 <div id="map"></div>
 <div id="info">
+  <div id="geopost-home" data-geopost-home="{% url 'geopost_create' %}"></div>
+  <button id="edit-btn">Edit</button>
+  <button id="delete-btn">Delete</button>
   <h2 id="title"></h2>
   <p id="body"></p>
   <img id="photo" src="">

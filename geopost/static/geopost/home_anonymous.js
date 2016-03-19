@@ -4,7 +4,7 @@ $(document).ready(function () {
 	*/
 	// Entries source
 	var entriessource = new ol.source.Vector({
-		url: 'http://localhost:8080/geoserver/mypoints/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mypoints:test_points&srsname=EPSG:4326&outputFormat=application/json',
+		url: 'http://localhost:8080/geoserver/mypoints/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=mypoints:test_points&srsname=EPSG:4326&outputFormat=application/json',
 		format: new ol.format.GeoJSON()
 	});
 	// Entries point layer
@@ -40,6 +40,13 @@ $(document).ready(function () {
 			error: function(xhr) {
 				console.log("ERROR");
 			}
+		});
+		
+		// update the edit and delete button 'click' listeners:
+		$('#edit-btn').on('click', function() {
+			var base_url = $('#geopost-home').attr('data-geopost-home');
+			var curr_fid = targetEntry.get('fid');
+			window.location = base_url + '?fid=' + curr_fid;
 		});
 	});
 	
