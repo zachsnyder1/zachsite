@@ -123,39 +123,189 @@ var TestScript = (function() {
 		
 	}
 })();
-OL_OBJ = {
-	// TILE LAYER
-	tile: new ol.layer.Tile({
-		source: new ol.source.MapQuest({layer: 'sat'})
-	}),
-	// THE VIEW
-	view: new ol.View({
-		center: [0, 0],
-		zoom: 3,
-		maxZoom: 16
-	}),
-	// Scale View to Extent of A Layer
-	rescaleView: function (lyrSrcObj) {
-		lyrSrcObj.on('change', function (e) {
-			if (lyrSrcObj.getState() == 'ready') {
-				extent = lyrSrcObj.getExtent();
-				OL_OBJ.view.fit(extent, OL_OBJ.map.getSize());
-			}
-		});
-	},
-
-	// Reset View to Clear Distortion
-	resetView: function () {
-		setTimeout(function(){OL_OBJ.map.updateSize();}, 200);
-	}
+// SCOPING GLOBAL RESOURCES
+OL_OBJ = {}
+// TILE LAYER
+OL_OBJ.featNs = "mypoints",
+OL_OBJ.featType = "test_points",
+OL_OBJ.defaultSRS = "EPSG:3857",
+OL_OBJ.tile = new ol.layer.Tile({
+	source: new ol.source.MapQuest({layer: 'sat'})
+});
+// ENTRIES SOURCE
+OL_OBJ.entriessource = new ol.source.Vector({
+	url: 'http://localhost:8080/geoserver/mypoints/ows?service=WFS&ve' +
+		'rsion=2.0.0&request=GetFeature&typeName=mypoints:test_points' +
+		'&srsname=EPSG:4326&outputFormat=application/json',
+	format: new ol.format.GeoJSON()
+});
+// ENTRIES LAYER
+OL_OBJ.entries = new ol.layer.Vector({
+	source: OL_OBJ.entriessource,
+	style: new ol.style.Style({
+		image: new ol.style.Circle({
+			radius: 9,
+			fill: new ol.style.Fill({color: 'yellow'})
+		})
+	})
+});
+// THE VIEW
+OL_OBJ.view = new ol.View({
+	center: [0, 0],
+	zoom: 3,
+	maxZoom: 16
+});
+// Scale View to Extent of A Layer
+OL_OBJ.rescaleView = function (lyrSrcObj) {
+	lyrSrcObj.on('change', function (e) {
+		if (lyrSrcObj.getState() == 'ready') {
+			extent = lyrSrcObj.getExtent();
+			OL_OBJ.view.fit(extent, OL_OBJ.map.getSize());
+		}
+	});
+};
+// Reset View to Clear Distortion
+OL_OBJ.resetView = function () {
+	setTimeout(function(){OL_OBJ.map.updateSize();}, 200);
 };
 
 $(document).ready(function () {
 	// THE MAP
 	OL_OBJ.map = new ol.Map({
 		target: 'map',
-		layers: [OL_OBJ.tile],
+		layers: [OL_OBJ.tile, OL_OBJ.entries],
 		view: OL_OBJ.view,
 		interactions: []
 	});
+});
+// collect fid from url query string, if present
+var qstrArray = window.location.search.split('?');
+var entryFID;
+for (i = 1; i < qstrArray.length; i++) {
+	var arg = qstrArray[i].split('=');
+	if (arg[0] == 'fid') {
+		entryFID = arg[1];
+		break;
+	}
+}
+
+$(document).ready(function () {
+	/*
+	/  -- LAYERS --
+	*/
+	// Entries source
+	var entriessource = new ol.source.Vector({
+		url: 'http://localhost:8080/geoserver/mypoints/ows?service=WFS&ve' +
+			'rsion=2.0.0&request=GetFeature&typeName=mypoints:test_points' +
+			'&srsname=EPSG:4326&outputFormat=application/json',
+		format: new ol.format.GeoJSON()
+	});
+	// Entries point layer
+	var entries = new ol.layer.Vector({
+		source: entriessource,
+		style: new ol.style.Style({
+			image: new ol.style.Circle({
+				radius: 9,
+				fill: new ol.style.Fill({color: 'yellow'})
+			})
+		})
+	});
+	
+	/*
+	/  -- INTERACTIONS --
+	*/
+	// DRAGPAN
+	var dragpan = new ol.interaction.DragPan();
+	// SELECT
+	var select = new ol.interaction.Select({
+		condition: ol.events.condition.click,
+		layers: [drawentry]
+	});
+	// MODIFY
+	var modify = new ol.interaction.Modify({
+		features: select.getFeatures()
+	});
+	// Connect MODIFY interaction to modify button:
+	var modbtn = $('#modify-btn');
+	var modActive = false;
+	function toggleModify() {
+		if (drawActive === false) {
+			OL_OBJ.map.removeInteraction(dragpan);
+			OL_OBJ.map.addInteraction(modify);
+			modActive = true;
+		} else {
+			OL_OBJ.map.removeInteraction(modify);
+			OL_OBJ.map.addInteraction(dragpan);
+			modActive = false;
+		}
+	}
+	modbtn.on('click', toggleModify);
+	
+	/*
+	/  -- MISC. PREP --
+	*/
+	// WFS transaction format object
+	var wfst = new ol.format.WFS({
+		featureNS: 'mypoints',
+		featureType: 'test_points'
+	});
+	var newentry; // Holds new entry point
+	// when done modifying, update newpoint to new coordinates
+	modify.on('modifyend', function(evt) {
+		newpoint = evt.features.item(0);
+	});
+
+
+
+
+		newpoint = evt.feature;
+		var form = $('#the-form');
+		var dummySubmitBtn = $('#dummy-submit');
+		form.css('display', 'block');
+		dummySubmitBtn.css('display', 'block');
+		// On click, prepare and submit form
+		dummySubmitBtn.on('click', function(evt) {
+			select.getFeatures().clear();
+			entryUUID = uuid.v4();
+			newpoint.set('uuid', entryUUID);
+			newpoint.set('title', $('#title').val());
+			newpoint.set('body', $('#body').val());
+			var node = writeTrans([newpoint], wfsOperation);
+			var wfsxml =  new XMLSerializer().serializeToString(node)
+			$('#wfsxml').attr('value', wfsxml);
+			$('#uuid').attr('value', entryUUID);
+			$('#submit-btn').click();
+		});
+	
+	
+	
+	
+	/*
+	/  -- IF EDITING EXISTING FEATURE --
+	*/
+	if (entryFID) {
+		// ADD QUERY STR TO FORM URL
+		var formUrl = $('#the-form').attr('action');
+		$('#the-form').attr('action', formUrl + '?fid=' + entryFID);
+		var editfeat;
+		entriessource.on('addfeature', function(e) {
+			if (e.feature.get('fid') == entryFID) {
+				select.getFeatures().push(e.feature);
+			}
+		});
+		// POPULATE THE FORM WITH ATTRIBUTES
+		wfsOperation = 'UPDATE';
+	}
+	
+	/*
+	/  -- UPDATE MAP WITH NEW ELEMENTS --
+	*/
+	// Adding elements to map
+	OL_OBJ.map.addInteraction(select);
+	OL_OBJ.map.addInteraction(dragpan);
+	OL_OBJ.map.addLayer(entries);
+	OL_OBJ.map.addLayer(drawentry);
+	// Readjusting the view
+	OL_OBJ.rescaleView(entriessource);
+	OL_OBJ.resetView();
 });

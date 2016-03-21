@@ -42,11 +42,9 @@ class CreatePost(GeoPostBase):
 		"""
 		Render with blank form...
 		"""
-		entry_fid = request.GET.get('fid', '')
 		form = GeoPostForm()
 		projectList = Project.objects.all().filter(active=True).order_by("title")
 		context = {
-			'entry_fid': entry_fid,
 			'form': form,
 			'projectList': projectList,
 			'subnav_location': self.subnav_location,

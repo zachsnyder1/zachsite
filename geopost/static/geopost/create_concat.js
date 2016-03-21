@@ -123,88 +123,115 @@ var TestScript = (function() {
 		
 	}
 })();
-OL_OBJ = {
-	// TILE LAYER
-	tile: new ol.layer.Tile({
-		source: new ol.source.MapQuest({layer: 'sat'})
-	}),
-	// THE VIEW
-	view: new ol.View({
-		center: [0, 0],
-		zoom: 3,
-		maxZoom: 16
-	}),
-	// Scale View to Extent of A Layer
-	rescaleView: function (lyrSrcObj) {
-		lyrSrcObj.on('change', function (e) {
-			if (lyrSrcObj.getState() == 'ready') {
-				extent = lyrSrcObj.getExtent();
-				OL_OBJ.view.fit(extent, OL_OBJ.map.getSize());
-			}
-		});
-	},
-
-	// Reset View to Clear Distortion
-	resetView: function () {
-		setTimeout(function(){OL_OBJ.map.updateSize();}, 200);
-	}
+// SCOPING GLOBAL RESOURCES
+OL_OBJ = {}
+// TILE LAYER
+OL_OBJ.featNs = "mypoints",
+OL_OBJ.featType = "test_points",
+OL_OBJ.defaultSRS = "EPSG:3857",
+OL_OBJ.tile = new ol.layer.Tile({
+	source: new ol.source.MapQuest({layer: 'sat'})
+});
+// ENTRIES SOURCE
+OL_OBJ.entriessource = new ol.source.Vector({
+	url: 'http://localhost:8080/geoserver/mypoints/ows?service=WFS&ve' +
+		'rsion=2.0.0&request=GetFeature&typeName=mypoints:test_points' +
+		'&srsname=EPSG:4326&outputFormat=application/json',
+	format: new ol.format.GeoJSON()
+});
+// ENTRIES LAYER
+OL_OBJ.entries = new ol.layer.Vector({
+	source: OL_OBJ.entriessource,
+	style: new ol.style.Style({
+		image: new ol.style.Circle({
+			radius: 9,
+			fill: new ol.style.Fill({color: 'yellow'})
+		})
+	})
+});
+// THE VIEW
+OL_OBJ.view = new ol.View({
+	center: [0, 0],
+	zoom: 3,
+	maxZoom: 16
+});
+// Scale View to Extent of A Layer
+OL_OBJ.rescaleView = function (lyrSrcObj) {
+	lyrSrcObj.on('change', function (e) {
+		if (lyrSrcObj.getState() == 'ready') {
+			extent = lyrSrcObj.getExtent();
+			OL_OBJ.view.fit(extent, OL_OBJ.map.getSize());
+		}
+	});
+};
+// Reset View to Clear Distortion
+OL_OBJ.resetView = function () {
+	setTimeout(function(){OL_OBJ.map.updateSize();}, 200);
 };
 
 $(document).ready(function () {
 	// THE MAP
 	OL_OBJ.map = new ol.Map({
 		target: 'map',
-		layers: [OL_OBJ.tile],
+		layers: [OL_OBJ.tile, OL_OBJ.entries],
 		view: OL_OBJ.view,
 		interactions: []
 	});
 });
-var writeTrans = function (pntArray, operation) {
-	options = {
-		gmlOptions: {srsName: "EPSG:3857"},
-		featureNS: "mypoints",
-		featureType: "test_points"
+// wrapper for 
+OL_OBJ.writeTrans = function (pntArray) {
+	// WFS transaction format object
+	var wfst = new ol.format.WFS({
+		featureNS: OL_OBJ.featNs,
+		featureType: OL_OBJ.featType
+	});
+	var options = {
+		gmlOptions: {srsName: OL_OBJ.defaultSRS}, 
+		featureNS: OL_OBJ.featNs,
+		featureType: OL_OBJ.featType
 	};
-	if (operation == 'CREATE') {
+	if (OL_OBJ.wfsOperation == 'CREATE') {
 		return wfst.writeTransaction(pntArray, null, null, options);
-	} else if (operation == 'UPDATE') {
+	} else if (OL_OBJ.wfsOperation == 'UPDATE') {
 		return wfst.writeTransaction(null, pntArray, null, options);
-	} else if (operation == 'DELETE') {
+	} else if (OL_OBJ.wfsOperation == 'DELETE') {
 		return wfst.writeTransaction(null, null, pntArray, options);
 	}
 };
-var wfsOperation = 'CREATE'; // Default is create new entry
-
+// interaction toggle handler for buttons
+OL_OBJ.toggleInter = function (interaction, dragpan, active) {
+	return function() {
+		if (active === false) {
+			OL_OBJ.map.removeInteraction(dragpan);
+			OL_OBJ.map.addInteraction(interaction);
+			active = true;
+		} else {
+			OL_OBJ.map.removeInteraction(interaction);
+			OL_OBJ.map.addInteraction(dragpan);
+			active = false;
+		}
+	};
+};
+OL_OBJ.wfsOperation = 'CREATE'; // Default WFS transaction is insertion
 // collect fid from url query string, if present
-var qstrArray = window.location.search.split('?');
-var entryFID;
-for (i = 1; i < qstrArray.length; i++) {
-	var arg = qstrArray[i].split('=');
-	if (arg[0] == 'fid') {
-		entryFID = arg[1];
-		break;
+OL_OBJ.entryFID = function() {
+	var qstrArray = window.location.search.split('?');
+	for (i = 1; i < qstrArray.length; i++) {
+		var arg = qstrArray[i].split('=');
+		if (arg[0] == 'fid') {
+			return arg[1];
+		}
 	}
-}
+	return undefined;
+}();
 
 $(document).ready(function () {
 	/*
 	/  -- LAYERS --
 	*/
-	// Entries source
-	var entriessource = new ol.source.Vector({
-		url: 'http://localhost:8080/geoserver/mypoints/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=mypoints:test_points&srsname=EPSG:4326&outputFormat=application/json',
-		format: new ol.format.GeoJSON()
-	});
-	// Entries point layer
-	var entries = new ol.layer.Vector({
-		source: entriessource,
-		style: new ol.style.Style({
-			image: new ol.style.Circle({
-				radius: 9,
-				fill: new ol.style.Fill({color: 'yellow'})
-			})
-		})
-	});
+	// Dummy Draw Source (so that modifying feature of 
+	// the actual draw source doesn't rescale the view)
+	var dummydrawsrc = new ol.source.Vector({});
 	// Draw Entry source
 	var drawentrysrc = new ol.source.Vector({});
 	// Draw Entry layer
@@ -235,69 +262,19 @@ $(document).ready(function () {
 		features: select.getFeatures()
 	});
 	// DRAW
-	var drawinteraction = new ol.interaction.Draw({
+	var draw = new ol.interaction.Draw({
 		source: drawentrysrc,
 		type: 'Point'
 	});
-	// Connect DRAW interaction to draw button:
-	var drawbtn = $('#drawbtn');
-	var drawActive = false;
-	function toggleDraw() {
-		if (drawActive === false) {
-			OL_OBJ.map.removeInteraction(dragpan);
-			OL_OBJ.map.addInteraction(drawinteraction);
-			drawActive = true;
-		} else {
-			OL_OBJ.map.removeInteraction(drawinteraction);
-			OL_OBJ.map.addInteraction(dragpan);
-			drawActive = false;
-		}
-	}
-	drawbtn.on('click', toggleDraw);
 	
 	/*
 	/  -- MISC. PREP --
 	*/
-	// WFS transaction format object
-	var wfst = new ol.format.WFS({
-		featureNS: 'mypoints',
-		featureType: 'test_points'
-	});
 	var newentry; // Holds new entry point
 	// when done modifying, update newpoint to new coordinates
 	modify.on('modifyend', function(evt) {
 		newpoint = evt.features.item(0);
 	});
-	drawinteraction.on('drawend', function(evt) {
-		OL_OBJ.map.removeInteraction(drawinteraction);
-		drawbtn.hide();
-		newpoint = evt.feature;
-		var form = $('#the-form');
-		var dummySubmitBtn = $('#dummy-submit');
-		form.css('display', 'block');
-		dummySubmitBtn.css('display', 'block');
-		// On click, prepare and submit form
-		dummySubmitBtn.on('click', function(evt) {
-			select.getFeatures().clear();
-			entryUUID = uuid.v4();
-			newpoint.set('uuid', entryUUID);
-			newpoint.set('title', $('#title').val());
-			newpoint.set('body', $('#body').val());
-			var node = writeTrans([newpoint], wfsOperation);
-			$('#wfsxml').attr('value', new XMLSerializer().serializeToString(node));
-			$('#uuid').attr('value', entryUUID);
-			$('#submit-btn').click();
-		});
-	});
-	
-	/*
-	/  -- IF EDITING EXISTING FEATURE --
-	*/
-	if (entryFID) {
-		// SELECT FEATURE BY FID
-		// POPULATE THE FORM WITH ATTRIBUTES
-		wfsOperation = 'UPDATE';
-	}
 	
 	/*
 	/  -- UPDATE MAP WITH NEW ELEMENTS --
@@ -305,9 +282,86 @@ $(document).ready(function () {
 	// Adding elements to map
 	OL_OBJ.map.addInteraction(select);
 	OL_OBJ.map.addInteraction(dragpan);
-	OL_OBJ.map.addLayer(entries);
 	OL_OBJ.map.addLayer(drawentry);
 	// Readjusting the view
-	OL_OBJ.rescaleView(entriessource);
 	OL_OBJ.resetView();
+	
+	/*
+	/  -- MAIN --
+	*/
+	// the editing buttons
+	var drawbtn = $('#drawbtn');
+	var modbtn = $('#modbtn');
+	// the form elements
+	var form = $('#the-form');
+	var titleInput = $('#title');
+	var bodyInput = $('#body');
+	var uuidInput = $('#uuid');
+	var wfsxmlInput = $('#wfsxml');
+	var dummySubmitBtn = $('#dummy-submit');
+	var submitBtn = $('#submit-btn');
+	// BOOLS indicating whether interactions are attached to the map
+	var drawActive = false;
+	var modActive = false;
+	// IF EDITING EXITING ENTRY:
+	if (OL_OBJ.entryFID) {
+		// HIDE DRAW BUTTON
+		drawbtn.hide();
+		// ADD QUERY STR TO FORM URL
+		var formUrl = form.attr('action');
+		form.attr('action', formUrl + '?fid=' + OL_OBJ.entryFID);
+		// FIND FEATURE BEING EDITED:
+		OL_OBJ.entriessource.on('addfeature', function(e) {
+			if (e.feature.get('fid') == OL_OBJ.entryFID) {
+				// move feature to drawentry source,
+				// also copy to the dummy draw source
+				drawentrysrc.addFeature(e.feature);
+				dummydrawsrc.addFeature(e.feature.clone());
+				OL_OBJ.entriessource.removeFeature(e.feature);
+				// select it
+				//select.getFeatures().push(e.feature);
+				// POPULATE THE FORM WITH ITS ATTRIBUTES
+				titleInput.val(e.feature.get('title'));
+				bodyInput.val(e.feature.get('body'));
+				// STORE UUID
+				OL_OBJ.entryUUID = e.feature.get('uuid');
+			}
+		});
+		// set WFS operation to update
+		OL_OBJ.wfsOperation = 'UPDATE';
+		// rescale view to dummy draw source
+		OL_OBJ.rescaleView(dummydrawsrc);
+	// ELSE, IF CREATING NEW ENTRY:
+	} else {
+		// HIDE MODIFY GEOM BUTTON
+		modbtn.hide()
+		// Connect DRAW interaction to draw button:
+		drawbtn.on('click', OL_OBJ.toggleInter(draw, dragpan, drawActive));
+		// on drawend display the form 
+		draw.on('drawend', function(evt) {
+			OL_OBJ.map.removeInteraction(draw);
+			OL_OBJ.map.addInteraction(dragpan);
+			drawbtn.hide();
+			modbtn.show();
+			newpoint = evt.feature;
+		});
+		// MAKE AND STORE NEW UUID
+		OL_OBJ.entryUUID = uuid.v4();
+		// rescale view to entries source
+		OL_OBJ.rescaleView(OL_OBJ.entriessource);
+	}
+	// Connect MODIFY interaction to modify geom button
+	modbtn.on('click', OL_OBJ.toggleInter(modify, dragpan, modActive));
+	// Dummy Submit Btn: on click prepare and subit form
+	dummySubmitBtn.on('click', function(evt) {
+		select.getFeatures().clear();
+		newpoint.set('uuid', OL_OBJ.entryUUID);
+		newpoint.set('title', titleInput.val());
+		newpoint.set('body', bodyInput.val());
+		var node = OL_OBJ.writeTrans([newpoint]);
+		var wfsxml =  new XMLSerializer().serializeToString(node)
+		wfsxmlInput.attr('value', wfsxml);
+		uuidInput.attr('value', OL_OBJ.entryUUID);
+		submitBtn.click();
+	});
 });

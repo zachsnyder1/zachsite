@@ -1,30 +1,11 @@
-$(document).ready(function () {
-	/*
-	/  -- LAYERS --
-	*/
-	// Entries source
-	var entriessource = new ol.source.Vector({
-		url: 'http://localhost:8080/geoserver/mypoints/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=mypoints:test_points&srsname=EPSG:4326&outputFormat=application/json',
-		format: new ol.format.GeoJSON()
-	});
-	// Entries point layer
-	var entries = new ol.layer.Vector({
-		source: entriessource,
-		style: new ol.style.Style({
-			image: new ol.style.Circle({
-				radius: 9,
-				fill: new ol.style.Fill({color: 'yellow'})
-			})
-		})
-	});
-	
+$(document).ready(function () {	
 	/*
 	/  -- INTERACTIONS --
 	*/
 	var dragpan = new ol.interaction.DragPan();
 	var select = new ol.interaction.Select({
 		condition: ol.events.condition.click,
-		layers: [entries]
+		layers: [OL_OBJ.entries]
 	});
 	// On Select, Display Info
 	select.on('select', function (evt) {
@@ -56,8 +37,7 @@ $(document).ready(function () {
 	// Adding elements to map
 	OL_OBJ.map.addInteraction(select);
 	OL_OBJ.map.addInteraction(dragpan);
-	OL_OBJ.map.addLayer(entries);
 	// Readjusting the view
-	OL_OBJ.rescaleView(entriessource);
+	OL_OBJ.rescaleView(OL_OBJ.entriessource);
 	OL_OBJ.resetView();
 });
