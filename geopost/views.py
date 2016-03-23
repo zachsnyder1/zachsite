@@ -34,9 +34,10 @@ class Home(GeoPostBase):
 		}
 		return render(request, 'geopost/home_anonymous.html', context)
 
-class CreatePost(GeoPostBase):
+class Entry(GeoPostBase):
 	"""
-	The GeoPost view class for creating a new post.
+	The GeoPost view class for creating a new entry, or altering an
+	existing one.
 	"""
 	def get(self, request):
 		"""

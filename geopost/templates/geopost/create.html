@@ -15,10 +15,9 @@ href="{% static 'geopost/ol.css' %}">
 <button id="drawbtn">Draw!</button>
 <button id="modbtn">Modify Geometry</button>
 <div id="form-div">
-  <form id="the-form" method="post" action="{% url 'geopost_create' %}"
+  <form id="the-form" method="post" action="{% url 'geopost_entry' %}"
 enctype="multipart/form-data">
     {% csrf_token %}
-
     {{ form.fid.errors }}
     <input id="wfsxml" type="hidden" name="wfsxml">
     <input id="uuid" type="hidden" name="uuid">

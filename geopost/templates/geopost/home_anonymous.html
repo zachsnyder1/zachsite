@@ -12,7 +12,7 @@ href="{% static 'geopost/ol.css' %}">
 <h1>HOME AS ANONYMOUS USER</h1>
 <div id="map"></div>
 <div id="info">
-  <div id="geopost-home" data-geopost-home="{% url 'geopost_create' %}"></div>
+  <div id="geopost-home" data-geopost-home="{% url 'geopost_entry' %}"></div>
   <button id="edit-btn">Edit</button>
   <button id="delete-btn">Delete</button>
   <form method="post" action="{% url 'geopost_wfs' %}"
