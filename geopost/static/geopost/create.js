@@ -1,4 +1,4 @@
-// wrapper for 
+// wrapper for ol.format.WFS writeTransaction call
 OL_OBJ.writeTrans = function (pntArray) {
 	// WFS transaction format object
 	var wfst = new ol.format.WFS({
@@ -8,6 +8,7 @@ OL_OBJ.writeTrans = function (pntArray) {
 	var options = {
 		gmlOptions: {srsName: OL_OBJ.defaultSRS}, 
 		featureNS: OL_OBJ.featNs,
+		featurePrefix: '',
 		featureType: OL_OBJ.featType
 	};
 	if (OL_OBJ.wfsOperation == 'CREATE') {
@@ -117,6 +118,7 @@ $(document).ready(function () {
 	var titleInput = $('#title');
 	var bodyInput = $('#body');
 	var uuidInput = $('#uuid');
+	var fidInput = $('#fid');
 	var wfsxmlInput = $('#wfsxml');
 	var dummySubmitBtn = $('#dummy-submit');
 	var submitBtn = $('#submit-btn');
@@ -127,9 +129,8 @@ $(document).ready(function () {
 	if (OL_OBJ.entryFID) {
 		// HIDE DRAW BUTTON
 		drawbtn.hide();
-		// ADD QUERY STR TO FORM URL
-		var formUrl = form.attr('action');
-		form.attr('action', formUrl + '?fid=' + OL_OBJ.entryFID);
+		// ADD FID TO FID INPUT ON FORM
+		fidInput.attr('value', OL_OBJ.entryFID);
 		// FIND FEATURE BEING EDITED:
 		OL_OBJ.entriessource.on('addfeature', function(e) {
 			if (e.feature.get('fid') == OL_OBJ.entryFID) {

@@ -18,8 +18,11 @@ href="{% static 'geopost/ol.css' %}">
   <form id="the-form" method="post" action="{% url 'geopost_create' %}"
 enctype="multipart/form-data">
     {% csrf_token %}
+
+    {{ form.fid.errors }}
     <input id="wfsxml" type="hidden" name="wfsxml">
     <input id="uuid" type="hidden" name="uuid">
+    <input id="fid" type="hidden" name="fid">
     {{ form.title.errors }}
     <label id="title-label" for="title"">Title: </label>
     <input id="title" type="text" name="title" 

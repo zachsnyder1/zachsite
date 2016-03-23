@@ -1,7 +1,7 @@
 // SCOPING GLOBAL RESOURCES
 OL_OBJ = {}
 // TILE LAYER
-OL_OBJ.featNs = "mypoints",
+OL_OBJ.featNs = "/mypoints",
 OL_OBJ.featType = "test_points",
 OL_OBJ.defaultSRS = "EPSG:3857",
 OL_OBJ.tile = new ol.layer.Tile({
