@@ -8,7 +8,6 @@ OL_OBJ.writeTrans = function (pntArray) {
 	var options = {
 		gmlOptions: {srsName: OL_OBJ.defaultSRS}, 
 		featureNS: OL_OBJ.featNs,
-		featurePrefix: '',
 		featureType: OL_OBJ.featType
 	};
 	if (OL_OBJ.wfsOperation == 'CREATE') {

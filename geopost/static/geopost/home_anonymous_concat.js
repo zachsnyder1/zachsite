@@ -187,6 +187,28 @@ $(document).ready(function () {
 		condition: ol.events.condition.click,
 		layers: [OL_OBJ.entries]
 	});
+	
+	/*
+	/  -- MISC. PREP --
+	*/
+	var wfst = new ol.format.WFS({
+		featureNS: OL_OBJ.featNs,
+		featureType: OL_OBJ.featType
+	});
+	
+	/*
+	/  -- UPDATE MAP WITH NEW ELEMENTS --
+	*/
+	// Adding elements to map
+	OL_OBJ.map.addInteraction(select);
+	OL_OBJ.map.addInteraction(dragpan);
+	// Readjusting the view
+	OL_OBJ.rescaleView(OL_OBJ.entriessource);
+	OL_OBJ.resetView();
+	
+	/*
+	/  -- MAIN --
+	*/
 	// On Select, Display Info
 	select.on('select', function (evt) {
 		targetEntry = evt.target.getFeatures().item(0);
@@ -209,15 +231,14 @@ $(document).ready(function () {
 			var curr_fid = targetEntry.get('fid');
 			window.location = base_url + '?fid=' + curr_fid;
 		});
+		$('#delete-btn').on('click', function() {
+			var node = wfst.writeTransaction(null, null, [targetEntry], {
+				featureNS: OL_OBJ.featNs,
+				featureType: OL_OBJ.featType
+			});
+			var wfsxml =  new XMLSerializer().serializeToString(node);
+			$('#wfsxmlInput').attr('value', wfsxml);
+			$('#submit-btn').click()
+		});
 	});
-	
-	/*
-	/  -- UPDATE MAP WITH NEW ELEMENTS --
-	*/
-	// Adding elements to map
-	OL_OBJ.map.addInteraction(select);
-	OL_OBJ.map.addInteraction(dragpan);
-	// Readjusting the view
-	OL_OBJ.rescaleView(OL_OBJ.entriessource);
-	OL_OBJ.resetView();
 });

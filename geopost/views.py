@@ -134,3 +134,21 @@ def photo(request, entry_uuid):
 		resp.write(base64.b64encode(photo))
 		resp['Content-Type'] = metadata['contentType']
 		return resp
+
+def wfs(request):
+	"""
+	Proxy reroute internal AJAX WFS transactions to GeoServer.
+	"""
+	if request.method == "POST":
+		wfsxml = request.POST.get('wfsxml', False)
+		# MAKE GEOSERVER WFS TRANSACTION
+		error = post_to_geoserver(wfsxml, "http://127.0.0.1:8080/geoserver/wfs")
+		# ALL GOOD
+		if not error:
+			return HttpResponseRedirect(reverse('geopost_home'))
+		# IF WFS TRANSACTION ERROR
+		else:
+			resp = HttpResponse(status=502)
+			resp.write("<h3>502 BAD GATEWAY: </h3>")
+			resp.write("<p>WFS ERROR {}</p>".format(error))
+			return resp

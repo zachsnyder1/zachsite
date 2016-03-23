@@ -15,6 +15,12 @@ href="{% static 'geopost/ol.css' %}">
   <div id="geopost-home" data-geopost-home="{% url 'geopost_create' %}"></div>
   <button id="edit-btn">Edit</button>
   <button id="delete-btn">Delete</button>
+  <form method="post" action="{% url 'geopost_wfs' %}"
+enctype="multipart/form-data">
+    {% csrf_token %}
+    <input id="wfsxmlInput" type="hidden" name="wfsxml">
+    <input type="submit" id="submit-btn">
+  </form>
   <h2 id="title"></h2>
   <p id="body"></p>
   <img id="photo" src="">

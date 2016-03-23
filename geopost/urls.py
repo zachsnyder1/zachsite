@@ -6,5 +6,6 @@ urlpatterns = [
 	url(r'^create$', views.CreatePost.as_view(), name='geopost_create'),
 	url(r'^photo/(?P<entry_uuid>[0-9A-Fa-f-]+)$',
 		views.photo,
-		name="geopost_photo")
+		name="geopost_photo"),
+	url(r'^wfs$', views.wfs, name="geopost_wfs")
 ]
