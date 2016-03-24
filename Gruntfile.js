@@ -36,8 +36,7 @@ module.exports = function(grunt) {
 			},
 			geopost: {
 				files: {
-					'./geopost/static/geopost/create.css': './style_prep/geopost_create.scss',
-					'./geopost/static/geopost/edit.css': './style_prep/geopost_edit.scss',
+					'./geopost/static/geopost/entry.css': './style_prep/geopost_entry.scss',
 					'./geopost/static/geopost/home_anonymous.css': './style_prep/geopost_home_anonymous.scss',
 					'./geopost/static/geopost/home_authenticated.css': './style_prep/geopost_home_authenticated.scss'
 				}
@@ -99,17 +98,11 @@ module.exports = function(grunt) {
 						'./geopost/static/geopost/geopost_base.js', 
 						'./geopost/static/geopost/home_authenticated.js'
 					],
-					'./geopost/static/geopost/create_concat.js': [
+					'./geopost/static/geopost/entry_concat.js': [
 						'./zachsite/static/zachsite/base.js', 
 						'./projects/static/projects/projects_base.js', 
 						'./geopost/static/geopost/geopost_base.js', 
-						'./geopost/static/geopost/create.js'
-					],
-					'./geopost/static/geopost/edit_concat.js': [
-						'./zachsite/static/zachsite/base.js', 
-						'./projects/static/projects/projects_base.js', 
-						'./geopost/static/geopost/geopost_base.js', 
-						'./geopost/static/geopost/edit.js'
+						'./geopost/static/geopost/entry.js'
 					]
 				}
 			}
@@ -162,6 +155,6 @@ module.exports = function(grunt) {
 	// register tasks
 	grunt.registerTask(
 		'default', 
-		['jshint', 'sass', 'concat', 'cssmin', 'clean:sass_map', 'qunit']
+		['concat', 'jshint', 'sass', 'cssmin', 'clean:sass_map', 'qunit']
 	);
 };

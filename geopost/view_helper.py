@@ -2,6 +2,7 @@ import json
 import time
 import httplib2
 import apiclient
+from django.http import HttpResponse
 from apiclient.http import MediaIoBaseUpload
 from oauth2client.client import GoogleCredentials
 
@@ -99,3 +100,12 @@ def get_from_geoserver(url):
 		return content.decode('utf-8')
 	except ConnectionRefusedError as e:
 		return e
+
+def server_error(errorMsg):
+	"""
+	Shorthand for returning error message.
+	"""
+	resp = HttpResponse(status=502)
+	resp.write("<h3>502 BAD GATEWAY: </h3>")
+	resp.write("<p>ERROR: {}</p>".format(errorMsg))
+	return resp

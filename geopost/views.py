@@ -6,14 +6,32 @@ from django.views.generic import View
 from .forms import GeoPostForm
 from projects.models import Project
 from .view_helper import upload_to_bucket, rollback_upload, \
-	post_to_geoserver, get_from_geoserver, download_from_bucket
+	post_to_geoserver, get_from_geoserver, download_from_bucket, \
+	server_error
 
+# CLASS BASED VIEWS
 class GeoPostBase(View):
 	"""
 	The Geopost base view class...
 	"""
 	subnav_location = 'projects/geopost/subnav.html'
 	curr_project = get_object_or_404(Project, slug='geopost')
+	projectList = Project.objects.all().filter(active=True).order_by("title")
+	wfsURL = "http://127.0.0.1:8080/geoserver/wfs"
+	imageBucket = 'zachtestbucket'
+	
+	def getContext(self, form):
+		"""
+		Shorthand way to compose context, for maximum reuse.
+		"""
+		context = {
+			'form': form,
+			'projectList': self.projectList,
+			'subnav_location': self.subnav_location,
+			'curr_project': self.curr_project
+		}
+		return context
+		
 
 # Create your views here.
 class Home(GeoPostBase):
@@ -24,14 +42,7 @@ class Home(GeoPostBase):
 		"""
 		The GET view method.
 		"""
-		form = GeoPostForm()
-		projectList = Project.objects.all().filter(active=True).order_by("title")
-		context = {
-			'form': form,
-			'projectList': projectList,
-			'subnav_location': self.subnav_location,
-			'curr_project': self.curr_project
-		}
+		context = self.getContext(GeoPostForm())
 		return render(request, 'geopost/home_anonymous.html', context)
 
 class Entry(GeoPostBase):
@@ -43,15 +54,8 @@ class Entry(GeoPostBase):
 		"""
 		Render with blank form...
 		"""
-		form = GeoPostForm()
-		projectList = Project.objects.all().filter(active=True).order_by("title")
-		context = {
-			'form': form,
-			'projectList': projectList,
-			'subnav_location': self.subnav_location,
-			'curr_project': self.curr_project
-		}
-		return render(request, 'geopost/create.html', context)
+		context = self.getContext(GeoPostForm())
+		return render(request, 'geopost/entry.html', context)
 	
 	def post(self, request):
 		"""
@@ -80,14 +84,8 @@ class Entry(GeoPostBase):
 		form = GeoPostForm(data, request.FILES)
 		# IF FORM VALIDATION ERROR
 		if not form.is_valid():
-			projectList = Project.objects.all().filter(active=True).order_by("title")
-			context = {
-				'form': form,
-				'projectList': projectList,
-				'subnav_location': self.subnav_location,
-				'curr_project': self.curr_project
-			}
-			return render(request, 'geopost/create.html', context)
+			context = self.getContext(form)
+			return render(request, 'geopost/entry.html', context)
 		else:
 			pass
 		# GET CLEAN VALUES
@@ -96,60 +94,51 @@ class Entry(GeoPostBase):
 		# UPLOAD PHOTO TO BUCKET
 		# if editing existing entry, first delete existing photo
 		if fid:
-			rollback_upload(uuid, 'zachtestbucket')
+			rollback_upload(uuid, self.imageBucket)
 		else:
 			pass
 		photo.open('rb')
-		error = upload_to_bucket(photo, 'zachtestbucket', photo.content_type, uuid)
+		error = upload_to_bucket(photo, self.imageBucket, photo.content_type, uuid)
 		photo.close()
 		# IF ERROR UPLOADING IMAGE
 		if error:
-			resp = HttpResponse(status=502)
-			resp.write("<h3>502 BAD GATEWAY: </h3>")
-			resp.write("<p>IMAGE UPLOAD ERROR: {}</p>".format(error))
-			return resp
+			return server_error(error);
 		else:
 			pass
 		# MAKE GEOSERVER WFS TRANSACTION
-		error = post_to_geoserver(wfsxml, "http://127.0.0.1:8080/geoserver/wfs")
+		error = post_to_geoserver(wfsxml, self.wfsURL)
 		# ALL GOOD
 		if not error:
 			return HttpResponseRedirect(reverse('geopost_home'))
 		# IF WFS TRANSACTION ERROR
 		else:
-			rollback_upload(uuid, 'zachtestbucket')
-			resp = HttpResponse(status=502)
-			resp.write("<h3>502 BAD GATEWAY: </h3>")
-			resp.write("<p>WFS ERROR {}</p>".format(error))
-			return resp
+			rollback_upload(uuid, self.imageBucket)
+			return server_error(error);
 			
 
-		
+# METHOD BASED VIEWS
 def photo(request, entry_uuid):
 	"""
 	The GeoPost view method for retrieving photos
 	"""	
 	if request.method == "GET":
 		resp = HttpResponse()
-		metadata, photo = download_from_bucket(entry_uuid, 'zachtestbucket')
+		metadata, photo = download_from_bucket(entry_uuid, GeoPostBase.imageBucket)
 		resp.write(base64.b64encode(photo))
 		resp['Content-Type'] = metadata['contentType']
 		return resp
 
 def wfs(request):
 	"""
-	Proxy reroute internal AJAX WFS transactions to GeoServer.
+	Reroute internal AJAX WFS transactions to GeoServer.
 	"""
 	if request.method == "POST":
 		wfsxml = request.POST.get('wfsxml', False)
 		# MAKE GEOSERVER WFS TRANSACTION
-		error = post_to_geoserver(wfsxml, "http://127.0.0.1:8080/geoserver/wfs")
+		error = post_to_geoserver(wfsxml, GeoPostBase.wfsURL)
 		# ALL GOOD
 		if not error:
 			return HttpResponseRedirect(reverse('geopost_home'))
 		# IF WFS TRANSACTION ERROR
 		else:
-			resp = HttpResponse(status=502)
-			resp.write("<h3>502 BAD GATEWAY: </h3>")
-			resp.write("<p>WFS ERROR {}</p>".format(error))
-			return resp
+			return server_error(error);

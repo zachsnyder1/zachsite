@@ -1,38 +1,17 @@
-// wrapper for ol.format.WFS writeTransaction call
-OL_OBJ.writeTrans = function (pntArray) {
-	// WFS transaction format object
-	var wfst = new ol.format.WFS({
-		featureNS: OL_OBJ.featNs,
-		featureType: OL_OBJ.featType
-	});
-	var options = {
-		gmlOptions: {srsName: OL_OBJ.defaultSRS}, 
-		featureNS: OL_OBJ.featNs,
-		featureType: OL_OBJ.featType
-	};
-	if (OL_OBJ.wfsOperation == 'CREATE') {
-		return wfst.writeTransaction(pntArray, null, null, options);
-	} else if (OL_OBJ.wfsOperation == 'UPDATE') {
-		return wfst.writeTransaction(null, pntArray, null, options);
-	} else if (OL_OBJ.wfsOperation == 'DELETE') {
-		return wfst.writeTransaction(null, null, pntArray, options);
-	}
-};
 // interaction toggle handler for buttons
-OL_OBJ.toggleInter = function (interaction, dragpan, active) {
+OL_OBJ.toggleInter = function (interaction, active) {
 	return function() {
 		if (active === false) {
-			OL_OBJ.map.removeInteraction(dragpan);
+			OL_OBJ.map.removeInteraction(OL_OBJ.dragpan);
 			OL_OBJ.map.addInteraction(interaction);
 			active = true;
 		} else {
 			OL_OBJ.map.removeInteraction(interaction);
-			OL_OBJ.map.addInteraction(dragpan);
+			OL_OBJ.map.addInteraction(OL_OBJ.dragpan);
 			active = false;
 		}
 	};
 };
-OL_OBJ.wfsOperation = 'CREATE'; // Default WFS transaction is insertion
 // collect fid from url query string, if present
 OL_OBJ.entryFID = function() {
 	var qstrArray = window.location.search.split('?');
@@ -51,12 +30,12 @@ $(document).ready(function () {
 	*/
 	// Dummy Draw Source (so that modifying feature of 
 	// the actual draw source doesn't rescale the view)
-	var dummydrawsrc = new ol.source.Vector({});
+	var dummytempsrc = new ol.source.Vector({});
 	// Draw Entry source
-	var drawentrysrc = new ol.source.Vector({});
+	var tempentrysrc = new ol.source.Vector({});
 	// Draw Entry layer
-	var drawentry = new ol.layer.Vector({
-		source: drawentrysrc,
+	var tempentry = new ol.layer.Vector({
+		source: tempentrysrc,
 		style: new ol.style.Style({
 			image: new ol.style.Circle({
 				radius: 12,
@@ -70,12 +49,10 @@ $(document).ready(function () {
 	/*
 	/  -- INTERACTIONS --
 	*/
-	// DRAGPAN
-	var dragpan = new ol.interaction.DragPan();
 	// SELECT
 	var select = new ol.interaction.Select({
 		condition: ol.events.condition.click,
-		layers: [drawentry]
+		layers: [tempentry]
 	});
 	// MODIFY
 	var modify = new ol.interaction.Modify({
@@ -83,7 +60,7 @@ $(document).ready(function () {
 	});
 	// DRAW
 	var draw = new ol.interaction.Draw({
-		source: drawentrysrc,
+		source: tempentrysrc,
 		type: 'Point'
 	});
 	
@@ -101,10 +78,7 @@ $(document).ready(function () {
 	*/
 	// Adding elements to map
 	OL_OBJ.map.addInteraction(select);
-	OL_OBJ.map.addInteraction(dragpan);
-	OL_OBJ.map.addLayer(drawentry);
-	// Readjusting the view
-	OL_OBJ.resetView();
+	OL_OBJ.map.addLayer(tempentry);
 	
 	/*
 	/  -- MAIN --
@@ -133,13 +107,13 @@ $(document).ready(function () {
 		// FIND FEATURE BEING EDITED:
 		OL_OBJ.entriessource.on('addfeature', function(e) {
 			if (e.feature.get('fid') == OL_OBJ.entryFID) {
-				// move feature to drawentry source,
-				// also copy to the dummy draw source
-				drawentrysrc.addFeature(e.feature);
-				dummydrawsrc.addFeature(e.feature.clone());
+				// move feature to tempentry source,
+				// also copy to the dummy temp source
+				tempentrysrc.addFeature(e.feature);
+				dummytempsrc.addFeature(e.feature.clone());
 				OL_OBJ.entriessource.removeFeature(e.feature);
 				// select it
-				//select.getFeatures().push(e.feature);
+				select.getFeatures().push(e.feature);
 				// POPULATE THE FORM WITH ITS ATTRIBUTES
 				titleInput.val(e.feature.get('title'));
 				bodyInput.val(e.feature.get('body'));
@@ -150,17 +124,17 @@ $(document).ready(function () {
 		// set WFS operation to update
 		OL_OBJ.wfsOperation = 'UPDATE';
 		// rescale view to dummy draw source
-		OL_OBJ.rescaleView(dummydrawsrc);
+		OL_OBJ.rescaleView(dummytempsrc);
 	// ELSE, IF CREATING NEW ENTRY:
 	} else {
 		// HIDE MODIFY GEOM BUTTON
-		modbtn.hide()
+		modbtn.hide();
 		// Connect DRAW interaction to draw button:
-		drawbtn.on('click', OL_OBJ.toggleInter(draw, dragpan, drawActive));
+		drawbtn.on('click', OL_OBJ.toggleInter(draw, drawActive));
 		// on drawend display the form 
 		draw.on('drawend', function(evt) {
 			OL_OBJ.map.removeInteraction(draw);
-			OL_OBJ.map.addInteraction(dragpan);
+			OL_OBJ.map.addInteraction(OL_OBJ.dragpan);
 			drawbtn.hide();
 			modbtn.show();
 			newpoint = evt.feature;
@@ -171,17 +145,18 @@ $(document).ready(function () {
 		OL_OBJ.rescaleView(OL_OBJ.entriessource);
 	}
 	// Connect MODIFY interaction to modify geom button
-	modbtn.on('click', OL_OBJ.toggleInter(modify, dragpan, modActive));
+	modbtn.on('click', OL_OBJ.toggleInter(modify, modActive));
 	// Dummy Submit Btn: on click prepare and subit form
 	dummySubmitBtn.on('click', function(evt) {
 		select.getFeatures().clear();
 		newpoint.set('uuid', OL_OBJ.entryUUID);
 		newpoint.set('title', titleInput.val());
 		newpoint.set('body', bodyInput.val());
-		var node = OL_OBJ.writeTrans([newpoint]);
-		var wfsxml =  new XMLSerializer().serializeToString(node)
+		var wfsxml =  OL_OBJ.writeTrans([newpoint]);
 		wfsxmlInput.attr('value', wfsxml);
 		uuidInput.attr('value', OL_OBJ.entryUUID);
 		submitBtn.click();
 	});
+	// Readjust the view
+	OL_OBJ.resetView();
 });

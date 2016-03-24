@@ -123,12 +123,20 @@ var TestScript = (function() {
 		
 	}
 })();
-// SCOPING GLOBAL RESOURCES
-OL_OBJ = {}
+// OBJECT FOR SCOPING GLOBAL RESOURCES
+OL_OBJ = {};
+/*
+/  -- STRING CONSTANTS --
+*/
+OL_OBJ.featNs = "/mypoints";
+OL_OBJ.featType = "test_points";
+OL_OBJ.defaultSRS = "EPSG:3857";
+OL_OBJ.ZSDomain = 'http://127.0.0.1:8000';
+OL_OBJ.wfsOperation = 'CREATE'; // Default WFS-t operation is insertion
+/*
+/ -- REUSED MAP COMPONENTS --
+*/
 // TILE LAYER
-OL_OBJ.featNs = "/mypoints",
-OL_OBJ.featType = "test_points",
-OL_OBJ.defaultSRS = "EPSG:3857",
 OL_OBJ.tile = new ol.layer.Tile({
 	source: new ol.source.MapQuest({layer: 'sat'})
 });
@@ -155,6 +163,34 @@ OL_OBJ.view = new ol.View({
 	zoom: 3,
 	maxZoom: 16
 });
+// DRAGPAN INTERACTION
+OL_OBJ.dragpan = new ol.interaction.DragPan();
+// WFS FORMAT OBJECT
+OL_OBJ.wfst = new ol.format.WFS({
+	featureNS: OL_OBJ.featNs,
+	featureType: OL_OBJ.featType
+});
+/*
+/ -- USEFUL FUNCTIONS --
+*/
+// wrapper for ol.format.WFS writeTransaction call
+OL_OBJ.writeTrans = function (pntArray) {
+	// WFS transaction format object
+	var options = {
+		gmlOptions: {srsName: OL_OBJ.defaultSRS}, 
+		featureNS: OL_OBJ.featNs,
+		featureType: OL_OBJ.featType
+	};
+	var node;
+	if (OL_OBJ.wfsOperation == 'CREATE') {
+		node = OL_OBJ.wfst.writeTransaction(pntArray, null, null, options);
+	} else if (OL_OBJ.wfsOperation == 'UPDATE') {
+		node = OL_OBJ.wfst.writeTransaction(null, pntArray, null, options);
+	} else if (OL_OBJ.wfsOperation == 'DELETE') {
+		node = OL_OBJ.wfst.writeTransaction(null, null, pntArray, options);
+	}
+	return new XMLSerializer().serializeToString(node);
+};
 // Scale View to Extent of A Layer
 OL_OBJ.rescaleView = function (lyrSrcObj) {
 	lyrSrcObj.on('change', function (e) {
@@ -168,32 +204,39 @@ OL_OBJ.rescaleView = function (lyrSrcObj) {
 OL_OBJ.resetView = function () {
 	setTimeout(function(){OL_OBJ.map.updateSize();}, 200);
 };
-
+// Retrieve a photo from the bucket, attach to img element
+OL_OBJ.retrievePhoto = function (uuid, imgElem) {
+	$.ajax({
+		url: OL_OBJ.ZSDomain + '/projects/geopost/photo/' + uuid,
+		success: function(data, status, xhr) {
+			srcStr = 'data:' + xhr.getResponseHeader('Content-Type') + 
+				';base64,' + data;
+			imgElem.attr('src', srcStr);
+		},
+		error: function(xhr) {
+			console.log("ERROR RETRIEVING PHOTO");
+		}
+	});
+};
+/*
+/ ON DOCUMENT READY:
+*/
 $(document).ready(function () {
-	// THE MAP
+	// ...MAKE THE MAP
 	OL_OBJ.map = new ol.Map({
 		target: 'map',
 		layers: [OL_OBJ.tile, OL_OBJ.entries],
 		view: OL_OBJ.view,
-		interactions: []
+		interactions: [OL_OBJ.dragpan]
 	});
 });
 $(document).ready(function () {	
 	/*
-	/  -- INTERACTIONS --
+	/  -- INTERACTION(S) --
 	*/
-	var dragpan = new ol.interaction.DragPan();
 	var select = new ol.interaction.Select({
 		condition: ol.events.condition.click,
 		layers: [OL_OBJ.entries]
-	});
-	
-	/*
-	/  -- MISC. PREP --
-	*/
-	var wfst = new ol.format.WFS({
-		featureNS: OL_OBJ.featNs,
-		featureType: OL_OBJ.featType
 	});
 	
 	/*
@@ -201,7 +244,6 @@ $(document).ready(function () {
 	*/
 	// Adding elements to map
 	OL_OBJ.map.addInteraction(select);
-	OL_OBJ.map.addInteraction(dragpan);
 	// Readjusting the view
 	OL_OBJ.rescaleView(OL_OBJ.entriessource);
 	OL_OBJ.resetView();
@@ -214,31 +256,6 @@ $(document).ready(function () {
 		targetEntry = evt.target.getFeatures().item(0);
 		$('#title').text(targetEntry.get('title'));
 		$('#body').text(targetEntry.get('body'));
-		$.ajax({
-			url: 'http://127.0.0.1:8000/projects/geopost/photo/' + targetEntry.get('uuid'),
-			success: function(data, status, xhr) {
-				srcStr = 'data:' + xhr.getResponseHeader('Content-Type') + ';base64,' + data;
-				$('#photo').attr('src', srcStr);
-			},
-			error: function(xhr) {
-				console.log("ERROR");
-			}
-		});
-		
-		// update the edit and delete button 'click' listeners:
-		$('#edit-btn').on('click', function() {
-			var base_url = $('#geopost-home').attr('data-geopost-home');
-			var curr_fid = targetEntry.get('fid');
-			window.location = base_url + '?fid=' + curr_fid;
-		});
-		$('#delete-btn').on('click', function() {
-			var node = wfst.writeTransaction(null, null, [targetEntry], {
-				featureNS: OL_OBJ.featNs,
-				featureType: OL_OBJ.featType
-			});
-			var wfsxml =  new XMLSerializer().serializeToString(node);
-			$('#wfsxmlInput').attr('value', wfsxml);
-			$('#submit-btn').click()
-		});
+		OL_OBJ.retrievePhoto(targetEntry.get('uuid'), $('#photo'));
 	});
 });
