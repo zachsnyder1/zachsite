@@ -18,7 +18,9 @@ module.exports = function(grunt) {
 			zachsite: {
 				files: {
 					'./zachsite/static/zachsite/index.css': './style_prep/index.scss',
-					'./zachsite/static/zachsite/404.css': './style_prep/404.scss'
+					'./zachsite/static/zachsite/404.css': './style_prep/404.scss',
+					'./zachsite/static/zachsite/auth.css':	'./style_prep/auth.scss',
+					'./zachsite/static/zachsite/signup.css': './style_prep/signup.scss'
 				}
 			},
 			projects: {
@@ -49,6 +51,9 @@ module.exports = function(grunt) {
 						'./zachsite/static/zachsite/base.js', 
 						'./zachsite/static/zachsite/index.js'
 					],
+					'./zachsite/static/zachsite/auth_concat.js': [
+						'./zachsite/static/zachsite/base.js'
+					]
 				},
 			},
 			projects: {
@@ -117,6 +122,15 @@ module.exports = function(grunt) {
       				ext: '.min.css'
     			}]
 			},
+			registration: {
+				files: [{
+      				expand: true,
+      				cwd: './zachsite/static/registration/',
+      				src: ['*.css', '!*.min.css'],
+      				dest: './zachsite/static/registration/',
+      				ext: '.min.css'
+    			}]
+			},
 			projects: {
 				files: [{
       				expand: true,
@@ -132,6 +146,15 @@ module.exports = function(grunt) {
       				cwd: './blog/static/blog/',
       				src: ['*.css', '!*.min.css'],
       				dest: './blog/static/blog/',
+      				ext: '.min.css'
+    			}]
+			},
+			geopost: {
+				files: [{
+      				expand: true,
+      				cwd: './geopost/static/geopost/',
+      				src: ['*.css', '!*.min.css'],
+      				dest: './geopost/static/geopost/',
       				ext: '.min.css'
     			}]
 			}

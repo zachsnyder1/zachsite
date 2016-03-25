@@ -1,0 +1,14 @@
+{% extends "zachsite/base.html" %}
+{% load staticfiles %}
+{% block localhead %}
+<link rel="stylesheet" type="text/css"
+href="{% static 'zachsite/signup.min.css' %}">
+<script type="text/javascript" src="{% static 'zachsite/auth_concat.js' %}">
+</script>
+{% endblock %}
+{% block content %}
+<form class="auth-form" method="post" action="{% url 'login' %}">
+  {% csrf_token %}
+  <input class="submit-btn" type="submit" value="login">
+</form>
+{% endblock %}

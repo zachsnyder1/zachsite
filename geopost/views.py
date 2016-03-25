@@ -1,8 +1,11 @@
 import base64
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import View
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_http_methods
 from .forms import GeoPostForm
 from projects.models import Project
 from .view_helper import upload_to_bucket, rollback_upload, \
@@ -43,9 +46,12 @@ class Home(GeoPostBase):
 		The GET view method.
 		"""
 		context = self.getContext(GeoPostForm())
-		return render(request, 'geopost/home_anonymous.html', context)
+		if request.user.is_authenticated():
+			return render(request, 'geopost/home_authenticated.html', context)
+		else:
+			return render(request, 'geopost/home_anonymous.html', context)
 
-class Entry(GeoPostBase):
+class Entry(LoginRequiredMixin, GeoPostBase):
 	"""
 	The GeoPost view class for creating a new entry, or altering an
 	existing one.
@@ -117,28 +123,29 @@ class Entry(GeoPostBase):
 			
 
 # METHOD BASED VIEWS
+@require_http_methods(["GET"])
 def photo(request, entry_uuid):
 	"""
 	The GeoPost view method for retrieving photos
 	"""	
-	if request.method == "GET":
-		resp = HttpResponse()
-		metadata, photo = download_from_bucket(entry_uuid, GeoPostBase.imageBucket)
-		resp.write(base64.b64encode(photo))
-		resp['Content-Type'] = metadata['contentType']
-		return resp
+	resp = HttpResponse()
+	metadata, photo = download_from_bucket(entry_uuid, GeoPostBase.imageBucket)
+	resp.write(base64.b64encode(photo))
+	resp['Content-Type'] = metadata['contentType']
+	return resp
 
+@login_required
+@require_http_methods(["POST"])
 def wfs(request):
 	"""
 	Reroute internal AJAX WFS transactions to GeoServer.
 	"""
-	if request.method == "POST":
-		wfsxml = request.POST.get('wfsxml', False)
-		# MAKE GEOSERVER WFS TRANSACTION
-		error = post_to_geoserver(wfsxml, GeoPostBase.wfsURL)
-		# ALL GOOD
-		if not error:
-			return HttpResponseRedirect(reverse('geopost_home'))
-		# IF WFS TRANSACTION ERROR
-		else:
-			return server_error(error);
+	wfsxml = request.POST.get('wfsxml', False)
+	# MAKE GEOSERVER WFS TRANSACTION
+	error = post_to_geoserver(wfsxml, GeoPostBase.wfsURL)
+	# ALL GOOD
+	if not error:
+		return HttpResponseRedirect(reverse('geopost_home'))
+	# IF WFS TRANSACTION ERROR
+	else:
+		return server_error(error);

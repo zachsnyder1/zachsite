@@ -1,0 +1,11 @@
+{% extends "zachsite/base.html" %}
+{% load staticfiles %}
+{% block localhead %}
+<link rel="stylesheet" type="text/css"
+href="{% static 'zachsite/auth.min.css' %}">
+<script type="text/javascript" src="{% static 'zachsite/auth_concat.js' %}">
+</script>
+{% endblock %}
+{% block content %}
+<p class="success-msg">You are logged out.</p>
+{% endblock %}

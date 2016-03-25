@@ -2,26 +2,17 @@
 {% load staticfiles %}
 {% block localhead %}
 <link rel="stylesheet" type="text/css"
-href="{% static 'geopost/home_anonymous.css' %}">
+href="{% static 'geopost/home_anonymous.min.css' %}">
 <link rel="stylesheet" type="text/css"
-href="{% static 'geopost/ol.css' %}">
+href="{% static 'geopost/ol.min.css' %}">
 <script type="text/javascript" src="{% static 'geopost/ol.js' %}"></script>
 <script type="text/javascript" 
 src="{% static 'geopost/home_anonymous_concat.js' %}"></script>
 {% endblock %}
 {% block content %}
-<h1>HOME AS ANONYMOUS USER</h1>
 <div id="map"></div>
 <div id="info">
   <div id="geopost-entry" data-geopost-entry="{% url 'geopost_entry' %}"></div>
-  <button id="edit-btn">Edit</button>
-  <button id="delete-btn">Delete</button>
-  <form method="post" action="{% url 'geopost_wfs' %}"
-enctype="multipart/form-data">
-    {% csrf_token %}
-    <input id="wfsxmlInput" type="hidden" name="wfsxml">
-    <input type="submit" id="submit-btn">
-  </form>
   <h2 id="title"></h2>
   <p id="body"></p>
   <img id="photo" src="">

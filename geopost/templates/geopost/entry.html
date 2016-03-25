@@ -2,15 +2,14 @@
 {% load staticfiles %}
 {% block localhead %}
 <link rel="stylesheet" type="text/css"
-href="{% static 'geopost/entry.css' %}">
+href="{% static 'geopost/entry.min.css' %}">
 <link rel="stylesheet" type="text/css"
-href="{% static 'geopost/ol.css' %}">
+href="{% static 'geopost/ol.min.css' %}">
 <script type="text/javascript" src="{% static 'geopost/ol.js' %}"></script>
 <script type="text/javascript" src="{% static 'geopost/uuid.js' %}"></script>
 <script type="text/javascript" src="{% static 'geopost/entry_concat.js' %}"></script>
 {% endblock %}
 {% block content %}
-<h1>CREATE PAGE</h1>
 <div id="map"></div>
 <button id="drawbtn">Draw!</button>
 <button id="modbtn">Modify Geometry</button>
