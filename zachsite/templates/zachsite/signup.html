@@ -7,8 +7,14 @@ href="{% static 'zachsite/signup.min.css' %}">
 </script>
 {% endblock %}
 {% block content %}
-<form class="auth-form" method="post" action="{% url 'login' %}">
+<form class="auth-form" method="post" action="{% url 'signup' %}">
   {% csrf_token %}
+  {{ form.username.label_tag }}
+  {{ form.username }}<br>
+  {{ form.email.label_tag }}
+  {{ form.email }}
+  {{ form.password.label_tag }}
+  {{ form.password }}<br>
   <input class="submit-btn" type="submit" value="login">
 </form>
 {% endblock %}

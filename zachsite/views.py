@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from .models import QuestionAndAnswer
 from projects.models import Project
 from django.views.generic import View
+from django.contrib.auth.models import User
+from .forms import SignupForm
 
 @require_http_methods(["GET"])
 def index(request):
@@ -30,8 +32,10 @@ class Signup(View):
 		"""
 		Render signup page.
 		"""
+		form = SignupForm()
 		projectList = Project.objects.all().filter(active=True).order_by("title")
 		context = {
+			'form': form,
 			'projectList': projectList,
 			'projectLen': str(len(projectList))
 		}
@@ -41,5 +45,24 @@ class Signup(View):
 		"""
 		Add new user.
 		"""
-		pass
+		data = {
+			'username': request.POST.get('username', False),
+			'email': request.POST.get('email', False),
+			'password': request.POST.get('password', False)
+		}
+		form = SignupForm(data)
+		if form.is_valid():
+			username = form.cleaned_data['username']
+			email = form.cleaned_data['email']
+			password = form.cleaned_data['password']
+			User.objects.create_user(username, email=email, password=password)
+			return HttpResponseRedirect(reverse('login'))
+		else:
+			projectList = Project.objects.all().filter(active=True).order_by("title")
+			context = {
+				'form': form,
+				'projectList': projectList,
+				'projectLen': str(len(projectList))
+			}
+			return render(request, 'zachsite/signup.html', context)
 	
