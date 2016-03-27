@@ -1,0 +1,24 @@
+{% extends "zachsite/auth_base.html" %}
+{% block errors %}
+<li>
+  <p>Old password:</p>
+  {{ form.old_password.errors }}
+</li>
+<li>
+  <p>New password:</p>
+  {{ form.new_password1.errors }}
+  {{ form.new_password2.errors }}
+</li>
+{% endblock %}
+{% block authform %}
+<form class="auth-form" method="post">
+  {% csrf_token %}
+  {{ form.old_password.label_tag }}
+  {{ form.old_password }}<br>
+  {{ form.new_password1.label_tag }}
+  {{ form.new_password1 }}<br>
+  {{ form.new_password2.label_tag }}
+  {{ form.new_password2 }}<br>
+  <input class="submit-btn" type="submit" value="Change Password">
+</form>
+{% endblock %}

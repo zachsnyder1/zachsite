@@ -1,20 +1,27 @@
-{% extends "zachsite/base.html" %}
-{% load staticfiles %}
-{% block localhead %}
-<link rel="stylesheet" type="text/css"
-href="{% static 'zachsite/signup.min.css' %}">
-<script type="text/javascript" src="{% static 'zachsite/auth_concat.js' %}">
-</script>
+{% extends "zachsite/auth_base.html" %}
+{% block errors %}
+<li>
+  <p>Username:</p>
+  {{ form.username.errors }}
+</li>
+<li>
+  <p>Email:</p>
+  {{ form.email.errors }}
+</li>
+<li>
+  <p>Password:</p>
+  {{ form.password.errors }}
+</li>
 {% endblock %}
-{% block content %}
+{% block authform %}
 <form class="auth-form" method="post" action="{% url 'signup' %}">
   {% csrf_token %}
   {{ form.username.label_tag }}
   {{ form.username }}<br>
   {{ form.email.label_tag }}
-  {{ form.email }}
+  {{ form.email }}<br>
   {{ form.password.label_tag }}
   {{ form.password }}<br>
-  <input class="submit-btn" type="submit" value="login">
+  <input class="submit-btn" type="submit" value="Sign Up">
 </form>
 {% endblock %}

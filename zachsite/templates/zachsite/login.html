@@ -1,0 +1,24 @@
+{% extends "zachsite/auth_base.html" %}
+{% block errors %}
+<li>Username and password did not MATCH.  Please do again.</li>
+{% endblock %}
+{% block authform %}
+{% if next %}
+  {% if user.is_authenticated %}
+  <p class="auth-msg">You do not have access.  Know someone who does?</p>
+  {% else %}
+  <p class="auth-msg">Login to view this page</p>
+  {% endif %}
+{% endif %}
+<form class="auth-form" method="post">
+  {% csrf_token %}
+  {{ form.username.label_tag }}<br>
+  {{ form.username }}<br>
+  {{ form.password.label_tag }}<br>
+  {{ form.password }}<br>
+  <input class="submit-btn" type="submit" value="login">
+  <input type="hidden" name="next" value="{{ next }}">
+</form>
+<p class="auth-link"><a href="{% url 'password_reset' %}">Forgot password?</a></p>
+<p class="auth-link"><a href="{% url 'signup' %}">Sign Up</a></p>
+{% endblock %}

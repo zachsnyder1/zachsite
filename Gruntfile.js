@@ -39,8 +39,7 @@ module.exports = function(grunt) {
 			geopost: {
 				files: {
 					'./geopost/static/geopost/entry.css': './style_prep/geopost_entry.scss',
-					'./geopost/static/geopost/home_anonymous.css': './style_prep/geopost_home_anonymous.scss',
-					'./geopost/static/geopost/home_authenticated.css': './style_prep/geopost_home_authenticated.scss'
+					'./geopost/static/geopost/home.css': './style_prep/geopost_home.scss'
 				}
 			}
 		},
@@ -119,15 +118,6 @@ module.exports = function(grunt) {
       				cwd: './zachsite/static/zachsite/',
       				src: ['*.css', '!*.min.css'],
       				dest: './zachsite/static/zachsite/',
-      				ext: '.min.css'
-    			}]
-			},
-			registration: {
-				files: [{
-      				expand: true,
-      				cwd: './zachsite/static/registration/',
-      				src: ['*.css', '!*.min.css'],
-      				dest: './zachsite/static/registration/',
       				ext: '.min.css'
     			}]
 			},

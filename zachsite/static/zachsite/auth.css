@@ -4427,5 +4427,17 @@ code {
 
   h6 {
     font-size: 11pt; } }
+#auth-section {
+  margin: 150px auto;
+  min-height: 200px; }
+
+#errors-row {
+  margin-bottom: 20px; }
+
+.errors-header {
+  text-align: center; }
+
+.auth-msg {
+  text-align: center; }
 
 /*# sourceMappingURL=auth.css.map */

@@ -2,17 +2,23 @@
 {% load staticfiles %}
 {% block localhead %}
 <link rel="stylesheet" type="text/css"
-href="{% static 'geopost/home_authenticated.min.css' %}">
+href="{% static 'geopost/home.min.css' %}">
 <link rel="stylesheet" type="text/css"
 href="{% static 'geopost/ol.min.css' %}">
 <script type="text/javascript" src="{% static 'geopost/ol.js' %}"></script>
+{% if user.is_authenticated %}
 <script type="text/javascript" 
 src="{% static 'geopost/home_authenticated_concat.js' %}"></script>
+{% else %}
+<script type="text/javascript" 
+src="{% static 'geopost/home_anonymous_concat.js' %}"></script>
+{% endif %}
 {% endblock %}
 {% block content %}
 <div id="map"></div>
 <div id="info">
   <div id="geopost-entry" data-geopost-entry="{% url 'geopost_entry' %}"></div>
+  {% if user.is_authenticated %}
   <button id="edit-btn">Edit</button>
   <button id="delete-btn">Delete</button>
   <form method="post" action="{% url 'geopost_wfs' %}"
@@ -21,6 +27,7 @@ enctype="multipart/form-data">
     <input id="wfsxmlInput" type="hidden" name="wfsxml">
     <input type="submit" id="submit-btn">
   </form>
+  {% endif %}
   <h2 id="title"></h2>
   <p id="body"></p>
   <img id="photo" src="">

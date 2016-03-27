@@ -1,0 +1,39 @@
+{% extends "zachsite/base.html" %}
+{% load staticfiles %}
+{% block localhead %}
+<link rel="stylesheet" type="text/css"
+href="{% static 'zachsite/auth.min.css' %}">
+<script type="text/javascript" src="{% static 'zachsite/auth_concat.js' %}">
+</script>
+{% endblock %}
+{% block content %}
+<section id="auth-section">
+  <div class="container-fluid">
+    {% if form.errors %}
+    <div id="errors-row" class="row">
+      <div class="col-xs-1">
+      </div> <!-- .col-xs-1 -->
+      <div class="col-xs-10">
+        <h3 class="errors-header">ERRORS</h3>
+        <ul class="errorlist">
+        {% block errors %}
+        {% endblock %}
+        </ul>
+      </div> <!-- .col-xs-10 -->
+      <div class="col-xs-1">
+      </div> <!-- .col-xs-1 -->
+    </div> <!-- .row -->
+    {% endif %}
+    <div class="row">
+      <div class="col-xs-3 col-sm-4 col-md-5">
+      </div> <!-- .col-xs-3 -->
+      <div class="col-xs-6 col-sm-4 col-md-2">
+      {% block authform %}
+      {% endblock %}
+      </div> <!-- .col-xs-6 -->
+      <div class="col-xs-3 col-sm-4 col-md-5">
+      </div> <!-- .col-xs-3 -->
+    </div> <!-- .row -->
+  </div> <!-- .container-fluid -->
+</section>
+{% endblock %}

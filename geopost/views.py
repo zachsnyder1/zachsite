@@ -46,10 +46,8 @@ class Home(GeoPostBase):
 		The GET view method.
 		"""
 		context = self.getContext(GeoPostForm())
-		if request.user.is_authenticated():
-			return render(request, 'geopost/home_authenticated.html', context)
-		else:
-			return render(request, 'geopost/home_anonymous.html', context)
+		return render(request, 'geopost/home.html', context)
+
 
 class Entry(LoginRequiredMixin, GeoPostBase):
 	"""

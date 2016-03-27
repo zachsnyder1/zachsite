@@ -1,0 +1,15 @@
+{% extends "zachsite/auth_base.html" %}
+{% block errors %}
+<li>
+  <p>Email:</p>
+  {{ form.email.errors }}
+</li>
+{% endblock %}
+{% block authform %}
+<form class="auth-form" method="post">
+  {% csrf_token %}
+  {{ form.email.label_tag }}
+  {{ form.email }}<br>
+  <input class="submit-btn" type="submit" value="Send Reset Code"/>
+</form>
+{% endblock %}
