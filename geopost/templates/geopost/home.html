@@ -16,20 +16,38 @@ src="{% static 'geopost/home_anonymous_concat.js' %}"></script>
 {% endblock %}
 {% block content %}
 <div id="map"></div>
-<div id="info">
-  <div id="geopost-entry" data-geopost-entry="{% url 'geopost_entry' %}"></div>
-  {% if user.is_authenticated %}
-  <button id="edit-btn">Edit</button>
-  <button id="delete-btn">Delete</button>
-  <form method="post" action="{% url 'geopost_wfs' %}"
+<div id="info" class="modal fade bs-example-modal-lg" tabindex="-1"
+role="dialog" aria-labelledby="entrydetails">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div id="geopost-entry" data-geopost-entry="{% url 'geopost_entry' %}"></div>
+        <h2 id="title"></h2>
+        <p id="body"></p>
+        <img id="photo" src="">
+      </div> <!-- .modal-body -->
+      <div class="modal-footer">
+        {% if user.is_authenticated %}
+        <div class="btn-group" role="group">
+          <button id="edit-btn" type="button" class="btn btn-success" data-dismiss="modal">
+            Edit
+          </button>
+          <button id="delete-btn" type="button" class="btn btn-danger" data-dismiss="modal">
+            Delete
+          </button>
+        </div> <!-- .btn-group -->
+        <form id="delete-form" method="post" action="{% url 'geopost_wfs' %}"
 enctype="multipart/form-data">
-    {% csrf_token %}
-    <input id="wfsxmlInput" type="hidden" name="wfsxml">
-    <input type="submit" id="submit-btn">
-  </form>
-  {% endif %}
-  <h2 id="title"></h2>
-  <p id="body"></p>
-  <img id="photo" src="">
-</div> <!-- #info --> 
+          {% csrf_token %}
+          <input id="wfsxmlInput" type="hidden" name="wfsxml">
+          <input type="submit" id="submit-btn">
+        </form>
+        {% endif %}
+        <button id="close-btn" type="button" class="btn btn-default" data-dismiss="modal">
+          Close
+        </button>
+      </div> <!-- .modal-footer -->
+    </div> <!-- .modal-content -->
+  </div> <!-- .modal-dialog -->
+</div> <!-- .modal --> 
 {% endblock %}

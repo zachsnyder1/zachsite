@@ -341,9 +341,11 @@ $(document).ready(function () {
 			if (e.feature.get('fid') == OL_OBJ.entryFID) {
 				// move feature to tempentry source,
 				// also copy to the dummy temp source
+				// and reference by newpoint var
 				tempentrysrc.addFeature(e.feature);
 				dummytempsrc.addFeature(e.feature.clone());
 				OL_OBJ.entriessource.removeFeature(e.feature);
+				newpoint = e.feature;
 				// select it
 				select.getFeatures().push(e.feature);
 				// POPULATE THE FORM WITH ITS ATTRIBUTES

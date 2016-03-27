@@ -257,6 +257,7 @@ $(document).ready(function () {
 		// Display title and text of entry
 		$('#title').text(targetEntry.get('title'));
 		$('#body').text(targetEntry.get('body'));
+		$('#info').modal('show');
 		OL_OBJ.retrievePhoto(targetEntry.get('uuid'), $('#photo'));
 		// Update the edit and delete button 'click' listeners
 		// to point to newly selected entry:
@@ -271,5 +272,9 @@ $(document).ready(function () {
 			$('#wfsxmlInput').attr('value', wfsxml);
 			$('#submit-btn').click();
 		});
+	});
+	// Deselect entry when modal is hidden
+	$('#info').on('hide.bs.modal', function (e) {
+		select.getFeatures().clear();
 	});
 });

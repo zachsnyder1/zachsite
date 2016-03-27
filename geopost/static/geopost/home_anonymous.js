@@ -24,6 +24,11 @@ $(document).ready(function () {
 		targetEntry = evt.target.getFeatures().item(0);
 		$('#title').text(targetEntry.get('title'));
 		$('#body').text(targetEntry.get('body'));
+		$('#info').modal('show');
 		OL_OBJ.retrievePhoto(targetEntry.get('uuid'), $('#photo'));
+	});
+	// Deselect entry when modal is hidden
+	$('#info').on('hide.bs.modal', function (e) {
+		select.getFeatures().clear();
 	});
 });
