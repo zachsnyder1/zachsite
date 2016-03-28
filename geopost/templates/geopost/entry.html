@@ -10,9 +10,22 @@ href="{% static 'geopost/ol.min.css' %}">
 <script type="text/javascript" src="{% static 'geopost/entry_concat.js' %}"></script>
 {% endblock %}
 {% block content %}
-<div id="map"></div>
-<button id="drawbtn">Draw!</button>
-<button id="modbtn">Modify Geometry</button>
+<div id="map">
+  <!-- Map Toolbar -->
+  <div id="toolbar-wrapper">
+    <div id="toolbar-toggle">
+      <p>+</p>
+    </div> <!-- #toolbar-toggle -->
+    <div id="toolbar">
+        <button id="drawbtn" type="button" class="btn btn-success toolbar-btn">
+          Draw Point
+        </button>
+        <button id="modbtn" type="button" class="btn btn-success toolbar-btn">
+          Modify Point
+        </button>
+    </div> <!-- #toolbar -->
+  </div> <!-- #toolbar-wrapper -->
+</div>
 <div id="form-div">
   <form id="the-form" method="post" action="{% url 'geopost_entry' %}"
 enctype="multipart/form-data">

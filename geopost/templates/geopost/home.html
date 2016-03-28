@@ -15,7 +15,24 @@ src="{% static 'geopost/home_anonymous_concat.js' %}"></script>
 {% endif %}
 {% endblock %}
 {% block content %}
-<div id="map"></div>
+<div id="map">
+  {% if user.is_authenticated %}
+  <!-- Map Toolbar -->
+  <div id="toolbar-wrapper">
+    <div id="toolbar-toggle">
+      <p>+</p>
+    </div> <!-- #toolbar-toggle -->
+    <div id="toolbar">
+      <a href="{% url 'geopost_entry' %}">
+        <button type="button" class="btn btn-success toolbar-btn">
+          New Entry
+        </button>
+      </a>
+    </div> <!-- #toolbar -->
+  </div> <!-- #toolbar-wrapper -->
+  {% endif %}
+</div>
+<!-- The blog entries are displayed in a modal -->
 <div id="info" class="modal fade bs-example-modal-lg" tabindex="-1"
 role="dialog" aria-labelledby="entrydetails">
   <div class="modal-dialog modal-lg">
@@ -29,7 +46,7 @@ role="dialog" aria-labelledby="entrydetails">
       <div class="modal-footer">
         {% if user.is_authenticated %}
         <div class="btn-group" role="group">
-          <button id="edit-btn" type="button" class="btn btn-success" data-dismiss="modal">
+          <button id="edit-btn" type="button" class="btn btn-success">
             Edit
           </button>
           <button id="delete-btn" type="button" class="btn btn-danger" data-dismiss="modal">

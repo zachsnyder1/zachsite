@@ -1,13 +1,17 @@
 // interaction toggle handler for buttons
-OL_OBJ.toggleInter = function (interaction, active) {
+OL_OBJ.toggleInter = function (interaction, active, btn) {
 	return function() {
 		if (active === false) {
 			OL_OBJ.map.removeInteraction(OL_OBJ.dragpan);
 			OL_OBJ.map.addInteraction(interaction);
+			btn.removeClass('btn-success');
+			btn.addClass('btn-danger');
 			active = true;
 		} else {
 			OL_OBJ.map.removeInteraction(interaction);
 			OL_OBJ.map.addInteraction(OL_OBJ.dragpan);
+			btn.removeClass('btn-danger');
+			btn.addClass('btn-success');
 			active = false;
 		}
 	};
@@ -132,7 +136,7 @@ $(document).ready(function () {
 		// HIDE MODIFY GEOM BUTTON
 		modbtn.hide();
 		// Connect DRAW interaction to draw button:
-		drawbtn.on('click', OL_OBJ.toggleInter(draw, drawActive));
+		drawbtn.on('click', OL_OBJ.toggleInter(draw, drawActive, drawbtn));
 		// on drawend display the form 
 		draw.on('drawend', function(evt) {
 			OL_OBJ.map.removeInteraction(draw);
@@ -147,7 +151,7 @@ $(document).ready(function () {
 		OL_OBJ.rescaleView(OL_OBJ.entriessource);
 	}
 	// Connect MODIFY interaction to modify geom button
-	modbtn.on('click', OL_OBJ.toggleInter(modify, modActive));
+	modbtn.on('click', OL_OBJ.toggleInter(modify, modActive, modbtn));
 	// Dummy Submit Btn: on click prepare and subit form
 	dummySubmitBtn.on('click', function(evt) {
 		select.getFeatures().clear();
@@ -158,6 +162,10 @@ $(document).ready(function () {
 		wfsxmlInput.attr('value', wfsxml);
 		uuidInput.attr('value', OL_OBJ.entryUUID);
 		submitBtn.click();
+	});
+	// Side bar opens/closes on click
+	$('#toolbar-toggle').on('click', function() {
+		$('#toolbar').toggle(200);
 	});
 	// Readjust the view
 	OL_OBJ.resetView();

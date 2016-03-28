@@ -277,4 +277,8 @@ $(document).ready(function () {
 	$('#info').on('hide.bs.modal', function (e) {
 		select.getFeatures().clear();
 	});
+	// Side bar opens/closes on click
+	$('#toolbar-toggle').on('click', function() {
+		$('#toolbar').toggle(200);
+	});
 });
