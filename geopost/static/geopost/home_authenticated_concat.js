@@ -132,6 +132,7 @@ OL_OBJ.featNs = "/mypoints";
 OL_OBJ.featType = "test_points";
 OL_OBJ.defaultSRS = "EPSG:3857";
 OL_OBJ.ZSDomain = 'http://127.0.0.1:8000';
+OL_OBJ.GSDomain = 'http://localhost:8080';
 OL_OBJ.wfsOperation = 'CREATE'; // Default WFS-t operation is insertion
 /*
 / -- REUSED MAP COMPONENTS --
@@ -142,7 +143,7 @@ OL_OBJ.tile = new ol.layer.Tile({
 });
 // ENTRIES SOURCE
 OL_OBJ.entriessource = new ol.source.Vector({
-	url: 'http://localhost:8080/geoserver/mypoints/ows?service=WFS&ve' +
+	url: OL_OBJ.GSDomain + '/geoserver/mypoints/ows?service=WFS&ve' +
 		'rsion=2.0.0&request=GetFeature&typeName=mypoints:test_points' +
 		'&srsname=EPSG:4326&outputFormat=application/json',
 	format: new ol.format.GeoJSON()
