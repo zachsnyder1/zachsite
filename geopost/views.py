@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
 from .forms import GeoPostForm
 from projects.models import Project
-from .view_helper import upload_to_bucket, rollback_upload, \
+from .view_helper import upload_to_bucket, delete_from_bucket, \
 	post_to_geoserver, get_from_geoserver, download_from_bucket, \
 	server_error
 
@@ -98,7 +98,7 @@ class Entry(LoginRequiredMixin, GeoPostBase):
 		# UPLOAD PHOTO TO BUCKET
 		# if editing existing entry, first delete existing photo
 		if fid:
-			rollback_upload(uuid, self.imageBucket)
+			delete_from_bucket(uuid, self.imageBucket)
 		else:
 			pass
 		photo.open('rb')
@@ -116,11 +116,31 @@ class Entry(LoginRequiredMixin, GeoPostBase):
 			return HttpResponseRedirect(reverse('geopost_home'))
 		# IF WFS TRANSACTION ERROR
 		else:
-			rollback_upload(uuid, self.imageBucket)
+			delete_from_bucket(uuid, self.imageBucket)
 			return server_error(error);
-			
+	
 
 # METHOD BASED VIEWS
+@login_required
+@require_http_methods(["POST"])
+def delete(request):
+	"""
+	Delete an entry and its associated photo.  A workaround to AJAX.
+	"""
+	wfsxml = request.POST.get('wfsxml', False) # FOR GEOSERVER
+	uuid = request.POST.get('uuid', False)
+	# MAKE GEOSERVER WFS TRANSACTION
+	error = post_to_geoserver(wfsxml, GeoPostBase.wfsURL)
+	# ALL GOOD
+	if error:
+		return server_error(error)
+	# IF WFS TRANSACTION ERROR
+	else:
+		pass
+	# Delete photo from bucket
+	delete_from_bucket(uuid, GeoPostBase.imageBucket)
+	return HttpResponseRedirect(reverse('geopost_home'))		
+
 @require_http_methods(["GET"])
 def photo(request, entry_uuid):
 	"""
@@ -131,19 +151,3 @@ def photo(request, entry_uuid):
 	resp.write(base64.b64encode(photo))
 	resp['Content-Type'] = metadata['contentType']
 	return resp
-
-@login_required
-@require_http_methods(["POST"])
-def wfs(request):
-	"""
-	Reroute internal AJAX WFS transactions to GeoServer.
-	"""
-	wfsxml = request.POST.get('wfsxml', False)
-	# MAKE GEOSERVER WFS TRANSACTION
-	error = post_to_geoserver(wfsxml, GeoPostBase.wfsURL)
-	# ALL GOOD
-	if not error:
-		return HttpResponseRedirect(reverse('geopost_home'))
-	# IF WFS TRANSACTION ERROR
-	else:
-		return server_error(error);

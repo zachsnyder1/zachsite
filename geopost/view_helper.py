@@ -58,7 +58,7 @@ def download_from_bucket(uuid, bucket):
 	except apiclient.errors.HttpError as e:
 		return e.resp.status
 
-def rollback_upload(uuid, bucket):
+def delete_from_bucket(uuid, bucket):
 	"""
 	SUCCESS: return None
 	HTTP ERROR: return error code

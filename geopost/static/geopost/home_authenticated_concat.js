@@ -269,7 +269,9 @@ $(document).ready(function () {
 		$('#delete-btn').on('click', function() {
 			OL_OBJ.wfsOperation = 'DELETE';
 			var wfsxml =  OL_OBJ.writeTrans([targetEntry]);
+			var uuid = targetEntry.get('uuid');
 			$('#wfsxmlInput').attr('value', wfsxml);
+			$('#uuidInput').attr('value', uuid);
 			$('#submit-btn').click();
 		});
 	});

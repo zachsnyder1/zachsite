@@ -29,6 +29,8 @@ src="{% static 'geopost/home_anonymous_concat.js' %}"></script>
         </button>
       </a>
     </div> <!-- #toolbar -->
+    <div id="toolbar-base">
+    </div>
   </div> <!-- #toolbar-wrapper -->
   {% endif %}
 </div>
@@ -53,10 +55,11 @@ role="dialog" aria-labelledby="entrydetails">
             Delete
           </button>
         </div> <!-- .btn-group -->
-        <form id="delete-form" method="post" action="{% url 'geopost_wfs' %}"
+        <form id="delete-form" method="post" action="{% url 'geopost_delete' %}"
 enctype="multipart/form-data">
           {% csrf_token %}
           <input id="wfsxmlInput" type="hidden" name="wfsxml">
+          <input id="uuidInput" type="hidden" name="uuid">
           <input type="submit" id="submit-btn">
         </form>
         {% endif %}
