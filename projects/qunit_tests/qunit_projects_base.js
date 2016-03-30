@@ -63,13 +63,13 @@ QUnit.test('test slideSubNavDown', function(assert) {
 				var styleArray2 = style2.split(' ');
 				// ASSERTIONS:
 				assert.equal(styleArray1[0] + styleArray1[1],
-							 "overflow-x:hidden;",
+							 "overflow:hidden;",
 							 "TIME 1: first style rule not overflow hidden");
 				assert.equal(styleArray2[0] + styleArray2[1],
-							 "overflow-x:hidden;",
+							 "overflow:hidden;",
 							 "TIME 2: first style rule not overflow hidden");
-				assert.notEqual(styleArray1[5],
-								styleArray2[5],
+				assert.notEqual(styleArray1[3],
+								styleArray2[3],
 								"height at time 1 and 2 not different");
 				assert.equal(style3,
 							 "",

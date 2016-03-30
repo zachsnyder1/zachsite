@@ -42,7 +42,7 @@ QUnit.test("test qaCarUpdate", function(assert) {
 						 "test2", 
 						 "text after slide");
 			done();
-		}, 0);
+		}, 100);
 	});
 	// Trigger the event
 	$('#' + questionCarousel).carousel('next');
