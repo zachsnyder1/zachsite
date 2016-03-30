@@ -219,6 +219,35 @@ OL_OBJ.retrievePhoto = function (uuid, imgElem) {
 		}
 	});
 };
+// interaction toggle handler for buttons
+OL_OBJ.toggleInter = function (interaction, active, btn) {
+	return function() {
+		if (active === false) {
+			OL_OBJ.map.removeInteraction(OL_OBJ.dragpan);
+			OL_OBJ.map.addInteraction(interaction);
+			btn.removeClass('btn-success');
+			btn.addClass('btn-danger');
+			active = true;
+		} else {
+			OL_OBJ.map.removeInteraction(interaction);
+			OL_OBJ.map.addInteraction(OL_OBJ.dragpan);
+			btn.removeClass('btn-danger');
+			btn.addClass('btn-success');
+			active = false;
+		}
+	};
+};
+// collect fid from url query string, if present
+OL_OBJ.entryFID = function() {
+	var qstrArray = window.location.search.split('?');
+	for (i = 1; i < qstrArray.length; i++) {
+		var arg = qstrArray[i].split('=');
+		if (arg[0] == 'fid') {
+			return arg[1];
+		}
+	}
+	return undefined;
+}();
 /*
 / ON DOCUMENT READY:
 */
@@ -231,6 +260,7 @@ $(document).ready(function () {
 		interactions: [OL_OBJ.dragpan]
 	});
 });
+
 $(document).ready(function () {	
 	/*
 	/  -- INTERACTION(S) --

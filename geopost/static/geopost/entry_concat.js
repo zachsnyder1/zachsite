@@ -219,18 +219,6 @@ OL_OBJ.retrievePhoto = function (uuid, imgElem) {
 		}
 	});
 };
-/*
-/ ON DOCUMENT READY:
-*/
-$(document).ready(function () {
-	// ...MAKE THE MAP
-	OL_OBJ.map = new ol.Map({
-		target: 'map',
-		layers: [OL_OBJ.tile, OL_OBJ.entries],
-		view: OL_OBJ.view,
-		interactions: [OL_OBJ.dragpan]
-	});
-});
 // interaction toggle handler for buttons
 OL_OBJ.toggleInter = function (interaction, active, btn) {
 	return function() {
@@ -260,6 +248,18 @@ OL_OBJ.entryFID = function() {
 	}
 	return undefined;
 }();
+/*
+/ ON DOCUMENT READY:
+*/
+$(document).ready(function () {
+	// ...MAKE THE MAP
+	OL_OBJ.map = new ol.Map({
+		target: 'map',
+		layers: [OL_OBJ.tile, OL_OBJ.entries],
+		view: OL_OBJ.view,
+		interactions: [OL_OBJ.dragpan]
+	});
+});
 
 $(document).ready(function () {
 	/*
