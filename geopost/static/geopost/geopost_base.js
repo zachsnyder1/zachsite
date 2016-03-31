@@ -127,7 +127,7 @@ OL_OBJ.entryFID = function() {
 / ON DOCUMENT READY:
 */
 try {
-	QUnit;
+	QUnit = QUnit;
 } catch (e) {
 	$(document).ready(function () {
 		// ...MAKE THE MAP

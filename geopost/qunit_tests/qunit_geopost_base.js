@@ -125,8 +125,8 @@ QUnit.test('test toggleInter', function(assert) {
 		btn.click();
 		
 		// BACK AGAIN, ASSERT BTN HAS CLASS 'btn-success' AND MAP HAS ONLY DRAGPAN
-		var inters1 = OL_OBJ.map.getInteractions();
-		inters1.forEach(function(interEl) {
+		var inters3 = OL_OBJ.map.getInteractions();
+		inters3.forEach(function(interEl) {
 			if (interEl == OL_OBJ.dragpan) {
 				done3();
 			} else if (interEl == inter) {

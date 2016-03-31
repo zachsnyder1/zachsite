@@ -251,15 +251,20 @@ OL_OBJ.entryFID = function() {
 /*
 / ON DOCUMENT READY:
 */
-$(document).ready(function () {
-	// ...MAKE THE MAP
-	OL_OBJ.map = new ol.Map({
-		target: 'map',
-		layers: [OL_OBJ.tile, OL_OBJ.entries],
-		view: OL_OBJ.view,
-		interactions: [OL_OBJ.dragpan]
+try {
+	QUnit = QUnit;
+} catch (e) {
+	$(document).ready(function () {
+		// ...MAKE THE MAP
+		OL_OBJ.map = new ol.Map({
+			target: 'map',
+			layers: [OL_OBJ.tile, OL_OBJ.entries],
+			view: OL_OBJ.view,
+			interactions: [OL_OBJ.dragpan]
+		});
 	});
-});
+}
+
 
 $(document).ready(function () {
 	/*
