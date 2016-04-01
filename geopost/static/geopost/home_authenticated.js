@@ -2,7 +2,7 @@ $(document).ready(function () {
 	/*
 	/  -- INTERACTION(S) --
 	*/
-	var select = new ol.interaction.Select({
+	OL_OBJ.select = new ol.interaction.Select({
 		condition: ol.events.condition.click,
 		layers: [OL_OBJ.entries]
 	});
@@ -11,7 +11,7 @@ $(document).ready(function () {
 	/  -- UPDATE MAP WITH NEW ELEMENTS --
 	*/
 	// Adding elements to map
-	OL_OBJ.map.addInteraction(select);
+	OL_OBJ.map.addInteraction(OL_OBJ.select);
 	// Readjusting the view
 	OL_OBJ.rescaleView(OL_OBJ.entriessource);
 	OL_OBJ.resetView();
@@ -20,7 +20,7 @@ $(document).ready(function () {
 	/  -- MAIN --
 	*/
 	// On Select, Display Info
-	select.on('select', function (evt) {
+	OL_OBJ.select.on('select', function (evt) {
 		targetEntry = evt.target.getFeatures().item(0);
 		// Display title and text of entry
 		$('#title').text(targetEntry.get('title'));
@@ -28,7 +28,7 @@ $(document).ready(function () {
 		$('#info').modal('show');
 		OL_OBJ.retrievePhoto(targetEntry.get('uuid'), $('#photo'));
 		// Update the edit and delete button 'click' listeners
-		// to point to newly selected entry:
+		// to point to newly OL_OBJ.selected entry:
 		$('#edit-btn').on('click', function() {
 			var base_url = $('#geopost-entry').attr('data-geopost-entry');
 			var curr_fid = targetEntry.get('fid');
@@ -45,7 +45,7 @@ $(document).ready(function () {
 	});
 	// Deselect entry when modal is hidden
 	$('#info').on('hide.bs.modal', function (e) {
-		select.getFeatures().clear();
+		OL_OBJ.select.getFeatures().clear();
 	});
 	// Side bar opens/closes on click
 	$('#toolbar-toggle').on('click', function() {
