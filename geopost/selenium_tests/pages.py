@@ -1,6 +1,7 @@
 import os
 import sys
-from .locators import HomeLocators
+import random
+from .locators import HomeLocators, EntryLocators
 PACKAGE_ROOT = '../..'
 SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), 
 	os.path.expanduser(__file__))))
@@ -8,6 +9,7 @@ PACKAGE_PATH = os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_ROOT))
 sys.path.append(PACKAGE_PATH)
 from zachsite.selenium_tests.base_page import BasePage
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -27,6 +29,13 @@ class GeopostPageBase(BasePage):
 		attrBtn = self.driver.find_element(*HomeLocators.ATTR_BTN)
 		attrBtn.click()
 	
+	def toggle_toolbar(self):
+		"""
+		Click the toolbar collapse/expand button.
+		"""
+		toolbarToggle = self.driver.find_element(*HomeLocators.TOOLBAR_TOGGLE)
+		toolbarToggle.click()
+	
 	# ---------------------------------------------------------------
 	# ------------------- VERIFICATION METHODS ----------------------
 	# ---------------------------------------------------------------
@@ -36,7 +45,7 @@ class GeopostPageBase(BasePage):
 		"""
 		attribution = self.driver.find_element(*HomeLocators.ATTRIBUTION)
 		c = 'ol-collapsed' # the class indicating that attr is collapsed
-		condition = lambda driver: c in attribution.get_attribute('class')
+		condition = lambda driver: c not in attribution.get_attribute('class')
 		return self.verify(condition)
 	
 	def verify_attribution_not_displayed(self):
@@ -45,7 +54,7 @@ class GeopostPageBase(BasePage):
 		"""
 		attribution = self.driver.find_element(*HomeLocators.ATTRIBUTION)
 		c = 'ol-collapsed' # collapsed class
-		condition = lambda driver: c not in attribution.get_attribute('class')
+		condition = lambda driver: c in attribution.get_attribute('class')
 		return self.verify(condition)
 	
 	def verify_toolbar_present(self):
@@ -61,18 +70,26 @@ class GeopostPageBase(BasePage):
 		"""
 		return self.absent(HomeLocators.TOOLBAR)
 	
+	def verify_toolbar_displayed(self):
+		"""
+		True if toolbar is present and visible.
+		"""
+		toolbar = self.driver.find_element(*HomeLocators.TOOLBAR)
+		return self.verify(EC.visibility_of(toolbar))
+	
+	def verify_toolbar_not_displayed(self):
+		"""
+		True if toolbar is present and visible.
+		"""
+		condition = EC.invisibility_of_element_located(HomeLocators.TOOLBAR)
+		return self.verify(condition)
+	
 	
 
 class GeopostHomePage(GeopostPageBase):
 	"""
 	Page objects for Geopost home page.
 	"""
-	def __init__(self, driver):
-		"""
-		Get the page...
-		"""
-		super().__init__(driver)
-		self.driver.get('http://127.0.0.1:8000/projects/geopost/')
 	# ---------------------------------------------------------------
 	# ---------------------- GENERAL ACTIONS ------------------------
 	# ---------------------------------------------------------------
@@ -100,6 +117,13 @@ class GeopostHomePage(GeopostPageBase):
 		"""
 		closebtn = self.driver.find_element(*HomeLocators.CLOSE_BTN)
 		closebtn.click()
+	
+	def click_new_entry_button(self):
+		"""
+		Click the 'New Entry' button in the toolbar.
+		"""
+		newEntryBtn = self.driver.find_elements(*HomeLocators.TOOLBAR_BTNS)[0]
+		newEntryBtn.click()
 	
 	# ---------------------------------------------------------------
 	# ------------------- VERIFICATION METHODS ----------------------
@@ -181,11 +205,84 @@ class GeopostHomePage(GeopostPageBase):
 
 class GeopostEntryPage(GeopostPageBase):
 	"""
-	
+	Page Objects for entry page.
 	"""
-	def __init__(self, driver, q=''):
+	# ---------------------------------------------------------------
+	# ---------------------- GENERAL ACTIONS ------------------------
+	# ---------------------------------------------------------------
+	def toggle_draw(self):
 		"""
-		Get the page...
+		Click draw button.
 		"""
-		super().__init__(driver)
-		self.driver.get('http://127.0.0.1:8000/projects/geopost/entry/' + q)
+		drawBtn = self.driver.find_element(*EntryLocators.DRAW_BTN)
+		drawBtn.click()
+	
+	def toggle_modify(self):
+		"""
+		Click modify button.
+		"""
+		modBtn = self.driver.find_element(*EntryLocators.MODIFY_BTN)
+		modBtn.click()
+	
+	def draw_point(self):
+		"""
+		Click somewhere on the map.
+		"""
+		action = ActionChains(self.driver)
+		map = self.driver.find_element(*EntryLocators.MAP)
+		xOffset = random.randint(0, map.size['width'])
+		yOffset = random.randint(0, map.size['height'])
+		action.move_to_element_with_offset(map, xOffset, yOffset)
+		action.click()
+		action.perform()
+	
+	def enter_title(self, title):
+		"""
+		Send title to title input.
+		"""
+		pass
+	
+	def enter_body(self, body):
+		"""
+		Send body to body input.
+		"""
+		pass
+	
+	def choose_photo(self):
+		"""
+		Choose a photo.
+		"""
+		pass
+	
+	def submit_form(self):
+		"""
+		Click the dummy submit button.
+		"""
+		pass
+	
+	# ---------------------------------------------------------------
+	# ------------------- VERIFICATION METHODS ----------------------
+	# ---------------------------------------------------------------
+	def verify_draw_active(self):	
+		"""
+		True if draw interaction is active.
+		"""
+		pass
+	
+	def verify_draw_not_active(self):
+		"""
+		True if draw interaction is not active.
+		"""
+		pass
+	
+	def verify_modify_active(self):
+		"""
+		True if modify interaction is active.
+		"""
+		pass
+	
+	def verify_modify_not_active(self):
+		"""
+		True if modify interaction is not active.
+		"""
+		pass

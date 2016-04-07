@@ -9,13 +9,6 @@ class LoginPage(BasePage):
 	"""
 	Page objects for the login page.
 	"""
-	def __init__(self, driver):
-		"""
-		Get the page...
-		"""
-		super().__init__(driver)
-		self.driver.get('http://127.0.0.1:8000/accounts/login/')
-	
 	# ---------------------------------------------------------------
 	# ---------------------- GENERAL ACTIONS ------------------------
 	# ---------------------------------------------------------------
@@ -61,13 +54,6 @@ class LogoutPage(BasePage):
 	"""
 	Page objects for the logout page.
 	"""
-	def __init__(self, driver):
-		"""
-		Get the page...
-		"""
-		super().__init__(driver)
-		self.driver.get('http://127.0.0.1:8000/accounts/logout/')
-	
 	def verify_logged_out(self):
 		"""
 		Look for the success message.

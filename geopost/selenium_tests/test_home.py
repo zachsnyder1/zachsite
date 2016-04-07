@@ -7,7 +7,7 @@ SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(),
 PACKAGE_PATH = os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_ROOT))
 sys.path.append(PACKAGE_PATH)
 from zachsite.selenium_tests.pages import LoginPage, LogoutPage
-from geopost.selenium_tests.pages import GeopostHomePage
+from geopost.selenium_tests.pages import GeopostHomePage, GeopostEntryPage
 from selenium import webdriver
 
 
@@ -20,6 +20,7 @@ class HomeAnonymousTests(unittest.TestCase):
 		Make the driver, get the page.
 		"""
 		self.driver = webdriver.Firefox()
+		self.driver.get('http://127.0.0.1:8000/projects/geopost/')
 		self.page = GeopostHomePage(self.driver)
 	
 	def tearDown(self):
@@ -57,14 +58,14 @@ class HomeAnonymousTests(unittest.TestCase):
 		# ...and the image should load in a few seconds:
 		self.assertTrue(self.page.verify_img_load())
 	
-	def test_attribution_displayed(self):
+	def test_attribution_not_displayed(self):
 		"""
-		Test that the attribution is displayed initially, and that it
-		collapses after click.
+		Test that the attribution is not displayed initially, and that it
+		expands after click.
 		"""
-		self.assertTrue(self.page.verify_attribution_displayed())
-		self.page.toggle_attribution()
 		self.assertTrue(self.page.verify_attribution_not_displayed())
+		self.page.toggle_attribution()
+		self.assertTrue(self.page.verify_attribution_displayed())
 	
 	def test_auth_elements(self):
 		"""
@@ -87,16 +88,19 @@ class HomeAuthedTests(HomeAnonymousTests):
 		with open('/etc/zachsite_test_creds.txt') as f:
 			testCreds = f.readlines()
 		self.driver = webdriver.Firefox()
+		self.driver.get('http://127.0.0.1:8000/accounts/login/')
 		self.page = LoginPage(self.driver)
 		self.page.enter_username(testCreds[0].strip())
 		self.page.enter_password(testCreds[1].strip())
 		self.page.login()
+		self.driver.get('http://127.0.0.1:8000/projects/geopost/')
 		self.page = GeopostHomePage(self.driver)
 	
 	def tearDown(self):
 		"""
 		Close driver.
 		"""
+		self.driver.get('http://127.0.0.1:8000/accounts/logout/')
 		self.page = LogoutPage(self.driver)
 		self.assertTrue(self.page.verify_logged_out())
 		self.driver.close()
@@ -109,6 +113,26 @@ class HomeAuthedTests(HomeAnonymousTests):
 		self.assertTrue(self.page.verify_toolbar_present())
 		self.assertTrue(self.page.verify_edit_button_present())
 		self.assertTrue(self.page.verify_delete_button_present())
+	
+	def test_toolbar_open_and_close(self):
+		"""
+		Make sure the toolbar opens and closes when toggled.
+		"""
+		self.assertTrue(self.page.verify_toolbar_displayed())
+		self.page.toggle_toolbar()
+		self.assertTrue(self.page.verify_toolbar_not_displayed())
+		self.page.toggle_toolbar()
+		self.assertTrue(self.page.verify_toolbar_displayed())
+	
+	def test_follow_new_entry_link(self):
+		"""
+		Click on the 'New Entry' button in the toolbar, verify that
+		it leads to entry page.
+		"""
+		expected_path = '/projects/geopost/entry/'
+		self.page.click_new_entry_button()
+		self.page = GeopostEntryPage(self.driver)
+		self.assertTrue(self.page.verify_path(expected_path))
 		
 
 if __name__ == '__main__':

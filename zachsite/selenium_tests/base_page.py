@@ -1,6 +1,7 @@
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from urllib.parse import urlparse
 
 class BasePage:
 	"""
@@ -28,3 +29,10 @@ class BasePage:
 			return False
 		except NoSuchElementException:
 			return True
+	
+	def verify_path(self, expected_path):	
+		"""
+		True if expected path matches the current path.
+		"""
+		u = urlparse(self.driver.current_url)
+		return expected_path == u.path
