@@ -1,14 +1,14 @@
 import unittest
 import os
 import sys
-PACKAGE_ROOT = '..'
+PACKAGE_ROOT = '../..'
 SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), 
 	os.path.expanduser(__file__))))
 PACKAGE_PATH = os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_ROOT))
 sys.path.append(PACKAGE_PATH)
-import selenium_tests.pages as pages
+from zachsite.selenium_tests.pages import LoginPage, LogoutPage
+from geopost.selenium_tests.pages import GeopostHomePage
 from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException
 
 
 class HomeAnonymousTests(unittest.TestCase):
@@ -20,8 +20,7 @@ class HomeAnonymousTests(unittest.TestCase):
 		Make the driver, get the page.
 		"""
 		self.driver = webdriver.Firefox()
-		self.driver.get('http://127.0.0.1:8000/projects/geopost/')
-		self.page = pages.GeopostHomePage(self.driver)
+		self.page = GeopostHomePage(self.driver)
 	
 	def tearDown(self):
 		"""
@@ -58,14 +57,58 @@ class HomeAnonymousTests(unittest.TestCase):
 		# ...and the image should load in a few seconds:
 		self.assertTrue(self.page.verify_img_load())
 	
-	def test_auth_elements_not_present(self):
+	def test_attribution_displayed(self):
 		"""
-		Test that Django correctly omitted the toolbar and edit/delete
+		Test that the attribution is displayed initially, and that it
+		collapses after click.
+		"""
+		self.assertTrue(self.page.verify_attribution_displayed())
+		self.page.toggle_attribution()
+		self.assertTrue(self.page.verify_attribution_not_displayed())
+	
+	def test_auth_elements(self):
+		"""
+		Test that the server correctly omitted the toolbar and edit/delete
 		buttons for anonymous user.
 		"""
 		self.assertTrue(self.page.verify_toolbar_absent())
 		self.assertTrue(self.page.verify_edit_button_absent())
 		self.assertTrue(self.page.verify_delete_button_absent())
+
+
+class HomeAuthedTests(HomeAnonymousTests):
+	"""
+	Methods to test app home page as authed user.
+	"""
+	def setUp(self):
+		"""
+		Make driver, page, sign in.
+		"""
+		with open('/etc/zachsite_test_creds.txt') as f:
+			testCreds = f.readlines()
+		self.driver = webdriver.Firefox()
+		self.page = LoginPage(self.driver)
+		self.page.enter_username(testCreds[0].strip())
+		self.page.enter_password(testCreds[1].strip())
+		self.page.login()
+		self.page = GeopostHomePage(self.driver)
+	
+	def tearDown(self):
+		"""
+		Close driver.
+		"""
+		self.page = LogoutPage(self.driver)
+		self.assertTrue(self.page.verify_logged_out())
+		self.driver.close()
+	
+	def test_auth_elements(self):
+		"""
+		Override: Test that the server included the toolbar and
+		edit/delete buttons for the authenticated user.
+		"""
+		self.assertTrue(self.page.verify_toolbar_present())
+		self.assertTrue(self.page.verify_edit_button_present())
+		self.assertTrue(self.page.verify_delete_button_present())
 		
 
 if __name__ == '__main__':
