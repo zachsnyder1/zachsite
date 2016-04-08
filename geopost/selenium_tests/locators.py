@@ -31,6 +31,10 @@ class EntryLocators(GeopostLocators):
 	"""
 	Locators for the entry page.
 	"""
+	# class names for reference
+	ACTIVE = 'btn-danger'
+	INACTIVE = 'btn-success'
+	# the locators
 	DRAW_BTN = (By.ID, 'drawbtn')
 	MODIFY_BTN = (By.ID, 'modbtn')
 	TITLE_IN = (By.ID, 'title')

@@ -7,6 +7,8 @@ class BasePage:
 	"""
 	Base class for page objects.
 	"""
+	EXPECTED_PATH = None
+	
 	def __init__(self, driver):
 		self.driver = driver
 	
@@ -30,9 +32,10 @@ class BasePage:
 		except NoSuchElementException:
 			return True
 	
-	def verify_path(self, expected_path):	
+	def verify_path(self, time=2):	
 		"""
 		True if expected path matches the current path.
 		"""
 		u = urlparse(self.driver.current_url)
-		return expected_path == u.path
+		condition = lambda driver: self.__class__.EXPECTED_PATH == u.path
+		return self.verify(condition, time=time)

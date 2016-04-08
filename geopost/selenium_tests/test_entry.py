@@ -8,7 +8,7 @@ SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(),
 PACKAGE_PATH = os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_ROOT))
 sys.path.append(PACKAGE_PATH)
 from zachsite.selenium_tests.pages import LoginPage, LogoutPage
-from geopost.selenium_tests.pages import GeopostEntryPage
+from geopost.selenium_tests.pages import GeopostEntryPage, GeopostHomePage
 from selenium import webdriver
 
 
@@ -59,13 +59,54 @@ class EntryTests(unittest.TestCase):
 		self.page.toggle_toolbar()
 		self.assertTrue(self.page.verify_toolbar_displayed())
 	
+	def test_toggle_draw(self):
+		"""
+		Turn draw interaction on and off.
+		"""
+		self.assertTrue(self.page.verify_draw_not_active())
+		self.page.toggle_draw()
+		self.assertTrue(self.page.verify_draw_active())
+		self.page.toggle_draw()
+		self.assertTrue(self.page.verify_draw_not_active())
+	
+	def test_toggle_modify(self):
+		"""
+		Turn modify on and off.
+		"""
+		# first draw a point so that modify button is present
+		self.page.toggle_draw()
+		self.page.draw_point()
+		self.assertTrue(self.page.verify_modify_not_active())
+		self.page.toggle_modify()
+		self.assertTrue(self.page.verify_modify_active())
+		self.page.toggle_modify()
+		self.assertTrue(self.page.verify_modify_not_active())
+	
 	def test_create_new_entry(self):
 		"""
 		Draw point, fill in form, submit.
 		"""
-		self.page.toggle_draw()
-		self.page.draw_point()
-		time.sleep(3)
+		# read parameter file
+		with open(SCRIPT_DIR + '/data_new_entry.csv') as f:
+			testData = f.readlines()
+		# run subtests
+		for paramList in testData:
+			params = paramList.split(',')
+			# reload page for each subtest
+			self.driver.get('http://127.0.0.1:8000/projects/geopost/entry')
+			self.page = GeopostEntryPage(self.driver)
+			with self.subTest(params = params):
+				# start out at app home
+				self.page.toggle_draw()
+				self.page.draw_point()
+				self.page.enter_title(params[0])
+				self.page.enter_body(params[1])
+				self.page.choose_photo(params[2].strip())
+				self.page.submit_form()
+				self.page = GeopostHomePage(self.driver)
+				self.assertTrue(self.page.verify_path(time=12))
+				# Delete the newly created post
+				self.page.delete_by_title(params[0])
 
 
 if __name__ == '__main__':

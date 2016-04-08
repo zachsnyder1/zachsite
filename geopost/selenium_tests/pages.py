@@ -90,6 +90,7 @@ class GeopostHomePage(GeopostPageBase):
 	"""
 	Page objects for Geopost home page.
 	"""
+	EXPECTED_PATH = '/projects/geopost/'
 	# ---------------------------------------------------------------
 	# ---------------------- GENERAL ACTIONS ------------------------
 	# ---------------------------------------------------------------
@@ -108,6 +109,20 @@ class GeopostHomePage(GeopostPageBase):
 			'var feat = OL_OBJ.entriessource.getFeatures()[0];' + \
 			'OL_OBJ.select.getFeatures().push(feat);' + \
 			'OL_OBJ.select.dispatchEvent(\'select\');' + \
+			'});'
+		self.driver.execute_script(script)
+	
+	def delete_by_title(self, title):
+		"""
+		Find the entry by title, delete if exists.
+		"""
+		script = '$(document).ready(function() {' + \
+			'var feats = OL_OBJ.entriessource.getFeatures();' + \
+			'for (var i = 0; i < feats.length; i++) {' + \
+			'if (feats[i].get("title") == "' + title + '") {' + \
+			'OL_OBJ.select.getFeatures().push(feats[i]);}}' + \
+			'OL_OBJ.select.dispatchEvent(\'select\');' + \
+			'$("#delete-btn").click();' + \
 			'});'
 		self.driver.execute_script(script)
 	
@@ -207,6 +222,7 @@ class GeopostEntryPage(GeopostPageBase):
 	"""
 	Page Objects for entry page.
 	"""
+	EXPECTED_PATH = '/projects/geopost/entry/'
 	# ---------------------------------------------------------------
 	# ---------------------- GENERAL ACTIONS ------------------------
 	# ---------------------------------------------------------------
@@ -240,25 +256,32 @@ class GeopostEntryPage(GeopostPageBase):
 		"""
 		Send title to title input.
 		"""
-		pass
+		titleIn = self.driver.find_element(*EntryLocators.TITLE_IN)
+		titleIn.clear()
+		titleIn.send_keys(title)
 	
 	def enter_body(self, body):
 		"""
 		Send body to body input.
 		"""
-		pass
+		bodyIn = self.driver.find_element(*EntryLocators.BODY_IN)
+		bodyIn.clear()
+		bodyIn.send_keys(body)
 	
-	def choose_photo(self):
+	def choose_photo(self, absPath):
 		"""
 		Choose a photo.
 		"""
-		pass
+		photoIn = self.driver.find_element(*EntryLocators.PHOTO_IN)
+		photoIn.clear()
+		photoIn.send_keys(absPath)
 	
 	def submit_form(self):
 		"""
 		Click the dummy submit button.
 		"""
-		pass
+		dummySubmitBtn = self.driver.find_element(*EntryLocators.DUMMY_SUBMIT)
+		dummySubmitBtn.click()
 	
 	# ---------------------------------------------------------------
 	# ------------------- VERIFICATION METHODS ----------------------
@@ -267,22 +290,38 @@ class GeopostEntryPage(GeopostPageBase):
 		"""
 		True if draw interaction is active.
 		"""
-		pass
+		draw = self.driver.find_element(*EntryLocators.DRAW_BTN)
+		classStr = draw.get_attribute('class')
+		condition = lambda driver: (EntryLocators.ACTIVE in classStr and 
+			EntryLocators.INACTIVE not in classStr)
+		return self.verify(condition)
 	
 	def verify_draw_not_active(self):
 		"""
 		True if draw interaction is not active.
 		"""
-		pass
+		draw = self.driver.find_element(*EntryLocators.DRAW_BTN)
+		classStr = draw.get_attribute('class')
+		condition = lambda driver: (EntryLocators.ACTIVE not in classStr and 
+			EntryLocators.INACTIVE in classStr)
+		return self.verify(condition)
 	
 	def verify_modify_active(self):
 		"""
 		True if modify interaction is active.
 		"""
-		pass
+		modify = self.driver.find_element(*EntryLocators.MODIFY_BTN)
+		classStr = modify.get_attribute('class')
+		condition = lambda driver: (EntryLocators.ACTIVE in classStr and 
+			EntryLocators.INACTIVE not in classStr)
+		return self.verify(condition)
 	
 	def verify_modify_not_active(self):
 		"""
 		True if modify interaction is not active.
 		"""
-		pass
+		modify = self.driver.find_element(*EntryLocators.MODIFY_BTN)
+		classStr = modify.get_attribute('class')
+		condition = lambda driver: (EntryLocators.ACTIVE not in classStr and 
+			EntryLocators.INACTIVE in classStr)
+		return self.verify(condition)

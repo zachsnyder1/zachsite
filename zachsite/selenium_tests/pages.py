@@ -9,6 +9,7 @@ class LoginPage(BasePage):
 	"""
 	Page objects for the login page.
 	"""
+	EXPECTED_PATH = '/accounts/login/'
 	# ---------------------------------------------------------------
 	# ---------------------- GENERAL ACTIONS ------------------------
 	# ---------------------------------------------------------------
@@ -54,6 +55,7 @@ class LogoutPage(BasePage):
 	"""
 	Page objects for the logout page.
 	"""
+	EXPECTED_PATH = '/accounts/logout/'
 	def verify_logged_out(self):
 		"""
 		Look for the success message.

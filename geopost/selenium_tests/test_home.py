@@ -129,10 +129,9 @@ class HomeAuthedTests(HomeAnonymousTests):
 		Click on the 'New Entry' button in the toolbar, verify that
 		it leads to entry page.
 		"""
-		expected_path = '/projects/geopost/entry/'
 		self.page.click_new_entry_button()
 		self.page = GeopostEntryPage(self.driver)
-		self.assertTrue(self.page.verify_path(expected_path))
+		self.assertTrue(self.page.verify_path())
 		
 
 if __name__ == '__main__':
