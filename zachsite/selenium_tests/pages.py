@@ -17,7 +17,7 @@ class LoginPage(BasePage):
 		"""
 		Enters username into input widget.
 		"""
-		usernameIn = self.driver.find_element(*LoginLocators.USERNAME_IN)
+		usernameIn = self.get_element_if_visible(LoginLocators.USERNAME_IN)
 		usernameIn.clear()
 		usernameIn.send_keys(username)
 	
@@ -25,7 +25,7 @@ class LoginPage(BasePage):
 		"""
 		Enters password into the password input widget.
 		"""
-		passIn = self.driver.find_element(*LoginLocators.PASSWORD_IN)
+		passIn = self.get_element_if_visible(LoginLocators.PASSWORD_IN)
 		passIn.clear()
 		passIn.send_keys(password)
 	
@@ -33,21 +33,21 @@ class LoginPage(BasePage):
 		"""
 		Clicks the submit button.
 		"""
-		submitBtn = self.driver.find_element(*LoginLocators.SUBMIT_BTN)
+		submitBtn = self.get_element_if_visible(LoginLocators.SUBMIT_BTN)
 		submitBtn.click()
 	
 	def follow_forgot_password_link(self):
 		"""
 		Follow the forgot password link.
 		"""
-		link = self.driver.find_element(*LoginLocators.FORGOT_PWD)
+		link = self.get_element_if_visible(LoginLocators.FORGOT_PWD)
 		link.click()
 	
 	def follow_signup_link(self):
 		"""
 		Follow the link to create new account.
 		"""
-		link = self.driver.find_element(*LoginLocators.SIGN_UP)
+		link = self.get_element_if_visible(LoginLocators.SIGN_UP)
 		link.click()
 
 

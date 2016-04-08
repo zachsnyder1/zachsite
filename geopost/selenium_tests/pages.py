@@ -26,15 +26,15 @@ class GeopostPageBase(BasePage):
 		"""
 		Click the attribution button to open/close it.
 		"""
-		attrBtn = self.driver.find_element(*HomeLocators.ATTR_BTN)
+		attrBtn = self.get_element_if_visible(HomeLocators.ATTR_BTN)
 		attrBtn.click()
 	
 	def toggle_toolbar(self):
 		"""
 		Click the toolbar collapse/expand button.
 		"""
-		toolbarToggle = self.driver.find_element(*HomeLocators.TOOLBAR_TOGGLE)
-		toolbarToggle.click()
+		tlbrToggle = self.get_element_if_visible(HomeLocators.TOOLBAR_TOGGLE)
+		tlbrToggle.click()
 	
 	# ---------------------------------------------------------------
 	# ------------------- VERIFICATION METHODS ----------------------
@@ -98,7 +98,7 @@ class GeopostHomePage(GeopostPageBase):
 		"""
 		Get the src attribute of the entry img element.
 		"""
-		elem = self.driver.find_element(*HomeLocators.ENTRY_IMG)
+		elem = self.get_element_if_present(HomeLocators.ENTRY_IMG)
 		return elem.get_attribute('src')
 	
 	def open_entry(self):
@@ -130,7 +130,7 @@ class GeopostHomePage(GeopostPageBase):
 		"""
 		Close the info modal.
 		"""
-		closebtn = self.driver.find_element(*HomeLocators.CLOSE_BTN)
+		closebtn = self.get_element_if_visible(HomeLocators.CLOSE_BTN)
 		closebtn.click()
 	
 	def click_new_entry_button(self):
@@ -230,14 +230,14 @@ class GeopostEntryPage(GeopostPageBase):
 		"""
 		Click draw button.
 		"""
-		drawBtn = self.driver.find_element(*EntryLocators.DRAW_BTN)
+		drawBtn = self.get_element_if_visible(EntryLocators.DRAW_BTN)
 		drawBtn.click()
 	
 	def toggle_modify(self):
 		"""
 		Click modify button.
 		"""
-		modBtn = self.driver.find_element(*EntryLocators.MODIFY_BTN)
+		modBtn = self.get_element_if_visible(EntryLocators.MODIFY_BTN)
 		modBtn.click()
 	
 	def draw_point(self):
@@ -245,7 +245,7 @@ class GeopostEntryPage(GeopostPageBase):
 		Click somewhere on the map.
 		"""
 		action = ActionChains(self.driver)
-		map = self.driver.find_element(*EntryLocators.MAP)
+		map = self.get_element_if_present(EntryLocators.MAP)
 		xOffset = random.randint(0, map.size['width'])
 		yOffset = random.randint(0, map.size['height'])
 		action.move_to_element_with_offset(map, xOffset, yOffset)
@@ -256,7 +256,7 @@ class GeopostEntryPage(GeopostPageBase):
 		"""
 		Send title to title input.
 		"""
-		titleIn = self.driver.find_element(*EntryLocators.TITLE_IN)
+		titleIn = self.get_element_if_visible(EntryLocators.TITLE_IN)
 		titleIn.clear()
 		titleIn.send_keys(title)
 	
@@ -264,7 +264,7 @@ class GeopostEntryPage(GeopostPageBase):
 		"""
 		Send body to body input.
 		"""
-		bodyIn = self.driver.find_element(*EntryLocators.BODY_IN)
+		bodyIn = self.get_element_if_visible(EntryLocators.BODY_IN)
 		bodyIn.clear()
 		bodyIn.send_keys(body)
 	
@@ -272,7 +272,7 @@ class GeopostEntryPage(GeopostPageBase):
 		"""
 		Choose a photo.
 		"""
-		photoIn = self.driver.find_element(*EntryLocators.PHOTO_IN)
+		photoIn = self.get_element_if_visible(EntryLocators.PHOTO_IN)
 		photoIn.clear()
 		photoIn.send_keys(absPath)
 	
@@ -280,8 +280,8 @@ class GeopostEntryPage(GeopostPageBase):
 		"""
 		Click the dummy submit button.
 		"""
-		dummySubmitBtn = self.driver.find_element(*EntryLocators.DUMMY_SUBMIT)
-		dummySubmitBtn.click()
+		dummySubmit = self.get_element_if_visible(EntryLocators.DUMMY_SUBMIT)
+		dummySubmit.click()
 	
 	# ---------------------------------------------------------------
 	# ------------------- VERIFICATION METHODS ----------------------

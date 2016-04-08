@@ -22,6 +22,34 @@ class BasePage:
 		except TimeoutException:
 			return False
 	
+	def get_element_if_present(self, locator, time=2):
+		"""
+		Wait for element to be present in DOM, return element, or
+		None if it never shows up.
+		"""
+		p = self.verify(EC.presence_of_element_located(locator), time=time)
+		if p:
+			return self.driver.find_element(*locator)
+		else:
+			return None
+	
+	def get_element_if_visible(self, locator, timeP=2, timeV=2):
+		"""
+		Wait for presence in DOM, get element, wait for it to be visible,
+		return element, or None if it is either not present or not visible.
+		"""
+		element = self.get_element_if_present(locator, time=timeP)
+		if element:
+			v = self.verify(EC.visibility_of(element), time=timeV)
+			if v:
+				return element
+			else:
+				pass
+		else:
+			pass
+		# If either condition is false, return None
+		return None
+	
 	def absent(self, locator):
 		"""
 		Return True if element is absent, else False.
