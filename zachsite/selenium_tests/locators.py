@@ -1,6 +1,7 @@
+from .base_locators import BaseLocators
 from selenium.webdriver.common.by import By
 
-class LoginLocators():
+class LoginLocators(BaseLocators):
 	"""
 	Locators for the login page.
 	"""
@@ -10,7 +11,7 @@ class LoginLocators():
 	FORGOT_PWD = (By.XPATH, '(//p[class=\'auth-link\'])[1]/a')
 	SIGN_UP = (By.XPATH, '(//p[class=\'auth-link\'])[2]/a')
 
-class LogoutLocators():
+class LogoutLocators(BaseLocators):
 	"""
 	Locator for the logout page.
 	"""

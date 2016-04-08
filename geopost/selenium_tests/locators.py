@@ -1,6 +1,14 @@
+import os
+import sys
+PACKAGE_ROOT = '../..'
+SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), 
+	os.path.expanduser(__file__))))
+PACKAGE_PATH = os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_ROOT))
+sys.path.append(PACKAGE_PATH)
+from zachsite.selenium_tests.base_locators import BaseLocators
 from selenium.webdriver.common.by import By
 
-class GeopostLocators():
+class GeopostLocators(BaseLocators):
 	"""
 	Locators common to all Geopost pages.
 	"""
@@ -41,3 +49,4 @@ class EntryLocators(GeopostLocators):
 	BODY_IN = (By.ID, 'body')
 	PHOTO_IN = (By.ID, 'photo')
 	DUMMY_SUBMIT = (By.ID, 'dummy-submit')
+	DELETE_FAILED_FLAG = (By.ID, 'SELENIUM_DELETE_FAILED_FLAG')

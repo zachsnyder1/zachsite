@@ -82,7 +82,7 @@ class EntryTests(unittest.TestCase):
 		self.page.toggle_modify()
 		self.assertTrue(self.page.verify_modify_not_active())
 	
-	def test_create_new_entry(self):
+	def test_create_new_entry_and_delete(self):
 		"""
 		Draw point, fill in form, submit.
 		"""
@@ -95,6 +95,7 @@ class EntryTests(unittest.TestCase):
 			# reload page for each subtest
 			self.driver.get('http://127.0.0.1:8000/projects/geopost/entry')
 			self.page = GeopostEntryPage(self.driver)
+			self.page.set_doc_ready_timeout()
 			with self.subTest(params = params):
 				# start out at app home
 				self.page.toggle_draw()
@@ -102,11 +103,16 @@ class EntryTests(unittest.TestCase):
 				self.page.enter_title(params[0])
 				self.page.enter_body(params[1])
 				self.page.choose_photo(params[2].strip())
+				self.page.wait_for_doc_ready()
 				self.page.submit_form()
 				self.page = GeopostHomePage(self.driver)
 				self.assertTrue(self.page.verify_path(time=12))
 				# Delete the newly created post
 				self.page.delete_by_title(params[0])
+				# Verify that the delete worked
+				self.assertTrue(
+					self.page.verify_no_entry_by_title(params[2].strip())
+				)
 
 
 if __name__ == '__main__':

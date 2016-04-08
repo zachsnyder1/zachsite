@@ -143,6 +143,29 @@ class GeopostHomePage(GeopostPageBase):
 	# ---------------------------------------------------------------
 	# ------------------- VERIFICATION METHODS ----------------------
 	# ---------------------------------------------------------------
+	def verify_no_entry_by_title(self, title):
+		"""
+		Verify that there is no entry with a title that matches the
+		given title.
+		"""
+		# Try to find entry with same title using JavasSript,
+		# append a flag div element to the body if one is found:
+		id = EntryLocators.DELETE_FAILED_FLAG[1]
+		script = '$(document).ready(function() {' + \
+			'var feats = OL_OBJ.entriessource.getFeatures();' + \
+			'for (var i = 0; i < feats.length; i++) {' + \
+			'if (feats[i].get("title") == "' + title + '") {' + \
+			'$(\'<div id="' + id +  '"></div>\').appendTo($("body"));}}' + \
+			'});'
+		self.driver.execute_script(script)
+		# Using webdriver, try to find flag for a second,
+		# if not found, then success
+		deleteFailed = self.get_element_if_present(
+			EntryLocators.DELETE_FAILED_FLAG,
+			time=1
+		)
+		return not deleteFailed
+	
 	def verify_entry_displayed(self):
 		"""
 		Return True if info modal is displayed.
