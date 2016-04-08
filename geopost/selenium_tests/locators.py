@@ -50,4 +50,4 @@ class EntryLocators(GeopostLocators):
 	BODY_IN = (By.ID, 'body')
 	PHOTO_IN = (By.ID, 'photo')
 	DUMMY_SUBMIT = (By.ID, 'dummy-submit')
-	DELETE_FAILED_FLAG = (By.ID, 'SELENIUM_DELETE_FAILED_FLAG')
+	ENTRY_FOUND_FLAG = (By.ID, 'SELENIUM_ENTRY_FOUND_FLAG')

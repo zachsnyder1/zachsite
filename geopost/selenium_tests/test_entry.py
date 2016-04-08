@@ -86,29 +86,33 @@ class EntryTests(unittest.TestCase):
 		Draw point, fill in form, submit.
 		"""
 		# read parameter file
-		with open(SCRIPT_DIR + '/data_new_entry.csv') as f:
+		with open(SCRIPT_DIR + '/data_new_entry_valid.csv') as f:
 			testData = f.readlines()
 		# run subtests
 		for paramList in testData:
 			params = paramList.split(',')
-			# reload page for each subtest
-			self.driver.get('http://127.0.0.1:8000/projects/geopost/entry')
-			self.page = GeopostEntryPage(self.driver)
 			with self.subTest(params = params):
-				# start out at app home
+				# reload page for each subtest
+				self.driver.get('http://127.0.0.1:8000/projects/geopost/entry')
+				self.page = GeopostEntryPage(self.driver)
+				# enter details and submit
 				self.page.toggle_draw()
 				self.page.draw_point()
 				self.page.enter_title(params[0])
 				self.page.enter_body(params[1])
 				self.page.choose_photo(params[2].strip())
 				self.page.submit_form()
+				# verify that entry was created successfully
 				self.page = GeopostHomePage(self.driver)
 				self.assertTrue(self.page.verify_path(time=12))
+				self.assertTrue(
+					self.page.verify_entry_exists_by_title(params[0])
+				)
 				# Delete the newly created post
 				self.page.delete_by_title(params[0])
 				# Verify that the delete worked
-				self.assertTrue(
-					self.page.verify_no_entry_by_title(params[2].strip())
+				self.assertFalse(
+					self.page.verify_entry_exists_by_title(params[0])
 				)
 
 
