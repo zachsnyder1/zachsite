@@ -1,6 +1,5 @@
 import os
 import sys
-import random
 from .locators import HomeLocators, EntryLocators
 PACKAGE_ROOT = '../..'
 SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), 
@@ -268,9 +267,9 @@ class GeopostEntryPage(GeopostPageBase):
 		Click somewhere on the map.
 		"""
 		action = ActionChains(self.driver)
-		map = self.get_element_if_present(EntryLocators.MAP)
-		xOffset = random.randint(0, map.size['width'])
-		yOffset = random.randint(0, map.size['height'])
+		map = self.get_element_if_visible(EntryLocators.MAP)
+		xOffset = map.size['width'] / 2
+		yOffset = map.size['height'] / 2
 		action.move_to_element_with_offset(map, xOffset, yOffset)
 		action.click()
 		action.perform()

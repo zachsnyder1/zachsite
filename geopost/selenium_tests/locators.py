@@ -42,6 +42,7 @@ class EntryLocators(GeopostLocators):
 	# class names for reference
 	ACTIVE = 'btn-danger'
 	INACTIVE = 'btn-success'
+	LISTENING = 'listening'
 	# the locators
 	DRAW_BTN = (By.ID, 'drawbtn')
 	MODIFY_BTN = (By.ID, 'modbtn')
