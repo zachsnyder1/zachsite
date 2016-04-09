@@ -20,7 +20,7 @@ class HomeAnonymousTests(unittest.TestCase):
 		Make the driver, get the page.
 		"""
 		self.driver = webdriver.Firefox()
-		self.driver.get('http://127.0.0.1:8000/projects/geopost/')
+		self.driver.get(GeopostHomePage.URL)
 		self.page = GeopostHomePage(self.driver)
 	
 	def tearDown(self):
@@ -88,19 +88,19 @@ class HomeAuthedTests(HomeAnonymousTests):
 		with open('/etc/zachsite_test_creds.txt') as f:
 			testCreds = f.readlines()
 		self.driver = webdriver.Firefox()
-		self.driver.get('http://127.0.0.1:8000/accounts/login/')
+		self.driver.get(LoginPage.URL)
 		self.page = LoginPage(self.driver)
 		self.page.enter_username(testCreds[0].strip())
 		self.page.enter_password(testCreds[1].strip())
 		self.page.login()
-		self.driver.get('http://127.0.0.1:8000/projects/geopost/')
+		self.driver.get(GeopostHomePage.URL)
 		self.page = GeopostHomePage(self.driver)
 	
 	def tearDown(self):
 		"""
 		Close driver.
 		"""
-		self.driver.get('http://127.0.0.1:8000/accounts/logout/')
+		self.driver.get(LogoutPage.URL)
 		self.page = LogoutPage(self.driver)
 		self.assertTrue(self.page.verify_logged_out())
 		self.driver.close()

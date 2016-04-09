@@ -22,19 +22,19 @@ class EntryTests(unittest.TestCase):
 		with open('/etc/zachsite_test_creds.txt') as f:
 			testCreds = f.readlines()
 		self.driver = webdriver.Firefox()
-		self.driver.get('http://127.0.0.1:8000/accounts/login/')
+		self.driver.get(LoginPage.URL)
 		self.page = LoginPage(self.driver)
 		self.page.enter_username(testCreds[0].strip())
 		self.page.enter_password(testCreds[1].strip())
 		self.page.login()
-		self.driver.get('http://127.0.0.1:8000/projects/geopost/entry')
+		self.driver.get(GeopostEntryPage.URL)
 		self.page = GeopostEntryPage(self.driver)
 	
 	def tearDown(self):
 		"""
 		Close driver.
 		"""
-		self.driver.get('http://127.0.0.1:8000/accounts/logout/')
+		self.driver.get(LogoutPage.URL)
 		self.page = LogoutPage(self.driver)
 		self.assertTrue(self.page.verify_logged_out())
 		self.driver.close()
@@ -93,7 +93,7 @@ class EntryTests(unittest.TestCase):
 			params = paramList.split(',')
 			with self.subTest(params = params):
 				# reload page for each subtest
-				self.driver.get('http://127.0.0.1:8000/projects/geopost/entry')
+				self.driver.get(GeopostEntryPage.URL)
 				self.page = GeopostEntryPage(self.driver)
 				# enter details and submit
 				self.page.toggle_draw()
@@ -111,7 +111,7 @@ class EntryTests(unittest.TestCase):
 				# Delete the newly created post
 				self.page.delete_by_title(params[0])
 				# Verify that the delete worked
-				self.driver.get('http://127.0.0.1:8000/projects/geopost')
+				self.driver.get(GeopostHomePage.URL)
 				self.assertTrue(self.page.verify_path(time=8))
 				self.assertFalse(
 					self.page.verify_entry_exists_by_title(params[0])
@@ -129,7 +129,7 @@ class EntryTests(unittest.TestCase):
 			params = paramList.split(',')
 			with self.subTest(params = params):
 				# reload page for each subtest
-				self.driver.get('http://127.0.0.1:8000/projects/geopost/entry')
+				self.driver.get(GeopostEntryPage.URL)
 				self.page = GeopostEntryPage(self.driver)
 				# make new entry
 				self.page.toggle_draw()

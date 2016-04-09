@@ -90,6 +90,7 @@ class GeopostHomePage(GeopostPageBase):
 	Page objects for Geopost home page.
 	"""
 	EXPECTED_PATH = '/projects/geopost/'
+	URL = 'http://127.0.0.1:8000/projects/geopost'
 	# ---------------------------------------------------------------
 	# ---------------------- GENERAL ACTIONS ------------------------
 	# ---------------------------------------------------------------
@@ -258,6 +259,7 @@ class GeopostEntryPage(GeopostPageBase):
 	Page Objects for entry page.
 	"""
 	EXPECTED_PATH = '/projects/geopost/entry/'
+	URL = 'http://127.0.0.1:8000/projects/geopost/entry'
 	# ---------------------------------------------------------------
 	# ---------------------- GENERAL ACTIONS ------------------------
 	# ---------------------------------------------------------------

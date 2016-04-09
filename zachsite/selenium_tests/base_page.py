@@ -9,6 +9,7 @@ class BasePage:
 	Base class for page objects.
 	"""
 	EXPECTED_PATH = None
+	URL = None
 	
 	def __init__(self, driver):
 		self.driver = driver
