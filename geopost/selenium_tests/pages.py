@@ -125,6 +125,20 @@ class GeopostHomePage(GeopostPageBase):
 			'});'
 		self.driver.execute_script(script)
 	
+	def edit_by_title(self, title):
+		"""
+		Find the entry by title, click edit button.
+		"""
+		script = '$(document).ready(function() {' + \
+			'var feats = OL_OBJ.entriessource.getFeatures();' + \
+			'for (var i = 0; i < feats.length; i++) {' + \
+			'if (feats[i].get("title") == "' + title + '") {' + \
+			'OL_OBJ.select.getFeatures().push(feats[i]);}}' + \
+			'OL_OBJ.select.dispatchEvent(\'select\');' + \
+			'$("#edit-btn").click();' + \
+			'});'
+		self.driver.execute_script(script)
+	
 	def dismiss_info(self):
 		"""
 		Close the info modal.
@@ -281,6 +295,13 @@ class GeopostEntryPage(GeopostPageBase):
 		titleIn.clear()
 		titleIn.send_keys(title)
 	
+	def get_title(self):
+		"""
+		Get the current value of the title input.
+		"""
+		titleIn = self.get_element_if_visible(EntryLocators.TITLE_IN)
+		return titleIn.get_attribute('value')
+	
 	def enter_body(self, body):
 		"""
 		Send body to body input.
@@ -288,6 +309,13 @@ class GeopostEntryPage(GeopostPageBase):
 		bodyIn = self.get_element_if_visible(EntryLocators.BODY_IN)
 		bodyIn.clear()
 		bodyIn.send_keys(body)
+	
+	def get_body(self):
+		"""
+		Get the current value of the body input.
+		"""
+		bodyIn = self.get_element_if_visible(EntryLocators.BODY_IN)
+		return bodyIn.get_attribute('value')
 	
 	def choose_photo(self, absPath):
 		"""

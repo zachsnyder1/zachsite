@@ -104,15 +104,68 @@ class EntryTests(unittest.TestCase):
 				self.page.submit_form()
 				# verify that entry was created successfully
 				self.page = GeopostHomePage(self.driver)
-				self.assertTrue(self.page.verify_path(time=12))
+				self.assertTrue(self.page.verify_path(time=8))
 				self.assertTrue(
 					self.page.verify_entry_exists_by_title(params[0])
 				)
 				# Delete the newly created post
 				self.page.delete_by_title(params[0])
 				# Verify that the delete worked
+				self.driver.get('http://127.0.0.1:8000/projects/geopost')
+				self.assertTrue(self.page.verify_path(time=8))
 				self.assertFalse(
 					self.page.verify_entry_exists_by_title(params[0])
+				)
+	
+	def test_create_edit_delete(self):
+		"""
+		Create a point, edit it, delete it.
+		"""
+		# read parameter file
+		with open(SCRIPT_DIR + '/data_edit_entry_valid.csv') as f:
+			testData = f.readlines()
+		# run subtests
+		for paramList in testData:
+			params = paramList.split(',')
+			with self.subTest(params = params):
+				# reload page for each subtest
+				self.driver.get('http://127.0.0.1:8000/projects/geopost/entry')
+				self.page = GeopostEntryPage(self.driver)
+				# make new entry
+				self.page.toggle_draw()
+				self.page.draw_point()
+				self.page.enter_title(params[0])
+				self.page.enter_body(params[1])
+				self.page.choose_photo(params[2].strip())
+				self.page.submit_form()
+				# verify that entry was created successfully
+				self.page = GeopostHomePage(self.driver)
+				self.assertTrue(self.page.verify_path(time=12))
+				self.assertTrue(
+					self.page.verify_entry_exists_by_title(params[0])
+				)
+				# edit the entry
+				self.page.edit_by_title(params[0])
+				self.page = GeopostEntryPage(self.driver)
+				self.assertTrue(self.page.verify_path(time=8))
+				self.assertEqual(self.page.get_title(), params[0])
+				self.assertEqual(self.page.get_body(), params[1])
+				self.page.draw_point()
+				self.page.enter_title(params[3])
+				self.page.enter_body(params[4])
+				self.page.choose_photo(params[5].strip())
+				self.page.submit_form()
+				# verify that entry was edited successfully
+				self.page = GeopostHomePage(self.driver)
+				self.assertTrue(self.page.verify_path(time=8))
+				self.assertTrue(
+					self.page.verify_entry_exists_by_title(params[3])
+				)
+				# Delete the newly created post
+				self.page.delete_by_title(params[3])
+				# Verify that the delete worked
+				self.assertFalse(
+					self.page.verify_entry_exists_by_title(params[3])
 				)
 
 
