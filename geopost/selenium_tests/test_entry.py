@@ -100,7 +100,7 @@ class EntryTests(unittest.TestCase):
 				self.page.draw_point()
 				self.page.enter_title(params[0])
 				self.page.enter_body(params[1])
-				self.page.choose_photo(params[2].strip())
+				self.page.choose_photo(SCRIPT_DIR + params[2].strip())
 				self.page.submit_form()
 				# verify that entry was created successfully
 				self.page = GeopostHomePage(self.driver)
@@ -136,7 +136,7 @@ class EntryTests(unittest.TestCase):
 				self.page.draw_point()
 				self.page.enter_title(params[0])
 				self.page.enter_body(params[1])
-				self.page.choose_photo(params[2].strip())
+				self.page.choose_photo(SCRIPT_DIR + params[2].strip())
 				self.page.submit_form()
 				# verify that entry was created successfully
 				self.page = GeopostHomePage(self.driver)
@@ -153,7 +153,7 @@ class EntryTests(unittest.TestCase):
 				self.page.draw_point()
 				self.page.enter_title(params[3])
 				self.page.enter_body(params[4])
-				self.page.choose_photo(params[5].strip())
+				self.page.choose_photo(SCRIPT_DIR + params[5].strip())
 				self.page.submit_form()
 				# verify that entry was edited successfully
 				self.page = GeopostHomePage(self.driver)
