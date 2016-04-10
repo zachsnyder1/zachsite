@@ -38,6 +38,17 @@ class BasePage:
 		else:
 			return None
 	
+	def get_elements_if_present(self, locator, time=2):
+		"""
+		Wait for elements to be present in DOM, return list of elements,
+		or None if they never show up.
+		"""
+		c = lambda driver: EC.presence_of_all_elements_located(locator)
+		if self.verify(c, time=time):
+			return self.driver.find_elements(*locator)
+		else:
+			return None
+	
 	def get_element_if_visible(self, locator, timeP=2, timeV=2):
 		"""
 		Wait for presence in DOM, get element, wait for it to be visible,
@@ -144,6 +155,12 @@ class BasePage:
 		"""
 		logout = self.get_element_if_visible(BaseLocators.LOGOUT_BTN)
 		logout.click()
+	
+	def get_projs_from_dropdown(self):
+		"""
+		Return list of project link elements from the projects dropdown.
+		"""
+		return self.get_elements_if_present(BaseLocators.PROJECTS_BTNS)
 		
 	# ---------------------------------------------------------------
 	# ------------------- VERIFICATION METHODS ----------------------

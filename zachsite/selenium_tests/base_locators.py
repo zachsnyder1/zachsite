@@ -12,6 +12,7 @@ class BaseLocators():
 	LOGO = (By.CLASS_NAME, 'navbar-text')
 	HOME_BTN = (By.LINK_TEXT, 'Home')
 	PROJECTS_BTN = (By.XPATH, '//li[@id=\'projects-dropdown\']/a[1]')
+	PROJECTS_BTNS = (By.XPATH, '//li[@id=\'projects-dropdown\']/ul//a')
 	PROJ_HOME_BTN = (By.LINK_TEXT, 'Projects Home')
 	BLOG_BTN = (By.LINK_TEXT, 'Blog')
 	LINKEDIN_LOGO = (By.ID, 'nav-linkedin-logo')
