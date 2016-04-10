@@ -5,6 +5,15 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
+class HomePage(BasePage):
+	"""
+	Page objects for ZachSite home page.
+	"""
+	EXPECTED_PATH = '/'
+	URL = 'http://127.0.0.1:8000/'
+	
+	# TO DO...
+
 class LoginPage(BasePage):
 	"""
 	Page objects for the login page.

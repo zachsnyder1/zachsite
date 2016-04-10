@@ -11,6 +11,9 @@ class BasePage:
 	EXPECTED_PATH = None
 	URL = None
 	
+	# ---------------------------------------------------------------
+	# --------------- INHERITED HELPER METHODS ----------------------
+	# ---------------------------------------------------------------
 	def __init__(self, driver):
 		self.driver = driver
 	
@@ -69,3 +72,90 @@ class BasePage:
 		u = urlparse(self.driver.current_url)
 		condition = lambda driver: self.__class__.EXPECTED_PATH == u.path
 		return self.verify(condition, time=time)
+	
+	def verify_url(self, expected):
+		"""
+		True if current url matches expected url.
+		"""
+		return self.verify(lambda driver: self.driver.current_url == expected)
+	
+	# ---------------------------------------------------------------
+	# ------------------ NAVBAR: GENERAL ACTIONS --------------------
+	# ---------------------------------------------------------------
+	def click_nav_thumb(self):
+		"""
+		Click on the thumb icon on the navbar.
+		"""
+		thumb = self.get_element_if_visible(BaseLocators.THUMB)
+		thumb.click()
+	
+	def click_home_link(self):
+		"""
+		Follow the home link.
+		"""
+		home = self.get_element_if_visible(BaseLocators.HOME_BTN)
+		home.click()
+	
+	def toggle_projects_dropdown(self):
+		"""
+		Toggle the projects dropdown.
+		"""
+		projs = self.get_element_if_visible(BaseLocators.PROJECTS_BTN)
+		projs.click()
+	
+	def click_proj_home_link(self):
+		"""
+		Follow link to projects home.
+		"""
+		projHome = self.get_element_if_visible(BaseLocators.PROJ_HOME_BTN)
+		projHome.click()
+	
+	def click_blog_link(self):
+		"""
+		Follow the blog link.
+		"""
+		blog = self.get_element_if_visible(BaseLocators.BLOG_BTN)
+		blog.click()
+	
+	def click_linkedin_logo(self):
+		"""
+		Follow link to linkedin page.
+		"""
+		li = self.get_element_if_visible(BaseLocators.LINKEDIN_LOGO)
+		li.click()
+	
+	def click_github_logo(self):
+		"""
+		Follow link to github page.
+		"""
+		gh = self.get_element_if_visible(BaseLocators.GITHUB_LOGO)
+		gh.click()
+	
+	def click_login(self):
+		"""
+		Follow link to login.
+		"""
+		login = self.get_element_if_visible(BaseLocators.LOGIN_BTN)
+		login.click()
+	
+	def click_logout(self):
+		"""
+		Follow link to logout.
+		"""
+		logout = self.get_element_if_visible(BaseLocators.LOGOUT_BTN)
+		logout.click()
+		
+	# ---------------------------------------------------------------
+	# ------------------- VERIFICATION METHODS ----------------------
+	# ---------------------------------------------------------------
+	def verify_linkedin_url(self):
+		"""
+		Verify current url matches expected for linkedin page.
+		"""
+		return self.verify_url(BaseLocators.LINKEDIN_URL)
+	
+	def verify_github_url(self):
+		"""
+		Verify current url matches expected for github page.
+		"""
+		return self.verify_url(BaseLocators.GITHUB_URL)
