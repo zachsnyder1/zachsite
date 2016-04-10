@@ -4944,7 +4944,8 @@ div.alt {
     width: 20px; }
 
 #form-div {
-  padding: 80px 0px; }
+  padding-top: 80px;
+  padding-bottom: 80px; }
 
 input {
   width: 100%; }
