@@ -6,13 +6,13 @@ SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(),
 	os.path.expanduser(__file__))))
 PACKAGE_PATH = os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_ROOT))
 sys.path.append(PACKAGE_PATH)
-from zachsite.selenium_tests.base_tests import BaseTests
+from projects.selenium_tests.base_tests import BaseProjectsTests
 from zachsite.selenium_tests.pages import LoginPage, LogoutPage
 from geopost.selenium_tests.pages import GeopostEntryPage, GeopostHomePage
 from selenium import webdriver
 
 
-class EntryTests(BaseTests, unittest.TestCase):
+class EntryTests(BaseProjectsTests, unittest.TestCase):
 	"""
 	Methods to test the entry page of the app (create/edit/delete).
 	"""

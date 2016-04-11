@@ -1,4 +1,3 @@
-import unittest
 from selenium import webdriver
 import os
 import sys
