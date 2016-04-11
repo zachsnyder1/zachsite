@@ -9,13 +9,13 @@ from projects.selenium_tests.locators import ProjectsLocators
 from zachsite.selenium_tests.base_page import BasePage
 
 
-class ProjectsHomePage(BasePage):
+class ProjectsBasePage(BasePage):
 	"""
-	Page objects for the projects home page.
+	Base page attributes.
 	"""
-	EXPECTED_PATH = '/projects/'
-	URL = 'http://127.0.0.1:8000/projects'
-	
+	# ---------------------------------------------------------------
+	# ------------------- VERIFICATION METHODS ----------------------
+	# ---------------------------------------------------------------
 	def verify_header_section_visible(self):
 		"""
 		Return header section if present and visible.
@@ -43,4 +43,20 @@ class ProjectsHomePage(BasePage):
 		"""
 		snav = self.get_element_if_visible(ProjectsLocators.SUBNAV)
 		return snav
+
+class ProjectsHomePage(ProjectsBasePage):
+	"""
+	Page objects for the projects home page.
+	"""
+	EXPECTED_PATH = '/projects/'
+	URL = 'http://127.0.0.1:8000/projects'
+	# ---------------------------------------------------------------
+	# ---------------------- GENERAL ACTION(S) ----------------------
+	# ---------------------------------------------------------------
+	def get_projects_displayed(self):
+		"""
+		Return list of projects displayed.
+		"""
+		return self.get_elements_if_present(ProjectsLocators.PROJECT_TITLES)
+		
 	

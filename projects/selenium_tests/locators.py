@@ -17,3 +17,4 @@ class ProjectsLocators(BaseLocators):
 	HEADER_BACKGND = (By.CLASS_NAME, 'header-background')
 	HEADER_TITLE = (By.ID, 'header-title')
 	SUBNAV = (By.ID, 'project-subnav')
+	PROJECT_TITLES = (By.CLASS_NAME, 'proj-div-title')

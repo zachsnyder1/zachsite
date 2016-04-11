@@ -6,12 +6,12 @@ SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(),
 	os.path.expanduser(__file__))))
 PACKAGE_PATH = os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_ROOT))
 sys.path.append(PACKAGE_PATH)
-from projects.selenium_tests.pages import ProjectsHomePage
+from projects.selenium_tests.pages import ProjectsBasePage
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 
 
-class GeopostPageBase(ProjectsHomePage):
+class GeopostPageBase(ProjectsBasePage):
 	"""
 	Defines methods common to both home page and entry page
 	of the app.
