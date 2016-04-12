@@ -40,13 +40,11 @@ class EntryTests(BaseProjectsTests, unittest.TestCase):
 		self.assertTrue(self.page.verify_logged_out())
 		self.driver.close()
 	
-	def test_attribution_not_displayed(self):
+	def test_attribution_displayed(self):
 		"""
 		Test that the attribution is displayed initially, and that it
 		collapses after click.
 		"""
-		self.assertTrue(self.page.verify_attribution_not_displayed())
-		self.page.toggle_attribution()
 		self.assertTrue(self.page.verify_attribution_displayed())
 	
 	def test_toolbar_open_and_close(self):

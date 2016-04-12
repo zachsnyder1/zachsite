@@ -20,13 +20,6 @@ class GeopostPageBase(ProjectsBasePage):
 	# ---------------------------------------------------------------
 	# ---------------------- GENERAL ACTION(S) ----------------------
 	# ---------------------------------------------------------------
-	def toggle_attribution(self):
-		"""
-		Click the attribution button to open/close it.
-		"""
-		attrBtn = self.get_element_if_visible(HomeLocators.ATTR_BTN)
-		attrBtn.click()
-	
 	def toggle_toolbar(self):
 		"""
 		Click the toolbar collapse/expand button.
@@ -44,15 +37,6 @@ class GeopostPageBase(ProjectsBasePage):
 		attribution = self.driver.find_element(*HomeLocators.ATTRIBUTION)
 		c = 'ol-collapsed' # the class indicating that attr is collapsed
 		condition = lambda driver: c not in attribution.get_attribute('class')
-		return self.verify(condition)
-	
-	def verify_attribution_not_displayed(self):
-		"""
-		Wait for attribution to be not displayed.
-		"""
-		attribution = self.driver.find_element(*HomeLocators.ATTRIBUTION)
-		c = 'ol-collapsed' # collapsed class
-		condition = lambda driver: c in attribution.get_attribute('class')
 		return self.verify(condition)
 	
 	def verify_toolbar_present(self):

@@ -14,7 +14,7 @@ OL_OBJ.wfsOperation = 'CREATE'; // Default WFS-t operation is insertion
 */
 // TILE LAYER
 OL_OBJ.tile = new ol.layer.Tile({
-	source: new ol.source.MapQuest({layer: 'sat'})
+	source: new ol.source.OSM()
 });
 // ENTRIES SOURCE
 OL_OBJ.entriessource = new ol.source.Vector({
@@ -82,6 +82,7 @@ OL_OBJ.resetView = function () {
 };
 // Retrieve a photo from the bucket, attach to img element
 OL_OBJ.retrievePhoto = function (uuid, imgElem) {
+	imgElem.attr('src', '/static/geopost/loading.jpg');
 	$.ajax({
 		url: OL_OBJ.ZSDomain + '/projects/geopost/photo/' + uuid,
 		success: function(data, status, xhr) {
@@ -135,7 +136,12 @@ try {
 			target: 'map',
 			layers: [OL_OBJ.tile, OL_OBJ.entries],
 			view: OL_OBJ.view,
-			interactions: [OL_OBJ.dragpan]
+			interactions: [OL_OBJ.dragpan],
+			controls: ol.control.defaults({
+				attributionOptions: ({
+            		collapsible: false
+          		})
+          	})
 		});
 	});
 }

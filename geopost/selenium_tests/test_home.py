@@ -59,13 +59,11 @@ class HomeAnonymousTests(BaseProjectsTests, unittest.TestCase):
 		# ...and the image should load in a few seconds:
 		self.assertTrue(self.page.verify_img_load())
 	
-	def test_attribution_not_displayed(self):
+	def test_attribution_displayed(self):
 		"""
 		Test that the attribution is not displayed initially, and that it
 		expands after click.
 		"""
-		self.assertTrue(self.page.verify_attribution_not_displayed())
-		self.page.toggle_attribution()
 		self.assertTrue(self.page.verify_attribution_displayed())
 	
 	def test_auth_elements(self):
