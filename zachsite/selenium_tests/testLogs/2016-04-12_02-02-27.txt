@@ -1,0 +1,14 @@
+test_blurbs_present (zachsite.selenium_tests.test_home.HomePageTests) ... ok
+test_nav_blog_link (zachsite.selenium_tests.test_home.HomePageTests) ... ok
+test_nav_github_link (zachsite.selenium_tests.test_home.HomePageTests) ... ok
+test_nav_home_link (zachsite.selenium_tests.test_home.HomePageTests) ... ok
+test_nav_linkedin_link (zachsite.selenium_tests.test_home.HomePageTests) ... ok
+test_nav_projects_home_link (zachsite.selenium_tests.test_home.HomePageTests) ... ok
+test_nav_thumb_link (zachsite.selenium_tests.test_home.HomePageTests) ... ok
+test_projects_div_matches_projects_dropdown (zachsite.selenium_tests.test_home.HomePageTests) ... ok
+test_qa_carousel (zachsite.selenium_tests.test_home.HomePageTests) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 42.387s
+
+OK

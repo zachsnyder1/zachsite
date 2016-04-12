@@ -1,0 +1,74 @@
+ERROR
+ERROR
+ERROR
+
+======================================================================
+ERROR: setUpClass (projects.tests.ProjectsAboutTemplateContextTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Envs/py3.5/lib/python3.5/site-packages/django/test/testcases.py", line 1021, in setUpClass
+    if not connections_support_transactions():
+  File "/Envs/py3.5/lib/python3.5/site-packages/django/test/testcases.py", line 986, in connections_support_transactions
+    for conn in connections.all())
+  File "/Envs/py3.5/lib/python3.5/site-packages/django/db/utils.py", line 227, in all
+    return [self[alias] for alias in self]
+  File "/Envs/py3.5/lib/python3.5/site-packages/django/db/utils.py", line 224, in __iter__
+    return iter(self.databases)
+  File "/Envs/py3.5/lib/python3.5/site-packages/django/utils/functional.py", line 33, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Envs/py3.5/lib/python3.5/site-packages/django/db/utils.py", line 157, in databases
+    self._databases = settings.DATABASES
+  File "/Envs/py3.5/lib/python3.5/site-packages/django/conf/__init__.py", line 55, in __getattr__
+    self._setup(name)
+  File "/Envs/py3.5/lib/python3.5/site-packages/django/conf/__init__.py", line 41, in _setup
+    % (desc, ENVIRONMENT_VARIABLE))
+django.core.exceptions.ImproperlyConfigured: Requested setting DATABASES, but settings are not configured. You must either define the environment variable DJANGO_SETTINGS_MODULE or call settings.configure() before accessing settings.
+
+======================================================================
+ERROR: setUpClass (projects.tests.ProjectsHomeTemplateContextTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Envs/py3.5/lib/python3.5/site-packages/django/test/testcases.py", line 1021, in setUpClass
+    if not connections_support_transactions():
+  File "/Envs/py3.5/lib/python3.5/site-packages/django/test/testcases.py", line 986, in connections_support_transactions
+    for conn in connections.all())
+  File "/Envs/py3.5/lib/python3.5/site-packages/django/db/utils.py", line 227, in all
+    return [self[alias] for alias in self]
+  File "/Envs/py3.5/lib/python3.5/site-packages/django/db/utils.py", line 224, in __iter__
+    return iter(self.databases)
+  File "/Envs/py3.5/lib/python3.5/site-packages/django/utils/functional.py", line 33, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Envs/py3.5/lib/python3.5/site-packages/django/db/utils.py", line 157, in databases
+    self._databases = settings.DATABASES
+  File "/Envs/py3.5/lib/python3.5/site-packages/django/conf/__init__.py", line 55, in __getattr__
+    self._setup(name)
+  File "/Envs/py3.5/lib/python3.5/site-packages/django/conf/__init__.py", line 41, in _setup
+    % (desc, ENVIRONMENT_VARIABLE))
+django.core.exceptions.ImproperlyConfigured: Requested setting DATABASES, but settings are not configured. You must either define the environment variable DJANGO_SETTINGS_MODULE or call settings.configure() before accessing settings.
+
+======================================================================
+ERROR: setUpClass (zachsite.tests.ZachsiteTemplateContextTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Envs/py3.5/lib/python3.5/site-packages/django/test/testcases.py", line 1021, in setUpClass
+    if not connections_support_transactions():
+  File "/Envs/py3.5/lib/python3.5/site-packages/django/test/testcases.py", line 986, in connections_support_transactions
+    for conn in connections.all())
+  File "/Envs/py3.5/lib/python3.5/site-packages/django/db/utils.py", line 227, in all
+    return [self[alias] for alias in self]
+  File "/Envs/py3.5/lib/python3.5/site-packages/django/db/utils.py", line 224, in __iter__
+    return iter(self.databases)
+  File "/Envs/py3.5/lib/python3.5/site-packages/django/utils/functional.py", line 33, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Envs/py3.5/lib/python3.5/site-packages/django/db/utils.py", line 157, in databases
+    self._databases = settings.DATABASES
+  File "/Envs/py3.5/lib/python3.5/site-packages/django/conf/__init__.py", line 55, in __getattr__
+    self._setup(name)
+  File "/Envs/py3.5/lib/python3.5/site-packages/django/conf/__init__.py", line 41, in _setup
+    % (desc, ENVIRONMENT_VARIABLE))
+django.core.exceptions.ImproperlyConfigured: Requested setting DATABASES, but settings are not configured. You must either define the environment variable DJANGO_SETTINGS_MODULE or call settings.configure() before accessing settings.
+
+----------------------------------------------------------------------
+Ran 0 tests in 0.001s
+
+FAILED (errors=3)
