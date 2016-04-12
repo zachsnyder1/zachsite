@@ -6,6 +6,7 @@ SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(),
 	os.path.expanduser(__file__))))
 PACKAGE_PATH = os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_ROOT))
 sys.path.append(PACKAGE_PATH)
+from zachsite.selenium_tests.base_page import BasePage
 from projects.selenium_tests.pages import ProjectsBasePage
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
@@ -88,7 +89,6 @@ class GeopostHomePage(GeopostPageBase):
 	Page objects for Geopost home page.
 	"""
 	EXPECTED_PATH = '/projects/geopost/'
-	URL = 'http://127.0.0.1:8000/projects/geopost'
 	# ---------------------------------------------------------------
 	# ---------------------- GENERAL ACTIONS ------------------------
 	# ---------------------------------------------------------------
@@ -251,13 +251,14 @@ class GeopostHomePage(GeopostPageBase):
 		"""
 		return self.absent(HomeLocators.DELETE_BTN)
 
+GeopostHomePage.URL = BasePage.DOMAIN + GeopostHomePage.EXPECTED_PATH
+
 
 class GeopostEntryPage(GeopostPageBase):
 	"""
 	Page Objects for entry page.
 	"""
 	EXPECTED_PATH = '/projects/geopost/entry/'
-	URL = 'http://127.0.0.1:8000/projects/geopost/entry'
 	# ---------------------------------------------------------------
 	# ---------------------- GENERAL ACTIONS ------------------------
 	# ---------------------------------------------------------------
@@ -374,3 +375,5 @@ class GeopostEntryPage(GeopostPageBase):
 		condition = lambda driver: (EntryLocators.ACTIVE not in classStr and 
 			EntryLocators.INACTIVE in classStr)
 		return self.verify(condition)
+
+GeopostEntryPage.URL = BasePage.DOMAIN + GeopostEntryPage.EXPECTED_PATH

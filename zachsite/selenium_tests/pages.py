@@ -10,7 +10,6 @@ class HomePage(BasePage):
 	Page objects for ZachSite home page.
 	"""
 	EXPECTED_PATH = '/'
-	URL = 'http://127.0.0.1:8000/'
 	# ---------------------------------------------------------------
 	# ---------------------- GENERAL ACTIONS ------------------------
 	# ---------------------------------------------------------------
@@ -55,12 +54,14 @@ class HomePage(BasePage):
 		"""
 		return self.get_elements_if_present(HomeLocators.PROJECT_TITLES)
 
+HomePage.URL = BasePage.DOMAIN + HomePage.EXPECTED_PATH
+
+
 class LoginPage(BasePage):
 	"""
 	Page objects for the login page.
 	"""
 	EXPECTED_PATH = '/accounts/login/'
-	URL = 'http://127.0.0.1:8000/accounts/login/'
 	# ---------------------------------------------------------------
 	# ---------------------- GENERAL ACTIONS ------------------------
 	# ---------------------------------------------------------------
@@ -101,16 +102,19 @@ class LoginPage(BasePage):
 		link = self.get_element_if_visible(LoginLocators.SIGN_UP)
 		link.click()
 
+LoginPage.URL = BasePage.DOMAIN + LoginPage.EXPECTED_PATH
+
 
 class LogoutPage(BasePage):
 	"""
 	Page objects for the logout page.
 	"""
 	EXPECTED_PATH = '/accounts/logout/'
-	URL = 'http://127.0.0.1:8000/accounts/logout/'
 	def verify_logged_out(self):
 		"""
 		Look for the success message.
 		"""
 		condition = EC.presence_of_element_located(LogoutLocators.LOGIN_BTN)
 		return self.verify(condition)
+
+LogoutPage.URL = BasePage.DOMAIN + LogoutPage.EXPECTED_PATH

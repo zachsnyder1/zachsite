@@ -49,7 +49,6 @@ class ProjectsHomePage(ProjectsBasePage):
 	Page objects for the projects home page.
 	"""
 	EXPECTED_PATH = '/projects/'
-	URL = 'http://127.0.0.1:8000/projects'
 	# ---------------------------------------------------------------
 	# ---------------------- GENERAL ACTION(S) ----------------------
 	# ---------------------------------------------------------------
@@ -58,5 +57,6 @@ class ProjectsHomePage(ProjectsBasePage):
 		Return list of projects displayed.
 		"""
 		return self.get_elements_if_present(ProjectsLocators.PROJECT_TITLES)
-		
+	
+ProjectsHomePage.URL = BasePage.DOMAIN + ProjectsHomePage.EXPECTED_PATH	
 	
