@@ -6,3 +6,4 @@ node_modules/
 **/settings.py
 **/fixtures/
 **/testLogs/
+**/*.pyc
