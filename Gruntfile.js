@@ -19,8 +19,7 @@ module.exports = function(grunt) {
 				files: {
 					'./zachsite/static/zachsite/index.css': './style_prep/index.scss',
 					'./zachsite/static/zachsite/404.css': './style_prep/404.scss',
-					'./zachsite/static/zachsite/auth.css':	'./style_prep/auth.scss',
-					'./zachsite/static/zachsite/signup.css': './style_prep/signup.scss'
+					'./zachsite/static/zachsite/auth.css':	'./style_prep/auth.scss'
 				}
 			},
 			projects: {

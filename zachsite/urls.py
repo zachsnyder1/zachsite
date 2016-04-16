@@ -81,6 +81,5 @@ urlpatterns = [
 			'extra_context': extra_context
 		},
 		name="password_reset_complete"
-	),
-	url(r'^accounts/signup/$', views.Signup.as_view(), name="signup")
+	)
 ]
