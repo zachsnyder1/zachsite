@@ -128,11 +128,12 @@ OL_OBJ = {};
 /*
 /  -- STRING CONSTANTS --
 */
-OL_OBJ.featNs = "/geopost";
+OL_OBJ.wrksp = "geopost";
+OL_OBJ.featNs = "/" + OL_OBJ.wrksp;
 OL_OBJ.featType = "entries";
 OL_OBJ.defaultSRS = "EPSG:3857";
-OL_OBJ.ZSDomain = 'http://146.148.62.86';
-OL_OBJ.GSDomain = 'http://146.148.62.86';
+OL_OBJ.ZSDomain = 'http://zach-site.com';
+OL_OBJ.GSDomain = 'http://zach-site.com';
 OL_OBJ.wfsOperation = 'CREATE'; // Default WFS-t operation is insertion
 /*
 / -- REUSED MAP COMPONENTS --
@@ -143,9 +144,10 @@ OL_OBJ.tile = new ol.layer.Tile({
 });
 // ENTRIES SOURCE
 OL_OBJ.entriessource = new ol.source.Vector({
-	url: OL_OBJ.GSDomain + '/geoserver/geopost/ows?service=WFS&ve' +
-		'rsion=2.0.0&request=GetFeature&typeName=geopost:entries' +
-		'&srsname=EPSG:4326&outputFormat=application/json',
+	url: OL_OBJ.GSDomain + '/geoserver' + OL_OBJ.featNs + '/ows?service=' +
+		'WFS&version=2.0.0&request=GetFeature&typeName=' + OL_OBJ.wrksp + 
+		':' + OL_OBJ.featType + '&srsname=EPSG:4326&outputFormat=' +
+		'application/json',
 	format: new ol.format.GeoJSON()
 });
 // ENTRIES LAYER
