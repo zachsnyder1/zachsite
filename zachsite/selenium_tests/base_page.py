@@ -8,7 +8,7 @@ class BasePage:
 	"""
 	Base class for page objects.
 	"""
-	DOMAIN = 'http://127.0.0.1:8000'
+	DOMAIN = 'https://zach-site.com'
 	EXPECTED_PATH = None
 	URL = None
 	
