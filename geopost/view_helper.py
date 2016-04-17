@@ -79,9 +79,15 @@ def post_to_geoserver(xml, url):
 	"""
 	h = httplib2.Http()
 	h.follow_all_redirects = True
-	headers = {'Content-Type': 'application/xml'}
+	auth = ''
+	with open('/django/geoserver_proxy_header.txt', 'r') as a:
+		auth = a.readlines()[0].strip()
+	headers = {
+		'Content-Type': 'application/xml',
+		auth: ' zach'
+	}
 	try:
-		resp, content = h.request(url, method="POST", body=xml)
+		resp, content = h.request(url, method="POST", body=xml, headers=headers)
 		decodedContent = content.decode('utf-8')
 		if 'ows:ExceptionReport' in decodedContent:
 			return decodedContent

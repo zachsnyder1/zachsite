@@ -20,7 +20,7 @@ class GeoPostBase(View):
 	subnav_location = 'projects/geopost/subnav.html'
 	curr_project = get_object_or_404(Project, slug='geopost')
 	projectList = Project.objects.all().filter(active=True).order_by("title")
-	wfsURL = "http://zach-site.com/geoserver/wfs"
+	wfsURL = "http://127.0.0.1:8080/geoserver/wfs"
 	imageBucket = 'zachtestbucket'
 	
 	def getContext(self, form):
