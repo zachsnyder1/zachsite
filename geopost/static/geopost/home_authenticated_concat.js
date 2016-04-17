@@ -132,8 +132,8 @@ OL_OBJ.wrksp = "geopost";
 OL_OBJ.featNs = "/" + OL_OBJ.wrksp;
 OL_OBJ.featType = "entries";
 OL_OBJ.defaultSRS = "EPSG:3857";
-OL_OBJ.ZSDomain = 'http://zach-site.com';
-OL_OBJ.GSDomain = 'http://zach-site.com';
+OL_OBJ.ZSDomain = 'https://zach-site.com';
+OL_OBJ.GSDomain = 'https://zach-site.com';
 OL_OBJ.wfsOperation = 'CREATE'; // Default WFS-t operation is insertion
 /*
 / -- REUSED MAP COMPONENTS --
