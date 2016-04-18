@@ -1,0 +1,84 @@
+<section id="readme-section">
+  <div class="sidebar-wrapper">
+    <div class="sidebar">
+      <h4>Contents:</h4>
+      <a class="sidebar-link topic" role="button" href="#header-introduction">
+        <div>Introduction</div>
+      </a>
+      <a class="sidebar-link topic" role="button" href="#header-under-the-hood">
+        <div>Under the Hood</div>
+      </a>
+      <a class="sidebar-link topic" role="button" href="#header-in-context">
+        <div>In Context</div>
+      </a>
+    </div> <!-- /.sidebar -->
+  </div> <!-- /.sidebar-wrapper -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 id="header-introduction">Introduction</h2>
+        <p>
+          GeoPost is a nice little web app that I wrote that functions more or
+          less like a georeferenced blog.  It's pretty simple, you just click
+          on a point on the <a href="{% url 'geopost_home' %}">map</a> and the
+          text and photo will appear for you to view.  I love GIS, and you can
+          think of this as my grand introduction to geospatial programming.  
+          Baby steps...
+        </p>
+      </div> <!-- /.col-xs-12 -->
+    </div> <!-- /.row -->
+    <div class="row alt">
+      <div class="col-sm-1 col-md-2 col-lg-3">
+      </div> <!-- .col-sm-1 -->
+      <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
+        <h2 id="header-under-the-hood">Under the Hood</h2>
+        <h4>The Stack:</h4>
+        <ul>
+          <li>
+            <p>
+              <a href="http://openlayers.org">OpenLayers3</a>,
+              the Javascript mapping library
+            </p>
+          </li>
+          <li>
+            <p>
+              <a href="http://geoserver.org">GeoServer</a> servlet
+              in an Apache <a href="http://tomcat.apache.org">Tomcat</a>
+              container
+            </p>
+          </li>
+          <li>
+            <p>
+              <a href="http://postgis.net">PostGIS</a> geospatial database
+              extension for PostgreSQL
+            </p>
+          </li>
+        </ul>
+        <p>
+          Essentially just the standard web GIS stack, with media storage
+          accomplished using <a href="https://cloud.google.com/storage/">
+          Google Cloud Storage</a>.  The geometry and other attributes of
+          the entries are stored in a PostGIS relation, and are served by
+          GeoServer over 
+          <a href="http://www.opengeospatial.org/standards/wfs">WFS</a>
+          to the browser, where they are displayed on the map by OpenLayers.
+        </p>
+      </div> <!-- /.col-xs-12 -->
+      <div class="col-sm-1 col-md-2 col-lg-3">
+      </div> <!-- .col-sm-1 -->
+    </div> <!-- /.row -->
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 id="header-in-context">In Context</h2>
+        <p>
+          Eventually I would like to spin my geospatial programming efforts
+          into something along the lines of modeling and/or big-data
+          geospatial analysis.  Not sure exactly what my next step is, but
+          I'm sure I'll find something fun to tinker with.  For now, at 
+          least, I can upload a bunch of photos for my mom to look at when
+          I travel places.  Hey ma!
+        </p>
+      </div> <!-- /.col-xs-12 -->
+    </div> <!-- /.row -->
+  </div> <!-- /.container-fluid -->
+</section>
