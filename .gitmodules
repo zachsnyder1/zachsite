@@ -1,0 +1,3 @@
+[submodule "geopost"]
+	path = geopost
+	url = https://github.com/zachsnyder1/geopost.git
