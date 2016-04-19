@@ -7,4 +7,3 @@ node_modules/
 **/fixtures/
 **/testLogs/
 **/*.pyc
-geopost/
