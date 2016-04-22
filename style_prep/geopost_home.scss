@@ -6,6 +6,16 @@
 	display: none;
 }
 
+#hint-text {
+	min-height: 20px;
+	background: $zach-blue-bg-light;
+	p {
+		text-align: center;
+		color: $text-color;
+		font-family: $font-family-base;
+	}
+}
+
 #info {
 	h2 {
 		text-align: center;
