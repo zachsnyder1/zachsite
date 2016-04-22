@@ -7,12 +7,13 @@
 }
 
 #hint-text {
-	min-height: 20px;
-	background: $zach-blue-bg-light;
+	background: $zach-yellow;
 	p {
 		text-align: center;
 		color: $text-color;
 		font-family: $font-family-base;
+		width: 100%;
+		margin: 15px 0px;
 	}
 }
 
