@@ -8,13 +8,13 @@
 
 #hint-text {
 	background-color: $zach-yellow;
-	magin: 0px;
 	p {
 		text-align: center;
 		color: $text-color;
 		font-family: $font-family-base;
 		width: 100%;
 		padding: 15px 0px;
+		margin: 0px auto;
 	}
 }
 
