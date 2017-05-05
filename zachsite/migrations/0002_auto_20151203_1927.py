@@ -14,7 +14,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Blurb',
             fields=[
-                ('id', models.AutoField(auto_created=True, verbose_name='ID', serialize=False, primary_key=True)),
+                ('id', models.AutoField(auto_created=True,
+                                        verbose_name='ID', serialize=False, primary_key=True)),
                 ('title', models.CharField(max_length=80)),
                 ('text', models.TextField()),
             ],

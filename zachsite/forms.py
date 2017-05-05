@@ -4,6 +4,7 @@ Forms for zachsite app.
 
 from django import forms
 
+
 class SignupForm(forms.Form):
     """
     For signup fields.

@@ -15,6 +15,7 @@ def no_breaks(value):
     safe_input = escape(value)
     return mark_safe(safe_input.replace(' |PARAGRAPH-BREAK| ', ' '))
 
+
 def add_breaks(value):
     """
     Replaces ' |PARAGRAPH-BREAK| ' in value with '<br><br>'.
@@ -79,7 +80,7 @@ class AbstractFormatter():
     """
     Abstract code formatter class.
     """
-    comment_line_regex = r'' # override!
+    comment_line_regex = r''  # override!
     keywords = []
 
     def __init__(self, raw_input):
@@ -129,7 +130,7 @@ class PythonFormatter(AbstractFormatter):
     """
     Concrete formatter class for Python code.
     """
-    comment_line_regex = r'^[\s]*[#]' # override!
+    comment_line_regex = r'^[\s]*[#]'  # override!
     keywords = [
         'and ',
         'as ',
@@ -183,6 +184,7 @@ def formatpython(value):
     py_formatter.identify_symbols()
     py_formatter.decorate_symbols()
     return py_formatter.get_output()
+
 
 # The register object
 register = template.Library()

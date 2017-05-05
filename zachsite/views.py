@@ -7,6 +7,7 @@ from django.views.decorators.http import require_http_methods
 from projects.models import Project
 from .models import QuestionAndAnswer
 
+
 @require_http_methods(["GET"])
 def index(request):
     """
@@ -20,4 +21,3 @@ def index(request):
         'projectLen': str(len(project_list))
     }
     return render(request, 'zachsite/index.html', context)
-	
