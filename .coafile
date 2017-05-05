@@ -1,0 +1,4 @@
+[cli]
+[ZachSiteApp]
+files = zachsite/**.py
+bears = PEP8Bear
