@@ -14,7 +14,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ModuleConstant',
             fields=[
-                ('symbolentity_ptr', models.OneToOneField(parent_link=True, primary_key=True, to='projects.SymbolEntity', serialize=False, auto_created=True)),
+                ('symbolentity_ptr', models.OneToOneField(parent_link=True, primary_key=True,
+                                                          to='projects.SymbolEntity', serialize=False, auto_created=True)),
                 ('module', models.ForeignKey(to='projects.ProjModule')),
             ],
             bases=('projects.symbolentity',),

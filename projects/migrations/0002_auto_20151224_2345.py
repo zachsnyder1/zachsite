@@ -14,7 +14,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ConstructorParam',
             fields=[
-                ('symbolentity_ptr', models.OneToOneField(serialize=False, primary_key=True, to='projects.SymbolEntity', auto_created=True, parent_link=True)),
+                ('symbolentity_ptr', models.OneToOneField(serialize=False, primary_key=True,
+                                                          to='projects.SymbolEntity', auto_created=True, parent_link=True)),
                 ('default', models.CharField(max_length=120, blank=True)),
                 ('pclass', models.ForeignKey(to='projects.ProjClass')),
             ],
@@ -23,7 +24,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='MethodParam',
             fields=[
-                ('symbolentity_ptr', models.OneToOneField(serialize=False, primary_key=True, to='projects.SymbolEntity', auto_created=True, parent_link=True)),
+                ('symbolentity_ptr', models.OneToOneField(serialize=False, primary_key=True,
+                                                          to='projects.SymbolEntity', auto_created=True, parent_link=True)),
                 ('default', models.CharField(max_length=120, blank=True)),
                 ('method', models.ForeignKey(to='projects.ClassMethod')),
             ],

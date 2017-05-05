@@ -19,6 +19,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='entry',
             name='uuid',
-            field=models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, serialize=False),
+            field=models.UUIDField(
+                primary_key=True, default=uuid.uuid4, editable=False, serialize=False),
         ),
     ]

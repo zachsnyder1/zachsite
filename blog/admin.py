@@ -3,5 +3,7 @@ from .models import Entry
 
 
 class BlogEntryAdmin(admin.ModelAdmin):
-	prepopulated_fields = {"slug": ("title",)}
+    prepopulated_fields = {"slug": ("title",)}
+
+
 admin.site.register(Entry, BlogEntryAdmin)

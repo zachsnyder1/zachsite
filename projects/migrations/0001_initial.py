@@ -13,14 +13,16 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='CodeExample',
             fields=[
-                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
+                ('id', models.AutoField(serialize=False,
+                                        primary_key=True, verbose_name='ID', auto_created=True)),
                 ('codetext', models.TextField()),
             ],
         ),
         migrations.CreateModel(
             name='Project',
             fields=[
-                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
+                ('id', models.AutoField(serialize=False,
+                                        primary_key=True, verbose_name='ID', auto_created=True)),
                 ('title', models.CharField(max_length=30)),
                 ('slug', models.SlugField(max_length=30)),
                 ('active', models.BooleanField(default=True)),
@@ -30,7 +32,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='SymbolEntity',
             fields=[
-                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
+                ('id', models.AutoField(serialize=False,
+                                        primary_key=True, verbose_name='ID', auto_created=True)),
                 ('symbol', models.CharField(max_length=120)),
                 ('description', models.TextField()),
             ],
@@ -38,21 +41,24 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ClassMethod',
             fields=[
-                ('symbolentity_ptr', models.OneToOneField(serialize=False, primary_key=True, parent_link=True, to='projects.SymbolEntity', auto_created=True)),
+                ('symbolentity_ptr', models.OneToOneField(serialize=False, primary_key=True,
+                                                          parent_link=True, to='projects.SymbolEntity', auto_created=True)),
             ],
             bases=('projects.symbolentity',),
         ),
         migrations.CreateModel(
             name='ClassVariable',
             fields=[
-                ('symbolentity_ptr', models.OneToOneField(serialize=False, primary_key=True, parent_link=True, to='projects.SymbolEntity', auto_created=True)),
+                ('symbolentity_ptr', models.OneToOneField(serialize=False, primary_key=True,
+                                                          parent_link=True, to='projects.SymbolEntity', auto_created=True)),
             ],
             bases=('projects.symbolentity',),
         ),
         migrations.CreateModel(
             name='ConstructorArg',
             fields=[
-                ('symbolentity_ptr', models.OneToOneField(serialize=False, primary_key=True, parent_link=True, to='projects.SymbolEntity', auto_created=True)),
+                ('symbolentity_ptr', models.OneToOneField(serialize=False, primary_key=True,
+                                                          parent_link=True, to='projects.SymbolEntity', auto_created=True)),
                 ('default', models.CharField(max_length=120, blank=True)),
             ],
             bases=('projects.symbolentity',),
@@ -60,14 +66,16 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='InstanceVariable',
             fields=[
-                ('symbolentity_ptr', models.OneToOneField(serialize=False, primary_key=True, parent_link=True, to='projects.SymbolEntity', auto_created=True)),
+                ('symbolentity_ptr', models.OneToOneField(serialize=False, primary_key=True,
+                                                          parent_link=True, to='projects.SymbolEntity', auto_created=True)),
             ],
             bases=('projects.symbolentity',),
         ),
         migrations.CreateModel(
             name='MethodArg',
             fields=[
-                ('symbolentity_ptr', models.OneToOneField(serialize=False, primary_key=True, parent_link=True, to='projects.SymbolEntity', auto_created=True)),
+                ('symbolentity_ptr', models.OneToOneField(serialize=False, primary_key=True,
+                                                          parent_link=True, to='projects.SymbolEntity', auto_created=True)),
                 ('default', models.CharField(max_length=120, blank=True)),
                 ('method', models.ForeignKey(to='projects.ClassMethod')),
             ],
@@ -76,7 +84,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='MethodReturn',
             fields=[
-                ('symbolentity_ptr', models.OneToOneField(serialize=False, primary_key=True, parent_link=True, to='projects.SymbolEntity', auto_created=True)),
+                ('symbolentity_ptr', models.OneToOneField(serialize=False, primary_key=True,
+                                                          parent_link=True, to='projects.SymbolEntity', auto_created=True)),
                 ('method', models.ForeignKey(to='projects.ClassMethod')),
             ],
             bases=('projects.symbolentity',),
@@ -84,14 +93,16 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ProjClass',
             fields=[
-                ('symbolentity_ptr', models.OneToOneField(serialize=False, primary_key=True, parent_link=True, to='projects.SymbolEntity', auto_created=True)),
+                ('symbolentity_ptr', models.OneToOneField(serialize=False, primary_key=True,
+                                                          parent_link=True, to='projects.SymbolEntity', auto_created=True)),
             ],
             bases=('projects.symbolentity',),
         ),
         migrations.CreateModel(
             name='ProjModule',
             fields=[
-                ('symbolentity_ptr', models.OneToOneField(serialize=False, primary_key=True, parent_link=True, to='projects.SymbolEntity', auto_created=True)),
+                ('symbolentity_ptr', models.OneToOneField(serialize=False, primary_key=True,
+                                                          parent_link=True, to='projects.SymbolEntity', auto_created=True)),
                 ('path', models.CharField(max_length=300)),
                 ('project', models.ForeignKey(to='projects.Project')),
             ],
