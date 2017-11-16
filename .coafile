@@ -2,4 +2,6 @@
 [PEP8]
 files = **.py
 bears = PEP8Bear
-
+[CSS]
+files = **.css
+bears = CSSLintBear
