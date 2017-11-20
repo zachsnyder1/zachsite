@@ -8,3 +8,4 @@ node_modules/
 **/testLogs/
 **/*.pyc
 **/*.orig
+**/geckodriver.log
