@@ -96,13 +96,13 @@ class AbstractFormatter():
         """
         for line in enumerate(self.input):
             # don't process comment lines
-            if re.search(self.comment_line_regex, self.input[line]):
+            if re.search(self.comment_line_regex, self.input[line[0]]):
                 continue
             else:
                 pass
             # generate lists of symbols to format
             for symbol_type in self.symbol_types:
-                symbol_type.find_symbol(self.input[line])
+                symbol_type.find_symbol(self.input[line[0]])
 
     def decorate_symbols(self):
         """
@@ -110,13 +110,18 @@ class AbstractFormatter():
         """
         # decorate symbols:
         for line in enumerate(self.input):
+            # don't process comment lines
+            if re.search(self.comment_line_regex, self.input[line[0]]):
+                continue
+            else:
+                pass
             for symbol_type in self.symbol_types:
-                for symbol in symbol_type:
+                for symbol in symbol_type.found_symbols:
                     decorated = symbol_type.decoration.format(symbol)
-                    input[line] = input[line].replace(symbol, decorated)
+                    self.input[line[0]] = self.input[line[0]].replace(symbol, decorated)
             for keyword in self.keywords:
                 decorated = '<span class="keyw">{}</span>'.format(keyword)
-                input[line] = input[line].replace(keyword, decorated)
+                self.input[line[0]] = self.input[line[0]].replace(keyword, decorated)
 
     def get_output(self):
         """
