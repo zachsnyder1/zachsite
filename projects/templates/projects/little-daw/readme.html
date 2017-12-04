@@ -1,0 +1,158 @@
+<section id="readme-section">
+  <div class="sidebar-wrapper">
+    <div class="sidebar">
+      <h4>Contents:</h4>
+      <a class="sidebar-link topic" role="button" href="#header-vision">
+        <div>The Vision</div>
+      </a>
+      <a class="sidebar-link topic" role="button" href="#header-current-status">
+        <div>Current Status</div>
+      </a>
+      <a class="sidebar-link topic" role="button" href="#header-compiling">
+        <div>Compiling</div>
+      </a>
+      <a class="sidebar-link topic" role="button" href="#header-running">
+        <div>Running</div>
+      </a>
+      <a class="sidebar-link topic" role="button" href="#header-commands">
+        <div>Commands</div>
+      </a>
+      <a class="sidebar-link topic" role="button" href="#header-portaudio">
+        <div>PortAudio Dependency</div>
+      </a>
+      <a class="sidebar-link topic" role="button" href="#header-license">
+        <div>License</div>
+      </a>
+    </div> <!-- /.sidebar -->
+  </div> <!-- /.sidebar-wrapper -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 id="header-vision">The Vision</h2>
+        <p>
+          A light-weight, headless audio workstation with basic synthesis, 
+          processing, and sampling utilities, small enough to run on 
+          Raspberry Pi.
+        </p>
+      </div> <!-- /.col-xs-12 -->
+    </div> <!-- /.row -->
+    <div class="row alt">
+      <div class="col-xs-12">
+        <h2 id="header-current-status">Current Status</h2>
+        <p>
+          So far little-daw is a minimal skeleton, with one wavetable 
+          synthesizer that allows you to play a melody using the keys on 
+          your keyboard. The pitch ranges four octaves from A-100 to A-1760, 
+          and the timbre can be a sine wave, square wave, or custom waveform 
+          built based on the amplitudes of the fundamental and the first X 
+          harmonics.
+        </p>
+      </div> <!-- /.col-xs-12 -->
+    </div> <!-- /.row -->
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 id="header-compiling">Compiling</h2>
+        <p>
+          Compile from the /src directory. You may need to explicitly link 
+          to the 'portaudio' library. If you use g++, compilation may look 
+          like this:
+        </p>
+        <pre>
+      g++ *.cpp -lportaudio -o littledaw</pre>
+      </div> <!-- /.col-xs-12 -->
+    </div> <!-- /.row -->
+    <div class="row alt">
+      <div class="col-xs-12">
+        <h2 id="header-running">Running</h2>
+        <p>
+          In (default) polyphonic mode:
+        </p>
+        <pre>
+    ./littledaw</pre>
+        <p>
+          In continuous signal mode:
+        </p>
+        <pre>
+    ./littledaw -c</pre>
+      </div> <!-- /.col-xs-12 -->
+    </div> <!-- /.row -->
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 id="header-commands">Commands</h2>
+        <p>
+          When the program initiates it provides a prompt ('>> '). This is 
+          where you enter all commands, including note changes. To enter a 
+          command, type it and then hit RETURN.
+        </p>
+        <p>
+          Here is a schematic showing spatial arrangement of keys and their 
+          associated note values:
+        </p>
+        <pre>
+---------------- KEYS: -----------------------|
+                                              |
+[`][1]   [2] [3]   [4]   [5] [6]   [7]   [8]  |
+      [q]       [e]   [r]       [y]   [u]     |
+                                              |
+----------- CORRESPONDING NOTES: -------------|
+                                              |
+[g#][a]   [b] [c]   [d]   [e] [f]   [g]   [a] |
+       [a#]      [c#]  [d#]      [f#]  [g#]   |
+______________________________________________|
+
+   OTHER COMMANDS:
+   --------------
+     -   --->  Go down an octave
+     =   --->  Go up an octave (if it were '+' you would have to type shift...)
+     A   --->  Timbre = sine wave
+     S   --->  Timbre = square wave (default)
+     z   --->  Print help
+     x   --->  EXIT PROGRAM</pre>
+      </div> <!-- /.col-xs-12 -->
+    </div> <!-- /.row -->
+    <div class="row alt">
+      <div class="col-xs-12">
+        <h2 id="header-portaudio">PortAudio Dependency</h2>
+        <p>
+          This program is written using PortAudio, so you will need to 
+          download and install it if you are building this project. On OSX, 
+          with brew, it is easy:
+        </p>
+        <pre>
+    brew install portaudio</pre>
+        <p>
+          Otherwise, you can download a release from the 
+          <a href="http://portaudio.com/download.html">PortAudio website:</a>
+        </p>
+      </div> <!-- /.col-xs-12 -->
+    </div> <!-- /.row -->
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 id="header-license">License</h2>
+        <pre>
+Copyright © 2017 Zach Snyder. All rights reserved.        
+
+Permission is hereby granted, free of charge, to any person 
+obtaining a copy of this software and associated documentation 
+files (the "Software"), to deal in the Software without 
+restriction, including without limitation the rights to use, 
+copy, modify, merge, publish, distribute, sublicense, and/or sell 
+copies of the Software, and to permit persons to whom the Software 
+is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be 
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND 
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS 
+BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN 
+ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+SOFTWARE.
+        </pre>
+      </div> <!-- /.col-xs-12 -->
+    </div> <!-- /.row -->
+  </div> <!-- /.container-fluid -->
+</section>

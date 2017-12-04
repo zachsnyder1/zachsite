@@ -123,7 +123,9 @@
 
 // project panel styling
 .project-panel {
-	margin: 0px 5% 20px 5%;
+    max-width: 650px;
+	margin-left: auto;
+	margin-right: auto;
 	box-shadow: -0px 2px 6px gray;
 	.panel-body img {
 		opacity: 0.85;
@@ -141,14 +143,5 @@
 		.project-title {
 			color: $zach-red-light;
 		}
-	}
-}
-
-@media (min-width: $screen-sm-min) {
-	.project-left > .panel {
-		margin: 0px 3% 20px 6%;
-	}
-	.project-right > .panel {
-		margin: 0px 6% 20px 3%;
 	}
 }

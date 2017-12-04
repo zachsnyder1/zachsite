@@ -91,13 +91,7 @@ role="button" data-slide="next">
     </div> <!-- /.row -->
     <div class="row">
       {% for project in projectList %}
-      {% if forloop.last and not projectLen|divisibleby:2 %}
-      <div class="project col-xs-12 col-sm-8 col-sm-offset-2">
-      {% elif forloop.counter0|divisibleby:2 %}
-      <div class="project project-left col-xs-12 col-sm-6">
-      {% else %}
-      <div class="project project-right col-xs-12 col-sm-6">
-      {% endif %}
+      <div class="project col-xs-12">
         <div class="panel project-panel panel-default">
           <a href="{% url 'project_about' project.id project.slug %}">
             <div class="panel-body">
@@ -109,7 +103,7 @@ src="{% static 'projects/'|add:project.logo %}">
             </div> <!-- /.panel-footer -->
           </a>
         </div> <!-- /.panel -->
-      </div> <!-- /.blurb -->
+      </div> <!-- /.project -->
       {% endfor %}
     </div> <!-- /.row -->
   </div> <!-- /.container-fluid -->
