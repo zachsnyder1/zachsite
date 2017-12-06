@@ -7,8 +7,8 @@ $zach-blue: #445566;
 $zach-blue-bg: lighten($zach-blue, 65%);
 $zach-blue-bg-light: lighten($zach-blue-bg, 5%);
 $zach-blue-bg-dark: lighten($zach-blue, 10%);
-$zach-blue-nav: darken($zach-blue-bg, 3%);
-$zach-blue-nav-active: darken($zach-blue-nav, 3%);
+$zach-blue-nav: $zach-blue;
+$zach-blue-nav-active: lighten($zach-blue-nav, 3%);
 $zach-green: darken(#ecf0f0, 2%);
 $zach-green-light: lighten($zach-green, 10%);
 $zach-purple: #f5f5fa;
@@ -22,6 +22,7 @@ $zach-gray-bg: lighten(gray, 40%);
 $zach-gray-light: lighten($zach-gray-bg, 3%);
 $zach-gray-light-active: lighten($zach-gray-light, 4%);
 $zach-black: lighten(black, 20%);
+$zach-link-hover: lighten($zach-blue-nav-active, 2%);
 
 // -------------------------------------------------------------------------
 // --------------------  BOOTSTRAP VARIABLE OVERRIDES  ---------------------
@@ -46,21 +47,21 @@ $panel-default-text:   $zach-red;
 
 // Dropdown menu overrides
 $dropdown-bg: $zach-blue-nav-active;
-$dropdown-border: $zach-blue;
-$dropdown-link-color: $zach-blue;
-$dropdown-link-hover-color: darken($zach-blue, 30%);
-$dropdown-link-hover-bg: $zach-yellow;
-$dropdown-link-active-color: $zach-red;
-$dropdown-link-active-bg: $dropdown-bg;
+$dropdown-border: darken($zach-blue, 2%);
+$dropdown-link-color: $zach-blue-bg;
+$dropdown-link-hover-color: $zach-blue-bg;
+$dropdown-link-hover-bg: $zach-link-hover;
+$dropdown-link-active-color: lighten($zach-red, 22%);
+$dropdown-link-active-bg: $zach-link-hover;
 
 // Navbar overrides
 $navbar-height: 70px;
-$navbar-default-color:             $text-color;
-$navbar-default-border:            $zach-blue;
-$navbar-default-link-color:        $text-color;
+$navbar-default-color:             $zach-blue-bg;
+$navbar-default-border:            darken($zach-blue, 2%);
+$navbar-default-link-color:        $zach-blue-bg;
 $navbar-default-link-hover-color:  lighten($navbar-default-link-color, 20%);
 $navbar-default-link-hover-bg:     $zach-blue-nav-active;
-$navbar-default-link-active-color: $zach-red;
+$navbar-default-link-active-color: lighten($zach-red, 22%);
 $navbar-default-link-active-bg:    $zach-blue-nav-active;
 $navbar-default-bg:                $zach-blue-nav;
 $navbar-default-brand-hover-color: $navbar-default-link-hover-color;

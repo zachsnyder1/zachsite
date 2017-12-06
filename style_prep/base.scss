@@ -41,8 +41,8 @@ header {
 }
 
 .navbar-default .dropdown-menu > li > a:hover {
-	color: darken($zach-blue, 30%);
-	background-color: $zach-yellow;
+	color: $zach-blue-bg;
+	background-color: $zach-link-hover;
 }
 
 // DON'T WRAP THE NAVBAR TEXT:
@@ -61,7 +61,7 @@ header {
 	height: 50px;
 	margin: 10px 10px;
 	border-radius: 6px;
-	box-shadow: -0px 1px 4px gray;
+	box-shadow: -0px 1px 4px black;
 	opacity: 0.9;
 }
 
@@ -74,7 +74,7 @@ header {
 	margin: 15px 8px;
 	height: 40px;
 	border-radius: 25px;
-	box-shadow: -0px 1px 4px gray;
+	box-shadow: -0px 1px 4px black;
 	opacity: 0.8;
 }
 
@@ -103,7 +103,7 @@ li.icon-link:hover a, li.icon-link:focus a {
 // <<<----- FOOTER ----->>>
 .footer {
 	height: 80px;
-	background-color: $zach-blue-bg-dark;
+	background-color: $zach-blue-nav;
 }
 
 #foot-text {
@@ -111,7 +111,7 @@ li.icon-link:hover a, li.icon-link:focus a {
 	margin: 0 auto;
 	text-align: center;
 	padding-top: 35px;
-	color: $zach-blue-nav;
+	color: $zach-blue-bg;
 	font-family: $font-family-merriweather;
 }
 
