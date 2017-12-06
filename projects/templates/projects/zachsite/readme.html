@@ -11,9 +11,6 @@
       <a class="sidebar-link topic" role="button" href="#header-client-side">
         <div>Client Side</div>
       </a>
-      <a class="sidebar-link topic" role="button" href="#header-in-context">
-        <div>In Context</div>
-      </a>
     </div> <!-- /.sidebar -->
   </div> <!-- /.sidebar-wrapper -->
   <div class="container-fluid">
@@ -21,14 +18,11 @@
       <div class="col-xs-12">
         <h2 id="header-introduction">Introduction</h2>
         <p>
-          ZachSite is my first website.  I intend it as a place for me to
-          showcase personal code projects, especially web applications.
-          It's kind of a barebones layout, but I wanted to get experience
-          with database driven web development and certain 
-          frameworks/toolsets that I plan to use in the future, so under the
-          hood it is maybe a little more robust than it needs to be.  This
-          page is just me bragging about all those goodies with which I now 
-          have some modest experience. So, if that interests you, read on.
+          Zach-Site.com is where I document all of my active projects, 
+          and where I host my web applications.  Below you will find a
+          brief description of the stack with which the site is built.
+          Code for all projects is viewable on my GitHub--see the black 
+          navbar above for links.
         </p>
       </div> <!-- /.col-xs-12 -->
     </div> <!-- /.row -->
@@ -70,16 +64,9 @@
           </li>
         </ul>
         <p>
-          Django is really the key framework of the project, and learning
-          how to use it effectively and properly has been my main focus
-          through the whole development process. Also, I have tried to make
-          the site as database driven as possible.  For example, the
-          documentation pages for my non-web project(s) (e.g. <a
-href="{% url 'project_docs' '1' 'SignalHook' %}">signalhook</a>)
-          are composed almost entirely dynamically from the database so
-          that I can easily edit a class description or method signature
-          without having to go into the HTML.
-          Unit testing is performed with Django's 
+          Django is the key framework of the project, and the site is 
+          deployed manually on Google Compute Engine VMs running 
+          Ubuntu Linux. Unit testing is performed with Django's 
           <a
 href="https://docs.djangoproject.com/en/1.9/topics/testing/tools/">
             extension
@@ -112,30 +99,12 @@ href="https://docs.djangoproject.com/en/1.9/topics/testing/tools/">
           </li>
         </ul>
         <p>
-          UX design is not my primary interest. Take it at face value. 
-          However, I have enjoyed getting my hands dirty with some of the 
+          I have enjoyed getting my hands dirty with some of the 
           CSS and Javascript.  I've used Bootstrap as the real workhorse,
           but I've tried to customize the look and feel in ways that I
           think create value.  I don't know, you tell me....  UI level
           testing is automated with 
-<a href="http://www.seleniumhq.org/projects/webdriver/">Selenium Webdriver
-</a>.
-        </p>
-      </div> <!-- /.col-xs-12 -->
-    </div> <!-- /.row -->
-    <div class="row">
-      <div class="col-xs-12">
-        <h2 id="header-in-context">In Context</h2>
-        <p>
-          I think server side programming is terrific. I also very much like 
-          problems that involve programmatic manipulation, analysis, and
-          transmission of large amounts of data.  In particular I am
-          interested in signal data that reflects a physical reality--whether
-          that be a time-varying signal like audio, or a spatial one like
-          LIDAR.  So, now that I have some experience with a simple full web
-          stack, I am planning on using those skills to build some kind of 
-          fun GIS web app, which is something I’ve wanted to do for a
-          while. Wish me luck :)
+<a href="http://www.seleniumhq.org/projects/webdriver/">Selenium Webdriver</a>.
         </p>
       </div> <!-- /.col-xs-12 -->
     </div> <!-- /.row -->
