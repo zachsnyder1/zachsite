@@ -3,22 +3,22 @@ var TestScript = (function() {
 	// Not run during QUnit test
 	function main() {
 		"use strict";
-		// Make #question-carousel update #answer-text div on 'slide' 
-		var questionCarousel = "#question-carousel";
-		var qCarouselInner = "#carousel-inner";
-		var answerParagraph = "#answer-text";
-		qaCarUpdate(questionCarousel, qCarouselInner, answerParagraph);
+		// Make #project-carousel update #project-summary-text div on 'slide' 
+		var projectCarousel = "#project-carousel";
+		var pCarouselInner = "#carousel-inner";
+		var summaryParagraph = "#project-summary-text";
+		pCarUpdate(projectCarousel, pCarouselInner, summaryParagraph);
 	}
 	
-	// Make #question-carousel update #answer-text div on 'slide'
-	function qaCarUpdate(questionCarousel, qCarouselInner, answerParagraph) {
-		$(answerParagraph).text($(qCarouselInner).children()[0].dataset.answer);
-		$(questionCarousel).on('slide.bs.carousel', function(e) {
-			fadeTrans(answerParagraph, e.relatedTarget.dataset.answer, 600);
+	// Make #project-carousel update #project-summary-text div on 'slide'
+	function pCarUpdate(projectCarousel, pCarouselInner, summaryParagraph) {
+		$(summaryParagraph).text($(pCarouselInner).children()[0].dataset.answer);
+		$(projectCarousel).on('slide.bs.carousel', function(e) {
+			fadeTrans(summaryParagraph, e.relatedTarget.dataset.answer, 600);
 		});
 	}
 	
-	// Used to provide fade to qaCarUpdate()
+	// Used to provide fade to pCarUpdate()
 	function fadeTrans(selector, newText, duration) {
 		$(selector).fadeOut(duration, function(elem2) {
 			$(selector).text(newText);
@@ -32,7 +32,7 @@ var TestScript = (function() {
 		if (QUnit) {
 			// Export functions for testing...
 			var Index = {};
-			Index.qaCarUpdate = qaCarUpdate;
+			Index.pCarUpdate = pCarUpdate;
 	
 			return Index;
 		}
