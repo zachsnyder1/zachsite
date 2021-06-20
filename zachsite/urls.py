@@ -2,7 +2,7 @@
 Routing for zachsite app.
 """
 
-from django.conf.urls import url
+from django.urls import path
 from django.contrib.auth import views as auth_views
 from projects.models import Project
 from . import views
@@ -14,72 +14,72 @@ extra_context = {
 }
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(
-        r'^accounts/login/$',
-        auth_views.LoginView,
+    path('', views.index, name='index'),
+    path(
+        'accounts/login/',
+        auth_views.LoginView.as_view(),
         {
             'template_name': 'zachsite/login.html',
             'extra_context': extra_context
         },
         name="login"
     ),
-    url(
-        r'^accounts/logout/$',
-        auth_views.LogoutView,
+    path(
+        'accounts/logout/',
+        auth_views.LogoutView.as_view(),
         {
             'template_name': 'zachsite/logout.html',
             'extra_context': extra_context
         },
         name="logout"
     ),
-    url(
-        r'^accounts/password_change/$',
-        auth_views.PasswordChangeView,
+    path(
+        'accounts/password_change/',
+        auth_views.PasswordChangeView.as_view(),
         {
             'template_name': 'zachsite/pass_change_form.html',
             'extra_context': extra_context
         },
         name="password_change"
     ),
-    url(
-        r'^accounts/password_change/done/$',
-        auth_views.PasswordChangeDoneView,
+    path(
+        'accounts/password_change/done/',
+        auth_views.PasswordChangeDoneView.as_view(),
         {
             'template_name': 'zachsite/pass_change_done.html',
             'extra_context': extra_context
         },
         name="password_change_done"),
-    url(
-        r'^accounts/password_reset/$',
-        auth_views.PasswordResetView,
+    path(
+        'accounts/password_reset/',
+        auth_views.PasswordResetView.as_view(),
         {
             'template_name': 'zachsite/pass_reset_form.html',
             'extra_context': extra_context
         },
         name="password_reset"
     ),
-    url(
-        r'^accounts/password_reset/done/$',
-        auth_views.PasswordResetDoneView,
+    path(
+        'accounts/password_reset/done/',
+        auth_views.PasswordResetDoneView.as_view(),
         {
             'template_name': 'zachsite/pass_reset_done.html',
             'extra_context': extra_context
         },
         name="password_reset_done"
     ),
-    url(
-        r'^accounts/reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
-        auth_views.PasswordResetConfirmView,
+    path(
+        'accounts/reset/',
+        auth_views.PasswordResetConfirmView.as_view(),
         {
             'template_name': 'zachsite/pass_reset_confirm.html',
             'extra_context': extra_context
         },
         name="password_reset_confirm"
     ),
-    url(
-        r'^accounts/reset/done/$',
-        auth_views.PasswordResetCompleteView,
+    path(
+        'accounts/reset/done/',
+        auth_views.PasswordResetCompleteView.as_view(),
         {
             'template_name': 'zachsite/pass_change_done.html',
             'extra_context': extra_context

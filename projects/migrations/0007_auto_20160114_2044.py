@@ -15,8 +15,9 @@ class Migration(migrations.Migration):
             name='ModuleConstant',
             fields=[
                 ('symbolentity_ptr', models.OneToOneField(parent_link=True, primary_key=True,
-                                                          to='projects.SymbolEntity', serialize=False, auto_created=True)),
-                ('module', models.ForeignKey(to='projects.ProjModule')),
+                                                          to='projects.SymbolEntity', serialize=False,
+                                                          auto_created=True, on_delete=models.CASCADE)),
+                ('module', models.ForeignKey(to='projects.ProjModule', on_delete=models.CASCADE)),
             ],
             bases=('projects.symbolentity',),
         ),
