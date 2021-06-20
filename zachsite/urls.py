@@ -17,7 +17,7 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(
         r'^accounts/login/$',
-        auth_views.login,
+        auth_views.LoginView,
         {
             'template_name': 'zachsite/login.html',
             'extra_context': extra_context
@@ -26,7 +26,7 @@ urlpatterns = [
     ),
     url(
         r'^accounts/logout/$',
-        auth_views.logout,
+        auth_views.LogoutView,
         {
             'template_name': 'zachsite/logout.html',
             'extra_context': extra_context
@@ -35,7 +35,7 @@ urlpatterns = [
     ),
     url(
         r'^accounts/password_change/$',
-        auth_views.password_change,
+        auth_views.PasswordChangeView,
         {
             'template_name': 'zachsite/pass_change_form.html',
             'extra_context': extra_context
@@ -44,7 +44,7 @@ urlpatterns = [
     ),
     url(
         r'^accounts/password_change/done/$',
-        auth_views.password_change_done,
+        auth_views.PasswordChangeDoneView,
         {
             'template_name': 'zachsite/pass_change_done.html',
             'extra_context': extra_context
@@ -52,7 +52,7 @@ urlpatterns = [
         name="password_change_done"),
     url(
         r'^accounts/password_reset/$',
-        auth_views.password_reset,
+        auth_views.PasswordResetView,
         {
             'template_name': 'zachsite/pass_reset_form.html',
             'extra_context': extra_context
@@ -61,7 +61,7 @@ urlpatterns = [
     ),
     url(
         r'^accounts/password_reset/done/$',
-        auth_views.password_reset_done,
+        auth_views.PasswordResetDoneView,
         {
             'template_name': 'zachsite/pass_reset_done.html',
             'extra_context': extra_context
@@ -70,7 +70,7 @@ urlpatterns = [
     ),
     url(
         r'^accounts/reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
-        auth_views.password_reset_confirm,
+        auth_views.PasswordResetConfirmView,
         {
             'template_name': 'zachsite/pass_reset_confirm.html',
             'extra_context': extra_context
@@ -79,7 +79,7 @@ urlpatterns = [
     ),
     url(
         r'^accounts/reset/done/$',
-        auth_views.password_reset_complete,
+        auth_views.PasswordResetCompleteView,
         {
             'template_name': 'zachsite/pass_change_done.html',
             'extra_context': extra_context
