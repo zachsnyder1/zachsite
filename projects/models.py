@@ -20,7 +20,7 @@ class CodeExample(models.Model):
     """
     A code string that is displayed as an example.
     """
-    project = models.ForeignKey(Project)
+    project = models.ForeignKey(Project, models.SET_DEFAULT)
     codetext = models.TextField()
 
 #----------------------------------------------------------
@@ -48,7 +48,7 @@ class ProjModule(SymbolEntity):
     """
     Entity representing a module in a project.
     """
-    project = models.ForeignKey(Project)
+    project = models.ForeignKey(Project, models.SET_DEFAULT)
     path = models.CharField(max_length=300)
 
 
@@ -56,21 +56,21 @@ class ModuleConstant(SymbolEntity):
     """
     Entity representing a global constant in a module.
     """
-    module = models.ForeignKey(ProjModule)
+    module = models.ForeignKey(ProjModule, models.SET_DEFAULT)
 
 
 class ProjClass(SymbolEntity):
     """
     Entity representing a class in a module.
     """
-    module = models.ForeignKey(ProjModule)
+    module = models.ForeignKey(ProjModule, models.SET_DEFAULT)
 
 
 class ConstructorParam(SymbolEntity):
     """
     Entity representing a constructor argument for a class.
     """
-    pclass = models.ForeignKey(ProjClass)
+    pclass = models.ForeignKey(ProjClass, models.SET_DEFAULT)
     default = models.CharField(max_length=120, blank=True)
 
 
@@ -78,28 +78,28 @@ class ClassVariable(SymbolEntity):
     """
     Entity representing a class variable.
     """
-    pclass = models.ForeignKey(ProjClass)
+    pclass = models.ForeignKey(ProjClass, models.SET_DEFAULT)
 
 
 class InstanceVariable(SymbolEntity):
     """
     Entity representing an instance variable.
     """
-    pclass = models.ForeignKey(ProjClass)
+    pclass = models.ForeignKey(ProjClass, models.SET_DEFAULT)
 
 
 class ClassMethod(SymbolEntity):
     """
     Entity representing a method of a class.
     """
-    pclass = models.ForeignKey(ProjClass)
+    pclass = models.ForeignKey(ProjClass, models.SET_DEFAULT)
 
 
 class MethodParam(SymbolEntity):
     """
     Entity representing an argument of a 
     """
-    method = models.ForeignKey(ClassMethod)
+    method = models.ForeignKey(ClassMethod, models.SET_DEFAULT)
     default = models.CharField(max_length=120, blank=True)
 
 
@@ -107,4 +107,4 @@ class MethodReturn(SymbolEntity):
     """
     Entity representing a return value of a method.
     """
-    method = models.ForeignKey(ClassMethod)
+    method = models.ForeignKey(ClassMethod, models.SET_DEFAULT)
