@@ -5844,13 +5844,13 @@ code {
   position: relative;
   height: 200px;
   width: 100%;
-  min-width: 1200px;
   overflow: hidden;
   background-color: #586f85;
 }
 .header-background img {
   position: relative;
-  width: 1290px;
+  width: 100%;
+  min-width: 700px;
 }
 
 #header-panel {

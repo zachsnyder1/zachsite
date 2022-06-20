@@ -11,12 +11,12 @@
 	position: relative;
 	height: 200px;
 	width: 100%;
-	min-width: 1200px;
 	overflow: hidden;
 	background-color: $zach-blue-bg-dark;
 	img {
 		position: relative;
-		width: 1290px;
+		width: 100%;
+		min-width: 700px;
 	}
 }
 
