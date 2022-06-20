@@ -5851,6 +5851,7 @@ code {
   position: relative;
   width: 100%;
   min-width: 700px;
+  height: 100%;
 }
 
 #header-panel {
