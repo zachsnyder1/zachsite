@@ -6,9 +6,9 @@
 
 $project-header-height: 50px;
 $project-summary-height: 132px;
-$project-bg-height: 400px + $project-summary-height + $project-header-height;
-$project-container-top: $project-bg-height - $project-summary-height;
-$project-indicators-top: $project-container-top + 12px;
+$project-bg-height: calc(400px + $project-summary-height + $project-header-height);
+$project-container-top: calc($project-bg-height - $project-summary-height);
+$project-indicators-top: calc($project-container-top + 12px);
 $project-header-top: 0px;
 
 #projects-section {
@@ -39,6 +39,7 @@ $project-header-top: 0px;
 	top: 0px;
 	height: $project-bg-height;
 	opacity: 0.95;
+	min-height: 790px;
 	width: 100%;
 }
 
@@ -123,7 +124,7 @@ $project-header-top: 0px;
     max-width: 450px;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 35px + $project-header-height;
+	margin-top: calc(35px + $project-header-height);
 	box-shadow: 0px 15px 20px black;
 	.panel-body img {
 		opacity: 0.85;

@@ -22,7 +22,7 @@ legend {
   width: 100%;
   padding: 0;
   margin-bottom: $line-height-computed;
-  font-size: ($font-size-base * 1.5);
+  font-size: calc($font-size-base * 1.5);
   line-height: inherit;
   color: $legend-color;
   border: 0;
@@ -82,7 +82,7 @@ input[type="checkbox"]:focus {
 // Adjust output element
 output {
   display: block;
-  padding-top: ($padding-base-vertical + 1);
+  padding-top: calc($padding-base-vertical + 1px);
   font-size: $font-size-base;
   line-height: $line-height-base;
   color: $input-color;
@@ -306,8 +306,8 @@ input[type="checkbox"] {
 
 .form-control-static {
   // Size it appropriately next to real form controls
-  padding-top: ($padding-base-vertical + 1);
-  padding-bottom: ($padding-base-vertical + 1);
+  padding-top: calc($padding-base-vertical + 1px);
+  padding-bottom: calc($padding-base-vertical + 1px);
   // Remove default margin from `p`
   margin-bottom: 0;
   min-height: ($line-height-computed + $font-size-base);
@@ -347,8 +347,8 @@ input[type="checkbox"] {
   }
   .form-control-static {
     height: $input-height-small;
-    min-height: ($line-height-computed + $font-size-small);
-    padding: ($padding-small-vertical + 1) $padding-small-horizontal;
+    min-height: calc($line-height-computed + $font-size-small);
+    padding: calc($padding-small-vertical + 1px) $padding-small-horizontal;
     font-size: $font-size-small;
     line-height: $line-height-small;
   }
@@ -374,7 +374,7 @@ input[type="checkbox"] {
   .form-control-static {
     height: $input-height-large;
     min-height: ($line-height-computed + $font-size-large);
-    padding: ($padding-large-vertical + 1) $padding-large-horizontal;
+    padding: calc($padding-large-vertical + 1px) $padding-large-horizontal;
     font-size: $font-size-large;
     line-height: $line-height-large;
   }
@@ -391,7 +391,7 @@ input[type="checkbox"] {
 
   // Ensure icons don't overlap text
   .form-control {
-    padding-right: ($input-height-base * 1.25);
+    padding-right: calc($input-height-base * 1.25);
   }
 }
 // Feedback icon (requires .glyphicon classes)
@@ -437,7 +437,7 @@ input[type="checkbox"] {
 .has-feedback label {
 
   & ~ .form-control-feedback {
-    top: ($line-height-computed + 5); // Height of the `label` and its margin
+    top: calc($line-height-computed + 5px); // Height of the `label` and its margin
   }
   &.sr-only ~ .form-control-feedback {
     top: 0;
@@ -562,13 +562,13 @@ input[type="checkbox"] {
   .checkbox-inline {
     margin-top: 0;
     margin-bottom: 0;
-    padding-top: ($padding-base-vertical + 1); // Default padding plus a border
+    padding-top: calc($padding-base-vertical + 1px); // Default padding plus a border
   }
   // Account for padding we're adding to ensure the alignment and of help text
   // and other content below items
   .radio,
   .checkbox {
-    min-height: ($line-height-computed + ($padding-base-vertical + 1));
+    min-height: calc($line-height-computed + ($padding-base-vertical + 1px));
   }
 
   // Make form groups behave like rows
@@ -582,7 +582,7 @@ input[type="checkbox"] {
     .control-label {
       text-align: right;
       margin-bottom: 0;
-      padding-top: ($padding-base-vertical + 1); // Default padding plus a border
+      padding-top: calc($padding-base-vertical + 1px); // Default padding plus a border
     }
   }
 
@@ -591,7 +591,7 @@ input[type="checkbox"] {
   // Reposition the icon because it's now within a grid column and columns have
   // `position: relative;` on them. Also accounts for the grid gutter padding.
   .has-feedback .form-control-feedback {
-    right: floor(($grid-gutter-width / 2));
+    right: floor(calc($grid-gutter-width / 2));
   }
 
   // Form group sizes
@@ -601,7 +601,7 @@ input[type="checkbox"] {
   .form-group-lg {
     @media (min-width: $screen-sm-min) {
       .control-label {
-        padding-top: ($padding-large-vertical + 1);
+        padding-top: calc($padding-large-vertical + 1px);
         font-size: $font-size-large;
       }
     }
@@ -609,7 +609,7 @@ input[type="checkbox"] {
   .form-group-sm {
     @media (min-width: $screen-sm-min) {
       .control-label {
-        padding-top: ($padding-small-vertical + 1);
+        padding-top: calc($padding-small-vertical + 1px);
         font-size: $font-size-small;
       }
     }
